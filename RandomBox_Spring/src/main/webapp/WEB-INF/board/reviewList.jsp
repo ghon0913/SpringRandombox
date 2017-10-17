@@ -80,21 +80,13 @@
 	</div>
 </div>
 
-<script type="text/javascript" src="jquery-3.2.1.js"></script>
 <script>
-	$(document).ready(
-			function() {
+	$(document).ready(function() {
 
 				/* 카테고리별로 보기 */
-				$("#searchCategory").on(
-						"change",
-						function() {
-							var searchCategory = $("option:selected").val();
-							$(location).attr(
-									"href",
-									"ReviewListServlet?searchCategory="
-											+ searchCategory);
-						});
-
-			});
+				$("#searchCategory").on("change",function() {
+					var searchCategory = $("option:selected").val();
+					$(location).attr("href","ReviewListServlet?searchCategory="+ searchCategory);
+				});
+	});
 </script>

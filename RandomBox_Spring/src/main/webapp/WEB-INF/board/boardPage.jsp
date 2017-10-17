@@ -18,7 +18,7 @@
               ${status.index}&nbsp;
        </c:if>
        <c:if test="${board.curPage != status.index}">
-              <a href="InquiryListServlet?curPage=${status.index}">${status.index}</a>
+              <a href="inquiryList?curPage=${status.index}">${status.index}</a>
               &nbsp;
        </c:if>
 </c:forEach>
