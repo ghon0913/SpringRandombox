@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- 1) jdbc.properties 등록 -->
+	<context:property-placeholder location="classpath:com/mybatis/jdbc.properties"/>
+
+	<!-- 2) DataSource로 연결(Apache commons dbcp2) -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driver}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.userid}"></property>
+		<property name="password" value="${jdbc.passwd}"></property>
+	</bean>
+	
+	<!-- 3) MyBatisSessionFactoryBean 등록, mapper 등록(여러개일 수 있으니까 list로)  -->
+	<bean id="FactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:com/mybatis/AdminMapper.xml</value>
+				<value>classpath:com/mybatis/BoardMapper.xml</value>
+				<value>classpath:com/mybatis/CartMapper.xml</value>
+				<value>classpath:com/mybatis/GoodsMapper.xml</value>
+				<value>classpath:com/mybatis/MyPageMapper.xml</value>
+				<value>classpath:com/mybatis/MemberMapper.xml</value>
+				<value>classpath:com/mybatis/OrderInfoMapper.xml</value>
+			</list>
+		</property>
+		<property name="typeAliases">
+			<list>
+				<value>com.dto.BoardDTO</value>
+				<value>com.dto.CartDTO</value>
+				<value>com.dto.GoodsDTO</value>
+				<value>com.dto.MemberDTO</value>
+				<value>com.dto.OrderInfoDTO</value>
+				<value>com.dto.AnswerDTO</value>
+				<value>com.dto.MyPageBoardPageDTO</value>
+				<value>com.dto.SalesStatusDTO</value>
+				<value>com.dto.AdminSalesStatusDTO</value>
+			</list>	
+		</property>
+	</bean>
+
+	<!-- 4) SqlSessionTemplate 등록-->
+	<!-- set메서드가 없어서 property의 name이 안나와.. constructor로!-->
+	<bean id="sessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="FactoryBean"/>
+	</bean>
+	
+	<!-- //////////////////////////////////////////////////// -->
+		
+</beans>

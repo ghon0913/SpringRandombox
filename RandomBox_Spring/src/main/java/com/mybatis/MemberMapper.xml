@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.MemberMapper">
+
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="MemberDTO">
+		insert into 
+		joinmember(userid,username,passwd,email,phone,
+		gender,birthday,post1,post2,addr1,addr2,ox)
+		values(
+		#{userid},#{username},#{passwd},
+		#{email},#{phone},#{gender},#{birthday},
+		#{post1},#{post2},#{addr1},#{addr2},#{ox})
+	</insert>
+	
+	<!-- 아이디 중복 체크 위한 아이디 리스트 -->
+	<select id="idCheck" parameterType="String" resultType="String">
+		select userid
+		from joinmember
+		where userid = #{userid}
+	</select>
+	
+	<!-- 이메일 중복 체크 위한 아이디 리스트 -->
+	<select id="emailCheck" parameterType="String" resultType="String">
+		select email
+		from joinmember
+		where email = #{email}
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="searchMember" parameterType="hashmap" resultType="MemberDTO">
+		select userid,username,passwd,email,phone,
+		gender,birthday,post1,post2,addr1,addr2,ox,sessionid,sessionlimit
+		from joinmember
+		where userid=#{userid} and passwd=#{passwd}
+	</select>
+	
+	<!-- cookieId 업데이트  -->
+	<update id="updateCookieId" parameterType="hashmap">
+		update joinmember set sessionId = #{cookieId} 
+		where userid=#{userid}
+	</update>	
+	
+	<!-- CookieId 가져오기  -->
+	<select id="checkCookieId" parameterType="String" resultType="MemberDTO">
+		select * from joinmember where sessionId =#{cookieId}
+	</select>
+	
+	<!-- 아이디 찾기 -->
+	<select id="findUserId" parameterType="hashmap" resultType="String">
+		select userid from joinmember where username =#{username} and phone =#{phone} 
+	</select>
+	<!-- 비밀번호 찾기 -->
+	<select id="findPasswd" parameterType="String" resultType="MemberDTO">
+		select passwd, email from joinmember where userid =#{userid} 
+	</select>
+</mapper>
