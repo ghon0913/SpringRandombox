@@ -14,15 +14,15 @@ public class HandlerInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("preHandle" + handler);
+		System.out.println(">>>>>>>>>>>>"+request);
+		HttpSession session = request.getSession();
+		MemberDTO dto = (MemberDTO)session.getAttribute("login");
 		
-		/*HttpSession session = request.getSession();
-		MemberDTO dto = (MemberDTO)session.getAttribute("");
 		if(dto == null) {
 			System.out.println("세션없음");
 			response.sendRedirect("/app");
 			return false;
-		}*/
+		}
 		return true;
 	}
 	

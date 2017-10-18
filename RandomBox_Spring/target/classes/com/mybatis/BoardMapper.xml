@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by num desc
 	</select>
 
-	<!-- 문의 게시판 전체리스트 수 -->
+	<!-- 문의게시판 전체리스트 수 -->
 	<select id="inquiryList_totalCount" parameterType="hashmap" resultType="int">
 		select count(*)
 		from board
@@ -48,13 +48,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values (board_seq.nextval, #{category}, #{title}, #{content}, #{userId}, #{open}, #{gCode}, #{state})
 	</insert>
 	
-	<!-- 문의글 자세히 보기 -->
-	<select id="inquiryRetrieve" parameterType="int" resultType="BoardDTO">
+	<!-- 글 자세히 보기 -->
+	<select id="boardRetrieve" parameterType="int" resultType="BoardDTO">
 		select num, category, title, content, to_Char(writeday, 'yyyy/mm/dd') writeday, readcnt, userid, state, open, gCode
 		from board
 		where num = #{num}
 	</select>
-	<update id="inquiryReadCnt" parameterType="int">
+	<update id="boardReadCnt" parameterType="int">
 		update board
 		set readCnt = readCnt +1
 		where num = #{num}
@@ -67,8 +67,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where num = #{num}
 	</update>
 	
-	<!-- 문의글 삭제하기 -->
-	<delete id="inquiryDelete" parameterType="int">
+	<!-- 글 삭제하기 -->
+	<delete id="boardDelete" parameterType="int">
 		delete from board
 		where num = #{num}
 	</delete>
@@ -133,12 +133,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set title = #{title}, content = #{content}
 		where num = #{num}
 	</update>
-	
-	<!-- 후기글 삭제하기 -->
-	<delete id="reviewDelete" parameterType="int">
-		delete from board
-		where num = #{num}
-	</delete>
 	
 <!-- ********** -->
 <!-- QnA게시판 SQL -->
