@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.OrderInfoMapper">
+
+	<!-- 장바구니 개병 주문 -->
+	<select id="orderConfirm" resultType="CartDTO" parameterType="int">
+		select num, userid, gCode, gName, gPrice, gImage
+		from cart
+		where num =
+		#{num}
+	</select>
+
+	<!-- 장바구니 전체 주문 -->
+	<select id="orderAllConfirm" resultType="CartDTO" parameterType="list">
+		select num, userid, gCode, gName, gPrice, gImage, sellerId
+		from cart
+		<where>
+			num IN
+			<foreach collection="list" index="index" item="item" open="("
+				close=")" separator=",">
+				#{item}
+			</foreach>
+		</where>
+	</select>
+
+	<!-- 주문한 상품 정보 가져오기 -->
+	<select id="goods_orderInfo" parameterType="String" resultType="GoodsDTO">
+		select gcode, gcategory, gname, gprice, gimage, gcontent_image,
+		gamount, sellerid
+		from goods
+		where gCode = #{gCode}
+	</select>
+
+	<!-- 주문 정보 저장하기 -->
+	<insert id="orderDone" parameterType="OrderInfoDTO">
+		insert into
+		order_Info(num,
+		userid, ordername, phone, email,
+		post1, post2, addr1, addr2, gcode,
+		gname,
+		gprice, gimage, paymethod, sellerid)
+		values(order_seq.nextval,
+		#{userId}, #{orderName},
+		#{phone}, #{eMail}, #{post1}, #{post2},
+		#{addr1}, #{addr2}, #{gCode},
+		#{gName}, #{gPrice}, #{gImage},
+		#{payMethod}, #{sellerId})
+	</insert>
+
+	<!-- amount 감소 -->
+	<update id="orderAfterAmount" parameterType="String">
+		update goods
+		set
+		gAmount = gAmount -1
+		where gCode = #{gCode}
+	</update>
+
+	<!-- 주문한 카드리스트 선택 -->
+	<select id="cartListForOrder" resultType="CartDTO"
+		parameterType="list">
+		select num, userid, gCode, gName, gPrice, gImage, sellerId
+		from cart
+		<where>
+			num IN
+			<foreach collection="list" index="index" item="item" open="("
+				close=")" separator=",">
+				#{item}
+			</foreach>
+		</where>
+		order by num desc
+	</select>
+
+	<!-- 전체 주문한 정보 리스트로 받아 저장하기 -->
+	<insert id="orderAllDone" parameterType="list">
+		insert all
+		<foreach collection="list" item="item">
+			into order_Info (num, userid,
+			ordername, phone, email,
+			post1, post2, addr1, addr2, gcode, gname,
+			gprice, gimage, paymethod, sellerid)
+			values
+			(orderAll_seq(), #{item.userId},
+			#{item.orderName}, #{item.phone},
+			#{item.eMail}, #{item.post1},
+			#{item.post2}, #{item.addr1},
+			#{item.addr2}, #{item.gCode},
+			#{item.gName}, #{item.gPrice},
+			#{item.gImage}, #{item.payMethod},
+			#{item.sellerId})
+		</foreach>
+		select * from dual
+	</insert>
+
+</mapper>
