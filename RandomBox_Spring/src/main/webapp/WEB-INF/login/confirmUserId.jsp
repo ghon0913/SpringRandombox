@@ -12,6 +12,6 @@
 	<br>
 	<br>
 	<div align="center">
-	<a href="LoginFormServlet"><input type="button" class="input-group-addon" value="로그인"></a>&nbsp;&nbsp;
-	<a href="FindPasswdFormServlet"><input type="button" class="input-group-addon" value="비밀번호 찾기"></a>
+	<a href="loginForm"><input type="button" class="input-group-addon" value="로그인"></a>&nbsp;&nbsp;
+	<a href="findPasswdForm"><input type="button" class="input-group-addon" value="비밀번호 찾기"></a>
 	</div>

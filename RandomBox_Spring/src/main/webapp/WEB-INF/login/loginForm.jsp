@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 <div align="center">
 	<div class="loginForm">
-		<form name="LoginForm" method="get">
+		<form name="LoginForm" method="POST">
 			<div class="box">
 				<input type="text" class="iText" name="userid" value="&nbsp;">
 				<br> <input type="password" name="passwd" id="" class="iText">
@@ -13,9 +13,9 @@
 				<p>
 					<span class="fleft"><input type="checkbox" name="autoLogin"
 						id="autoLogin" value="on"><label for=""> 아이디 저장</label></span> <span
-						class="fright"><a href="FindUserIdFormServlet">아이디 찾기</a>&nbsp;|&nbsp;<a
-						href="FindPasswdFormServlet">비밀번호 찾기</a>&nbsp;|&nbsp;<a
-						href="MemberAddFormServlet">회원가입</a></span>
+						class="fright"><a href="findUserIdForm">아이디 찾기</a>&nbsp;|&nbsp;<a
+						href="findPasswdForm">비밀번호 찾기</a>&nbsp;|&nbsp;<a
+						href="memberAddForm">회원가입</a></span>
 				</p>
 			</div>
 			<a href="javascript:login(LoginForm)" id="" class="loginBtn">로그인</a>
@@ -24,7 +24,7 @@
 </div>
 <script>
 	function login(f) {
-		f.action = "LoginServlet";
+		f.action = "login";
 		f.submit();
 	}
 </script>

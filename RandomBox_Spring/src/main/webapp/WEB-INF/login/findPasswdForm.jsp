@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 <div align="center">
 	<div style="width: 500px">
-		<form action="FindPasswdServlet" method="get">
+		<form action="findPasswd" method="get">
 
 			<div class="input-group">
 				<span class="input-group-addon" id="basic-addon1"
