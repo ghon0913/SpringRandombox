@@ -9,7 +9,7 @@
 	rel="stylesheet" />
 <div>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="GoodsListServlet"><img
+		<a class="navbar-brand" href="goodsList"><img
 			src="images/logo.jpg" width="150" height="150" align="left"></a>
 
 		<div align="left">
