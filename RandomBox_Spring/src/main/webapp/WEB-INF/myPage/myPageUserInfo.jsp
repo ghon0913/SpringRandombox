@@ -52,7 +52,7 @@
 <script src="js/daum.js"></script>
 <!-- DAUM 주소 라이브러리 끝 -->
 <div align="center">
-	<form id="myform" action="userinfoupdate.do">
+	<form id="myform">
 		<table border="1">
 			<tr colspan="2">
 				<td>이름</td>
@@ -91,8 +91,11 @@
 					<!-- 다음주소 끝 -->
 			</tr>
 			<tr>
-				<td colspan="2" align="right"><input type="submit"
-					action="userinfoupdate.do" value="수정"></td>
+				<td colspan="2" align="right">
+				<a class="btn btn-success" href="#">Success</a>
+				
+				 <input type="submit" action="myPageuserInfoUpdate" value="수정"></td>
+			
 			</tr>
 		</table>
 	</form>
