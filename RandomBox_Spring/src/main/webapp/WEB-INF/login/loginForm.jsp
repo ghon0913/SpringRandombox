@@ -7,7 +7,7 @@
 	<div class="loginForm">
 		<form name="LoginForm" method="POST">
 			<div class="box">
-				<input type="text" class="iText" name="userid" value="&nbsp;">
+				<input type="text" class="iText" name="userid" value="v">
 				<br> <input type="password" name="passwd" id="" class="iText">
 				<br>
 				<p>
