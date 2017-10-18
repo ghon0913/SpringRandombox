@@ -8,8 +8,7 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 		<h3>|&nbsp;&nbsp;&nbsp;상품 후기&nbsp;&nbsp;&nbsp;|</h3><br>
-			<form action="ReviewUpdateServlet" method="post"
-				id="reviewRetrieveForm">
+			<form action="reviewUpdate" method="post" id="reviewRetrieveForm" modelAtrribute="reviewRetrieveForm">
 				<table class="table">
 					<tr>
 						<td>글번호 :&nbsp;&nbsp;&nbsp; ${retrieveDTO.num }<input type="hidden" name="num"
@@ -44,23 +43,23 @@
 							<td colspan="2" align="center"><input class="btn btn-success" type="submit"
 								value="수정하기" id="update">&nbsp; <input class="btn btn-default" type="button"
 								value="삭제하기" id="delete">&nbsp; <input class="btn btn-default" type="button"
-								value="목록보기" id="inquiryList"></td>
+								value="목록보기" id="reviewListPage"></td>
 						</tr>
 					</c:if>
 					<c:if test="${retrieveDTO.userId != sessionScope.login.userid}">
 						<tr>
 							<td>제목 :</td>
 							<td><input class="form-control" type="text" name="title" id="title"
-								readonly="readonly"></td>
+								readonly="readonly" value="${retrieveDTO.title }"></td>
 						</tr>
 						<tr id="content">
 							<td>후기 내용 :</td>
 							<td><textarea class="form-control" rows="10" cols="50" name="content"
-									id="content" readonly="readonly"></textarea></td>
+									id="content" readonly="readonly">${retrieveDTO.content }</textarea></td>
 						</tr>
 						<tr>
-							<td colspan="2" align="center"><input type="button"
-								value="목록보기" id="reviewList"></td>
+							<td colspan="2" align="center"><input class="btn btn-default" type="button"
+								value="목록보기" id="reviewListPage"></td>
 						</tr>
 					</c:if>
 				</table>
@@ -68,27 +67,18 @@
 		</div>
 	</div>
 </div>
-
-<script type="text/javascript" src="jquery-3.2.1.js"></script>
 <script>
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(function() {
 
-						/* 목록보기 */
-						$("#reviewList").on("click", function() {
-							$(location).attr("href", "ReviewListServlet");
-						});
-
-						/* 삭제하기 */
-						$("#delete")
-								.on(
-										"click",
-										function() {
-											$(location)
-													.attr("href",
-															"ReviewDeleteServlet?num=${retrieveDTO.num }");
-										});
-
-					});
+			/* 목록보기 */
+			$("#reviewListPage").on("click", function() {
+				console.log("$$$");
+				$(location).attr("href", "reviewList");
+			});
+   			
+			/* 삭제하기 */
+			$("#delete").on("click",function() {
+				$(location).attr("href","reviewDelete?num=${retrieveDTO.num }");
+			});
+	});
 </script>

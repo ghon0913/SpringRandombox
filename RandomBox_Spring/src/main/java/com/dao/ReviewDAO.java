@@ -35,4 +35,26 @@ public class ReviewDAO {
         
         return dto;
 	}
+	
+	/* 후기글 자세히 보기 */
+	public BoardDTO reviewRetrieve(int num) {
+
+		BoardDTO dto = template.selectOne("boardRetrieve", num);
+		return dto;
+	}
+	
+	/* 후기글 자세히 보기 + 조회수 업데이트 */
+	public void reviewReadCnt(int num) {
+		template.update("boardReadCnt", num);
+	}
+	
+	/* 후기글 수정하기 */
+	public void reviewUpdate(BoardDTO dto) {
+		template.update("reviewUpdate", dto);
+	}
+	
+	/* 후기글 삭제하기 */
+	public void reviewDelete(int num) {
+		template.delete("boardDelete", num);
+	}
 }

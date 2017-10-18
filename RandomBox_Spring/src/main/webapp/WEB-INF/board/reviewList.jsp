@@ -14,22 +14,25 @@
 				<select class="form-control" id="searchCategory"
 					name="searchCategory" style="font-size: 12px;">
 					<option>카테고리별로 보기</option>
-					<option value="category1">category1</option>
-					<option value="category2">category2</option>
-					<option value="category3">category3</option>
-					<option value="category4">category4</option>
+					<option value="전체카테고리">전체카테고리</option>
+					<option value="패션의류">패션의류</option>
+					<option value="잡화/뷰티">잡화/뷰티</option>
+					<option value="식품/음료">식품/음료</option>
+					<option value="생활용품">생활용품</option>
+					<option value="문구/취미">문구/취미</option>
+					<option value="디지털/컴퓨터">디지털/컴퓨터</option>
+					<option value="티켓/e쿠폰">티켓/e쿠폰</option>
 				</select>
 			</div>
 			<br>
-
-			<table class="table table-hover">
+			<table class="table table-hover" style="font-size: 12px;">
 				<tr>
-					<th>글번호</th>
-					<th>카테고리</th>
-					<th width="250">제목</th>
-					<th>작성일</th>
+					<th width="70">글번호</th>
+					<th width="110">카테고리</th>
+					<th>제목</th>
+					<th width="90">작성일</th>
 					<th width="80">작성자</th>
-					<th>조회수</th>
+					<th width="70">조회수</th>
 				</tr>
 				<!-- ----------------------------------------------------------------리스트 목록 없을 때 -------------------------------->
 				<c:if test="${ boardList.getList().size() == 0 }">
@@ -39,14 +42,14 @@
 				</c:if>
 				<!-- ----------------------------------------------------------------리스트 목록 보여주기 -------------------------------->
 				<c:if test="${ boardList.getList().size() != 0 }">
-					<c:forEach var="rList" items="${ boardList.getList()}">
+					<c:forEach var="rList" items="${boardList.getList()}">
 						<tr>
 							<td>${rList.num }</td>
 							<td>${rList.category }</td>
-							<td style="padding-left: 30px"><a
-								href="ReviewRetrieveServlet?num=${rList.num }">${rList.title }</a></td>
+							<td><a
+								href="reviewRetrieve?num=${rList.num }">${rList.title }</a></td>
 							<td>${rList.writeDay }</td>
-							<td align="center">${rList.userId }</td>
+							<td>${rList.userId }</td>
 							<td>${rList.readCnt }</td>
 						</tr>
 					</c:forEach>
@@ -56,7 +59,7 @@
 					</tr>
 				</c:if>
 			</table>
-			<form action="ReviewListServlet">
+			<form action="reviewList">
 				<div class="row" align="center">
 					<div class="col-xs-3">
 						<select class="form-control" id="searchName" name="searchName"
@@ -86,7 +89,7 @@
 				/* 카테고리별로 보기 */
 				$("#searchCategory").on("change",function() {
 					var searchCategory = $("option:selected").val();
-					$(location).attr("href","ReviewListServlet?searchCategory="+ searchCategory);
+					$(location).attr("href","reviewList?searchCategory="+ searchCategory);
 				});
 	});
 </script>

@@ -17,10 +17,14 @@
 						<select class="form-control" id="searchCategory"
 					name="searchCategory" style="font-size: 12px;">
 					<option>카테고리별로 보기</option>
-					<option value="category1">category1</option>
-					<option value="category2">category2</option>
-					<option value="category3">category3</option>
-					<option value="category4">category4</option>
+					<option value="전체카테고리">전체카테고리</option>
+					<option value="패션의류">패션의류</option>
+					<option value="잡화/뷰티">잡화/뷰티</option>
+					<option value="식품/음료">식품/음료</option>
+					<option value="생활용품">생활용품</option>
+					<option value="문구/취미">문구/취미</option>
+					<option value="디지털/컴퓨터">디지털/컴퓨터</option>
+					<option value="티켓/e쿠폰">티켓/e쿠폰</option>
 				</select>
 					</td>
 					<td width="60%">
@@ -35,15 +39,15 @@
 				
 			</div>
 			<br>
-			<table class="table table-hover">
+			<table class="table table-hover" style="font-size: 12px;">
 				<tr>
-					<th width="90">글번호</th>
+					<th width="70">글번호</th>
 					<th width="110">카테고리</th>
-					<th width="250">제목</th>
-					<th>작성일</th>
-					<th width="100">작성자</th>
-					<th width="100">조회수</th>
-					<th width="120">처리상태</th>
+					<th>제목</th>
+					<th width="90">작성일</th>
+					<th width="80">작성자</th>
+					<th width="70">조회수</th>
+					<th width="80">처리상태</th>
 				</tr>
 				<!-- ----------------------------------------------------------------리스트 목록 없을 때 -------------------------------->
 				<c:if test="${ boardList.getList().size() == 0 }">
@@ -57,10 +61,10 @@
 						<tr>
 							<td>${bList.num }</td>
 							<td>${bList.category }</td>
-							<td style="padding-left: 30px"><c:if
-									test="${bList.open == 'N' }">
+							<td style="padding-left: 30px">
+							<c:if test="${bList.open == 'N' }">
 									<c:if test="${bList.userId == sessionScope.login.userid }">
-										<a href="InquiryRetrieveServlet?num=${bList.num }"
+										<a href="inquiryRetrieve?num=${bList.num }"
 											class="ck_writer">${bList.title } <img
 											src="images/items/lock.png" width="12px" height="12px" /></a>
 									</c:if>
@@ -68,9 +72,11 @@
 										<a href="#" class="ck_writer">${bList.title } <img
 											src="images/items/lock.png" width="12px" height="12px" /></a>
 									</c:if>
-								</c:if> <c:if test="${bList.open == null || bList.open == 'Y' }">
-									<a href="InquiryRetrieveServlet?num=${bList.num }">${bList.title }</a>
-								</c:if></td>
+							</c:if>
+							<c:if test="${bList.open == null || bList.open == 'Y' }">
+									<a href="inquiryRetrieve?num=${bList.num }">${bList.title }</a>
+							</c:if>
+							</td>
 							<td>${bList.writeDay }</td>
 							<td align="center">${bList.userId }</td>
 							<td>${bList.readCnt }</td>
@@ -83,7 +89,7 @@
 					</tr>
 				</c:if>
 			</table>
-			<form action="InquiryListServlet">
+			<form action="inquiryList">
 			<div class="row" align="center">
 					<div class="col-xs-3">
 				<select class="form-control" id="searchName" name="searchName" style="font-size: 12px;">
@@ -98,15 +104,13 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="jquery-3.2.1.js"></script>
+
 <script>
-	$(document).ready(
-			function() {
+	$(document).ready(function() {
 
 				/* 문의글 작성 */
 				$("#inquiry").on("click", function() {
-
-					$(location).attr("href", "InquiryFormServlet");
+					$(location).attr("href", "inquiryForm");
 				});
 
 				/* 카테고리별로 보기 */
@@ -114,11 +118,8 @@
 						"change",
 						function() {
 							var searchCategory = $("option:selected").val();
-							$(location).attr(
-									"href",
-									"InquiryListServlet?searchCategory="
-											+ searchCategory);
+							$(location).attr("href","inquiryList?searchCategory="+ searchCategory);
 						});
-
+				
 			});
 </script>
