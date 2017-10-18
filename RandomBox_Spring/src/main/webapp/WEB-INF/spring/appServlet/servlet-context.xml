@@ -23,6 +23,13 @@
 	<mvc:resources location="/WEB-INF/images/" mapping="/images/**" />
 	<mvc:resources location="/WEB-INF/js/" mapping="/js/**" />
 	
+	<mvc:interceptors>
+	 <mvc:interceptor>
+	  <mvc:mapping path="/loginchk/**"/>
+	   <bean class="com.interceptor.HandlerInterceptor"></bean>
+	 </mvc:interceptor>
+	</mvc:interceptors>
+	
 	<mvc:default-servlet-handler />
 
 	
