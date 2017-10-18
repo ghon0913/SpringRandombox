@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 <div align="center">
 	<div style="width: 500px">
-		<form action="findUserId" method="get">
+		<form action="findUserId" method="POST">
 			<div class="input-group">
 				<span class="input-group-addon" id="basic-addon1"
 					style="width: 100px">이름</span> <input type="text"
