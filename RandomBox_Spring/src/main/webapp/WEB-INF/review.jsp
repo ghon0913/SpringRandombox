@@ -11,6 +11,7 @@
 </head>
 <body>
 	<jsp:include page="include/top.jsp" flush="true" /><br>
+
 	<c:if test="${! empty sessionScope.login }">
 		<c:if test="${chk_reviewPage == 'reviewForm' }">
 			<jsp:include page="board/reviewForm.jsp" flush="true" /><br>
@@ -23,11 +24,16 @@
 		</c:if>
 	</c:if>
 	<c:if test="${empty sessionScope.login }">
-		<script type="text/javascript">
-			alert("로그인이 필요한 메뉴입니다!");
-		</script>
-		<br><br><br><br><br><br>
-		<jsp:include page="login/loginForm.jsp" flush="true" /><br>
+		<c:if test="${chk_reviewPage == 'reviewList' }">
+			<jsp:include page="board/reviewList.jsp" flush="true" /><br>
+		</c:if>
+		<c:if test="${chk_reviewPage != 'reviewList' }">
+			<script type="text/javascript">
+				alert("로그인이 필요한 메뉴입니다!");
+			</script>
+			<br><br><br><br><br><br>
+			<jsp:include page="login/loginForm.jsp" flush="true" /><br>
+		</c:if>
 	</c:if>
 </body>
 </html>

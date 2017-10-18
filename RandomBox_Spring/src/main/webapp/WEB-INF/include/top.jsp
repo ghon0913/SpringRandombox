@@ -18,8 +18,6 @@
 				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
-
-
 				<form class="form-inline my-2 my-lg-0"
 					action="GoodsBySearchServlet">
 					<input class="form-control mr-sm-2" type="text"
@@ -71,7 +69,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="InquiryListServlet">Q & A</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="ReviewListServlet">랜덤박스 후기</a></li>
+						href="reviewList">랜덤박스 후기</a></li>
 				</ul>
 
 
