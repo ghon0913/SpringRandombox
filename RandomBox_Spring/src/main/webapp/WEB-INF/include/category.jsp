@@ -9,21 +9,21 @@
 		<tr>
 			<td style="padding: 2px;"><a href="GoodsListServlet"
 				class="btn btn-info btn-block" role="button" aria-pressed="true">&nbsp;전체보기&nbsp;</a></td>
-			<td style="padding: 2px;"><a href="GoodsByCategoryServlet?category=c1"
+			<td style="padding: 2px;"><a href="GoodsByCategoryServlet?category=패션의류"
 				class="btn btn-info btn-block" role="button" aria-pressed="true">패션의류</a></td>
-			<td style="padding: 2px;"><a href="GoodsByCategoryServlet?category=c2"
+			<td style="padding: 2px;"><a href="GoodsByCategoryServlet?category=잡화/뷰티"
 				class="btn btn-info btn-block" role="button" aria-pressed="true">잡화/뷰티</a></td>
-			<td style="padding: 2px;"><a href="GoodsByCategoryServlet?category=c3"
+			<td style="padding: 2px;"><a href="GoodsByCategoryServlet?category=식품/음료"
 				class="btn btn-info btn-block" role="button" aria-pressed="true">식품/음료</a></td>
 		</tr>
 		<tr>
-			<td style="padding: 2px;"><a href="GoodsByCategoryServlet?category=c4"
+			<td style="padding: 2px;"><a href="GoodsByCategoryServlet?category=생활용품"
 				class="btn btn-info btn-block" role="button" aria-pressed="true">생활용품</a></td>
-			<td style="padding: 2px;"><a href="GoodsByCategoryServlet?category=c5"
+			<td style="padding: 2px;"><a href="GoodsByCategoryServlet?category=문구/취미"
 				class="btn btn-info btn-block" role="button" aria-pressed="true">문구/취미</a></td>
-			<td style="padding: 2px;"><a href="GoodsByCategoryServlet?category=c6"
+			<td style="padding: 2px;"><a href="GoodsByCategoryServlet?category=디지털/컴퓨터"
 				class="btn btn-info btn-block" role="button" aria-pressed="true">디지털/컴퓨터</a></td>
-			<td style="padding: 2px;"><a href="GoodsByCategoryServlet?category=c7"
+			<td style="padding: 2px;"><a href="GoodsByCategoryServlet?category=티켓/e쿠폰"
 				class="btn btn-info btn-block" role="button" aria-pressed="true">티켓/e쿠폰</a></td>
 		</tr>
 
