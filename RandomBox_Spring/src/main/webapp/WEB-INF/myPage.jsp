@@ -73,8 +73,9 @@
 	</c:if>
 	<hr />
 
-
-	<jsp:include page="${page}" />
+<c:if test="${!empty requestScope.page}">
+	<jsp:include page="${page}"/>
+</c:if>
 
 </body>
 </html>
