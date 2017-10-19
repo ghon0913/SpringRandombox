@@ -20,4 +20,9 @@ public class CartService {
 		return list;
 	}
 	
+	/* 장바구니 추가 */
+	public void addCart (CartDTO dto) {
+		dao.addCart(dto);
+	}
+	
 }

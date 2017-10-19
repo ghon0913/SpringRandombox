@@ -35,7 +35,7 @@ public class OrderService {
 	@Transactional
 	public void orderDone(OrderInfoDTO dto, int num, String gCode) {
 		o_dao.orderDone(dto);
-		c_dao.delCart(num);
+		if(num != 0) c_dao.delCart(num);
 		o_dao.orderAfterAmount(gCode);
 	}
 	

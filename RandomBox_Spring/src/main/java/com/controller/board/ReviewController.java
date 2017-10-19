@@ -70,4 +70,29 @@ public class ReviewController {
 		service.reviewDelete(Integer.parseInt(num));
 		return "redirect:/reviewList.do";
 	}
+	
+	/* 상품 판매 페이지에서의 후기 게시판 */
+	@RequestMapping("/goodsReviewList")
+	public String goodsReviewList(@RequestParam(required=false) String searchCategory,
+							   	  @RequestParam(required=false) String searchName,
+								  @RequestParam(required=false) String searchWord ,
+								  @RequestParam(defaultValue="1") String curPage, Model m) {
+		
+        if(curPage == null) {
+            curPage = "1";
+        }
+     
+		HashMap<String, String> searchMap = new HashMap<>();
+		searchMap.put("searchCategory", searchCategory);
+		searchMap.put("searchName", searchName);
+		searchMap.put("searchWord", searchWord);
+		
+		BoardPageDTO dto = service.reviewList(Integer.parseInt(curPage), searchMap);
+		
+		m.addAttribute("boardList", dto);
+		m.addAttribute("searchCategory", searchCategory);
+		m.addAttribute("chk_reviewPage", "reviewPage");
+		return "home";
+	}
+	
 }

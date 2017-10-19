@@ -26,30 +26,24 @@
 				</tr>
 				<tr>
 					<td colspan="3" align="center">
-						<table border="0">
-							<tr>
-								<td height="7" />
-							</tr>
+						<table table class="table table-hover" style="font-size: 12px;">
+							<thead>
 							<c:if test="${empty searchCategory}">
 								<tr>
-									<td colspan="3"><select id="searchCategory"
-										name="searchCategory">
+									<td colspan="3"><select class="form-control" id="searchCategory"
+											name="searchCategory" style="font-size: 12px;">
 											<option>카테고리별로 보기</option>
-											<option value="category1">category1</option>
-											<option value="category2">category2</option>
-											<option value="category3">category3</option>
-											<option value="category4">category4</option>
+											<option value="전체카테고리">전체카테고리</option>
+											<option value="패션의류">패션의류</option>
+											<option value="잡화/뷰티">잡화/뷰티</option>
+											<option value="식품/음료">식품/음료</option>
+											<option value="생활용품">생활용품</option>
+											<option value="문구/취미">문구/취미</option>
+											<option value="디지털/컴퓨터">디지털/컴퓨터</option>
+											<option value="티켓/e쿠폰">티켓/e쿠폰</option>
 									</select></td>
 								</tr>
 							</c:if>
-							<tr>
-								<td colspan="10">
-									<hr size="1" color="CCCCCC">
-								</td>
-							</tr>
-							<tr>
-								<td height="7" />
-							</tr>
 							<tr>
 								<th>글번호</th>
 								<th>카테고리</th>
@@ -58,14 +52,8 @@
 								<th width="80">작성자</th>
 								<th>조회수</th>
 							</tr>
-							<tr>
-								<td colspan="10">
-									<hr size="1" color="CCCCCC">
-								</td>
-							</tr>
-							<tr>
-								<td height="7" />
-							</tr>
+							</thead>
+
 							<!-- ----------------------------------------------------------------리스트 목록 없을 때 -------------------------------->
 							<c:if test="${ boardList.getList().size() == 0 }">
 								<tr>
@@ -86,35 +74,28 @@
 									</tr>
 								</c:forEach>
 								<tr>
-									<td colspan="10">
-										<hr size="1" color="CCCCCC">
-									</td>
-								</tr>
-								<tr>
 									<td align="center" colspan="7"><jsp:include
 											page="../board/boardPage.jsp" flush="true"></jsp:include></td>
 								</tr>
 							</c:if>
-							<tr>
-								<td colspan="10">
-									<hr size="1" color="CCCCCC">
-								</td>
-							</tr>
-							<tr>
+							</table>
+							
 								<form action="goodsReviewList">
 									<c:if test="${!empty searchCategory}">
 										<input type="hidden" name="searchCategory" value="${searchCategory }">
 									</c:if>
-									<td colspan="4" style="padding-left: 10px" align="center">
-										<select id="searchName" name="searchName">
-											<option value="title">제목으로 검색</option>
-											<option value="content">내용으로 검색</option>
-									</select> <input type="text" id="searchWord" name="searchWord">
-										<input type="submit" value="검색">
-									</td>
+									<div class="row" align="center">
+									<div class="col-xs-3">
+										<select class="form-control" id="searchName" name="searchName" style="font-size: 12px;">
+												<option value="title">제목으로 검색</option>
+												<option value="content">내용으로 검색</option>
+										</select></div>
+									&nbsp;&nbsp;&nbsp;
+									<div class="col-xs-4"> <input class="form-control" type="text" id="searchWord" name="searchWord"></div>
+								 	&nbsp;&nbsp;&nbsp;
+									<div class="col-xs-3"><input class="btn btn-success" type="submit" value="검색"></div>
 								</form>
-							</tr>
-						</table>
+
 					</td>
 				</tr>
 				<tr height="10" />
@@ -122,7 +103,6 @@
 	<tr height="10" />
 </table>
 
-<script type="text/javascript" src="jquery-3.2.1.js"></script>
 <script>
 	$(document).ready(
 			function() {

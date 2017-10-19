@@ -26,7 +26,7 @@
 										border="0" width="200">
 								</a></td>
 								<td>
-									<form id="randomGoodsForm">
+									<form id="randomGoodsForm" modelAttribute="randomGoodsForm">
 										<input type="hidden" name="gCode" value="${randomGoods.gCode }">
 										<input type="hidden" name="userId" value="${sessionScope.login.userid }">
 										<input type="hidden" name="gName" value="${randomGoods.gName }">

@@ -27,12 +27,16 @@
 				<td>
 					<table class="table"  style="font-size: 12px;">
 						<tr>
-							<td  align="center"><strong>주문번호</strong></td>
+							<c:if test="${cDTO.num != 0}">
+								<td  align="center"><strong>주문번호</strong></td>
+							</c:if>
 							<td  align="center" colspan="2"><strong>상품정보</strong></td>
 							<td  align="center"><strong>판매가</strong></td>
 						</tr>
 						<tr>
-							<td  width="80">${cDTO.num }</td>
+							<c:if test="${cDTO.num != 0}">
+								<td  width="80">${cDTO.num }</td>
+							</c:if>
 							<td  width="80"><img
 								src="images/goods/${cDTO.gImage }" border="0" align="center"
 								width="80" /></td>
@@ -41,7 +45,10 @@
 								원</td>
 						</tr>
 						<tr>
-							<td height="30" colspan="2"></td>
+							<c:if test="${cDTO.num != 0}">
+								<td height="30"></td>
+							</c:if>
+							<td></td>
 							<td  align="right">결제 금액 :</td>
 							<td  align='right'>${cDTO.gPrice}원</td>
 						</tr>

@@ -209,12 +209,6 @@ public class GoodsController {
 		return "home";
 	}
 
-	@RequestMapping("/goodsReviewList")
-	public String goodsReviewList() {
-
-		return null;
-	}
-
 	@RequestMapping("/goodsRegister")
 	public String goodsRegister() {
 

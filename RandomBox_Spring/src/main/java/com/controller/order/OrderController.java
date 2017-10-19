@@ -59,5 +59,19 @@ public class OrderController {
 		return "order";
 	}
 	
+	/* 바로 주문 하기 */
+	@RequestMapping("/orderAdd")
+	public String orderAdd(@ModelAttribute("orderConfirmForm") CartDTO c_dto,
+						   @RequestParam String gCategory,
+							Model m) {
+
+		c_dto.setgName("["+gCategory+"] 랜덤박스");
+		MemberDTO m_dto = m_service.myPageUserInfo(c_dto.getUserId());
+		
+		m.addAttribute("cDTO", c_dto);
+		m.addAttribute("mDTO", m_dto);
+		m.addAttribute("chk_orderPage", "orderConfirm");
+		return "order";
+	}
 	
 }
