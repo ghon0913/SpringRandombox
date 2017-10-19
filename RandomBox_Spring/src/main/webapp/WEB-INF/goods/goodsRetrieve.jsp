@@ -12,8 +12,8 @@
 				border=1>
 
 				<tr height="30">
-					<td align="center"><a href="home.jsp">구매페이지</a></td>
-					<td align="center"><a href="home.jsp">상품설명</a></td>
+					<td align="center"><a href="goodsList">구매페이지</a></td>
+					<td align="center"><a href="goodsRetrieve">상품설명</a></td>
 					<td align="center"><a href="goodsReviewList">후기</a></td>
 				</tr>
 				<tr>
