@@ -6,18 +6,19 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-9">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
 	<h5>|&nbsp;&nbsp;&nbsp;문의글 쓰기&nbsp;&nbsp;&nbsp;|</h5><br>
 	<form id="inquiryWriteForm" action="inquiryWrite" method="post" modelAttribute="inquiryWriteForm">
-		<table class="table">
+		<table class="table" style="font-size: 12px;">
 			<input type="hidden" name="userId" value="${sessionScope.login.userid }">
 			<input type="hidden" name="state" value="처리중">
 			<tr>
-				<td width="200px">작성자 : </td>
+				<th width="160px">작성자 : </th>
 				<td>${sessionScope.login.userid }</td>
 			</tr>
 			<tr>
-				<td>문의사항 선택 :</td>
+				<th>문의사항 선택 :</th>
 				<td>
 				<span class="row">
 					<span class="col-xs-2">
@@ -47,16 +48,16 @@
 				</td>	
 			</tr>
 			<tr>
-				<td>문의글 공개여부 :</td>
+				<th>문의글 공개여부 :</th>
 				<td><input type="radio" name="open" value="N">&nbsp;비공개글로 작성&nbsp;&nbsp;&nbsp;
 				<input type="radio" name="open" value="Y" checked="checked">&nbsp;공개글로 작성</td>
 			</tr>
 			<tr>
-				<td>제목 :</td>
+				<th>제목 :</th>
 				<td><input class="form-control" type="text" name="title" id="title"></td>
 			</tr>
 			<tr>
-				<td>문의 내용 :</td>
+				<th>문의 내용 :</th>
 				<td><textarea class="form-control" rows="10" cols="30" name="content" id="content"></textarea></td>
 			</tr>
 			<tr>

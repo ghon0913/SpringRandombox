@@ -73,7 +73,7 @@
 				bordercolor="#CCCCCC">
 				<tr>
 					<td width="100" class="td_default" height="35" align="center"><strong>주문 상품</strong></td>
-					<td width="250" class="td_default" height="35" align="center"><strong>상품명</strong></td>
+					<td width="250" class="td_default" height="35" align="center"><strong>랜덤 배정 상품</strong></td>
 					<td class="td_default" width="100" height="35" align="center"><strong>판매가</strong></td>
 				</tr>
 				<tr>

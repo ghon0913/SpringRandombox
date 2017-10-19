@@ -3,10 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
 <!-- bootstrap -->
-<link href="js/bootstrap-4.0.0-beta-dist/css/bootstrap.min.css"
-	rel="stylesheet" />
+<link href="js/bootstrap-4.0.0-beta-dist/css/bootstrap.min.css" rel="stylesheet" />
 
 <div>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
