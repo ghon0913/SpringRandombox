@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
+import com.dto.GoodsDTO;
 
 @Repository
 public class InquiryDAO {
@@ -56,6 +57,18 @@ public class InquiryDAO {
 	/* 문의글 삭제하기 */
 	public void inquiryDelete(int num) {
 		template.delete("boardDelete", num);
+	}
+	
+	/* 해당 카테고리 상품명 불러오기 */
+	public List<GoodsDTO> selectCategory(String category){
+		
+		List<GoodsDTO> list = template.selectList("selectCategory", category);
+		return list;
+	}
+	
+	/* 문의글 쓰기 */
+	public void inquiryWrite(BoardDTO dto) {
+		template.insert("inquiryWrite", dto);
 	}
 	
 }

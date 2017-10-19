@@ -7,49 +7,46 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
-		<h3>|&nbsp;&nbsp;&nbsp;Q & A&nbsp;&nbsp;&nbsp;|</h3><br>
+		<h5>|&nbsp;&nbsp;&nbsp;Q & A&nbsp;&nbsp;&nbsp;|</h5><br>
 	<form action="inquiryUpdate" method="post" id="inquiryRetrieveForm" modelAttribute="inquiryRetrieveForm">
-		<table class="table">
+		<table class="table" style="font-size: 12px;">
 			<tr>
-				<td>글번호 : &nbsp;&nbsp;&nbsp;${retrieveDTO.num }<input type="hidden" name="num" value="${retrieveDTO.num }"></td>
-				<td id="writer">작성자 : &nbsp;&nbsp;&nbsp;${retrieveDTO.userId }</td>
-				<td>작성일 : &nbsp;&nbsp;&nbsp;${retrieveDTO.writeDay }</td>
+				<td><b>글번호 :</b> &nbsp;&nbsp;&nbsp;${retrieveDTO.num }<input type="hidden" name="num" value="${retrieveDTO.num }"></td>
+				<td id="writer"><b>작성자 : </b>&nbsp;&nbsp;&nbsp;${retrieveDTO.userId }</td>
+				<td><b>작성일 :</b> &nbsp;&nbsp;&nbsp;${retrieveDTO.writeDay }</td>
 			</tr>
 			<tr>
-				<td>처리상태 : &nbsp;&nbsp;&nbsp;${retrieveDTO.state }</td>
+				<td><b>처리상태 :</b> &nbsp;&nbsp;&nbsp;${retrieveDTO.state }</td>
 				<td></td>
-				<td>조회수 : &nbsp;&nbsp;&nbsp;${retrieveDTO.readCnt }</td>
+				<td><b>조회수 :</b> &nbsp;&nbsp;&nbsp;${retrieveDTO.readCnt }</td>
 			</tr>
 			<tr>
-				<td>상품 카테고리 :&nbsp;&nbsp;&nbsp; ${retrieveDTO.category }</td>
-				<td colspan="2"></td>
-			</tr>
-			<c:if test="${!empty retrieveDTO.gCode}">
-				<tr>
-					<td>문의 상품 :&nbsp;&nbsp;&nbsp;${retrieveDTO.gCode }</td>
-					<td colspan="2"></td>
-				</tr>
+				<td><b>상품 카테고리 :</b>&nbsp;&nbsp;&nbsp; ${retrieveDTO.category }</td>
+				<td></td>
+			<c:if test="${(retrieveDTO.gCode != 'admin') && !empty retrieveDTO.gCode}">
+				<td><b>문의 상품 :</b>&nbsp;&nbsp;&nbsp;${retrieveDTO.gCode }</td>
 			</c:if>
+			</tr>
 		</table>
-		<table class="table">
+		<table class="table" style="font-size: 12px;">
 			<c:if test="${retrieveDTO.userId == sessionScope.login.userid}">
 				<tr>
-					<td>문의글 공개여부 :</td>
+					<td><b>문의글 공개여부 :</b></td>
 					<td id="open"><input type="radio" name="open" value="N">비공개글로 작성&nbsp;&nbsp;
 					<input type="radio" name="open" value="Y" checked="checked">공개글로 작성</td>
 				</tr>
 				<tr>
-					<td>제목 :</td>
+					<td><b>제목 :</b></td>
 					<td><input class="form-control" type="text" name="title" id="title" value="${retrieveDTO.title }"></td>
 				</tr>
 				<tr>
-					<td>문의 내용 :</td>
+					<td><b>문의 내용 :</b></td>
 					<td><textarea class="form-control" rows="10" cols="50" name="content" id="content">${retrieveDTO.content }</textarea></td>
 				</tr>
 				
 				<c:if test="${ ! empty answerDTO}">
 				<tr>
-					<td>답변 내용 :</td>
+					<td><b>답변 내용 :</b></td>
 					<td><textarea class="form-control" rows="10" cols="50" name="content" id="content">${answerDTO.answer }</textarea></td>
 				</tr>					
 				</c:if>
@@ -87,7 +84,6 @@
 	</form>
 </div>
 </div></div>
-<script type="text/javascript" src="jquery-3.2.1.js"></script>
 <script>
 $(document).ready(function(){
 

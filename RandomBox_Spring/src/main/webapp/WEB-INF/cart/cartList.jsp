@@ -6,56 +6,30 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-11">
-	<h3>|&nbsp;&nbsp;&nbsp;나의 장바구니&nbsp;&nbsp;&nbsp;|</h3><br>
-	<table width="70%" cellspacing="0" cellpadding="0" border="0">
+		<div class="col-md-2"></div>
+		<div class="col-md-9">
+	<h5>|&nbsp;&nbsp;&nbsp;나의 장바구니&nbsp;&nbsp;&nbsp;|</h5><br>
+	<table class="table" style="font-size: 12px;">
 		<tr>
-		<td height="30">
-	</tr>
-	<tr>
-		<td colspan="10">
-			<hr size="1" color="CCCCCC">
-		</td>
-	</tr>
-	<tr>
-		<td height="7">
-	</tr>
-		<tr>
-			<td class="td_default" align="center" width="100"><input type="checkbox"
-				name="allCheck" id="allCheck"> <strong>전체선택</strong></td>
-			<td class="td_default" align="center" width="100"><strong>주문번호</strong></td>
-			<td class="td_default" align="center" colspan="2"><strong>상품정보</strong></td>
-			<td class="td_default" align="center"><strong>판매가</strong></td>
-			<td colspan="3"></td>
-		</tr>
-		<tr>
-			<td height="7">
-		</tr>
-		
+			<th><input type="checkbox" name="allCheck" id="allCheck">&nbsp;&nbsp;<strong>전체선택</strong></th>
+			<th><strong>주문번호</strong></th>
+			<th><strong>상품정보</strong></th>
+			<th><strong>판매가</strong></th>
+			<th></th>
+		</tr>		
 		<c:if test="${fn:length(cartList)==0}">
 			<tr>
-				<td colspan="10">
-					<hr size="1" color="CCCCCC">
-				</td>
-			</tr>
-
-			<tr>
-				<td height="5">
+				<td align="center" colspan="5" style="padding-top: 30px; padding-bottom: 30px;">카트에 추가된 상품이 없습니다.</td>
 			</tr>
 			<tr>
-				<td class="td_default" align="center" colspan="7">카트에 추가된 상품이 없습니다.</td>
+				<td align="center" colspan="5"><input id="goShopping" class="btn btn-success" type="button" value="계속 쇼핑하기"></td>
 			</tr>
 		</c:if>
 		
 <!--cartList---------------------------------------------------------------------------------------------------------->
 
 		<c:if test="${fn:length(cartList)!=0}">
-			<tr>
-				<td colspan="10">
-					<hr size="1" color="CCCCCC">
-				</td>
-			</tr>
+
 		<form name="cartListForm" id="cartListForm">
 			<c:forEach var="xxx" items="${cartList}">
 				<input type="hidden" name="num${xxx.num}" value="${xxx.num}"
@@ -98,41 +72,27 @@
 <!--end cartList------------------------------------------------------------------------------------------------------>
 		
 			<tr>
-				<td colspan="10">
-					<hr size="1" color="CCCCCC">
-				</td>
-			</tr>
-			<tr>
-				<td height="30">
-			</tr>
-
-			<tr>
 				<td align="center" colspan="5"><a class="a_black"
 					href="#" id="orderAllConfirm"> 전체 주문하기 </a>&nbsp;&nbsp;&nbsp;&nbsp;
 					<a class="a_black" id="delAllCart" href="#"> 전체
 						삭제하기 </a>&nbsp;&nbsp;&nbsp;&nbsp; <a class="a_black" href="start.jsp">
 						계속 쇼핑하기 </a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 			</tr>
-			<tr>
-				<td height="20">
-			</tr>
 		</c:if>
-			<tr>
-				<td colspan="10">
-					<hr size="1" color="CCCCCC">
-				</td>
-			</tr>
 	</table>
 </div></div></div>
 
 <!--script cartList------------------------------------------------------------------------------------------------------>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
 	$("#delCart").on("click", function(){
 		$(location).attr("href", "CartDelServlet?num="+$("#num").text());
-	})
+	});
+	
+	$("#goShopping").on("click", function(){
+		$(location).attr("href", "goodsList");
+	});
 	
 	$("#allCheck").on("change", function(event){
 			var chk = $(".check");

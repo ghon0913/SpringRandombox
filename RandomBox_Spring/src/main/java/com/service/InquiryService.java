@@ -1,6 +1,7 @@
 package com.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dao.InquiryDAO;
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
+import com.dto.GoodsDTO;
 
 @Service
 public class InquiryService {
@@ -41,6 +43,18 @@ public class InquiryService {
 	/* 문의글 삭제하기 */
 	public void inquiryDelete(int num) {
 		dao.inquiryDelete(num);
+	}
+	
+	/* 해당 카테고리 상품명 불러오기 */
+	public List<GoodsDTO> selectCategory(String category){
+		
+		List<GoodsDTO> list = dao.selectCategory(category);
+		return list;
+	}
+	
+	/* 문의글 쓰기 */
+	public void inquiryWrite(BoardDTO dto) {
+		dao.inquiryWrite(dto);
 	}
 	
 }

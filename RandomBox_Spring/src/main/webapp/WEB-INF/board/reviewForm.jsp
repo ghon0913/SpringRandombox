@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
-	<h3>|&nbsp;&nbsp;&nbsp;후기 쓰기&nbsp;&nbsp;&nbsp;|</h3><br>
+	<h5>|&nbsp;&nbsp;&nbsp;후기 쓰기&nbsp;&nbsp;&nbsp;|</h5><br>
 	<form id="reviewWriteForm" action="ReviewWriteServlet" method="post">
 		<table class="table">
 			<input type="hidden" name="userid" value="${sessionScope.login.userid }">

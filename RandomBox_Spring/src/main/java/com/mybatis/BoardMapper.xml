@@ -74,8 +74,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<!-- 문의글 작성 -> 카테고리 선택 -->
-	<select id="selectCategory" parameterType="String" resultType="CartDTO">
-		select gCode, gName, gCategory
+	<select id="selectCategory" parameterType="String" resultType="GoodsDTO">
+		select gCode, gName
 		from goods
 		where gCategory = #{gCategory}
 	</select>

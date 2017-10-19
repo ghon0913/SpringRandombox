@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-	
+
 	<!-- 1) jdbc.properties 등록 -->
-	<context:property-placeholder location="classpath:com/mybatis/jdbc.properties"/>
+	<context:property-placeholder location="classpath:com/mybatis/jdbc.properties" />
 
 	<!-- 2) DataSource로 연결(Apache commons dbcp2) -->
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
@@ -17,8 +16,8 @@
 		<property name="username" value="${jdbc.userid}"></property>
 		<property name="password" value="${jdbc.passwd}"></property>
 	</bean>
-	
-	<!-- 3) MyBatisSessionFactoryBean 등록, mapper 등록(여러개일 수 있으니까 list로)  -->
+
+	<!-- 3) MyBatisSessionFactoryBean 등록, mapper 등록(여러개일 수 있으니까 list로) -->
 	<bean id="FactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="mapperLocations">
@@ -43,24 +42,27 @@
 				<value>com.dto.MyPageBoardPageDTO</value>
 				<value>com.dto.SalesStatusDTO</value>
 				<value>com.dto.AdminSalesStatusDTO</value>
-			</list>	
+			</list>
 		</property>
 	</bean>
 
-	<!-- 4) SqlSessionTemplate 등록-->
-	<!-- set메서드가 없어서 property의 name이 안나와.. constructor로!-->
+	<!-- 4) SqlSessionTemplate 등록 -->
+	<!-- set메서드가 없어서 property의 name이 안나와.. constructor로! -->
 	<bean id="sessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="FactoryBean"/>
+		<constructor-arg ref="FactoryBean" />
 	</bean>
-	
+
 	<!-- //////////////////////////////////////////////////// -->
-	
+
 	<!-- 트랜잭션 설정 -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-    	<property name="dataSource" ref="dataSource"></property>
-    </bean>
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-	
-	<context:component-scan base-package="com.*" use-default-filters="false" />
-	
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<context:component-scan base-package="com.*"
+		use-default-filters="false" />
+
+
 </beans>

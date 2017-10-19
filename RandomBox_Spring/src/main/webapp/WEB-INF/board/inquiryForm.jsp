@@ -6,12 +6,12 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
-	<h3>|&nbsp;&nbsp;&nbsp;문의글 쓰기&nbsp;&nbsp;&nbsp;|</h3><br>
-	<form id="inquiryWriteForm" action="InquiryWriteServlet" method="post">
+		<div class="col-md-9">
+	<h5>|&nbsp;&nbsp;&nbsp;문의글 쓰기&nbsp;&nbsp;&nbsp;|</h5><br>
+	<form id="inquiryWriteForm" action="inquiryWrite" method="post" modelAttribute="inquiryWriteForm">
 		<table class="table">
-			<input type="hidden" name="userid" value="${sessionScope.login.userid }">
+			<input type="hidden" name="userId" value="${sessionScope.login.userid }">
+			<input type="hidden" name="state" value="처리중">
 			<tr>
 				<td width="200px">작성자 : </td>
 				<td>${sessionScope.login.userid }</td>
@@ -28,12 +28,16 @@
 					</select>
 					</span>&nbsp;&nbsp;
 					<span class="col-xs-2">
-					<select class="form-control" id="select_category" name="select_category" style="display: none; font-size: 12px;">
+					<select class="form-control" id="select_category" name="category" style="display: none; font-size: 12px;">
 						<option>카테고리 선택</option>
-						<option value="c1">카테고리 1</option>
-						<option value="90">카테고리 2</option>
-						<option value="1">카테고리 3</option>
-						<option value="test">카테고리 4</option>
+						<option value="전체카테고리">전체카테고리</option>
+						<option value="패션의류">패션의류</option>
+						<option value="잡화/뷰티">잡화/뷰티</option>
+						<option value="식품/음료">식품/음료</option>
+						<option value="생활용품">생활용품</option>
+						<option value="문구/취미">문구/취미</option>
+						<option value="디지털/컴퓨터">디지털/컴퓨터</option>
+						<option value="티켓/e쿠폰">티켓/e쿠폰</option>
 					</select>
 					</span>&nbsp;&nbsp;
 					<span class="col-xs-2">
@@ -71,7 +75,7 @@ $(document).ready(function(){
 
 	/* 목록보기 */
 	$("#inquiryList").on("click", function(){
-		$(location).attr("href", "InquiryListServlet");
+		$(location).attr("href", "inquiryList");
 	});
 	
 	/* 문의사항 선택하기  */
@@ -94,14 +98,23 @@ $(document).ready(function(){
 		var s_category = $("#select_category option:selected").val();
 
         $.ajax({
-               type:"get",
-               url:"SelectCategoryServlet",
+               type:"post",
+               url:"selectCategory",
                data: {gCategory: s_category},
-               dataType:"text",
+               dataType:"json",
                
                success : function(responseData, status, xhr){
+            	   
+            	   var option = "<option>상품명 선택</option>"
+            			+"<option value='admin'>목록에 없음</option>";
+            			
+            	   $.each(responseData, function(index, value){
+            		   option = option + "<option value="+value.gCode+">"
+            		   			+value.gName+"</option>";
+            	   });
+            	   
             	   $("#select_goods").show();
-            	   $("#select_goods").append(responseData);
+            	   $("#select_goods").append(option);
                },
                
                error : function(xhr, status, e){

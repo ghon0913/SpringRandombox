@@ -24,4 +24,13 @@ public class MemberDAO {
 	public MemberDTO searchMember(Map<String,String> map) {
 		return template.selectOne("searchMember",map);
 	}
+	
+	public String findUserId(Map<String,String> map) {
+		return template.selectOne("findUserId",map);
+	}
+	
+	public String findPasswd(Map<String,String> map) {
+		return template.selectOne("findPasswd",map);
+	}
+	
 }

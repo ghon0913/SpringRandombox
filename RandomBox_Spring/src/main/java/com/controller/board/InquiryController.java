@@ -1,6 +1,7 @@
 package com.controller.board;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,9 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
+import com.dto.GoodsDTO;
 import com.service.InquiryService;
 
 @Controller
@@ -69,11 +72,35 @@ public class InquiryController {
 		return "redirect:/inquiryList.do";
 	}
 	
-	/* 문의글 작성하기 */
+	/* 문의글 작성 폼 */
 	@RequestMapping("/inquiryForm")
 	public String inquiryForm(Model m) {
 		
 		m.addAttribute("chk_inquiryPage", "inquiryForm");
 		return "inquiry";
+	}
+	
+	/* 질문 카테고리 선택 */
+	@RequestMapping("/selectCategory")
+	public @ResponseBody List<GoodsDTO> selectCategory(@RequestParam String gCategory) {
+	
+		List<GoodsDTO> list = service.selectCategory(gCategory);
+		return list;
+		
+	}
+	
+	/* 문의글 쓰기 */
+	@RequestMapping("/inquiryWrite")
+	public String inquiryWrite(@ModelAttribute("inquiryWriteForm") BoardDTO dto,
+							   @RequestParam String select_question) {
+		
+		if(select_question.equals("q_admin")) {
+			dto.setCategory("관리자질문");
+			dto.setgCode("admin");
+		}
+		
+		service.inquiryWrite(dto);
+		
+		return"redirect:/inquiryList.do";
 	}
 }

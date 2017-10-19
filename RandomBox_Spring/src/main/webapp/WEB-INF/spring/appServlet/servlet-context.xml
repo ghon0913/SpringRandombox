@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -10,27 +9,28 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
 	<context:component-scan base-package="com.*" />
-	
+
 	<mvc:annotation-driven></mvc:annotation-driven>
-	
+
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/WEB-INF/" suffix=".jsp" />
 	</mvc:view-resolvers>
-	
-	<mvc:view-controller path="/" view-name="home"/>
-	
+
+	<mvc:view-controller path="/" view-name="home" />
+
 	<mvc:resources location="/WEB-INF/image/" mapping="/image/**" />
 	<mvc:resources location="/WEB-INF/images/" mapping="/images/**" />
 	<mvc:resources location="/WEB-INF/js/" mapping="/js/**" />
-	
+
 	<mvc:interceptors>
-	 <mvc:interceptor>
-	  <mvc:mapping path="/loginchk/**"/>
-	   <bean class="com.interceptor.HandlerInterceptor"></bean>
-	 </mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/loginchk/**" />
+			<bean class="com.interceptor.HandlerInterceptor"></bean>
+		</mvc:interceptor>
 	</mvc:interceptors>
-	
+
 	<mvc:default-servlet-handler />
 
-	
+
+
 </beans>
