@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select userid from joinmember where username =#{username} and phone =#{phone} 
 	</select>
 	<!-- 비밀번호 찾기 -->
-	<select id="findPasswd" parameterType="String" resultType="MemberDTO">
-		select passwd, email from joinmember where userid =#{userid} 
+	<select id="findPasswd" parameterType="hashmap" resultType="String">
+		select passwd, email from joinmember where userid =#{userid} and email=#{email} 
 	</select>
 </mapper>
