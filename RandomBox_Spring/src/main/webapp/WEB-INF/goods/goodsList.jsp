@@ -69,6 +69,7 @@
 			$(location).attr("href", "goodsList");
 		}
 	});
+	
 	/* 장바구니 넣기 */
 	$("#cartAdd").on("click", function(){
 		
