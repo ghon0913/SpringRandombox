@@ -22,7 +22,7 @@
 				<td width="200">가격 : ${dto.gPrice }</td>
 				<td width="200">판매자 : ${dto.sellerId }<br>
 				<a href="">상품평 보러가기</a></td>
-				<td><a href="GoodsByCategoryServlet?category=${dto.gCategory}"><input
+				<td><a href="goodsByCategory?category=${dto.gCategory}"><input
 						type="button" value="랜덤박스"></a></td>
 			</tr>
 			<tr height="10" />

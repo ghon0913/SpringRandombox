@@ -6,7 +6,7 @@
 
 	<h2>상품 등록</h2>
 	<hr>
-	<form action="GoodsRegisterServlet" method="post" enctype="multipart/form-data">
+	<form action="goodsRegister" method="post" enctype="multipart/form-data">
 		gCode : <input type="text" name="gCode"><br>
 		gCategory : <input type="text" name="gCategory"><br>
 		

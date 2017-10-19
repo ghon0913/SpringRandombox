@@ -9,7 +9,6 @@
 
 	<div align="center">
 		<div class="container" align="center">
-
 			<div align="center">
 				<div style="width: 1000px">
 					<form role="form" method="POST" action="login">
@@ -28,18 +27,16 @@
 								<span><input type="checkbox" name="autoLogin"
 									id="autoLogin" value="on"><label for=""> 아이디 저장</label></span>
 								<span class="fright"><a href="findUserIdForm">아이디 찾기</a>&nbsp;|&nbsp;<a
-									href="findPasswdForm">비밀번호 찾기</a>&nbsp;|&nbsp;<a
-									href="memberAddForm">회원가입</a></span>
+									href="findPasswdForm">비밀번호 찾기</a></span>
 							</p>
 							<hr class="colorgraph">
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<input type="submit" class="btn btn-lg btn-success btn-block"
-										value="Sign In">
+										value="로그인">
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
-									<a href="memberAddForm"
-										class="btn btn-lg btn-primary btn-block">Register</a>
+									<a href="memberForm" class="btn btn-lg btn-primary btn-block">회원가입</a>
 								</div>
 							</div>
 						</fieldset>

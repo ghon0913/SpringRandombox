@@ -13,8 +13,8 @@
 
 				<tr height="30">
 					<td align="center"><a href="home.jsp">구매페이지</a></td>
-					<td align="center"><a href="GoodsRetrieveByCategoryServlet?category=${gCategory}">상품설명</a></td>
-					<td align="center"><a href="GoodsReviewListServlet?searchCategory=${gCategory}">후기</a></td>
+					<td align="center"><a href="goodsRetrieveByCategory?category=${gCategory}">상품설명</a></td>
+					<td align="center"><a href="goodsReviewList?searchCategory=${gCategory}">후기</a></td>
 				</tr>
 				<tr>
 
@@ -51,7 +51,7 @@
 				</tr>
 				<tr>
 					<td colspan="4" align="center">
-						<a href="GoodsMixListByCategoryServlet?category=${gCategory}"><input type="button" value="새로 구성하기"/></a>
+						<a href="goodsMixListByCategory?category=${gCategory}"><input type="button" value="새로 구성하기"/></a>
 						<input type="button" id="cartAdd" value="장바구니 넣기"/>
 						<input type="button" id="orderAdd" value="주문하기"/>
 					</td>
@@ -69,9 +69,9 @@
 		
 		if(${empty sessionScope.login}){
 			alert("로그인이 필요한 서비스입니다.");
-			$(location).attr("href", "LoginFormServlet");
+			$(location).attr("href", "loginForm");
 		}else{
-			$("#randomGoodsForm").attr("action", "CartAddServlet");
+			$("#randomGoodsForm").attr("action", "cartAdd");
 			$("#randomGoodsForm").submit();
 		}
 	});
@@ -81,9 +81,9 @@
 		
 		if(${empty sessionScope.login}){
 			alert("로그인이 필요한 서비스입니다.");
-			$(location).attr("href", "LoginFormServlet");
+			$(location).attr("href", "loginForm");
 		}else{
-			$("#randomGoodsForm").attr("action", "OrderAddServlet");
+			$("#randomGoodsForm").attr("action", "orderAdd");
 			$("#randomGoodsForm").submit();
 		}
 		

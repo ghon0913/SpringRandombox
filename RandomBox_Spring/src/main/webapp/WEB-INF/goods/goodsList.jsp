@@ -13,17 +13,17 @@
 
 				<tr height="30">
 					<td align="center"><a href="home.jsp">구매페이지</a></td>
-					<td align="center"><a href="GoodsRetrieveServlet">상품설명</a></td>
-					<td align="center"><a href="GoodsReviewListServlet">후기</a></td>
+					<td align="center"><a href="goodsRetrieve">상품설명</a></td>
+					<td align="center"><a href="goodsReviewList">후기</a></td>
 				</tr>
 				<tr>
 
 					<td colspan="3" align="center">
-						<table style='padding: 15px' align="center">
+						<table style='padding: 15px'>
 
 							<tr>
 								<td><a href=""> <img src="images/items/basicImage.png"
-										border="0" align="center" width="200">
+										border="0" width="200">
 								</a></td>
 								<td>
 									<form id="randomGoodsForm">
@@ -51,7 +51,7 @@
 				</tr>
 				<tr>
 					<td colspan="3" align="center">
-						<a href="GoodsMixListServlet"><input type="button" value="새로 구성하기"/></a>
+						<a href="goodsMixList"><input type="button" value="새로 구성하기"/></a>
 						<input type="button" id="cartAdd" value="장바구니 넣기"/>
 						<input type="button" id="orderAdd" value="주문하기"/>
 					</td>
@@ -64,15 +64,19 @@
 
 <script type="text/javascript" src="jquery-3.2.1.js"></script>
 <script>
-	
+	$(window).on("load",function(){
+		if(${empty sessionScope.goodsList16}){
+			$(location).attr("href", "goodsList");
+		}
+	});
 	/* 장바구니 넣기 */
 	$("#cartAdd").on("click", function(){
 		
 		if(${empty sessionScope.login}){
 			alert("로그인이 필요한 서비스입니다.");
-			$(location).attr("href", "LoginFormServlet");
+			$(location).attr("href", "loginForm");
 		}else{
-			$("#randomGoodsForm").attr("action", "CartAddServlet");
+			$("#randomGoodsForm").attr("action", "cartAdd");
 			$("#randomGoodsForm").submit();
 		}
 	});
@@ -82,9 +86,9 @@
 		
 		if(${empty sessionScope.login}){
 			alert("로그인이 필요한 서비스입니다.");
-			$(location).attr("href", "LoginFormServlet");
+			$(location).attr("href", "loginForm");
 		}else{
-			$("#randomGoodsForm").attr("action", "OrderAddServlet");
+			$("#randomGoodsForm").attr("action", "orderAdd");
 			$("#randomGoodsForm").submit();
 		}
 		

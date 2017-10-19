@@ -7,6 +7,7 @@
 <!-- bootstrap -->
 <link href="js/bootstrap-4.0.0-beta-dist/css/bootstrap.min.css"
 	rel="stylesheet" />
+
 <div>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="goodsList"><img
@@ -18,11 +19,10 @@
 				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
-				<form class="form-inline my-2 my-lg-0"
-					action="GoodsBySearchServlet">
+				<form class="form-inline my-2 my-lg-0" action="goodsBySearch">
 					<input class="form-control mr-sm-2" type="text"
 						placeholder="Search" aria-label="Search" name="searchBar" size=50>
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					<button id="searchBarBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 				</form>
 
 				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -31,31 +31,27 @@
 						<li class="nav-item active"><a class="nav-link"
 							href="loginForm">로그인 <span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="memberForm">회원가입</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="loginForm" id="cart">장바구니</a></li>
+						<li class="nav-item"><a class="nav-link" href="memberForm">회원가입</a></li>
+						<li class="nav-item"><a class="nav-link" href="loginForm"
+							id="cart">장바구니</a></li>
 					</ul>
 				</c:if>
 				<c:if test="${!empty sessionScope.login}">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a class="nav-link"
-							href="logout">로그아웃 </a></li>
+						<li class="nav-item active"><a class="nav-link" href="logout">로그아웃
+						</a></li>
 						<c:if test="${sessionScope.login.ox=='Y'}">
-							<li class="nav-item"><a class="nav-link"
-								href="myPage">마이페이지</a></li>
+							<li class="nav-item"><a class="nav-link" href="myPage">마이페이지</a></li>
 							<%-- ${sessionScope.login.username}님 안녕하세요 --%>
 
 							<li class="nav-item"><a class="nav-link"
 								href="goodsRegisterForm">상품등록</a></li>
 						</c:if>
 						<c:if test="${sessionScope.login.ox=='N'}">
-							<li class="nav-item"><a class="nav-link"
-								href="myPage">마이페이지</a></li>
+							<li class="nav-item"><a class="nav-link" href="myPage">마이페이지</a></li>
 							<%-- ${sessionScope.login.username}님 안녕하세요 --%>
 
-							<li class="nav-item"><a class="nav-link"
-								href="cartList">장바구니</a></li>
+							<li class="nav-item"><a class="nav-link" href="cartList">장바구니</a></li>
 						</c:if>
 						<c:if test="${sessionScope.login.ox=='Z'}">
 							<li class="nav-item"><a class="nav-link" href="first.admin">관리자페이지</a></li>
@@ -64,12 +60,11 @@
 					</ul>
 				</c:if>
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link"
-						href="reviewList">|</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="inquiryList">Q & A</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="reviewList">랜덤박스 후기</a></li>
+					<li class="nav-item"><a class="nav-link" href="reviewList">|</a></li>
+					<li class="nav-item"><a class="nav-link" href="inquiryList">Q
+							& A</a></li>
+					<li class="nav-item"><a class="nav-link" href="reviewList">랜덤박스
+							후기</a></li>
 				</ul>
 
 
