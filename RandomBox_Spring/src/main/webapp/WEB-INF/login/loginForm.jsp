@@ -13,7 +13,7 @@
 			<div align="center">
 				<div style="width: 1000px">
 					<form role="form" method="POST" action="login">
-						<fieldset style="width: 200px">
+						<fieldset style="width: 300px">
 							<h2>Please Sign In</h2>
 							<hr class="colorgraph">
 							<div class="form-group">
