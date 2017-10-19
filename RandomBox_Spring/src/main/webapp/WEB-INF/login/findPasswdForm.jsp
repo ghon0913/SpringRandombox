@@ -19,6 +19,7 @@
 					class="form-control" placeholder="이메일을 입력하세요." aria-label="Email"
 					aria-describedby="basic-addon1" name="email">
 			</div>
+			<br>
 			<input type="submit" value="비밀번호 찾기" class="btn btn-info">
 		</form>
 	</div>

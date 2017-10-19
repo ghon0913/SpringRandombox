@@ -12,9 +12,9 @@
 				border=1>
 
 				<tr height="30">
-					<td align="center"><a href="GoodsByCategoryServlet?category=${category}">구매페이지</a></td>
-					<td align="center"><a href="GoodsRetrieveByCategoryServlet?category=${category}">상품설명</a></td>
-					<td align="center"><a href="GoodsReviewListServlet?searchCategory=${category}">후기</a></td>
+					<td align="center"><a href="goodsByCategory?category=${category}">구매페이지</a></td>
+					<td align="center"><a href="goodsRetrieveByCategory?category=${category}">상품설명</a></td>
+					<td align="center"><a href="goodsReviewList?searchCategory=${category}">후기</a></td>
 				</tr>
 				<tr>
 				<td colspan="4">${category}구성품에 대한 상세설명입니다. 물품에 대한 자세한 사항을 확인하세요.</td>

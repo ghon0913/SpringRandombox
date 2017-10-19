@@ -13,15 +13,15 @@
 
 				<tr height="30">
 					<td align="center"><a
-						href="GoodsByCategoryServlet?category=${category}">구매페이지</a></td>
+						href="goodsByCategory?category=${category}">구매페이지</a></td>
 					<td align="center"><a
-						href="GoodsRetrieveByCategoryServlet?category=${category}">상품설명</a></td>
+						href="goodsRetrieveByCategory?category=${category}">상품설명</a></td>
 					<td align="center">
 						<c:if test="${empty searchCategory}">
-							<a href="GoodsReviewListServlet">후기</a></td>
+							<a href="goodsReviewList">후기</a></td>
 						</c:if>
 						<c:if test="${!empty searchCategory}">
-							<a href="GoodsReviewListServlet?searchCategory=${searchCategory }">후기</a></td>
+							<a href="goodsReviewList?searchCategory=${searchCategory }">후기</a></td>
 						</c:if>
 				</tr>
 				<tr>
@@ -79,7 +79,7 @@
 										<td>${rList.num }</td>
 										<td>${rList.category }</td>
 										<td style="padding-left: 30px"><a
-											href="InquiryRetrieveServlet?num=${rList.num }">${rList.title }</a></td>
+											href="inquiryRetrieve?num=${rList.num }">${rList.title }</a></td>
 										<td>${rList.writeDay }</td>
 										<td align="center">${rList.userId }</td>
 										<td>${rList.readCnt }</td>
@@ -101,7 +101,7 @@
 								</td>
 							</tr>
 							<tr>
-								<form action="GoodsReviewListServlet">
+								<form action="goodsReviewList">
 									<c:if test="${!empty searchCategory}">
 										<input type="hidden" name="searchCategory" value="${searchCategory }">
 									</c:if>
@@ -130,7 +130,7 @@
 				/* 카테고리별로 보기 */
 				$("#searchCategory").on("change",function() {
 							var searchCategory = $("option:selected").val();
-							$(location).attr("href","GoodsReviewListServlet?searchCategory="+ searchCategory);
+							$(location).attr("href","goodsReviewList?searchCategory="+ searchCategory);
 						});
 
 			});
