@@ -41,20 +41,20 @@
 						<li class="nav-item active"><a class="nav-link" href="logout">로그아웃
 						</a></li>
 						<c:if test="${sessionScope.login.ox=='Y'}">
-							<li class="nav-item"><a class="nav-link" href="myPage">마이페이지</a></li>
+							<li class="nav-item"><a class="nav-link" href="/app/loginchk/MyPage">마이페이지</a></li>
 							<%-- ${sessionScope.login.username}님 안녕하세요 --%>
 
 							<li class="nav-item"><a class="nav-link"
 								href="goodsRegisterForm">상품등록</a></li>
 						</c:if>
 						<c:if test="${sessionScope.login.ox=='N'}">
-							<li class="nav-item"><a class="nav-link" href="myPage">마이페이지</a></li>
+							<li class="nav-item"><a class="nav-link" href="/app/loginchk/MyPage">마이페이지</a></li>
 							<%-- ${sessionScope.login.username}님 안녕하세요 --%>
 
 							<li class="nav-item"><a class="nav-link" href="cartList">장바구니</a></li>
 						</c:if>
 						<c:if test="${sessionScope.login.ox=='Z'}">
-							<li class="nav-item"><a class="nav-link" href="first.admin">관리자페이지</a></li>
+							<li class="nav-item"><a class="nav-link" href="/app/loginchk/admin">관리자페이지</a></li>
 							<%-- ${sessionScope.login.username}님 안녕하세요 --%>
 						</c:if>
 					</ul>
