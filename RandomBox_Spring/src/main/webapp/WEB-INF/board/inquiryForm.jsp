@@ -63,7 +63,7 @@
 			<tr>
 				<td colspan="2" align="center">
 					<input class="btn btn-success" type="submit" value="문의하기">&nbsp;
-					<input class="btn btn-default" id="inquiryList" type="button" value="작성취소">
+					<input class="btn btn-outline-secondary" id="inquiryList" type="button" value="작성취소">
 				</td>
 			</tr>
 		</table>

@@ -36,7 +36,7 @@
 			<tr>
 				<td colspan="2" align="center">
 					<input class="btn btn-success" type="submit" value="후기작성">&nbsp;
-					<input class="btn btn-default" type="reset" value="다시작성">&nbsp;
+					<input class="btn btn-outline-secondary" type="reset" value="다시작성">&nbsp;
 				</td>
 			</tr>
 		</table>
