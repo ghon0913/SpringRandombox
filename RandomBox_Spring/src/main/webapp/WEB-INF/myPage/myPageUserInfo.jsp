@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<link href="/js/bootstrap-4.0.0-beta-dist/css/bootstrap.min.css" rel="stylesheet" />
 
 <script type="text/javascript">
 	$(document).ready(function() {//id중복체크하기
@@ -94,7 +94,7 @@
 				<td colspan="2" align="right">
 				<a class="btn btn-success" href="#">Success</a>
 				
-				 <input type="submit" action="myPageuserInfoUpdate" value="수정"></td>
+				 <input type="submit" action="userInfoUpdate" value="수정"></td>
 			
 			</tr>
 		</table>

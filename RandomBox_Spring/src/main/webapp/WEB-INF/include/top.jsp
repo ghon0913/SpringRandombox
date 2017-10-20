@@ -4,14 +4,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="/app/js/jquery-3.2.1.js"></script>
 <!-- bootstrap -->
-<link href="js/bootstrap-4.0.0-beta-dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/app/js/bootstrap-4.0.0-beta-dist/css/bootstrap.min.css" rel="stylesheet" />
 
 <div>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="goodsList"><img
-			src="images/logo.jpg" width="150" height="150" align="left"></a>
+			src="/app/images/logo.jpg" width="150" height="150" align="left"></a>
 
 		<div align="left">
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -29,16 +29,16 @@
 				<c:if test="${empty sessionScope.login}">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active"><a class="nav-link"
-							href="loginForm">로그인 <span class="sr-only">(current)</span>
+							href="/app/loginForm">로그인 <span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="memberForm">회원가입</a></li>
-						<li class="nav-item"><a class="nav-link" href="loginForm"
+						<li class="nav-item"><a class="nav-link" href="/app/memberForm">회원가입</a></li>
+						<li class="nav-item"><a class="nav-link" href="/app/loginForm"
 							id="cart">장바구니</a></li>
 					</ul>
 				</c:if>
 				<c:if test="${!empty sessionScope.login}">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a class="nav-link" href="logout">로그아웃
+						<li class="nav-item active"><a class="nav-link" href="/app/logout">로그아웃
 						</a></li>
 						<c:if test="${sessionScope.login.ox=='Y'}">
 							<li class="nav-item"><a class="nav-link" href="/app/loginchk/MyPage">마이페이지</a></li>
@@ -51,7 +51,7 @@
 							<li class="nav-item"><a class="nav-link" href="/app/loginchk/MyPage">마이페이지</a></li>
 							<%-- ${sessionScope.login.username}님 안녕하세요 --%>
 
-							<li class="nav-item"><a class="nav-link" href="cartList">장바구니</a></li>
+							<li class="nav-item"><a class="nav-link" href="/app/cartList">장바구니</a></li>
 						</c:if>
 						<c:if test="${sessionScope.login.ox=='Z'}">
 							<li class="nav-item"><a class="nav-link" href="/app/loginchk/admin">관리자페이지</a></li>
@@ -60,10 +60,10 @@
 					</ul>
 				</c:if>
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link" href="reviewList">|</a></li>
-					<li class="nav-item"><a class="nav-link" href="inquiryList">Q
+					<li class="nav-item"><a class="nav-link" href="/app/reviewList">|</a></li>
+					<li class="nav-item"><a class="nav-link" href="/app/inquiryList">Q
 							& A</a></li>
-					<li class="nav-item"><a class="nav-link" href="reviewList">랜덤박스
+					<li class="nav-item"><a class="nav-link" href="/app/reviewList">랜덤박스
 							후기</a></li>
 				</ul>
 
