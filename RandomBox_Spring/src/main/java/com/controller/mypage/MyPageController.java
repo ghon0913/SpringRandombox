@@ -24,11 +24,13 @@ public class MyPageController {
 
 	
 	@RequestMapping(value="/MyPage", method=RequestMethod.GET)
-	public String myPage(HttpSession session, Model m ){
+	public ModelAndView myPage(HttpSession session){
 		MemberDTO logindto = (MemberDTO)session.getAttribute("login");
 		MemberDTO dto = service.myPageUserInfo(logindto.getUserid());
-		m.addAttribute("login",dto);
-		return "myPage";
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("login", dto);
+		mav.setViewName("myPage");
+		return mav;
 	}
 	
 	
@@ -41,7 +43,7 @@ public class MyPageController {
 		return "myPage";
 	}
 	
-	@RequestMapping("/myPageuserInfoUpdate")
+	@RequestMapping("/userInfoUpdate")
 	public String userinfoUpdate(HttpSession session,Model m ){
 		System.out.println("userifup");
 		

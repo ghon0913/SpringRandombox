@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<script type="text/javascript" src="jquery-3.2.1.js"></script>
+<script type="/app/text/javascript" src="jquery-3.2.1.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -52,6 +52,8 @@
 	<br />
 	
 	<c:if test="${login.ox=='N'}">
+	<a href="goodsList"
+				class="btn btn-info btn-block" role="button" aria-pressed="true">&nbsp;전체보기&nbsp;</a>
 		<img src="images/mypage/userinfo.png" id="userinfo1" width="100">
 		<img src="images/mypage/orderinfo.png" id="orderinfo" width="100">
 		<img src="images/mypage/writelist.png" id="myboard" width="100">
@@ -60,6 +62,7 @@
 
 
 	<c:if test="${login.ox=='Y'}">
+	
 		<img src="images/mypage/userinfo.png" id="userinfo2" width="100">
 		<img src="images/mypage/sellinfo.png" id="sellinfo" width="100">
 		<img src="images/mypage/goodsinfo.png" id="goodsinfo" width="100">
