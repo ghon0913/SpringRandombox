@@ -25,4 +25,9 @@ public class CartService {
 		dao.addCart(dto);
 	}
 	
+	/* 장바구니 개별삭제 */
+	public void cartDelete(int num) {
+		dao.cartDelete(num);
+	}
+	
 }

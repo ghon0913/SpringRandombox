@@ -29,4 +29,9 @@ public class CartDAO {
 	public void addCart (CartDTO dto) {
 		template.insert("addCart", dto);
 	}
+
+	/* 장바구니 개별삭제 */
+	public void cartDelete(int num) {
+		template.delete("delCart", num);
+	}
 }

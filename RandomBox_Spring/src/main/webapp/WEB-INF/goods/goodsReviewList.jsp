@@ -28,7 +28,6 @@
 					<td colspan="3" align="center">
 						<table table class="table table-hover" style="font-size: 12px;">
 							<thead>
-							<c:if test="${empty searchCategory}">
 								<tr>
 									<td colspan="3"><select class="form-control" id="searchCategory"
 											name="searchCategory" style="font-size: 12px;">
@@ -43,7 +42,6 @@
 											<option value="티켓/e쿠폰">티켓/e쿠폰</option>
 									</select></td>
 								</tr>
-							</c:if>
 							<tr>
 								<th>글번호</th>
 								<th>카테고리</th>
@@ -53,6 +51,7 @@
 								<th>조회수</th>
 							</tr>
 							</thead>
+							<tbody>
 
 							<!-- ----------------------------------------------------------------리스트 목록 없을 때 -------------------------------->
 							<c:if test="${ boardList.getList().size() == 0 }">
@@ -73,13 +72,17 @@
 										<td>${rList.readCnt }</td>
 									</tr>
 								</c:forEach>
+								<thead>
 								<tr>
 									<td align="center" colspan="7"><jsp:include
 											page="../board/boardPage.jsp" flush="true"></jsp:include></td>
 								</tr>
 							</c:if>
-							</table>
-							
+						</tbody>
+						
+				<tr>
+					<td colspan="6">
+						<div style="padding-left: 20px;">
 								<form action="goodsReviewList">
 									<c:if test="${!empty searchCategory}">
 										<input type="hidden" name="searchCategory" value="${searchCategory }">
@@ -87,20 +90,29 @@
 									<div class="row" align="center">
 									<div class="col-xs-3">
 										<select class="form-control" id="searchName" name="searchName" style="font-size: 12px;">
-												<option value="title">제목으로 검색</option>
-												<option value="content">내용으로 검색</option>
-										</select></div>
+											<option value="title">제목으로 검색</option>
+											<option value="content">내용으로 검색</option>
+										</select>
+									</div>
 									&nbsp;&nbsp;&nbsp;
-									<div class="col-xs-4"> <input class="form-control" type="text" id="searchWord" name="searchWord"></div>
-								 	&nbsp;&nbsp;&nbsp;
-									<div class="col-xs-3"><input class="btn btn-success" type="submit" value="검색"></div>
+									<div class="col-xs-4">
+										<input class="form-control" type="text" id="searchWord" name="searchWord">
+									</div>
+									&nbsp;&nbsp;&nbsp;
+									<div class="col-xs-3">
+										<input class="btn btn-success" type="submit" value="검색">
+									</div>
+									</div>
 								</form>
-
+						</div>
+					</td>
+				</tr>
+				</thead>
+							</table>
 					</td>
 				</tr>
 				<tr height="10" />
 			</table>
-	<tr height="10" />
 </table>
 
 <script>

@@ -48,7 +48,7 @@
 					id="userid">
 				<input type="hidden" name="sellerId" value="${xxx.sellerId}"
 					id="sellerId">
-				<tr>
+				<tr id="tr${xxx.num}">
 					<td align="center">
 						<!-- checkbox는 체크된 값만 서블릿으로 넘어간다. 따라서 value에 삭제할 num값을 설정한다. -->
 						<input type="checkbox" name="check" id="check${xxx.num}" class="check"
@@ -63,8 +63,8 @@
 							value="${xxx.gPrice}" type="currency" /></td>
 					<td style='padding-left: 5px'><button style="font-size: 12px;" class="btn btn-outline-success btn-sm" type="button"
 						id="order">주문</button></td>
-					<td style='padding-left: 5px'><button style="font-size: 12px;" class="btn btn-outline-secondary btn-sm" type="button"
-						id="delCart">삭제</button></td>
+					<td style='padding-left: 5px'><button style="font-size: 12px;" class="btn btn-outline-secondary btn-sm delCart" type="button"
+						id="delCart" data-num="${xxx.num}">삭제</button></td>
 				</tr>
 			</c:forEach>
 		</form>
@@ -90,8 +90,27 @@
 
 <script>
 
-	$("#delCart").on("click", function(){
-		$(location).attr("href", "cartDel?num="+$("#num").text());
+	/* 장바구니 개별 삭제  */
+	$(".delCart").on("click", function() {
+		
+		var num = $(this).attr("data-num");
+		/*$(location).attr("href", "cartDelete?num="+num); */
+	
+		$.ajax({
+			url : "cartDelete",
+			method : "get",
+			dataType : "text",
+			data : {
+				num : num
+			},
+			success : function(responseData, status, xhr) {
+				$("#tr"+num).remove();
+			},
+			error : function(xhr, status, error) {
+				console.log(error);
+			}
+		}); // end ajax
+		
 	});
 	
 	$("#goShopping").on("click", function(){
