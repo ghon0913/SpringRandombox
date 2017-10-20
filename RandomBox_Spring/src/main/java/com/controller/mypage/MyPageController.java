@@ -23,7 +23,7 @@ public class MyPageController {
 	
 
 	
-	@RequestMapping(value="/MyPageServlet", method=RequestMethod.GET)
+	@RequestMapping(value="/MyPage", method=RequestMethod.GET)
 	public String myPage(HttpSession session, Model m ){
 		MemberDTO logindto = (MemberDTO)session.getAttribute("login");
 		MemberDTO dto = service.myPageUserInfo(logindto.getUserid());
