@@ -9,8 +9,8 @@ public class MyPageBoardPageDTO {
 	private int totalPage; //총페이지개수
 	private static int perPage = 3;
 	private int perBlock = 3;
-	private String searchName; //조회속성명
-	private String searchValue;//조회속성값
+	private static String searchName = null; //조회속성명
+	private static String searchValue = null;//조회속성값
 	private String userId;
 	public List<BoardDTO> getBlist() {
 		return blist;
@@ -42,17 +42,17 @@ public class MyPageBoardPageDTO {
 	public void setPerBlock(int perBlock) {
 		this.perBlock = perBlock;
 	}
-	public String getSearchName() {
+	public static String getSearchName() {
 		return searchName;
 	}
-	public void setSearchName(String searchName) {
-		this.searchName = searchName;
+	public static void setSearchName(String searchName) {
+		MyPageBoardPageDTO.searchName = searchName;
 	}
-	public String getSearchValue() {
+	public static String getSearchValue() {
 		return searchValue;
 	}
-	public void setSearchValue(String searchValue) {
-		this.searchValue = searchValue;
+	public static void setSearchValue(String searchValue) {
+		MyPageBoardPageDTO.searchValue = searchValue;
 	}
 	public String getUserId() {
 		return userId;
@@ -60,21 +60,24 @@ public class MyPageBoardPageDTO {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public MyPageBoardPageDTO(List<BoardDTO> blist, int curPage, int totalPage, int perBlock, String searchName,
-			String searchValue, String userId) {
+	public MyPageBoardPageDTO(List<BoardDTO> blist, int curPage, int totalPage, int perBlock, String userId) {
 		super();
 		this.blist = blist;
 		this.curPage = curPage;
 		this.totalPage = totalPage;
 		this.perBlock = perBlock;
-		this.searchName = searchName;
-		this.searchValue = searchValue;
 		this.userId = userId;
 	}
 	public MyPageBoardPageDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "MyPageBoardPageDTO [blist=" + blist + ", curPage=" + curPage + ", totalPage=" + totalPage
+				+ ", perBlock=" + perBlock + ", userId=" + userId + "]";
+	}
+
 
 	
 	

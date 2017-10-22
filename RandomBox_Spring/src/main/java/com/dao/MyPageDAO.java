@@ -57,21 +57,9 @@ public class MyPageDAO {
 		pagedto.setTotalPage(totalPage);
 		OrderInfoPageDTO.setStartdate(map.get("startdate"));
 		OrderInfoPageDTO.setFinaldate(map.get("finaldate"));
-		System.out.println("dao_________"+pagedto);
 		return pagedto;
 	}
 	
-	
-	
-	
-	
-	/*
-
-	public BoardDTO myPageBoardRetrieve(SqlSession session, int bnum) {
-		BoardDTO bdto = session.selectOne("com.mybatis.MyPageMapper.myPageBoardRetrieve", bnum);
-		return bdto;
-	}
-
 	public MyPageBoardPageDTO boardpage(HashMap<String, String> map, int curPage) {
 		MyPageBoardPageDTO pagedto = new MyPageBoardPageDTO();
 		int sIndex = (curPage - 1) * MyPageBoardPageDTO.getPerPage();
@@ -88,11 +76,20 @@ public class MyPageDAO {
 			totalPage = template.selectOne("com.mybatis.MyPageMapper.searchPage", map);
 		}
 		pagedto.setTotalPage(totalPage);
-		pagedto.setSearchName(map.get("searchName"));
-		pagedto.setSearchValue(map.get("searchValue"));
-
+		System.out.println(list);
 		return pagedto;
 	}
+	
+	
+	
+	/*
+
+	public BoardDTO myPageBoardRetrieve(SqlSession session, int bnum) {
+		BoardDTO bdto = session.selectOne("com.mybatis.MyPageMapper.myPageBoardRetrieve", bnum);
+		return bdto;
+	}
+
+	
 
 	public int myPageboardupdate(SqlSession session, HashMap<String, Object> map) {
 		int n = session.update("myPageboardupdate", map);

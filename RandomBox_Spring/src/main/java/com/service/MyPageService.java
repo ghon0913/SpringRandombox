@@ -34,10 +34,10 @@ public class MyPageService {
 
 	}
 	
-	/*@Transactional
+	@Transactional
 	public MyPageBoardPageDTO boardpage(HashMap<String, String> map, int curPage){
 		return dao.boardpage(map, curPage);
-	}*/
+	}
 	
 
 	

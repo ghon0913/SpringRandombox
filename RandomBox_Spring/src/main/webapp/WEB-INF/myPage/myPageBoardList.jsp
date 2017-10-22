@@ -8,7 +8,7 @@
 	<table border="1">
 		<tr>
 			<td colspan="4">
-				<form action="myboard">
+				<form action="boardsearchpage">
 					<select name="searchName">
 						<option value="state">상태</option>
 						<option value="title">제목</option>
@@ -21,8 +21,8 @@
 		<tr>
 
 			<td colspan="4">
-				<form action="myboard">
-					<select name="perpage">
+				<form action="boardperpage">
+					<select name="perPage">
 						<!-- change함수주기 -->
 						<option value="3">3개씩보기</option>
 						<option value="5">5개씩보기</option>

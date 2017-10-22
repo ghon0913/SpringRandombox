@@ -6,17 +6,20 @@
 <div align="center">
 	<form action="">
 		<table border="1">
-			<form action="orderinfopage">
+			
 			<tr>
-				<td colspan="4">기간별조회 <input type="date" name="startdate">
+				<td colspan="4">기간별조회
+				 <form action="orderinfodatepage">
+				<input type="date" name="startdate">
 					- <input type="date" name="finaldate"><input type="submit">
+				</form>
 				</td>
 			</tr>
-			</form>
+			
 			<tr>
 
 				<td colspan="4">
-					<form action="orderinfopage">
+					<form action="orderinfoperpage">
 						<select name="perPage">
 							<!-- change함수주기 -->
 							<option value="3">3개씩보기</option>

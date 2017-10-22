@@ -103,7 +103,7 @@
 		})
 		$("#myboard").on("click", function() {
 			//console.log(">>>>>>>>>>",'${login}');
-			location.href = "myboard";
+			location.href = "board";
 		})
 		$("#sellinfo").on("click", function() {
 			//console.log(">>>>>>>>>>",'${login}');
