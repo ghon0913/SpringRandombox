@@ -6,18 +6,17 @@
 <div align="center">
 	<form action="">
 		<table border="1">
+			<form action="orderinfopage">
 			<tr>
-				<form action="orderinfodatepage">
-					<td colspan="4">기간별조회 <input type="date" name="startdate">
-						- <input type="date" name="finaldate"><input type="submit">
-					</td>
-
-				</form>
+				<td colspan="4">기간별조회 <input type="date" name="startdate">
+					- <input type="date" name="finaldate"><input type="submit">
+				</td>
 			</tr>
+			</form>
 			<tr>
 
 				<td colspan="4">
-					<form action="orderinfoperpage">
+					<form action="orderinfopage">
 						<select name="perPage">
 							<!-- change함수주기 -->
 							<option value="3">3개씩보기</option>
@@ -51,10 +50,10 @@
 						<td>${order.orderDay }
 						<td><a href="orderinforetrieve?num=${order.num }"
 							target="blank">${order.num }</a></td>
-						<td><img src="/app/images/goods/${order.gImage }" height="100"
-							width="100"> ${order.gName }${order.gPrice }</td>
-						<td>배송중/배송완료<br>
-						<input class="reviewWrite" type="button" value="후기 작성하기"></td>
+						<td><img src="/app/images/goods/${order.gImage }"
+							height="100" width="100"> ${order.gName }${order.gPrice }</td>
+						<td>배송중/배송완료<br> <input class="reviewWrite"
+							type="button" value="후기 작성하기"></td>
 					</tr>
 				</c:forEach>
 				<tr>

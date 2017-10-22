@@ -4,13 +4,13 @@ import java.util.List;
 
 public class MyPageBoardPageDTO {
 	
-	private List<BoardDTO> blist;
-	private int curPage;
-	private int totalPage;
+	private List<BoardDTO> blist;//목록
+	private int curPage; //현재페이지
+	private int totalPage; //총페이지개수
 	private static int perPage = 3;
 	private int perBlock = 3;
-	private String searchName;
-	private String searchValue;
+	private String searchName; //조회속성명
+	private String searchValue;//조회속성값
 	private String userId;
 	public List<BoardDTO> getBlist() {
 		return blist;

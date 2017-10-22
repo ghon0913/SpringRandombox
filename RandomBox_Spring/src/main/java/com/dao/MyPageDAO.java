@@ -55,8 +55,9 @@ public class MyPageDAO {
 			totalPage = template.selectOne("com.mybatis.MyPageMapper.searchorderPage", map);
 		}
 		pagedto.setTotalPage(totalPage);
-		pagedto.setStartdate(map.get("startdate"));
-		pagedto.setFinaldate(map.get("finaldate"));
+		OrderInfoPageDTO.setStartdate(map.get("startdate"));
+		OrderInfoPageDTO.setFinaldate(map.get("finaldate"));
+		System.out.println("dao_________"+pagedto);
 		return pagedto;
 	}
 	

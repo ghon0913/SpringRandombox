@@ -15,23 +15,15 @@ import com.dto.OrderInfoPageDTO;
 @Controller
 public class MyPagePagingset {
 
-	
-	@RequestMapping("/orderinfoperpage")
-	public String myPageOrderInfo(@RequestParam String perPage) {
-		
+	@RequestMapping("/orderinfopage")
+	public String myPageOrderInfo(@RequestParam(defaultValue = "3") String perPage, @RequestParam(defaultValue = "1") String startdate,
+			@RequestParam(defaultValue = "1") String finaldate) {
+
 		OrderInfoPageDTO.setPerPage(Integer.parseInt(perPage));
-		new RedirectView("/orderinfo");
-		return "redirect:/loginchk/orderinfo";
-	}
-	
-	@RequestMapping("/orderinfodatepage")
-	public String myPageOrderInfo(@RequestParam String startdate,
-								  @RequestParam String finaldate) {
-		
 		OrderInfoPageDTO.setStartdate(startdate);
 		OrderInfoPageDTO.setFinaldate(finaldate);
 		return "redirect:/loginchk/orderinfo";
 	}
-	
+
 
 }
