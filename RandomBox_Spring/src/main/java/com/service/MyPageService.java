@@ -11,6 +11,8 @@ import com.dao.MyPageDAO;
 import com.dto.BoardDTO;
 import com.dto.MemberDTO;
 import com.dto.MyPageBoardPageDTO;
+import com.dto.OrderInfoDTO;
+import com.dto.OrderInfoPageDTO;
 
 @Service
 public class MyPageService {
@@ -25,10 +27,20 @@ public class MyPageService {
 	public void userinfoUpdate(MemberDTO updto) {
 		dao.userinfoUpdate(updto);
 	}
+	
 	@Transactional
+	public OrderInfoPageDTO myPageOrderInfoPage(HashMap<String, String> map, int curPage) {
+		return dao.myPageOrderInfoPage(map,curPage);
+
+	}
+	
+	/*@Transactional
 	public MyPageBoardPageDTO boardpage(HashMap<String, String> map, int curPage){
 		return dao.boardpage(map, curPage);
-	}
+	}*/
+	
+
+	
 	
 	/*
 	
@@ -78,21 +90,7 @@ public class MyPageService {
 		}
 	}
 	
-	public List<OrderInfoDTO> myPageOrderInfo(String userid) throws MyException{
-		SqlSession session = MybatisTemplate.openSession();
-		MyPageDAO dao = new MyPageDAO();
-		List<OrderInfoDTO> orderdto = null;
-		try {
-			orderdto = dao.myPageOrderInfo(session, userid);
-		}catch(Exception e) {
-			e.printStackTrace();
-			throw new MyException("myPageOrderInfo 예외");
-			
-		}finally {
-			session.close();
-		}
-		return orderdto;
-	}
+	
 	
 	public OrderInfoDTO orderinforetrieve(int num) throws MyException{
 		SqlSession session = MybatisTemplate.openSession();
@@ -110,21 +108,7 @@ public class MyPageService {
 		return orderdto;
 	}
 
-	public OrderInfoPageDTO myPageOrderInfoPage(HashMap<String, String> map, int curPage) throws MyException {
-		SqlSession session = MybatisTemplate.openSession();
-		MyPageDAO dao = new MyPageDAO();
-		OrderInfoPageDTO pagedto = null;
-		try {
-			pagedto = dao.myPageOrderInfoPage(session,map,curPage);
-			System.out.println(pagedto+"service");
-		}catch(Exception e) {
-			e.printStackTrace();
-			throw new MyException("myPageOrderInfoPage 예외");
-		}finally {
-			session.close();
-		}
-		return pagedto;
-	}
+	
 	
 	public GoodsPageDTO goodsinfo(HashMap<String, String> map, int curPage) throws MyException {
 		SqlSession session = MybatisTemplate.openSession();

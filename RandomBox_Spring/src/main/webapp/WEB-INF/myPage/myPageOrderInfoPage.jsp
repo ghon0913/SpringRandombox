@@ -12,11 +12,12 @@
 <c:set var="totalPage" value="${pagedto.getTotalPage() }"/>
 <c:set var="totalNum" value="${totalPage/perPage }"/>
 <fmt:formatNumber var="totalNum" value="${totalNum}" type="number" maxFractionDigits="0"/>
-<c:set var="searchName" value="${param.searchName }"/>
-<c:set var="searchValue" value="${param.searchValue }"/>
+<c:set var="searchName" value="${param.searchName}"/>
+<c:set var="searchValue" value="${param.searchValue}"/>
+<c:set var="startdate" value="${pagedto.getStartdate()}"/>
 
  <!-- 보여줄 페이지번호 개수 -->
-<c:set var="perBlock" value="${pagedto.getPerBlock() }"/>
+<c:set var="perBlock" value="${pagedto.getPerBlock()}"/>
 
 
 <!-- 현재페이지번호의 블럭번호 -->
@@ -27,33 +28,33 @@
 <!-- 시작페이지번호 -->
 <c:set var="startPage" value ="${(curBlock -1)* perBlock+1 }"/>
 <!-- 마지막페이지번호 -->
-<c:set var="endPage" value="${startPage+perBlock-1 }"/>
+<c:set var="endPage" value="${startPage+perBlock}"/>
 <c:if test="${endPage>totalNum }">
-	<c:set var="endPage" value="${totalNum }"/>
+	<c:set var="endPage" value="${totalNum}"/>
 </c:if>
 
 <!-- 번호출력하기 -->
-<c:if test="${endPage <= 1 }">
+<c:if test="${endPage < 1 }">
 1
 </c:if>
-<c:if test="${endPage > 1 }">
+<c:if test="${endPage >= 1}">
 
 <!-- 첫패이지로이동 -->
 <c:if test="${curPage == 1}">
 	처음
 </c:if>
-<c:if test="${curPage != 1 }">
-	<a href="orderinfopage.do?curPage=1&searchName=${searchName }&searchValue=${searchValue }">
+<c:if test="${curPage != 1}">
+	<a href="orderinfo?curPage=1&searchName=${searchName}&searchValue=${searchValue}">
 	처음
 	</a>
 </c:if> &nbsp;
 
 <!-- 이전페이지블럭 -->
-<c:if test="${ startPage ==1}">
+<c:if test="${startPage ==1}">
 	&lt;&lt;
 </c:if>
-<c:if test="${ startPage!=1}">
-	<a href="orderinfopage.do?curPage=${startPage-1}&searchName=${searchName}&searchValue=${searchValue}">
+<c:if test="${startPage!=1}">
+	<a href="orderinfo?curPage=${startPage-1}&searchName=${searchName}&searchValue=${searchValue}">
 	&lt;&lt;
 	</a>
 </c:if> &nbsp;
@@ -63,29 +64,29 @@
 	&lt;
 </c:if>
 <c:if test="${curPage!=1}">
-	<a href="orderinfopage.do?curPage=${curPage-1 }&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="orderinfo?curPage=${curPage-1}&searchName=${searchName}&searchValue=${searchValue}">
 		&lt;
 	</a>
 </c:if> &nbsp;
 
 <!-- 블럭당 표시할 페이지번호들 -->
-<c:forEach begin="${startPage }" end="${endPage-1 }" varStatus="status">
-<c:if test="${curPage==status.index }">
-	${status.index }
+<c:forEach begin="${startPage}" end="${endPage-1 }" varStatus="status">
+<c:if test="${curPage==status.index}">
+	${status.index}
 </c:if>
-<c:if test="${curPage!=status.index }">
-	<a href="orderinfopage.do?curPage=${status.index }&searchName=${searchName }&searchValue=${searchValue}">
-		${status.index }
+<c:if test="${curPage!=status.index}">
+	<a href="orderinfo?curPage=${status.index}&searchName=${searchName}&searchValue=${searchValue}&startdate=${startdate}">
+		${status.index}
 	</a>
 </c:if> &nbsp;
 </c:forEach>
 
-<c:if test="${curPage==endPage }">
-	${endPage }
+<c:if test="${curPage==endPage}">
+	${endPage}
 </c:if>
-<c:if test="${curPage!=endPage }">
-	<a href="orderinfopage.do?curPage=${endPage }&searchName=${searchName}&searchValue=${searchValue}">
-		${endPage }
+<c:if test="${curPage!=endPage}">
+	<a href="orderinfo?curPage=${endPage}&searchName=${searchName}&searchValue=${searchValue}">
+		${endPage}
 	</a>
 </c:if>
 
@@ -94,7 +95,7 @@
 	&gt;
 </c:if>
 <c:if test="${curPage!=totalNum}">
-	<a href="orderinfopage.do?curPage=${curPage+1 }&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="orderinfo?curPage=${curPage+1}&searchName=${searchName}&searchValue=${searchValue}">
 		&gt;
 	</a>
 </c:if> &nbsp;
@@ -104,7 +105,7 @@
 	&gt;&gt;
 </c:if>
 <c:if test="${endPage!=totalNum}">
-	<a href="orderinfopage.do?curPage=${ endPage+1}&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="orderinfo?curPage=${endPage+1}&searchName=${searchName}&searchValue=${searchValue}">
 	&gt;&gt;
 	</a>
 </c:if> &nbsp;
@@ -114,7 +115,7 @@
 	마지막
 </c:if>
 <c:if test="${curPage !=totalNum}">
-	<a href="orderinfopage.do?curPage=${endPage+1 }&searchName=${searchName }&searchValue=${searchValue }">
+	<a href="orderinfo?curPage=${endPage+1}&searchName=${searchName}&searchValue=${searchValue}">
 	마지막
 	</a>
 </c:if>
