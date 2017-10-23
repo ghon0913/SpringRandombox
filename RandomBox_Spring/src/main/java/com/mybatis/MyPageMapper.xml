@@ -12,17 +12,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 
+	<!-- userinfo -->
 	<select id="mypageuserinfo" resultType="MemberDTO"
 		parameterType="string">
 		select userid, username, passwd, email, phone,gender,
+		to_char(birthday,'yyyy/mm/dd')
 		birthday, post1, post2, addr1, addr2, ox, sessionid, sessionlimit
 		from
 		joinmember
 		where userid=#{userid}
-
-
 	</select>
-
 	<update id="updateuserinfo" parameterType="MemberDTO">
 		update joinmember
 		set
@@ -30,8 +29,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		post1=#{post1},
 		post2=#{post2}, addr1=#{addr1}, addr2=#{addr2}
 		where userid=#{userid}
-
 	</update>
+	
+	<!-- orderinfo -->
+	<select id="myPageOrderInfoPage" parameterType="hashmap"
+		resultType="OrderInfoDTO">
+
+		select num, userid, ordername, phone, email, post1, post2, addr1,
+		addr2, gcode, gname, gprice, gimage, paymethod,
+		to_char(orderday,
+		'mm/dd') "orderday" , sellerid
+		from order_info
+		where userid=#{userId}
+		<if test="startdate != null">
+			and orderday between #{startdate} and #{finaldate}
+		</if>
+		order by num desc
+	</select>
+	
+	<select id="totalorderPage" resultType="int" parameterType="string">
+		select
+		count(*)
+		from order_info
+		where userid = #{userId}
+	</select>
+	<select id="searchorderPage" resultType="int" parameterType="hashmap">
+		select count(*)
+		from order_info
+		where userid = #{userId}
+		<if test="startdate !=null">
+			and orderday between #{startdate} and #{finaldate}
+		</if>
+	</select>
+	
+	<select id="orderinforetrieve" parameterType="int" resultType="OrderInfoDTO">
+		select num, userid, ordername, phone, email, post1, post2, addr1,
+		addr2, gcode, gname, gprice, gimage, paymethod,
+		orderday , sellerid
+		from order_info
+		where num=#{num}
+	</select>
+	
 
 	<select id="myPageBoardList" parameterType="string" resultType="BoardDTO">
 		select num, category, title, content,
@@ -110,45 +148,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by num desc
 	</select>
 
-	<select id="orderinforetrieve" parameterType="int" resultType="OrderInfoDTO">
-		select num, userid, ordername, phone, email, post1, post2, addr1,
-		addr2, gcode, gname, gprice, gimage, paymethod,
-		orderday , sellerid
-		from order_info
-		where num=#{num}
-	</select>
+	
 
-	<select id="myPageOrderInfoPage" parameterType="hashmap"
-		resultType="OrderInfoDTO">
+	
 
-		select num, userid, ordername, phone, email, post1, post2, addr1,
-		addr2, gcode, gname, gprice, gimage, paymethod,
-		to_char(orderday,
-		'mm/dd') "orderday" , sellerid
-		from order_info
-		where userid=#{userId}
-		<if test="startdate != null">
-			and orderday between #{startdate} and #{finaldate}
-		</if>
-		order by num desc
-
-	</select>
-
-	<select id="totalorderPage" resultType="int" parameterType="string">
-		select
-		count(*)
-		from order_info
-		where userid = #{userId}
-	</select>
-
-	<select id="searchorderPage" resultType="int" parameterType="hashmap">
-		select count(*)
-		from order_info
-		where userid = #{userId}
-		<if test="startdate !=null">
-			and orderday between #{startdate} and #{finaldate}
-		</if>
-	</select>
+	
 
 	<select id="goodsinfo" resultType="GoodsDTO" parameterType="hashmap">
 

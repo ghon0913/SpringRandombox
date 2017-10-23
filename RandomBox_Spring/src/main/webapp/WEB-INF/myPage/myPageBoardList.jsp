@@ -8,7 +8,7 @@
 	<table border="1">
 		<tr>
 			<td colspan="4">
-				<form action="searchmyboard.do">
+				<form action="boardsearchpage">
 					<select name="searchName">
 						<option value="state">상태</option>
 						<option value="title">제목</option>
@@ -21,8 +21,8 @@
 		<tr>
 
 			<td colspan="4">
-				<form action="MyPageBoardPageServlet">
-					<select name="perpage">
+				<form action="boardperpage">
+					<select name="perPage">
 						<!-- change함수주기 -->
 						<option value="3">3개씩보기</option>
 						<option value="5">5개씩보기</option>
@@ -49,7 +49,7 @@
 			<c:forEach var="a" items="${pagedto.getBlist()}">
 				<tr>
 					<td>${a.num }</td>
-					<td><a href="BoardRetrieve.do?bnum=${a.num}" target="_blank">${a.title}</a></td>
+					<td><a href="?bnum=${a.num}" target="_blank">${a.title}</a></td>
 					<td>${a.state}</td>
 					<td>${a.writeDay }</td>
 				</tr>
