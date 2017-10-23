@@ -11,7 +11,8 @@
 <c:set var="perPage" value="${pagedto.getPerPage()}"/>
 <c:set var="totalPage" value="${pagedto.getTotalPage() }"/>
 <c:set var="totalNum" value="${totalPage/perPage }"/>
-<fmt:formatNumber var="totalNum" value="${totalNum}" type="number" maxFractionDigits="0"/>
+<!-- totalnum 소수부분 올림 처리하기 -->
+<fmt:formatNumber var="totalNum" value="${totalNum+(1-(totalNum%1))%1}" type="number" maxFractionDigits="0"/>
 <c:set var="searchName" value="${param.searchName }"/>
 <c:set var="searchValue" value="${param.searchValue }"/>
 
@@ -43,7 +44,7 @@
 	처음
 </c:if>
 <c:if test="${curPage != 1 }">
-	<a href="searchmyboard.do?curPage=1&searchName=${searchName }&searchValue=${searchValue }">
+	<a href="board?curPage=1&searchName=${searchName }&searchValue=${searchValue }">
 	처음
 	</a>
 </c:if> &nbsp;
@@ -53,7 +54,7 @@
 	&lt;&lt;
 </c:if>
 <c:if test="${ startPage!=1}">
-	<a href="searchmyboard.do?curPage=${startPage-1}&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="board?curPage=${startPage-1}&searchName=${searchName}&searchValue=${searchValue}">
 	&lt;&lt;
 	</a>
 </c:if> &nbsp;
@@ -63,18 +64,18 @@
 	&lt;
 </c:if>
 <c:if test="${curPage!=1}">
-	<a href="searchmyboard.do?curPage=${curPage-1 }&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="board?curPage=${curPage-1 }&searchName=${searchName}&searchValue=${searchValue}">
 		&lt;
 	</a>
 </c:if> &nbsp;
 
 <!-- 블럭당 표시할 페이지번호들 -->
-<c:forEach begin="${startPage }" end="${endPage-1 }" varStatus="status">
+<c:forEach begin="${startPage}" end="${endPage-1 }" varStatus="status">
 <c:if test="${curPage==status.index }">
 	${status.index }
 </c:if>
 <c:if test="${curPage!=status.index }">
-	<a href="searchmyboard.do?curPage=${status.index }&searchName=${searchName }&searchValue=${searchValue}">
+	<a href="board?curPage=${status.index }&searchName=${searchName }&searchValue=${searchValue}">
 		${status.index }
 	</a>
 </c:if> &nbsp;
@@ -84,7 +85,7 @@
 	${endPage }
 </c:if>
 <c:if test="${curPage!=endPage }">
-	<a href="searchmyboard.do?curPage=${endPage }&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="board?curPage=${endPage }&searchName=${searchName}&searchValue=${searchValue}">
 		${endPage }
 	</a>
 </c:if>
@@ -94,7 +95,7 @@
 	&gt;
 </c:if>
 <c:if test="${curPage!=totalNum}">
-	<a href="searchmyboard.do?curPage=${curPage+1 }&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="board?curPage=${curPage+1 }&searchName=${searchName}&searchValue=${searchValue}">
 		&gt;
 	</a>
 </c:if> &nbsp;
@@ -104,7 +105,7 @@
 	&gt;&gt;
 </c:if>
 <c:if test="${endPage!=totalNum}">
-	<a href="searchmyboard.do?curPage=${ endPage+1}&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="board?curPage=${endPage+1}&searchName=${searchName}&searchValue=${searchValue}">
 	&gt;&gt;
 	</a>
 </c:if> &nbsp;
@@ -114,7 +115,7 @@
 	마지막
 </c:if>
 <c:if test="${curPage !=totalNum}">
-	<a href="searchmyboard.do?curPage=${endPage+1 }&searchName=${searchName }&searchValue=${searchValue }">
+	<a href="board?curPage=${endPage+1 }&searchName=${searchName }&searchValue=${searchValue }">
 	마지막
 	</a>
 </c:if> 

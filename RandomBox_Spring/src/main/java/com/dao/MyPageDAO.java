@@ -25,18 +25,41 @@ public class MyPageDAO {
 	SqlSessionTemplate template;
 	
 	public MemberDTO myPageUserInfo(String userid) {
-		return template.selectOne("mypageuserinfo",userid);
+		return template.selectOne("com.mybatis.MyPageMapper.mypageuserinfo",userid);
 	}
 	
 	public void userinfoUpdate(MemberDTO updto) {
-		template.update("updateuserinfo",updto);
+		template.update("com.mybatis.MyPageMapper.updateuserinfo",updto);
 	}
-
-	public BoardDTO myPageBoardRetrieve(SqlSession session, int bnum) {
-		BoardDTO bdto = session.selectOne("com.mybatis.MyPageMapper.myPageBoardRetrieve", bnum);
-		return bdto;
+	
+	public List<OrderInfoDTO> myPageOrderInfo(String userid) {
+		return template.selectList("myPageOrderInfo", userid);
 	}
+	
+	
+	public OrderInfoPageDTO myPageOrderInfoPage(HashMap<String, String> map, int curPage) {
 
+		OrderInfoPageDTO pagedto = new OrderInfoPageDTO();
+
+		int sIndex = (curPage - 1) * OrderInfoPageDTO.getPerPage();
+		int length = OrderInfoPageDTO.getPerPage();
+		List<OrderInfoDTO> list = template.selectList("com.mybatis.MyPageMapper.myPageOrderInfoPage", map,
+				new RowBounds(sIndex, length));
+		// pagedto에 저장하기
+		int totalPage = 0;
+		pagedto.setOlist(list);
+		pagedto.setCurPage(curPage);
+		if (map.get("startdate") == null) {
+			totalPage = template.selectOne("com.mybatis.MyPageMapper.totalorderPage", map.get("userId"));
+		} else {
+			totalPage = template.selectOne("com.mybatis.MyPageMapper.searchorderPage", map);
+		}
+		pagedto.setTotalPage(totalPage);
+		OrderInfoPageDTO.setStartdate(map.get("startdate"));
+		OrderInfoPageDTO.setFinaldate(map.get("finaldate"));
+		return pagedto;
+	}
+	
 	public MyPageBoardPageDTO boardpage(HashMap<String, String> map, int curPage) {
 		MyPageBoardPageDTO pagedto = new MyPageBoardPageDTO();
 		int sIndex = (curPage - 1) * MyPageBoardPageDTO.getPerPage();
@@ -53,11 +76,20 @@ public class MyPageDAO {
 			totalPage = template.selectOne("com.mybatis.MyPageMapper.searchPage", map);
 		}
 		pagedto.setTotalPage(totalPage);
-		pagedto.setSearchName(map.get("searchName"));
-		pagedto.setSearchValue(map.get("searchValue"));
-
+		System.out.println(list);
 		return pagedto;
 	}
+	
+	
+	
+	/*
+
+	public BoardDTO myPageBoardRetrieve(SqlSession session, int bnum) {
+		BoardDTO bdto = session.selectOne("com.mybatis.MyPageMapper.myPageBoardRetrieve", bnum);
+		return bdto;
+	}
+
+	
 
 	public int myPageboardupdate(SqlSession session, HashMap<String, Object> map) {
 		int n = session.update("myPageboardupdate", map);
@@ -74,34 +106,7 @@ public class MyPageDAO {
 		return orderdto;
 	}
 
-	public OrderInfoPageDTO myPageOrderInfoPage(SqlSession session, HashMap<String, String> map, int curPage) {
-		// TODO Auto-generated method stub
-
-		OrderInfoPageDTO pagedto = new OrderInfoPageDTO();
-
-		int sIndex = (curPage - 1) * OrderInfoPageDTO.getPerPage();
-		int length = OrderInfoPageDTO.getPerPage();
-
-		List<OrderInfoDTO> list = session.selectList("com.mybatis.MyPageMapper.myPageOrderInfoPage", map,
-				new RowBounds(sIndex, length));
-		System.out.println(list + "dao list");
-		System.out.println(pagedto.getOlist());
-		// pagedto에 저장하기
-		int totalPage = 0;
-		pagedto.setOlist(list);
-		pagedto.setCurPage(curPage);
-		if (map.get("startdate") == null) {
-			totalPage = session.selectOne("com.mybatis.MyPageMapper.totalorderPage", map.get("userId"));
-		} else {
-			totalPage = session.selectOne("com.mybatis.MyPageMapper.searchorderPage", map);
-		}
-
-		pagedto.setTotalPage(totalPage);
-		pagedto.setStartdate(map.get("startdate"));
-		pagedto.setFinaldate(map.get("finaldate"));
-
-		return pagedto;
-	}
+	
 	
 	public GoodsPageDTO goodsinfo(SqlSession session, HashMap<String, String> map, int curPage) {
 		// TODO Auto-generated method stub
@@ -154,5 +159,6 @@ public class MyPageDAO {
 		return sdto;
 	}
 	
+	*/
 
 }

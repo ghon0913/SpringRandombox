@@ -1,6 +1,8 @@
 package com.controller.mypage;
 
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dto.GoodsDTO;
 import com.dto.MemberDTO;
 import com.dto.MyPageBoardPageDTO;
+import com.dto.OrderInfoDTO;
+import com.dto.OrderInfoPageDTO;
 import com.service.MyPageService;
 
 @RequestMapping("/loginchk")
@@ -24,108 +28,123 @@ public class MyPageController {
 
 	@Autowired
 	MyPageService service;
-	
 
-	
-	@RequestMapping(value="/MyPage", method=RequestMethod.GET)
-	public ModelAndView myPage(HttpSession session){
-		MemberDTO logindto = (MemberDTO)session.getAttribute("login");
+	@RequestMapping(value = "/MyPage", method = RequestMethod.GET)
+	public ModelAndView myPage(HttpSession session) {
+		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
 		MemberDTO dto = service.myPageUserInfo(logindto.getUserid());
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("login", dto);
 		mav.setViewName("myPage");
 		return mav;
 	}
-	
-	
+
 	@RequestMapping("/userInfo")
-	public ModelAndView userinfo(HttpSession session ){
-		MemberDTO logindto = (MemberDTO)session.getAttribute("login");
+	public ModelAndView userinfo(HttpSession session) {
+		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
 		MemberDTO dto = service.myPageUserInfo(logindto.getUserid());
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("mdto",dto);
-		
-		//이메일자르기
+		mav.addObject("mdto", dto);
+
+		// 이메일자르기
 		String email = dto.getEmail();
 		int n = email.indexOf("@");
 		int m = email.length();
-		String email1 = email.substring(0,n);
-		String email2= email.substring(n+1,m);
-		mav.addObject("email1",email1 );
-		mav.addObject("email2",email2);
-		
-		//전화번호자르기
+		String email1 = email.substring(0, n);
+		String email2 = email.substring(n + 1, m);
+		mav.addObject("email1", email1);
+		mav.addObject("email2", email2);
+
+		// 전화번호자르기
 		String phone = dto.getPhone();
-		String phone1 = phone.substring(0,3);
-		String phone2 = phone.substring(3,7);
-		String phone3 = phone.substring(7,11);
-		mav.addObject("phone1",phone1);
-		mav.addObject("phone2",phone2);
-		mav.addObject("phone3",phone3);
-		
-		//page include하기
-		mav.addObject("page","myPage/myPageUserInfo.jsp");
-		
+		String phone1 = phone.substring(0, 3);
+		String phone2 = phone.substring(3, 7);
+		String phone3 = phone.substring(7, 11);
+		mav.addObject("phone1", phone1);
+		mav.addObject("phone2", phone2);
+		mav.addObject("phone3", phone3);
+
+		// page include하기
+		mav.addObject("page", "myPage/myPageUserInfo.jsp");
+
 		mav.setViewName("myPage");
 		return mav;
-		
+
 	}
-	
+
 	@RequestMapping("/userInfoUpdate")
-	public ModelAndView userinfoUpdate(@ModelAttribute("memberinfo") MemberDTO updto){
+	public ModelAndView userinfoUpdate(@ModelAttribute("memberinfo") MemberDTO updto) {
 		service.userinfoUpdate(updto);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("myPage");
-		mav.addObject("userInfoUpdate","수정되었습니다.");
+		mav.addObject("userInfoUpdate", "수정되었습니다.");
 		return mav;
 	}
-	@RequestMapping("/myboard")
-	public ModelAndView myboard(HttpSession session,
-								@RequestParam(defaultValue="1") int curPage,
-								@RequestParam(defaultValue="") String searchName,
-								@RequestParam(defaultValue="") String searchValue
-								){
-		MemberDTO logindto = (MemberDTO)session.getAttribute("login");
+
+	@RequestMapping(value = "/orderinfo", method = RequestMethod.GET)
+	public ModelAndView orderinfo(HttpSession session, @RequestParam(defaultValue = "1") int curPage,
+			@RequestParam(defaultValue = "1") String startdate, @RequestParam(defaultValue = "1") String finaldate) {
+		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
 		HashMap<String, String> map = new HashMap();
-		map.put("searchName", searchName);
-		map.put("searchValue", searchValue);
+
+		if (startdate.length() > 1) {
+			map.put("startdate", startdate);
+			map.put("finaldate", finaldate);
+		} else {
+			map.put("startdate", null);
+			map.put("finaldate", null);
+		}
 		map.put("userId", logindto.getUserid());
 		
-		MyPageBoardPageDTO pagedto = service.boardpage(map,curPage);
-		
+		OrderInfoPageDTO oList = service.myPageOrderInfoPage(map, curPage);
+
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("page","myPage/myPageBoardList.jsp");
+		mav.addObject("pagedto", oList);
+		mav.addObject("page", "myPage/myPageOrderInfo.jsp");
+		mav.setViewName("myPage");
+		return mav;
+	}
+
+	@RequestMapping("/board")
+	public ModelAndView myboard(HttpSession session, @RequestParam(defaultValue = "1") int curPage,
+			@RequestParam(defaultValue = "1") String searchName, @RequestParam(defaultValue = "1") String searchValue) {
+		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
+		HashMap<String, String> map = new HashMap();
+		
+		if(searchName.length()>1) {
+		map.put("searchName", searchName);
+		map.put("searchValue", searchValue);
+		}else {
+			map.put("searchName", null);
+			map.put("searchValue", null);
+		}
+		map.put("userId", logindto.getUserid());
+		System.out.println(map);
+		MyPageBoardPageDTO pagedto = service.boardpage(map, curPage);
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("page", "myPage/myPageBoardList.jsp");
 		mav.addObject("pagedto", pagedto);
 		mav.setViewName("myPage");
 		return mav;
 	}
-	
+
 	@RequestMapping("/goodsinfo")
-	public ModelAndView goodsinfo(){
-		
+	public ModelAndView goodsinfo() {
+
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("page","myPage/myPageGoodsInfo.jsp");
+		mav.addObject("page", "myPage/myPageGoodsInfo.jsp");
 		mav.setViewName("myPage");
 		return mav;
 	}
+
 	@RequestMapping("/sellinfo")
-	public ModelAndView sellinfo(){
-		
+	public ModelAndView sellinfo() {
+
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("page","myPage/myPageSellInfo.jsp");
+		mav.addObject("page", "myPage/myPageSellInfo.jsp");
 		mav.setViewName("myPage");
 		return mav;
 	}
-	
-	@RequestMapping("/orderinfo")
-	public ModelAndView orderinfo(){
-		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("page","myPage/myPageOrderInfo.jsp");
-		mav.setViewName("myPage");
-		return mav;
-	}
-	
-	
-	
+
 }
