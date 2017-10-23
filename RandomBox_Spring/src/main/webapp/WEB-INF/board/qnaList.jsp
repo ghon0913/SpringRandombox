@@ -33,7 +33,7 @@
 					<td>${bList.num }</td>
 					<td>${bList.category }</td>
 					<td style="padding-left: 30px">
-							<a href="AnswerFormServlet?num=${bList.num }">${bList.title }</a>
+							<a href="answerForm?num=${bList.num }">${bList.title }</a>
 					</td>
 					<td>${bList.writeDay }</td>
 					<td align="center">${bList.userId }</td>

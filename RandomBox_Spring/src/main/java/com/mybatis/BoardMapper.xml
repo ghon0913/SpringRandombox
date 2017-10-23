@@ -41,8 +41,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</choose>
 	</select>
 	
-	<!-- 문의글 작성하기 -->
-	<insert id="inquiryWrite" parameterType="BoardDTO">
+	<!-- 게시판 글 작성하기 -->
+	<insert id="boardWrite" parameterType="BoardDTO">
 		insert into
 		board(num, category, title, content, userid, open, gCode, state)
 		values (board_seq.nextval, #{category}, #{title}, #{content}, #{userId}, #{open}, #{gCode}, #{state})
@@ -120,9 +120,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</choose>
 	</select>
 	
-	<!-- 후기쓰기 (주문 데이터 선택) -->
-	<select id="getGoodsName" parameterType="String" resultType="String">
-		select gName
+	<!-- 후기쓰기 (주문한 데이터 선택) -->
+	<select id="getGoodsInfo" parameterType="String" resultType="GoodsDTO">
+		select gCode, gCategory, gName
 		from goods
 		where gCode = #{gCode}
 	</select>

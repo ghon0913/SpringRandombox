@@ -11,7 +11,6 @@
 </head>
 <body>
 	<jsp:include page="include/top.jsp" flush="true" /><br>
-	<c:if test="${! empty sessionScope.login }">
 		<c:if test="${chk_inquiryPage == 'inquiryForm' }">
 			<jsp:include page="board/inquiryForm.jsp" flush="true" /><br>
 		</c:if>
@@ -21,13 +20,5 @@
 		<c:if test="${chk_inquiryPage == 'inquiryRetrieve' }">
 			<jsp:include page="board/inquiryRetrieve.jsp" flush="true" /><br>
 		</c:if>
-	</c:if>
-	<c:if test="${empty sessionScope.login }">
-		<script type="text/javascript">
-			alert("로그인이 필요한 메뉴입니다!");
-		</script>
-		<br><br><br><br><br><br>
-		<jsp:include page="login/loginForm.jsp" flush="true" /><br>
-	</c:if>
 </body>
 </html>

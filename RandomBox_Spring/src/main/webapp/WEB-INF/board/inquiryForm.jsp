@@ -9,7 +9,7 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 	<h5>|&nbsp;&nbsp;&nbsp;문의글 쓰기&nbsp;&nbsp;&nbsp;|</h5><br>
-	<form id="inquiryWriteForm" action="inquiryWrite" method="post" modelAttribute="inquiryWriteForm">
+	<form id="inquiryWriteForm" action="loginchk/inquiryWrite" method="post" modelAttribute="inquiryWriteForm">
 		<table class="table" style="font-size: 12px;">
 			<input type="hidden" name="userId" value="${sessionScope.login.userid }">
 			<input type="hidden" name="state" value="처리중">

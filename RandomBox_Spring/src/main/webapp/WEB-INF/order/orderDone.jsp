@@ -133,7 +133,7 @@
 
 	<tr>
 		<td class="td_default" align="center"><a class="a_default"
-			href="orderinfopage.do">주문조회 페이지로 이동</a></td>
+			href="loginchk/orderinfo">주문조회 페이지로 이동</a></td>
 	</tr>
 	<tr>
 		<td height="30">

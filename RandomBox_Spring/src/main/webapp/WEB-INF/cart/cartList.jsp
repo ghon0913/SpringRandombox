@@ -140,11 +140,7 @@
 			}
  	 	});
 		console.log(count);
-/* 		if(){
-			
-		}else{
-			
-		} */
+
 	});
 	
 	$("#order").on("click", function(){

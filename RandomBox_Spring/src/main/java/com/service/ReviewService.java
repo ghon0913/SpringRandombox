@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.dao.ReviewDAO;
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
+import com.dto.GoodsDTO;
 
 @Service
 public class ReviewService {
@@ -43,6 +44,17 @@ public class ReviewService {
 	/* 후기글 삭제하기 */
 	public void reviewDelete(int num) {
 		dao.reviewDelete(num);
+	}
+	
+	/* 후기글 폼, 상품 정보 가져오기 */
+	public GoodsDTO getGoodsInfo(String gCode) {
+		GoodsDTO dto = dao.getGoodsInfo(gCode);
+		return dto;
+	}
+	
+	/* 후기글 작성하기 */
+	public void reviewWrite(BoardDTO dto) {
+		dao.reviewWrite(dto);
 	}
 	
 }
