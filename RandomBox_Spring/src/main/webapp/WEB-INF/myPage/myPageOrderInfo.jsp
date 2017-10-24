@@ -68,26 +68,19 @@
 	</form>
 </div>
 
-<script type="text/javascript" src="jquery-3.2.1.js"></script>
 <script>
 	$(document).ready(
 			function() {
 
 				/* 후기작성하기 */
-				$(".reviewWrite").on(
-						"click",
-						function() {
+				$(".reviewWrite").on("click",function() {
 							var gCode = $(this).parent().siblings("#gCode")
-									.val();
-							var gName = $(this).parent().siblings("#gName")
 									.val();
 							var gPrice = $(this).parent().siblings("#gPrice")
 									.val();
-							$(location).attr(
-									"href",
-									"ReviewFormServlet?gCode=" + gCode
-											+ "&gName=" + gName + "&gPrice="
-											+ gPrice);
+							$(location).attr("href",
+									"reviewForm?gCode=" + gCode
+											+ "&gPrice=" + gPrice);
 						});
 			});
 </script>

@@ -20,8 +20,8 @@
 			<input type="hidden" name="num" value="${cDTO.num }">
 			<input type="hidden" name="gPrice" value="${cDTO.gPrice }">
 			<input type="hidden" name="gImage" value="${cDTO.gImage }">
-			<tr>
-				<td><b>결제수단</b></td>
+			<tr height="35" >
+				<td><b>[ 상품정보 ]</b></td>
 			</tr>
 			<tr>
 				<td>
@@ -49,15 +49,15 @@
 								<td height="30"></td>
 							</c:if>
 							<td></td>
-							<td  align="right">결제 금액 :</td>
-							<td  align='right'>${cDTO.gPrice}원</td>
+							<td  align="right"><b>결제 금액 :</b></td>
+							<td  align='right' style="font-size: 15px;"><b>${cDTO.gPrice}원</b></td>
 						</tr>
 					</table>
 
 
 			<!--  고객 정보 시작-->	
-			<tr>
-				<td><b>결제수단</b></td>
+			<tr height="35" >
+				<td><b>[ 회원정보 ]</b></td>
 			</tr>
 			<tr>
 				<td>
@@ -65,7 +65,7 @@
 						<tr>
 							<td width="125" height="35" >이 름</td>
 							<td height="35" ><input
-								class="input_default" type="text" id="mname" size="20"
+								class="form-control" type="text" id="mname" size="20"
 								maxlength="20" value="${mDTO.username }" readonly="readonly"></input></td>
 						</tr>
 						<tr>
@@ -76,10 +76,10 @@
 								<input class="input_default" type="text" id="mpost2" size="4"
 								maxlength="3" value="${mDTO.post2 }" readonly="readonly"></input><br>
 							<input
-								class="input_default" type="text" id="maddress1" size="40"
+								class="form-control" type="text" id="maddress1" size="40"
 								maxlength="200" value="${mDTO.addr1 }" readonly="readonly"></input> <br> <span
 								style="line-height: 10%;"><br></span> 
-								<input class="input_default" type="text" id="maddress2"
+								<input class="form-control" type="text" id="maddress2"
 								size="40" maxlength="200" value="${mDTO.addr2 }"
 								readonly="readonly"></input></td>
 						</tr>
@@ -87,7 +87,7 @@
 							<td height="35" >휴대전화</td>
 							<c:set var="phone" value="${mDTO.phone}" />
 							<td height="35" ><input
-								class="input_default" type="text" id="mphone" size="15"
+								class="form-control" type="text" id="mphone" size="15"
 								maxlength="15"
 								value="${fn:substring(phone, 0, 3)}-${fn:substring(phone, 3, 7)}-${fn:substring(phone, 7, -1)}"></input>
 							</td>
@@ -100,7 +100,7 @@
 				<td height="20">
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="same"
+				<td><input type="checkbox" name="same" 
 					onclick="javascript:sameAddress(this);"> 배송지가 동일할 경우 선택하세요.
 				</td>
 			</tr>
@@ -109,8 +109,8 @@
 			</tr>
 			<!--  배송지 정보 시작-->
 			
-			<tr>
-				<td><b>결제수단</b></td>
+			<tr height="35" >
+				<td><b>[ 배송정보 ]</b></td>
 			</tr>
 			<tr>
 				<td>
@@ -118,7 +118,7 @@
 						<tr>
 							<td width="125" height="35" >이 름</td>
 							<td height="35" ><input
-								class="input_default" type="text" id="orderName"
+								class="form-control" type="text" id="orderName"
 								name="orderName" size="20" maxlength="20" value=""></input></td>
 						</tr>
 						<tr>
@@ -127,18 +127,18 @@
 								<!-- 다음주소 시작--> <input name="post1" id="post1" size="5"
 								readonly=""> - <input name="post2" id="post2" size="5"
 								readonly=""> <input onclick="openDaumPostcode()"
-								type="button" value="우편번호찾기"> <br> <input
+								type="button" value="우편번호찾기"> <br> <input class="form-control"
 								name="addr1" id="addr1" size="40" readonly=""
 								placeholder="도로명주소"> <br> <span
-								style="line-height: 10%;"><br></span> <input name="addr2"
+								style="line-height: 10%;"><br></span> <input name="addr2" class="form-control"
 								id="addr2" size="40" placeholder="지번주소"> <!-- 다음주소 끝 -->
 							</td>
 						</tr>
 
 						<tr>
 							<td height="35" >휴대전화</td>
-							<td height="35" ><input
-								class="input_default" type="text" id="phone" name="phone"
+							<td height="35" ><input 
+								class="form-control" type="text" id="phone" name="phone"
 								size="15" maxlength="15" value=""></input></td>
 						</tr>
 					</table>
@@ -146,12 +146,8 @@
 			</tr>
 			<!--  배송지 정보 끝-->
 
-			<tr>
-				<td><b>결제수단</b></td>
-			</tr>
-
-			<tr>
-				<td height="15">
+			<tr height="35" >
+				<td><b>[ 결제수단 ]</b></td>
 			</tr>
 			<tr>
 				<td>
@@ -170,8 +166,8 @@
 				<td height="30">
 			</tr>
 			<tr>
-				<td align="center"><input type='button' value='취소'>
-				<input type='submit' value='결제하기' id="orderDone"></td>
+				<td align="center"><input class="btn btn-outline-secondary" type='button' value='취소'>
+				<input class="btn btn-success" type='submit' value='결제하기' id="orderDone"></td>
 			</tr>
 
 		</table>

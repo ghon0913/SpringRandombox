@@ -33,16 +33,20 @@ public class InquiryController {
                curPage = "1";
         }
         
-		HashMap<String, String> searchMap = new HashMap<>();
-		searchMap.put("searchCategory", searchCategory);
-		searchMap.put("searchName", searchName);
-		searchMap.put("searchWord", searchWord);
-		
-		BoardPageDTO dto = service.inquiryList(Integer.parseInt(curPage), searchMap);
-		
-		m.addAttribute("boardList", dto);
-		m.addAttribute("chk_inquiryPage", "inquiryList");
-		return "inquiry";
+        if(searchCategory != null && searchCategory.equals("all")) {
+        	searchCategory = null;
+        }
+        
+			HashMap<String, String> searchMap = new HashMap<>();
+			searchMap.put("searchCategory", searchCategory);
+			searchMap.put("searchName", searchName);
+			searchMap.put("searchWord", searchWord);
+			
+			BoardPageDTO dto = service.inquiryList(Integer.parseInt(curPage), searchMap);
+			
+			m.addAttribute("boardList", dto);
+			m.addAttribute("chk_inquiryPage", "inquiryList");
+			return "inquiry";
 	}
 	
 	/* 문의글게시판 자세히보기 */
@@ -73,7 +77,7 @@ public class InquiryController {
 	}
 	
 	/* 문의글 작성 폼 */
-	@RequestMapping("/inquiryForm")
+	@RequestMapping("/loginchk/inquiryForm")
 	public String inquiryForm(Model m) {
 		
 		m.addAttribute("chk_inquiryPage", "inquiryForm");
@@ -90,7 +94,7 @@ public class InquiryController {
 	}
 	
 	/* 문의글 쓰기 */
-	@RequestMapping("/inquiryWrite")
+	@RequestMapping("/loginchk/inquiryWrite")
 	public String inquiryWrite(@ModelAttribute("inquiryWriteForm") BoardDTO dto,
 							   @RequestParam String select_question) {
 		
