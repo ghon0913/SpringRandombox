@@ -13,8 +13,8 @@
 <c:set var="totalNum" value="${totalPage/perPage }"/>
 <!-- totalnum 소수부분 올림 처리하기 -->
 <fmt:formatNumber var="totalNum" value="${totalNum+(1-(totalNum%1))%1}" type="number" maxFractionDigits="0"/>
-<c:set var="searchName" value="${param.searchName }"/>
-<c:set var="searchValue" value="${param.searchValue }"/>
+<c:set var="searchName" value="${pagedto.getSearchName()}"/>
+<c:set var="searchValue" value="${pagedto.getSearchValue()}"/>
 
  <!-- 보여줄 페이지번호 개수 -->
 <c:set var="perBlock" value="${pagedto.getPerBlock() }"/>
@@ -75,7 +75,7 @@
 	${status.index }
 </c:if>
 <c:if test="${curPage!=status.index }">
-	<a href="board?curPage=${status.index }&searchName=${searchName }&searchValue=${searchValue}">
+	<a href="board?curPage=${status.index}&searchName=${searchName }&searchValue=${searchValue }">
 		${status.index }
 	</a>
 </c:if> &nbsp;

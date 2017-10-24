@@ -82,20 +82,14 @@ public class MyPageController {
 	}
 
 	@RequestMapping(value = "/orderinfo", method = RequestMethod.GET)
-	public ModelAndView orderinfo(HttpSession session, @RequestParam(defaultValue = "1") int curPage,
-			@RequestParam(defaultValue = "1") String startdate, @RequestParam(defaultValue = "1") String finaldate) {
+	public ModelAndView orderinfo(HttpSession session, @RequestParam(defaultValue = "1") int curPage) {
 		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
 		HashMap<String, String> map = new HashMap();
-
-		if (startdate.length() > 1) {
-			map.put("startdate", startdate);
-			map.put("finaldate", finaldate);
-		} else {
-			map.put("startdate", null);
-			map.put("finaldate", null);
-		}
+		map.put("startdate", OrderInfoPageDTO.getStartdate());
+		map.put("finaldate", OrderInfoPageDTO.getFinaldate());
 		map.put("userId", logindto.getUserid());
-		
+		System.out.println(map);
+
 		OrderInfoPageDTO oList = service.myPageOrderInfoPage(map, curPage);
 
 		ModelAndView mav = new ModelAndView();
@@ -106,18 +100,13 @@ public class MyPageController {
 	}
 
 	@RequestMapping("/board")
-	public ModelAndView myboard(HttpSession session, @RequestParam(defaultValue = "1") int curPage,
-			@RequestParam(defaultValue = "1") String searchName, @RequestParam(defaultValue = "1") String searchValue) {
+	public ModelAndView myboard(HttpSession session, @RequestParam(defaultValue = "1") int curPage) {
 		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
 		HashMap<String, String> map = new HashMap();
-		
-		if(searchName.length()>1) {
-		map.put("searchName", searchName);
-		map.put("searchValue", searchValue);
-		}else {
-			map.put("searchName", null);
-			map.put("searchValue", null);
-		}
+
+		map.put("searchName", MyPageBoardPageDTO.getSearchName());
+		map.put("searchValue", MyPageBoardPageDTO.getSearchValue());
+
 		map.put("userId", logindto.getUserid());
 		System.out.println(map);
 		MyPageBoardPageDTO pagedto = service.boardpage(map, curPage);
@@ -126,6 +115,7 @@ public class MyPageController {
 		mav.addObject("page", "myPage/myPageBoardList.jsp");
 		mav.addObject("pagedto", pagedto);
 		mav.setViewName("myPage");
+		System.out.println(MyPageBoardPageDTO.getPerPage());
 		return mav;
 	}
 

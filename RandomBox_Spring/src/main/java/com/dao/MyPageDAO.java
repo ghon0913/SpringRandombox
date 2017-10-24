@@ -43,20 +43,32 @@ public class MyPageDAO {
 
 		int sIndex = (curPage - 1) * OrderInfoPageDTO.getPerPage();
 		int length = OrderInfoPageDTO.getPerPage();
-		List<OrderInfoDTO> list = template.selectList("com.mybatis.MyPageMapper.myPageOrderInfoPage", map,
-				new RowBounds(sIndex, length));
+		List<OrderInfoDTO> list = null;
+		if (map.get("startdate") == null) {
+			list = template.selectList("com.mybatis.MyPageMapper.myPageOrderInfodifPage", map,
+					new RowBounds(sIndex, length));
+		}else if(map.get("startdate").equals(map.get("finaldate"))) {
+			list = template.selectList("com.mybatis.MyPageMapper.myPageOrderInfosamePage", map,
+					new RowBounds(sIndex, length));
+		}else {
+			list = template.selectList("com.mybatis.MyPageMapper.myPageOrderInfodifPage", map,
+					new RowBounds(sIndex, length));
+		}
+		
+
 		// pagedto에 저장하기
 		int totalPage = 0;
 		pagedto.setOlist(list);
 		pagedto.setCurPage(curPage);
 		if (map.get("startdate") == null) {
 			totalPage = template.selectOne("com.mybatis.MyPageMapper.totalorderPage", map.get("userId"));
-		} else {
-			totalPage = template.selectOne("com.mybatis.MyPageMapper.searchorderPage", map);
+		} else if(map.get("startdate").equals(map.get("finaldate"))) {
+			totalPage = template.selectOne("com.mybatis.MyPageMapper.samedateorderPage", map);
+			System.out.println("ddddddddddddddd");
+		} else{
+			totalPage = template.selectOne("com.mybatis.MyPageMapper.difdateorderPage",map);
 		}
 		pagedto.setTotalPage(totalPage);
-		OrderInfoPageDTO.setStartdate(map.get("startdate"));
-		OrderInfoPageDTO.setFinaldate(map.get("finaldate"));
 		return pagedto;
 	}
 	
@@ -76,7 +88,6 @@ public class MyPageDAO {
 			totalPage = template.selectOne("com.mybatis.MyPageMapper.searchPage", map);
 		}
 		pagedto.setTotalPage(totalPage);
-		System.out.println(list);
 		return pagedto;
 	}
 	
