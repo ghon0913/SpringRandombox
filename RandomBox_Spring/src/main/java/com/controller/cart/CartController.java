@@ -20,13 +20,12 @@ import com.dto.MemberDTO;
 import com.service.CartService;
 
 @Controller
-@RequestMapping("/loginchk")
 public class CartController {
 
 	@Autowired
 	CartService service;
 	
-	@RequestMapping("/cartList")
+	@RequestMapping("/loginchk/cartList")
 	public String cartList(HttpSession session, Model m) {
 		
 		MemberDTO m_dto = (MemberDTO)session.getAttribute("login");
@@ -36,7 +35,7 @@ public class CartController {
 		return "cartList";
 	}
 	
-	@RequestMapping("/cartAdd")
+	@RequestMapping("/loginchk/cartAdd")
 	public String cartAdd(@ModelAttribute("randomGoodsForm") CartDTO dto,
 						  @RequestParam String gCategory) {
 		
@@ -46,13 +45,13 @@ public class CartController {
 		return "redirect:cartList.do";
 	}
 	
-	@RequestMapping("/cartDelete")
+	@RequestMapping("/loginchk/cartDelete")
 	@ResponseBody
 	public void cartDelete(@RequestParam int num) {
 		service.cartDelete(num);
 	}
 	
-	@RequestMapping("/cartDeleteAll")
+	@RequestMapping("/loginchk/cartDeleteAll")
 	@ResponseBody
 	public void cartDeleteAll(HttpServletRequest request) {
 		

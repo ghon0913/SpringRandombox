@@ -72,27 +72,16 @@
 	
 	/* 장바구니 넣기 */
 	$("#cartAdd").on("click", function(){
-		
-		if(${empty sessionScope.login}){
-			alert("로그인이 필요한 서비스입니다.");
-			$(location).attr("href", "loginForm");
-		}else{
-			$("#randomGoodsForm").attr("action", "cartAdd");
+
+			$("#randomGoodsForm").attr("action", "loginchk/cartAdd");
 			$("#randomGoodsForm").submit();
-		}
 	});
 	
 	/* 바로 주문하기 */
 	$("#orderAdd").on("click", function(){
 		
-		if(${empty sessionScope.login}){
-			alert("로그인이 필요한 서비스입니다.");
-			$(location).attr("href", "loginForm");
-		}else{
-			$("#randomGoodsForm").attr("action", "orderAdd");
-			$("#randomGoodsForm").submit();
-		}
-		
+			$("#randomGoodsForm").attr("action", "loginchk/orderAdd");
+			$("#randomGoodsForm").submit();		
 	});
 
 </script>

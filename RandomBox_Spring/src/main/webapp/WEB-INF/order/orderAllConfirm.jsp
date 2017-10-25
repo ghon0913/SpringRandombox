@@ -60,7 +60,7 @@
 						<tr>
 							<td class="td_default" width="80">${oList.num }</td>
 							<td class="td_default" width="80"><img
-								src="images/goods/${oList.gImage }" border="0" align="center"
+								src="../images/goods/${oList.gImage }" border="0" align="center"
 								width="80" /></td>
 							<td class="td_default" width="300" style='padding-left: 30px'>${oList.gName }</td>
 							<td class="td_default" align="center" width="110">${oList.gPrice }

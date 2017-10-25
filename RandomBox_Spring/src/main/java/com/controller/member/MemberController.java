@@ -1,9 +1,12 @@
 package com.controller.member;
 
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +29,11 @@ public class MemberController {
 	
 	/* 회원가입, member 테이블에 추가 */
 	@RequestMapping(value="/memberAdd", method=RequestMethod.POST)
-	public String memberAdd(@ModelAttribute("memberAddForm") MemberDTO dto, Model m) {
+	public String memberAdd(@Valid @ModelAttribute("memberAddForm") MemberDTO dto, Model m, BindingResult result) {
+		
+		if(result.hasErrors()) {
+			return "memberAddForm";
+		}
 		
 		service.insertMember(dto);
 		m.addAttribute("result", "회원가입을 축하합니다!!");

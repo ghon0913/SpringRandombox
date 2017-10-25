@@ -20,6 +20,7 @@ import com.service.MyPageService;
 import com.service.OrderService;
 
 @Controller
+@RequestMapping("/loginchk")
 public class OrderController {
 
 	@Autowired

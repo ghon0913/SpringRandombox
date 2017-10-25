@@ -59,6 +59,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		group by to_char(ORDERDAY,'mm/dd'),sellerid
 		order by sellerid
 	</select>
+	
+	<!-- 
+	      select sellerid, orderday, gprice, gcode
+      from order_info
+      group by sellerid, orderday, gprice, gcode
+      order by 1;
+	
+	
+	 -->
 
 
 </mapper>

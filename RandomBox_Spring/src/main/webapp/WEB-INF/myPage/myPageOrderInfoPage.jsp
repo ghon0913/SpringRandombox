@@ -45,10 +45,10 @@
 </c:if>
 
 <!-- 번호출력하기 -->
-<c:if test="${endPage < 1 }">
+<c:if test="${endPage <= 1 }">
 1
 </c:if>
-<c:if test="${endPage >= 1}">
+<c:if test="${endPage > 1}">
 
 
 	<!-- 첫패이지로이동 -->

@@ -9,9 +9,21 @@ public class GoodsPageDTO {
 	private int totalPage;
 	private static int perPage = 3;
 	private int perBlock = 3;
-	private String searchName;
-	private String searchValue;
+	private static String searchName = null;
+	private static String searchValue = null;
 	private String userId;
+	public GoodsPageDTO(List<GoodsDTO> glist, int curPage, int totalPage, int perBlock, String userId) {
+		super();
+		this.glist = glist;
+		this.curPage = curPage;
+		this.totalPage = totalPage;
+		this.perBlock = perBlock;
+		this.userId = userId;
+	}
+	public GoodsPageDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public List<GoodsDTO> getGlist() {
 		return glist;
 	}
@@ -42,17 +54,17 @@ public class GoodsPageDTO {
 	public void setPerBlock(int perBlock) {
 		this.perBlock = perBlock;
 	}
-	public String getSearchName() {
+	public static String getSearchName() {
 		return searchName;
 	}
-	public void setSearchName(String searchName) {
-		this.searchName = searchName;
+	public static void setSearchName(String searchName) {
+		GoodsPageDTO.searchName = searchName;
 	}
-	public String getSearchValue() {
+	public static String getSearchValue() {
 		return searchValue;
 	}
-	public void setSearchValue(String searchValue) {
-		this.searchValue = searchValue;
+	public static void setSearchValue(String searchValue) {
+		GoodsPageDTO.searchValue = searchValue;
 	}
 	public String getUserId() {
 		return userId;
@@ -63,25 +75,8 @@ public class GoodsPageDTO {
 	@Override
 	public String toString() {
 		return "GoodsPageDTO [glist=" + glist + ", curPage=" + curPage + ", totalPage=" + totalPage + ", perBlock="
-				+ perBlock + ", searchName=" + searchName + ", searchValue=" + searchValue + ", userId=" + userId + "]";
+				+ perBlock + ", userId=" + userId + "]";
 	}
-	public GoodsPageDTO(List<GoodsDTO> glist, int curPage, int totalPage, int perBlock, String searchName,
-			String searchValue, String userId) {
-		super();
-		this.glist = glist;
-		this.curPage = curPage;
-		this.totalPage = totalPage;
-		this.perBlock = perBlock;
-		this.searchName = searchName;
-		this.searchValue = searchValue;
-		this.userId = userId;
-	}
-	public GoodsPageDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
 
 	
 	

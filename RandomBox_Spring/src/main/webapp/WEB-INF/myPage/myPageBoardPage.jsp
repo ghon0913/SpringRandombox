@@ -44,7 +44,7 @@
 	처음
 </c:if>
 <c:if test="${curPage != 1 }">
-	<a href="board?curPage=1&searchName=${searchName }&searchValue=${searchValue }">
+	<a href="boardlist?curPage=1&searchName=${searchName }&searchValue=${searchValue }">
 	처음
 	</a>
 </c:if> &nbsp;
@@ -54,7 +54,7 @@
 	&lt;&lt;
 </c:if>
 <c:if test="${ startPage!=1}">
-	<a href="board?curPage=${startPage-1}&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="boardlist?curPage=${startPage-1}&searchName=${searchName}&searchValue=${searchValue}">
 	&lt;&lt;
 	</a>
 </c:if> &nbsp;
@@ -64,7 +64,7 @@
 	&lt;
 </c:if>
 <c:if test="${curPage!=1}">
-	<a href="board?curPage=${curPage-1 }&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="boardlist?curPage=${curPage-1 }&searchName=${searchName}&searchValue=${searchValue}">
 		&lt;
 	</a>
 </c:if> &nbsp;
@@ -75,7 +75,7 @@
 	${status.index }
 </c:if>
 <c:if test="${curPage!=status.index }">
-	<a href="board?curPage=${status.index}&searchName=${searchName }&searchValue=${searchValue }">
+	<a href="boardlist?curPage=${status.index}&searchName=${searchName }&searchValue=${searchValue }">
 		${status.index }
 	</a>
 </c:if> &nbsp;
@@ -85,7 +85,7 @@
 	${endPage }
 </c:if>
 <c:if test="${curPage!=endPage }">
-	<a href="board?curPage=${endPage }&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="boardlist?curPage=${endPage }&searchName=${searchName}&searchValue=${searchValue}">
 		${endPage }
 	</a>
 </c:if>
@@ -95,7 +95,7 @@
 	&gt;
 </c:if>
 <c:if test="${curPage!=totalNum}">
-	<a href="board?curPage=${curPage+1 }&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="boardlist?curPage=${curPage+1 }&searchName=${searchName}&searchValue=${searchValue}">
 		&gt;
 	</a>
 </c:if> &nbsp;
@@ -105,7 +105,7 @@
 	&gt;&gt;
 </c:if>
 <c:if test="${endPage!=totalNum}">
-	<a href="board?curPage=${endPage+1}&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="boardlist?curPage=${endPage+1}&searchName=${searchName}&searchValue=${searchValue}">
 	&gt;&gt;
 	</a>
 </c:if> &nbsp;
@@ -115,7 +115,7 @@
 	마지막
 </c:if>
 <c:if test="${curPage !=totalNum}">
-	<a href="board?curPage=${endPage+1 }&searchName=${searchName }&searchValue=${searchValue }">
+	<a href="boardlist?curPage=${endPage+1 }&searchName=${searchName }&searchValue=${searchValue }">
 	마지막
 	</a>
 </c:if> 

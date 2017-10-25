@@ -57,7 +57,7 @@
 					</td>
 					<td  width="80" id="num">${xxx.num}</td>
 					<td  width="80"><img
-						src="images/goods/${xxx.gImage}" border="0" align="center"
+						src="../images/goods/${xxx.gImage}" border="0" align="center"
 						width="80" /></td>
 					<td  width="300" style='padding-left: 30px; padding-top: 30px;'>${xxx.gName}</td>
 					<td  align="center" width="110"><fmt:formatNumber
@@ -92,7 +92,7 @@
 	$(".delCart").on("click", function() {
 
 		var num = $(this).attr("data-num");
-		var emptyCart = '<tr><td align="center" colspan="7" style="padding-top: 30px; padding-bottom: 30px;">'
+		var emptyCart = '<tr><td class="goodsTr" align="center" colspan="7" style="padding-top: 30px; padding-bottom: 30px;">'
 			+'카트에 추가된 상품이 없습니다.</td></tr>';
 	
 		$.ajax({
@@ -117,7 +117,7 @@
 
 	});
 	
-	/*  */
+	/* 상품리스트로 가기 */
 	$("#goShopping").on("click", function(){
 		$(location).attr("href", "goodsList");
 	});
@@ -158,7 +158,7 @@
 			});
 		}
 		
-		var emptyCart = '<tr><td align="center" colspan="7" style="padding-top: 30px; padding-bottom: 30px;">'
+		var emptyCart = '<tr><td class="goodsTr" align="center" colspan="7" style="padding-top: 30px; padding-bottom: 30px;">'
 						+'카트에 추가된 상품이 없습니다.</td></tr>';
 						
 		console.log($("#tbody").find(".goodsTr").length);	

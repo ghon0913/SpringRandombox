@@ -31,6 +31,12 @@
 
 	<mvc:default-servlet-handler />
 
-
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>memberForm</value>
+			</list>
+		</property>
+	</bean>
 
 </beans>
