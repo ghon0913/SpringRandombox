@@ -37,7 +37,7 @@
 						class="btn btn-info btn-block" aria-pressed="true">회원정보</button></td>
 				<td style="padding: 2px;"><button id="orderinfo"
 						class="btn btn-info btn-block" aria-pressed="true">매출정보</button></td>
-				<td style="padding: 2px;"><button id="myboard"
+				<td style="padding: 2px;"><button id="goodsinfo"
 						class="btn btn-info btn-block" aria-pressed="true">상품목록</button></td>
 			</tr>
 		</c:if>
@@ -48,7 +48,7 @@
 						class="btn btn-info btn-block" aria-pressed="true">매출현황</button></td>
 				<td style="padding: 2px;"><button id="userInfo"
 						class="btn btn-info btn-block" aria-pressed="true">회원관리</button></td>
-				<td style="padding: 2px;"><button id="goodsInfo"
+				<td style="padding: 2px;"><button id="goodsinfo1"
 						class="btn btn-info btn-block" aria-pressed="true">상품관리</button></td>
 			</tr>
 		</c:if>
@@ -102,15 +102,15 @@
 			location.href = "orderinfo";
 		})
 		$("#myboard").on("click", function() {
-			//console.log(">>>>>>>>>>",'${login}');
-			location.href = "board";
+			location.href = "boardlist";
 		})
 		$("#sellinfo").on("click", function() {
-			//console.log(">>>>>>>>>>",'${login}');
 			location.href = "sellinfo";
 		})
 		$("#goodsinfo").on("click", function() {
-			//console.log(">>>>>>>>>>",'${login}');
+			location.href = "goodsinfo";
+		})
+		$("#goodsinfo1").on("click", function() {
 			location.href = "goodsinfo";
 		})
 

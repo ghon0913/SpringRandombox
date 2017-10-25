@@ -8,7 +8,7 @@
 		<table border="1">
 			
 			<tr>
-				<td colspan="4">기간별조회
+				<td colspan="10" align="center">기간별조회
 				 <form action="orderinfodatepage">
 				<input type="date" name="startdate">
 					- <input type="date" name="finaldate"><input type="submit">
@@ -18,7 +18,7 @@
 			
 			<tr>
 
-				<td colspan="4">
+				<td colspan="10">
 					<form action="orderinfoperpage">
 						<select name="perPage">
 							<!-- change함수주기 -->
@@ -51,7 +51,7 @@
 						<input id="gName" type="hidden" value="${order.gName }">
 						<input id="gPrice" type="hidden" value="${order.gPrice }">
 						<td>${order.orderDay }
-						<td><a href="orderinforetrieve?num=${order.num }"
+						<td><a href="orderretrieve?ordernum=${order.num }"
 							target="blank">${order.num }</a></td>
 						<td><img src="/app/images/goods/${order.gImage }"
 							height="100" width="100"> ${order.gName }${order.gPrice }</td>

@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select num, userid, ordername, phone, email, post1, post2, addr1,
 		addr2, gcode, gname, gprice, gimage, paymethod,
 		to_char(orderday,
-		'mm/dd') "orderday" , sellerid
+		'mm/dd') "orderday" , sellerid, status
 		from order_info
 		where userid=#{userId}
 		<if test="startdate != null">
@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select num, userid, ordername, phone, email, post1, post2, addr1,
 		addr2, gcode, gname, gprice, gimage, paymethod,
 		to_char(orderday,
-		'mm/dd') "orderday" , sellerid
+		'mm/dd') "orderday" , sellerid, status
 		from order_info
 		where userid=#{userId}
 		<if test="startdate != null">
@@ -84,7 +84,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="orderinforetrieve" parameterType="int" resultType="OrderInfoDTO">
 		select num, userid, ordername, phone, email, post1, post2, addr1,
 		addr2, gcode, gname, gprice, gimage, paymethod,
-		orderday , sellerid
+		orderday , sellerid,status
 		from order_info
 		where num=#{num}
 	</select>

@@ -9,7 +9,7 @@
 
 <tr>
 <td colspan="10">
-<form action="goodsinfo.do">
+<form action="goodssearchpage">
 <select name="searchName">
 	<option value="gCode">상품코드</option>
 	</select>
@@ -19,6 +19,21 @@
 </form>	
 </td>
 </tr>
+<tr>
+
+			<td colspan="10">
+				<form action="goodsperpage">
+					<select name="perPage">
+						<!-- change함수주기 -->
+						<option value="3">3개씩보기</option>
+						<option value="5">5개씩보기</option>
+						<option value="7">7개씩보기</option>
+					</select> <input type="submit">
+				</form>
+			</td>
+
+		</tr>
+
 <c:if test="${empty pagedto.glist }">
 <tr>
 	<td colspan="10"	> 레코드가없습니다.</td>
@@ -51,7 +66,7 @@
 </c:forEach>
 
 <tr>
-	<td  colspan="10"><jsp:include page="myPageGoodsInfoPage.jsp"></jsp:include>
+	<td  colspan="10" align="center"><jsp:include page="myPageGoodsInfoPage.jsp"></jsp:include>
 </tr>
 </c:if>
 <tr>
