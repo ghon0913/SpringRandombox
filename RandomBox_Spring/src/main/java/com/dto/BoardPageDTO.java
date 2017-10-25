@@ -7,7 +7,7 @@ public class BoardPageDTO {
 	private List<BoardDTO> list;
 	private int curPage;
 	private int totalCount;
-	private int perPage=10;
+	private int perPage=8;
 	
 	public BoardPageDTO() {
 		super();

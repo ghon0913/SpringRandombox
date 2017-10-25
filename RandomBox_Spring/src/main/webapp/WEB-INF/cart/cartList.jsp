@@ -35,6 +35,8 @@
 		<c:if test="${fn:length(cartList)!=0}">
 
 		<form name="cartListForm" id="cartListForm">
+			<input type="hidden" name="userid" value="${sessionScope.login.userid}"
+					id="userid">
 			<c:forEach var="xxx" items="${cartList}">
 				<input type="hidden" name="num${xxx.num}" value="${xxx.num}"
 					id="num${xxx.num}">
@@ -44,8 +46,6 @@
 					id="gName${xxx.num}">
 				<input type="hidden" name="gPrice${xxx.num}" value="${xxx.gPrice}"
 					id="gPrice${xxx.num}">
-				<input type="hidden" name="userid" value="${xxx.userId}"
-					id="userid">
 				<input type="hidden" name="sellerId" value="${xxx.sellerId}"
 					id="sellerId">
 				<tr id="tr${xxx.num}">

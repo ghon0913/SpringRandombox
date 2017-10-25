@@ -72,8 +72,8 @@
 				bordercolor="#CCCCCC">
 				<tr>
 					<td width="100" class="td_default" height="35" align="center"><strong>주문 상품</strong></td>
-					<td width="250" class="td_default" height="35" align="center" colspan="2"><strong>상품명</strong></td>
-					<td class="td_default" width="100" height="35" align="center"><strong>판매가</strong></td>
+					<td width="250" class="td_default" height="35" align="center" colspan="2"><strong>랜덤배정상품</strong></td>
+					<td class="td_default" width="100" height="35" align="center"><strong>상품구매가</strong></td>
 				</tr>
 				<c:set var="totalPrice" value="0"></c:set>
 				<c:forEach var="oList" items="${orderList }" varStatus="status" >
@@ -140,7 +140,7 @@
 
 	<tr>
 		<td class="td_default" align="center"><a class="a_default"
-			href="orderinfopage.do">주문조회 페이지로 이동</a></td>
+			href="loginchk/orderinfopage">주문조회 페이지로 이동</a></td>
 	</tr>
 	<tr>
 		<td height="30">

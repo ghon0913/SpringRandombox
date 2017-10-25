@@ -10,12 +10,11 @@
 		<div class="col-md-8">
 			<h5>|&nbsp;&nbsp;&nbsp;상품 후기&nbsp;&nbsp;&nbsp;|</h5>
 			<br>
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<select class="form-control" id="searchCategory"
 					name="searchCategory" style="font-size: 12px;">
 					<option>카테고리별로 보기</option>
-					<option value="all">문의사항 전체</option>
-					<option value="전체카테고리">전체카테고리 상품</option>
+					<option value="all">후기 전체</option>
 					<option value="패션의류">패션의류</option>
 					<option value="잡화/뷰티">잡화/뷰티</option>
 					<option value="식품/음료">식품/음료</option>

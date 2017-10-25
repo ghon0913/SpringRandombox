@@ -28,10 +28,6 @@ public class InquiryController {
 							 @RequestParam(required=false) String searchName,
 							 @RequestParam(required=false) String searchWord ,
 							 @RequestParam(defaultValue="1") String curPage, Model m) {
-
-        if(curPage == null) {
-               curPage = "1";
-        }
         
         if(searchCategory != null && searchCategory.equals("all")) {
         	searchCategory = null;
@@ -47,6 +43,7 @@ public class InquiryController {
 			m.addAttribute("boardList", dto);
 			m.addAttribute("chk_inquiryPage", "inquiryList");
 			return "inquiry";
+			
 	}
 	
 	/* 문의글게시판 자세히보기 */

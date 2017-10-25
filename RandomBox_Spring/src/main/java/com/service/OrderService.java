@@ -1,5 +1,8 @@
 package com.service;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,4 +42,21 @@ public class OrderService {
 		o_dao.orderAfterAmount(gCode);
 	}
 	
+	/* 전체 주문 하기 */
+	public List<CartDTO> orderAllConfirm(List<String> num){
+		List<CartDTO> dto = o_dao.orderAllConfirm(num);
+		return dto;
+	}
+	
+	/* 주문 상품 실제 상품명 얻기 */
+	public List<GoodsDTO> getgName(List<String> gCodeList){
+		List<GoodsDTO> gNameList = o_dao.getgName(gCodeList);
+		return gNameList;
+	}
+	
+	/* 오더 추가, 카트 삭제, 재고 감소 */
+	@Transactional
+	public void orderAllDone(List<OrderInfoDTO> orderDTOList, List<String> numList, List<String> gCodeList) {
+		o_dao.orderAllDone(orderDTOList, numList, gCodeList);
+	}
 }

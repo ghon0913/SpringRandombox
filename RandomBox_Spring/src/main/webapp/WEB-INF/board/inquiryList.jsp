@@ -10,11 +10,9 @@
 		<div class="col-md-8">
 			<h5>|&nbsp;&nbsp;&nbsp;Q & A&nbsp;&nbsp;&nbsp;|</h5>
 			<br>
-			<div>
-			<table width="100%">
-				<tr>
-					<td>
-						<select class="form-control" id="searchCategory"
+			<div class="row">
+			<div class="col-md-4">
+				<select class="form-control" id="searchCategory"
 					name="searchCategory" style="font-size: 12px;">
 					<option>카테고리별로 보기</option>
 					<option value="all">문의사항 전체</option>
@@ -27,17 +25,10 @@
 					<option value="디지털/컴퓨터">디지털/컴퓨터</option>
 					<option value="티켓/e쿠폰">티켓/e쿠폰</option>
 				</select>
-					</td>
-					<td width="60%">
-					</td>
-					<td>
-						<input class="btn btn-success" type="button" id="inquiry" value="문의하기">
-					</td>
-				</tr>
-			</table>
 			</div>
-			<div class="col-md-3">
-				
+			<div class="col-md-4 col-md-offset-4">
+				<input class="btn btn-success" type="button" id="inquiry" value="문의하기">
+			</div>
 			</div>
 			<br>
 			<table class="table table-hover" style="font-size: 12px;">

@@ -17,7 +17,7 @@
 					<td align="center"><a
 						href="goodsRetrieveByCategory?category=${category}">상품설명</a></td>
 					<td align="center">
-						<a href="goodsReviewList?searchCategory=${category}">후기</a>
+						<a href="goodsReviewList">후기</a>
 					</td>
 				</tr>
 				<tr>

@@ -83,10 +83,6 @@ public class ReviewController {
 								  @RequestParam(required=false) String searchWord ,
 								  @RequestParam(defaultValue="1") String curPage, Model m) {
 		
-        if(curPage == null) {
-            curPage = "1";
-        }
-     
 		HashMap<String, String> searchMap = new HashMap<>();
 		searchMap.put("searchCategory", searchCategory);
 		searchMap.put("searchName", searchName);
