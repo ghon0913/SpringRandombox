@@ -82,7 +82,7 @@ public class InquiryController {
 	}
 	
 	/* 질문 카테고리 선택 */
-	@RequestMapping("/selectCategory")
+	@RequestMapping("/loginchk/selectCategory")
 	public @ResponseBody List<GoodsDTO> selectCategory(@RequestParam String gCategory) {
 	
 		List<GoodsDTO> list = service.selectCategory(gCategory);

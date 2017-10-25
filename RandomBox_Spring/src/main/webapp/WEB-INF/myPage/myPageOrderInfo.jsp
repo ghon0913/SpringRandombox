@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <div align="center">
-	<form action="">
+	
 		<table border="1">
 			
 			<tr>
@@ -65,7 +65,7 @@
 				</tr>
 			</c:if>
 		</table>
-	</form>
+
 </div>
 
 <script>

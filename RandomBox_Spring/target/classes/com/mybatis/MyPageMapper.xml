@@ -17,7 +17,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		parameterType="string">
 		select userid, username, passwd, email, phone,gender,
 		to_char(birthday,'yyyy/mm/dd')
-		birthday, post1, post2, addr1, addr2, ox, sessionid, sessionlimit
+		birthday, post1, post2, addr1, addr2,
+		ox, sessionid, sessionlimit
 		from
 		joinmember
 		where userid=#{userid}
@@ -30,9 +31,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		post2=#{post2}, addr1=#{addr1}, addr2=#{addr2}
 		where userid=#{userid}
 	</update>
-	
+
 	<!-- orderinfo -->
-	<select id="myPageOrderInfoPage" parameterType="hashmap"
+	<select id="myPageOrderInfosamePage" parameterType="hashmap"
 		resultType="OrderInfoDTO">
 
 		select num, userid, ordername, phone, email, post1, post2, addr1,
@@ -42,26 +43,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from order_info
 		where userid=#{userId}
 		<if test="startdate != null">
-			and orderday between #{startdate} and #{finaldate}
+			and to_char(orderday,'yyyy-mm-dd') in(#{startdate})
 		</if>
 		order by num desc
 	</select>
-	
+	<select id="myPageOrderInfodifPage" parameterType="hashmap"
+		resultType="OrderInfoDTO">
+
+		select num, userid, ordername, phone, email, post1, post2, addr1,
+		addr2, gcode, gname, gprice, gimage, paymethod,
+		to_char(orderday,
+		'mm/dd') "orderday" , sellerid
+		from order_info
+		where userid=#{userId}
+		<if test="startdate != null">
+			and to_char(orderday,'yyyy-mm-dd') between #{startdate} and #{finaldate}
+		</if>
+		order by num desc
+	</select>
+
 	<select id="totalorderPage" resultType="int" parameterType="string">
 		select
 		count(*)
 		from order_info
 		where userid = #{userId}
 	</select>
-	<select id="searchorderPage" resultType="int" parameterType="hashmap">
+	<select id="samedateorderPage" resultType="int" parameterType="hashmap">
 		select count(*)
 		from order_info
 		where userid = #{userId}
-		<if test="startdate !=null">
-			and orderday between #{startdate} and #{finaldate}
-		</if>
+		and to_char(orderday,'yyyy-mm-dd') in(#{startdate})
 	</select>
-	
+	<select id="difdateorderPage" resultType="int" parameterType="hashmap">
+		select count(*)
+		from order_info
+		where userid = #{userId}
+	    and to_char(orderday,'yyyy-mm-dd') between #{startdate} and #{finaldate}
+	</select>
+
 	<select id="orderinforetrieve" parameterType="int" resultType="OrderInfoDTO">
 		select num, userid, ordername, phone, email, post1, post2, addr1,
 		addr2, gcode, gname, gprice, gimage, paymethod,
@@ -69,7 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from order_info
 		where num=#{num}
 	</select>
-	
+
 
 	<select id="myPageBoardList" parameterType="string" resultType="BoardDTO">
 		select num, category, title, content,
@@ -98,6 +117,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from board
 		where userid =
 		#{userId}
+		<if test="searchName == 'state'">
+			and state like
+			'%'||#{searchValue}||'%'
+		</if>
 		<if test="searchName == 'title'">
 			and title like
 			'%'||#{searchValue}||'%'
@@ -148,11 +171,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by num desc
 	</select>
 
-	
 
-	
 
-	
+
+
+
 
 	<select id="goodsinfo" resultType="GoodsDTO" parameterType="hashmap">
 
@@ -188,21 +211,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<delete id="goodsdelete" parameterType="String">
 		delete GOODS
-		where GCODE=#{gCode}
+		where
+		GCODE=#{gCode}
 	</delete>
 
 	<update id="goodsupdate" parameterType="hashmap">
 		update GOODS
-		set GCATEGORY=#{gCategory},GNAME=#{gName}, GPRICE=#{gPrice},
+		set
+		GCATEGORY=#{gCategory},GNAME=#{gName}, GPRICE=#{gPrice},
 		GAMOUNT=#{gAmount}
 		where GCODE=#{gCode}
 	</update>
 
 	<select id="sellinfo" parameterType="String" resultType="SalesStatusDTO">
-		select to_char(ORDERDAY,'mm/dd') orderDay , sum(gprice) gPrice
+		select
+		to_char(ORDERDAY,'mm/dd') orderDay , sum(gprice) gPrice
 		from order_info
 		where sellerid=#{userid}
 		group by to_char(ORDERDAY,'mm/dd')
-		order by orderDay
+		order by
+		orderDay
 	</select>
 </mapper>

@@ -1,7 +1,9 @@
 package com.controller.cart;
 
+import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +49,13 @@ public class CartController {
 	@ResponseBody
 	public void cartDelete(@RequestParam int num) {
 		service.cartDelete(num);
+	}
+	
+	@RequestMapping("/cartDeleteAll")
+	@ResponseBody
+	public void cartDeleteAll(HttpServletRequest request) {
+		
+		String [] checks = request.getParameterValues("check");
+		service.cartDeleteAll(Arrays.asList(checks));
 	}
 }

@@ -43,7 +43,10 @@
 			</c:forEach>
 			<tr>
 				<td align="center" colspan="7">
-					<jsp:include page="boardPage.jsp" flush="true"></jsp:include>
+					<c:set var="boardChk" value="qna"/>
+					<jsp:include page="boardPage.jsp" flush="true">
+						<jsp:param name="boardChk" value="${boardChk }" />
+					</jsp:include>
 				</td>
 			</tr>
 		</c:if>

@@ -11,9 +11,9 @@
 <c:set var="perPage" value="${pagedto.getPerPage()}"/>
 <c:set var="totalPage" value="${pagedto.getTotalPage() }"/>
 <c:set var="totalNum" value="${totalPage/perPage }"/>
-<fmt:formatNumber var="totalNum" value="${totalNum}" type="number" maxFractionDigits="0"/>
-<c:set var="searchName" value="${param.searchName }"/>
-<c:set var="searchValue" value="${param.searchValue }"/>
+<fmt:formatNumber var="totalNum" value="${totalNum+(1-(totalNum%1))%1}" type="number" maxFractionDigits="0"/>
+<c:set var="searchName" value="${pagedto.getSearchName()}"/>
+<c:set var="searchValue" value="${pagedto.getSearchValue()}"/>
 
  <!-- 보여줄 페이지번호 개수 -->
 <c:set var="perBlock" value="${pagedto.getPerBlock() }"/>

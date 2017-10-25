@@ -34,4 +34,9 @@ public class CartDAO {
 	public void cartDelete(int num) {
 		template.delete("delCart", num);
 	}
+	
+	/* 장바구니 전체삭제 */
+	public void cartDeleteAll(List<String> checks) {
+		template.delete("delAllCart", checks);
+	}
 }
