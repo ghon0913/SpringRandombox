@@ -32,15 +32,17 @@
 			</div>
 			<br>
 			<table class="table table-hover" style="font-size: 12px;">
-				<tr>
-					<th width="70">글번호</th>
-					<th width="110">카테고리</th>
-					<th>제목</th>
-					<th width="90">작성일</th>
-					<th width="80">작성자</th>
-					<th width="70">조회수</th>
-					<th width="80">처리상태</th>
+				<thead>
+				<tr >
+					<th style="text-align: center;" width="70">글번호</th>
+					<th style="text-align: center;" width="110">카테고리</th>
+					<th style="text-align: center;">제목</th>
+					<th style="text-align: center;" width="90">작성일</th>
+					<th style="text-align: center;" width="80">작성자</th>
+					<th style="text-align: center;" width="70">조회수</th>
+					<th style="text-align: center;" width="80">처리상태</th>
 				</tr>
+				</thead>
 				<!-- ----------------------------------------------------------------리스트 목록 없을 때 -------------------------------->
 				<c:if test="${ boardList.getList().size() == 0 }">
 					<tr>
@@ -51,8 +53,8 @@
 				<c:if test="${ boardList.getList().size() != 0 }">
 					<c:forEach var="bList" items="${ boardList.getList()}">
 						<tr>
-							<td>${bList.num }</td>
-							<td>${bList.category }</td>
+							<td style="text-align: center;">${bList.num }</td>
+							<td style="text-align: center;">${bList.category }</td>
 							<td style="padding-left: 30px">
 							<c:if test="${bList.open == 'N' }">
 									<c:if test="${bList.userId == sessionScope.login.userid }">
@@ -69,12 +71,13 @@
 									<a href="inquiryRetrieve?num=${bList.num }">${bList.title }</a>
 							</c:if>
 							</td>
-							<td>${bList.writeDay }</td>
-							<td align="center">${bList.userId }</td>
-							<td>${bList.readCnt }</td>
-							<td>${bList.state }</td>
+							<td style="text-align: center;">${bList.writeDay }</td>
+							<td style="text-align: center;">${bList.userId }</td>
+							<td style="text-align: center;">${bList.readCnt }</td>
+							<td style="text-align: center;">${bList.state }</td>
 						</tr>
 					</c:forEach>
+					<tfoot>
 					<tr>
 						<td align="center" colspan="7">
 						<c:set var="boardChk" value="inquiry"/>
@@ -83,6 +86,7 @@
 							</jsp:include>
 						</td>
 					</tr>
+					</tfoot>
 				</c:if>
 			</table>
 			<form action="inquiryList">

@@ -58,7 +58,7 @@ public class InquiryController {
 	}
 	
 	/* 문의글 수정하기 */
-	@RequestMapping("/inquiryUpdate")
+	@RequestMapping("/loginchk/inquiryUpdate")
 	public String inquiryUpdate(@ModelAttribute("inquiryRetrieveForm") BoardDTO dto) {
 		
 		service.inquiryUpdate(dto);
@@ -66,7 +66,7 @@ public class InquiryController {
 	}
 	
 	/* 문의글 삭제하기 */
-	@RequestMapping("/inquiryDelete")
+	@RequestMapping("/loginchk/inquiryDelete")
 	public String inquiryDelete(@RequestParam String num) {
 		
 		service.inquiryDelete(Integer.parseInt(num));

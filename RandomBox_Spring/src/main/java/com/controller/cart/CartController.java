@@ -20,6 +20,7 @@ import com.dto.MemberDTO;
 import com.service.CartService;
 
 @Controller
+@RequestMapping("/loginchk")
 public class CartController {
 
 	@Autowired

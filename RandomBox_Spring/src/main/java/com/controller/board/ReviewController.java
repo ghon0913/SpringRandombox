@@ -61,7 +61,7 @@ public class ReviewController {
 	}
 	
 	/* 후기글 수정하기 */
-	@RequestMapping("/reviewUpdate")
+	@RequestMapping("/loginchk/reviewUpdate")
 	public String reviewUpdate(@ModelAttribute("reviewRetrieveForm") BoardDTO dto) {
 		
 		service.reviewUpdate(dto);
@@ -69,7 +69,7 @@ public class ReviewController {
 	}
 	
 	/* 후기글 삭제하기 */
-	@RequestMapping("/reviewDelete")
+	@RequestMapping("/loginchk/reviewDelete")
 	public String reviewDelete(@RequestParam String num) {
 		
 		service.reviewDelete(Integer.parseInt(num));

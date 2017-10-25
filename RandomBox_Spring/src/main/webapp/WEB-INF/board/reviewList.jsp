@@ -26,14 +26,16 @@
 			</div>
 			<br>
 			<table class="table table-hover" style="font-size: 12px;">
+				<thead>
 				<tr>
-					<th width="70">글번호</th>
-					<th width="110">카테고리</th>
-					<th>제목</th>
-					<th width="90">작성일</th>
-					<th width="80">작성자</th>
-					<th width="70">조회수</th>
+					<th style="text-align: center;" width="70">글번호</th>
+					<th style="text-align: center;" width="110">카테고리</th>
+					<th style="text-align: center;">제목</th>
+					<th style="text-align: center;" width="90">작성일</th>
+					<th style="text-align: center;" width="80">작성자</th>
+					<th style="text-align: center;" width="70">조회수</th>
 				</tr>
+				</thead>
 				<!-- ----------------------------------------------------------------리스트 목록 없을 때 -------------------------------->
 				<c:if test="${ boardList.getList().size() == 0 }">
 					<tr>
@@ -44,15 +46,16 @@
 				<c:if test="${ boardList.getList().size() != 0 }">
 					<c:forEach var="rList" items="${boardList.getList()}">
 						<tr>
-							<td>${rList.num }</td>
-							<td>${rList.category }</td>
+							<td style="text-align: center;">${rList.num }</td>
+							<td style="text-align: center;">${rList.category }</td>
 							<td><a
 								href="reviewRetrieve?num=${rList.num }">${rList.title }</a></td>
-							<td>${rList.writeDay }</td>
-							<td>${rList.userId }</td>
-							<td>${rList.readCnt }</td>
+							<td style="text-align: center;">${rList.writeDay }</td>
+							<td style="text-align: center;">${rList.userId }</td>
+							<td style="text-align: center;">${rList.readCnt }</td>
 						</tr>
 					</c:forEach>
+					<tfoot>
 					<tr>
 						<td align="center" colspan="7">
 							<c:set var="boardChk" value="review"/>
@@ -61,6 +64,7 @@
 							</jsp:include>
 						</td>
 					</tr>
+					</tfoot>
 				</c:if>
 			</table>
 			<form action="reviewList">
