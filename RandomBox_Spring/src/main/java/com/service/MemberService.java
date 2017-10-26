@@ -15,6 +15,7 @@ public class MemberService {
 	@Autowired
 	MemberDAO dao;
 	
+	/* 회원 가입 */
 	public void insertMember(MemberDTO dto) {	
 		dao.insertMember(dto);
 	}
@@ -30,5 +31,11 @@ public class MemberService {
 	public String findPasswd(Map<String,String> map) {
 		System.out.println(map);
 		return dao.findPasswd(map);
+	}
+	
+	/* 아이디 중복체크 */
+	public boolean idCheck(String userid) {
+		boolean ck = dao.idCheck(userid);
+		return ck;
 	}
 }
