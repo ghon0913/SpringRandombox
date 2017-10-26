@@ -16,8 +16,8 @@ public class MemberDAO {
 	@Autowired
 	SqlSessionTemplate template;
 	
+	/* 회원 가입 */
 	public void insertMember(MemberDTO dto) {
-		
 		template.insert("insertMember", dto);
 	}
 	
@@ -31,6 +31,20 @@ public class MemberDAO {
 	
 	public String findPasswd(Map<String,String> map) {
 		return template.selectOne("findPasswd",map);
+	}
+	
+	/* 아이디 찾기 */
+	public boolean idCheck(String userid) {
+
+		String id = template.selectOne("idCheck", userid);
+		boolean ck;
+
+		if (id != null) {
+			ck = true;
+		} else {
+			ck = false;
+		}
+		return ck;
 	}
 	
 }

@@ -119,10 +119,10 @@
 	
 	/* 상품리스트로 가기 */
 	$("#goShopping").on("click", function(){
-		$(location).attr("href", "goodsList");
+		$(location).attr("href", "../goodsList");
 	});
 	
-	/*  */
+	/* 전체 체크 */
 	$("#allCheck").on("change", function(event){
 			var chk = $(".check");
 

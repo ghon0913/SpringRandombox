@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <table width="100%">
 	<tr height="10" />
 	<tr>
@@ -48,8 +47,9 @@
 									<tr>
 										<td>${rList.num }</td>
 										<td>${rList.category }</td>
-										<td style="padding-left: 30px"><a
-											href="inquiryRetrieve?num=${rList.num }">${rList.title }</a></td>
+										<td style="padding-left: 30px">
+											<a href="reviewRetrieve?num=${rList.num }">
+											${rList.title }</a></td>
 										<td>${rList.writeDay }</td>
 										<td align="center">${rList.userId }</td>
 										<td>${rList.readCnt }</td>
@@ -62,7 +62,6 @@
 								</tr>
 							</c:if>
 						</tbody>
-						
 				<tr>
 					<td colspan="6">
 						<div style="padding-left: 20px;">

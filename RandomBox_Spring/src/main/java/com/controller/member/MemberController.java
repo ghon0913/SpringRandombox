@@ -10,6 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dto.MemberDTO;
 import com.service.MemberService;
@@ -41,4 +43,19 @@ public class MemberController {
 		return "home";
 	}
 	
+	/* 아이디 중복 검사 */
+	@RequestMapping("/idCheck")
+	@ResponseBody
+	public String idCheck(@RequestParam String userid) {
+		
+		String mesg = "사용가능";
+		boolean ck = service.idCheck(userid);
+		
+		if(ck) {
+			return mesg;
+		}else {
+			mesg = "아이디 중복";
+			return mesg;
+		}
+	}
 }
