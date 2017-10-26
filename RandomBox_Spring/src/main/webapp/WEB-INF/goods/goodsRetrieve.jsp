@@ -23,8 +23,9 @@
 					
 					<td colspan="4" align="center"><c:forEach var="list16"
 							items="${sessionScope.goodsList16}">
-							상품명 : ${list16.gName}<br>
-							상세설명 : ${list16.gContentImage}
+							<p style="font-size: 30px">상품명 : ${list16.gName}</p><br>
+							
+							<img src="/upload/${list16.gContentImage}" height="500" width="500">
 							<hr>
 						</c:forEach></td>
 				</tr>

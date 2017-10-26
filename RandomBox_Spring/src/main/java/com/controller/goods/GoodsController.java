@@ -1,10 +1,12 @@
 package com.controller.goods;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,15 +17,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.dto.FileDTO;
 import com.dto.GoodsDTO;
+import com.dto.MemberDTO;
 import com.service.GoodsService;
 
 @Controller
 public class GoodsController {
 	@Autowired
 	GoodsService service;
-	
+
 	@RequestMapping("/goodsRegisterForm")
 	public String goodsRegisterForm() {
 		return "goodsRegisterForm";
@@ -81,6 +87,7 @@ public class GoodsController {
 			totalPrice += list16.get(i).getgPrice();
 		}
 		session.setAttribute("goodsList16", list16);
+	
 
 		// 최종 랜덤 상품 저장 ******
 		int randomGoods_idx = rand.nextInt(list16.size());
@@ -205,13 +212,43 @@ public class GoodsController {
 	public String goodsRetrieve(HttpServletRequest request) {
 
 		request.setAttribute("retrieve", "retrieve");
+		
+		
 
 		return "home";
 	}
 
 	@RequestMapping("/goodsRegister")
-	public String goodsRegister() {
+	public ModelAndView goodsRegister(FileDTO dto, HttpSession session) {
+		UUID uuid1 = UUID.randomUUID();
+		UUID uuid2 = UUID.randomUUID();
+		String gCategory = dto.getgCategory();
+		String gName = dto.getgName();
+		int gPrice = dto.getgPrice();
+		int gAmount = dto.getgAmount();
+		CommonsMultipartFile gImage = dto.getgImage() ;
+		CommonsMultipartFile gContentImage = dto.getgContentImage();
+		MemberDTO m_dto = (MemberDTO) session.getAttribute("login");
+		String sellerId = m_dto.getUserid();
+		GoodsDTO g_dto = new GoodsDTO(gPrice, null, gCategory,gName,uuid1.toString()+"_"+gImage.getOriginalFilename(),uuid2.toString()+"_"+gContentImage.getOriginalFilename(),gAmount,sellerId);
+		service.insertGoods(g_dto);
+		String saveFile1 = uuid1.toString()+"_"+gImage.getOriginalFilename();
+		String saveFile2 = uuid2.toString()+"_"+gContentImage.getOriginalFilename();
+		File f = new File("c:\\upload", saveFile1);
+		File f2 = new File("c:\\upload", saveFile2);
+		
+		try {
+			gImage.transferTo(f);
+			gContentImage.transferTo(f2);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		return null;
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("goodsConfirm", g_dto);
+		mav.setViewName("goodsRegisterConfirm");
+
+		return mav;
 	}
 }

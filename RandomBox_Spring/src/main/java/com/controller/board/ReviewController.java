@@ -26,9 +26,9 @@ public class ReviewController {
 	@RequestMapping("/reviewList")
 	public String reviewList(@RequestParam(required=false) String searchCategory,
 							 @RequestParam(required=false) String searchName,
-							 @RequestParam(required=false) String searchWord ,
+							 @RequestParam(required=false) String searchWord,
 							 @RequestParam(defaultValue="1") String curPage, Model m) {
-
+		
         if(curPage == null) {
                curPage = "1";
         }
