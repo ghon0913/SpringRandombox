@@ -3,31 +3,32 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div align="center">
+<div align="center" class="container">
+<div class="row">
+	<table class="table table-hover">
 
-	<table border="1">
 		<tr>
-			<td colspan="4">
+		
+			<td colspan="3">
 				<form action="boardsearchpage">
-					<select name="searchName">
+					<select class="form-control" name="searchName">
 						<option value="state">상태</option>
 						<option value="title">제목</option>
 						<option value="content">내용</option>
 					</select> <input type="text" name="searchValue"> <input
-						type="submit" value="검색">
+						type="submit"class="btn btn-default" value="검색">
 				</form>
 			</td>
-		</tr>
-		<tr>
+		
 
-			<td colspan="4">
+			<td  >
 				<form action="boardperpage">
-					<select name="perPage">
+					<select class="form-control" name="perPage">
 						<!-- change함수주기 -->
-						<option value="3">3개씩보기</option>
-						<option value="5">5개씩보기</option>
-						<option value="7">7개씩보기</option>
-					</select> <input type="submit">
+						<option value="3">3개</option>
+						<option value="5">5개</option>
+						<option value="7">7개</option>
+					</select> <input type="submit" class="btn btn-success">
 				</form>
 			</td>
 
@@ -59,6 +60,7 @@
 						page="myPageBoardPage.jsp" flush="true" /></td>
 			</tr>
 		</c:if>
-
+		
 	</table>
+	</div>
 </div>

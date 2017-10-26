@@ -3,29 +3,29 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div align="center">
-	
-		<table border="1">
+<div align="center" class="container">
+	<div class="row">
+		<table class="table table-hover" >
 			
 			<tr>
-				<td colspan="10" align="center">기간별조회
+				<td colspan="3" align="center">기간별조회<br>&nbsp;
 				 <form action="orderinfodatepage">
-				<input type="date" name="startdate">
-					- <input type="date" name="finaldate"><input type="submit">
+				&nbsp; <input type="date" name="startdate">
+					<br>- <input type="date" name="finaldate"><br><input class="btn btn-success" type="submit">
 				</form>
 				</td>
-			</tr>
+		
 			
-			<tr>
+			
 
 				<td colspan="10">
-					<form action="orderinfoperpage">
-						<select name="perPage">
+					<form action="orderinfoperpage"><br><br>
+						<select class="form-control" name="perPage">
 							<!-- change함수주기 -->
-							<option value="3">3개씩보기</option>
-							<option value="5">5개씩보기</option>
-							<option value="7">7개씩보기</option>
-						</select> <input type="submit">
+							<option value="3">3개</option>
+							<option value="5">5개</option>
+							<option value="7">7개</option>
+						</select> <input class="btn btn-success" type="submit">
 					</form>
 				</td>
 
@@ -65,7 +65,7 @@
 				</tr>
 			</c:if>
 		</table>
-
+</div>
 </div>
 
 <script>

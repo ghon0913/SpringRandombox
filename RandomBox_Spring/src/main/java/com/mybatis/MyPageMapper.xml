@@ -179,7 +179,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="goodsinfo" resultType="GoodsDTO" parameterType="hashmap">
 
-		select GPRICE, GCODE, GCATEGORY, GNAME, GIMAGE, gcontent_image,
+		select GPRICE, GCODE, GCATEGORY, GNAME, GIMAGE, gcontentimage,
 		GAMOUNT, SELLERID
 		from goods
 		where SELLERID = #{userId}
@@ -202,7 +202,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="goodsretrieve" resultType="GoodsDTO" parameterType="string">
 
-		select GPRICE, GCODE, GCATEGORY, GNAME, GIMAGE, gcontent_image,
+		select GPRICE, GCODE, GCATEGORY, GNAME, GIMAGE, gcontentimage,
 		GAMOUNT, SELLERID
 		from goods
 		where gCode = #{gCode}
