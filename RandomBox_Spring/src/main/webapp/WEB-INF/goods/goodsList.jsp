@@ -14,7 +14,7 @@
 				<tr height="30">
 					<td align="center"><a href="home.jsp">구매페이지</a></td>
 					<td align="center"><a href="goodsRetrieve">상품설명</a></td>
-					<td align="center"><a href="goodsReviewList?chk_category=전체카테고리">후기</a></td>
+					<td align="center"><a href="goodsReviewList">후기</a></td>
 				</tr>
 				<tr>
 
@@ -72,27 +72,16 @@
 	
 	/* 장바구니 넣기 */
 	$("#cartAdd").on("click", function(){
-		
-		if(${empty sessionScope.login}){
-			alert("로그인이 필요한 서비스입니다.");
-			$(location).attr("href", "loginForm");
-		}else{
-			$("#randomGoodsForm").attr("action", "cartAdd");
+
+			$("#randomGoodsForm").attr("action", "loginchk/cartAdd");
 			$("#randomGoodsForm").submit();
-		}
 	});
 	
 	/* 바로 주문하기 */
 	$("#orderAdd").on("click", function(){
 		
-		if(${empty sessionScope.login}){
-			alert("로그인이 필요한 서비스입니다.");
-			$(location).attr("href", "loginForm");
-		}else{
-			$("#randomGoodsForm").attr("action", "orderAdd");
-			$("#randomGoodsForm").submit();
-		}
-		
+			$("#randomGoodsForm").attr("action", "loginchk/orderAdd");
+			$("#randomGoodsForm").submit();		
 	});
 
 </script>

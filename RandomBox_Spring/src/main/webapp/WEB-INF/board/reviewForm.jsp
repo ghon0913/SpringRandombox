@@ -8,22 +8,24 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 	<h5>|&nbsp;&nbsp;&nbsp;후기 쓰기&nbsp;&nbsp;&nbsp;|</h5><br>
-	<form id="reviewWriteForm" action="ReviewWriteServlet" method="post">
+	<form id="reviewForm" action="reviewWrite" method="post" modelAttribute="reviewForm">
 		<table class="table">
 			<input type="hidden" name="userid" value="${sessionScope.login.userid }">
 			<tr>
 				<td width="200px">작성자 : </td>
 				<td>${sessionScope.login.userid }</td>
+				<input type="hidden" name="userId" value="${sessionScope.login.userid }">
 			</tr>
 			<tr>
 				<td>구매 카테고리 : </td>
-				<td>${gName }</td>
-				<input type="hidden" name="gName" value="${gName }">
+				<td>${GoodsDTO.gCategory }</td>
+				<input type="hidden" name="category" value="${GoodsDTO.gCategory }">
 			</tr>
 			<tr>
 				<td>랜덤 배송 상품 :</td>
-				<td>${goodsName }</td>
-				<input type="hidden" name="goodsName" value="${goodsName }">
+				<td>${GoodsDTO.gName }</td>
+				<input type="hidden" name="gName" value="${GoodsDTO.gName }">
+				<input type="hidden" name="gCode" value="${GoodsDTO.gCode }">
 			</tr>
 			<tr>
 				<td>제목 :</td>
@@ -43,7 +45,6 @@
 	</form>
 </div>
 </div></div>
-<script type="text/javascript" src="jquery-3.2.1.js"></script>
 <script>
 $(document).ready(function(){
 	

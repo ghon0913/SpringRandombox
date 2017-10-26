@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<table width="100%" cellspacing="0" cellpadding="0">
+<table width="100%">
 	<tr height="10" />
 	<tr>
 		<td>
@@ -17,31 +17,14 @@
 					<td align="center"><a
 						href="goodsRetrieveByCategory?category=${category}">상품설명</a></td>
 					<td align="center">
-						<c:if test="${empty searchCategory}">
-							<a href="goodsReviewList">후기</a></td>
-						</c:if>
-						<c:if test="${!empty searchCategory}">
-							<a href="goodsReviewList?searchCategory=${searchCategory }">후기</a></td>
-						</c:if>
+						<a href="goodsReviewList">후기</a>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="3" align="center">
+						<p height="5px">
 						<table table class="table table-hover" style="font-size: 12px;">
 							<thead>
-								<tr>
-									<td colspan="3"><select class="form-control" id="searchCategory"
-											name="searchCategory" style="font-size: 12px;">
-											<option>카테고리별로 보기</option>
-											<option value="전체카테고리">전체카테고리</option>
-											<option value="패션의류">패션의류</option>
-											<option value="잡화/뷰티">잡화/뷰티</option>
-											<option value="식품/음료">식품/음료</option>
-											<option value="생활용품">생활용품</option>
-											<option value="문구/취미">문구/취미</option>
-											<option value="디지털/컴퓨터">디지털/컴퓨터</option>
-											<option value="티켓/e쿠폰">티켓/e쿠폰</option>
-									</select></td>
-								</tr>
 							<tr>
 								<th>글번호</th>
 								<th>카테고리</th>
@@ -114,16 +97,3 @@
 				<tr height="10" />
 			</table>
 </table>
-
-<script>
-	$(document).ready(
-			function() {
-
-				/* 카테고리별로 보기 */
-				$("#searchCategory").on("change",function() {
-							var searchCategory = $("option:selected").val();
-							$(location).attr("href","goodsReviewList?searchCategory="+ searchCategory);
-						});
-
-			});
-</script>

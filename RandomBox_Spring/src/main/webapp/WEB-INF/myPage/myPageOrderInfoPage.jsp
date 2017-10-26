@@ -22,8 +22,8 @@
 	type="number" maxFractionDigits="0" />
 
 <!-- 기간별조회 파라미터받기 -->
-<c:set var="startdate" value="${param.startdate}" />
-<c:set var="finaldate" value="${param.finaldate}" />
+<c:set var="startdate" value="${pagedto.getStartdate()}" />
+<c:set var="finaldate" value="${pagedto.getFinaldate()}" />
 
 <!-- 보여줄 페이지 개수 -->
 <c:set var="perBlock" value="${pagedto.getPerBlock()}" />
@@ -45,10 +45,10 @@
 </c:if>
 
 <!-- 번호출력하기 -->
-<c:if test="${endPage < 1 }">
+<c:if test="${endPage <= 1 }">
 1
 </c:if>
-<c:if test="${endPage >= 1}">
+<c:if test="${endPage > 1}">
 
 
 	<!-- 첫패이지로이동 -->

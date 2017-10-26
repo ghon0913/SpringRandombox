@@ -8,8 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="orderConfirm" resultType="CartDTO" parameterType="int">
 		select num, userid, gCode, gName, gPrice, gImage
 		from cart
-		where num =
-		#{num}
+		where num = #{num}
 	</select>
 
 	<!-- 장바구니 전체 주문 -->
@@ -23,6 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				#{item}
 			</foreach>
 		</where>
+		order by num desc
 	</select>
 
 	<!-- 주문한 상품 정보 가져오기 -->
@@ -47,7 +47,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{gName}, #{gPrice}, #{gImage},
 		#{payMethod}, #{sellerId})
 	</insert>
-
+	
+	<!-- 주문 상품 실제 상품명 얻기 -->
+	<select id="getgName" parameterType="list" resultType="GoodsDTO">
+		select gCode, gName
+		from goods
+		<where>
+			gCode IN
+			<foreach collection="list" index="index" item="item" open="("
+				close=")" separator=",">
+				#{item}
+			</foreach>
+		</where>
+	</select>
+	
 	<!-- amount 감소 -->
 	<update id="orderAfterAmount" parameterType="String">
 		update goods
@@ -55,21 +68,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		gAmount = gAmount -1
 		where gCode = #{gCode}
 	</update>
-
-	<!-- 주문한 카드리스트 선택 -->
-	<select id="cartListForOrder" resultType="CartDTO"
-		parameterType="list">
-		select num, userid, gCode, gName, gPrice, gImage, sellerId
-		from cart
-		<where>
-			num IN
-			<foreach collection="list" index="index" item="item" open="("
-				close=")" separator=",">
-				#{item}
-			</foreach>
-		</where>
-		order by num desc
-	</select>
 
 	<!-- 전체 주문한 정보 리스트로 받아 저장하기 -->
 	<insert id="orderAllDone" parameterType="list">

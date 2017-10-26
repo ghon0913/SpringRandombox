@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
+import com.dto.GoodsDTO;
 import com.service.ReviewService;
 
 @Controller
@@ -32,16 +33,20 @@ public class ReviewController {
                curPage = "1";
         }
         
-		HashMap<String, String> searchMap = new HashMap<>();
-		searchMap.put("searchCategory", searchCategory);
-		searchMap.put("searchName", searchName);
-		searchMap.put("searchWord", searchWord);
-		
-		BoardPageDTO dto = service.reviewList(Integer.parseInt(curPage), searchMap);
-		
-		m.addAttribute("boardList", dto);
-		m.addAttribute("chk_reviewPage", "reviewList");
-		return "review";
+        if(searchCategory != null && searchCategory.equals("all")) {
+        	searchCategory = null;
+        }
+        
+			HashMap<String, String> searchMap = new HashMap<>();
+			searchMap.put("searchCategory", searchCategory);
+			searchMap.put("searchName", searchName);
+			searchMap.put("searchWord", searchWord);
+			
+			BoardPageDTO dto = service.reviewList(Integer.parseInt(curPage), searchMap);
+			
+			m.addAttribute("boardList", dto);
+			m.addAttribute("chk_reviewPage", "reviewList");
+			return "review";
 	}
 	
 	/* 후기글 자세히보기 */
@@ -56,7 +61,7 @@ public class ReviewController {
 	}
 	
 	/* 후기글 수정하기 */
-	@RequestMapping("/reviewUpdate")
+	@RequestMapping("/loginchk/reviewUpdate")
 	public String reviewUpdate(@ModelAttribute("reviewRetrieveForm") BoardDTO dto) {
 		
 		service.reviewUpdate(dto);
@@ -64,7 +69,7 @@ public class ReviewController {
 	}
 	
 	/* 후기글 삭제하기 */
-	@RequestMapping("/reviewDelete")
+	@RequestMapping("/loginchk/reviewDelete")
 	public String reviewDelete(@RequestParam String num) {
 		
 		service.reviewDelete(Integer.parseInt(num));
@@ -78,10 +83,6 @@ public class ReviewController {
 								  @RequestParam(required=false) String searchWord ,
 								  @RequestParam(defaultValue="1") String curPage, Model m) {
 		
-        if(curPage == null) {
-            curPage = "1";
-        }
-     
 		HashMap<String, String> searchMap = new HashMap<>();
 		searchMap.put("searchCategory", searchCategory);
 		searchMap.put("searchName", searchName);
@@ -93,6 +94,31 @@ public class ReviewController {
 		m.addAttribute("searchCategory", searchCategory);
 		m.addAttribute("chk_reviewPage", "reviewPage");
 		return "home";
+	}
+	
+	/* 후기 작성 폼으로 가기 */
+	@RequestMapping("/loginchk/reviewForm")
+	public String reviewForm(@RequestParam String gCode,
+							 @RequestParam String gPrice, Model m) {
+		
+		GoodsDTO dto = service.getGoodsInfo(gCode);
+		
+		m.addAttribute("gPrice", gPrice);
+		m.addAttribute("GoodsDTO", dto);
+		m.addAttribute("chk_reviewPage", "reviewForm");
+		return "review";
+	}
+	
+	/* 후기 작성하기 */
+	@RequestMapping("/loginchk/reviewWrite")
+	public String reviewWrite(@ModelAttribute("reviewForm") BoardDTO dto) {
+		
+		dto.setState("상품후기");
+		dto.setOpen("X");
+		
+		service.reviewWrite(dto);
+		
+		return "redirect:/reviewList.do";
 	}
 	
 }

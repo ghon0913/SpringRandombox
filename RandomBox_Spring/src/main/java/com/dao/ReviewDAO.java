@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
+import com.dto.GoodsDTO;
 
 @Repository
 public class ReviewDAO {
@@ -56,5 +57,16 @@ public class ReviewDAO {
 	/* 후기글 삭제하기 */
 	public void reviewDelete(int num) {
 		template.delete("boardDelete", num);
+	}
+	
+	/* 후기글 폼, 상품 정보 가져오기 */
+	public GoodsDTO getGoodsInfo(String gCode) {
+		GoodsDTO dto = template.selectOne("getGoodsInfo", gCode);
+		return dto;
+	}
+	
+	/* 후기글 작성하기 */
+	public void reviewWrite(BoardDTO dto) {
+		template.insert("boardWrite", dto);
 	}
 }

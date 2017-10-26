@@ -51,7 +51,7 @@
 							<li class="nav-item"><a class="nav-link" href="/app/loginchk/MyPage">마이페이지</a></li>
 							<%-- ${sessionScope.login.username}님 안녕하세요 --%>
 
-							<li class="nav-item"><a class="nav-link" href="/app/cartList">장바구니</a></li>
+							<li class="nav-item"><a class="nav-link" href="/app/loginchk/cartList">장바구니</a></li>
 						</c:if>
 						<c:if test="${sessionScope.login.ox=='Z'}">
 							<li class="nav-item"><a class="nav-link" href="/app/loginchk/admin">관리자페이지</a></li>

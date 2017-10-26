@@ -18,16 +18,17 @@
 			<th><strong>판매가</strong></th>
 			<th colspan="2"></th>
 		</tr>
-		</thead>
-		<tbody>
+
+		<tbody id="tbody">
 		<c:if test="${fn:length(cartList)==0}">
 			<tr>
 				<td align="center" colspan="7" style="padding-top: 30px; padding-bottom: 30px;">카트에 추가된 상품이 없습니다.</td>
 			</tr>
-			</tbody>
-			</table>
-			<hr>
-			<div align="center"><input id="goShopping" class="btn btn-success" type="button" value="계속 쇼핑하기"></div>
+			
+		</tbody>
+	</table>
+	<hr>
+	<div align="center"><input id="goShopping" class="btn btn-success" type="button" value="계속 쇼핑하기"></div>
 		</c:if>
 		
 <!--cartList---------------------------------------------------------------------------------------------------------->
@@ -35,6 +36,8 @@
 		<c:if test="${fn:length(cartList)!=0}">
 
 		<form name="cartListForm" id="cartListForm">
+			<input type="hidden" name="userid" value="${sessionScope.login.userid}"
+					id="userid">
 			<c:forEach var="xxx" items="${cartList}">
 				<input type="hidden" name="num${xxx.num}" value="${xxx.num}"
 					id="num${xxx.num}">
@@ -44,11 +47,9 @@
 					id="gName${xxx.num}">
 				<input type="hidden" name="gPrice${xxx.num}" value="${xxx.gPrice}"
 					id="gPrice${xxx.num}">
-				<input type="hidden" name="userid" value="${xxx.userId}"
-					id="userid">
 				<input type="hidden" name="sellerId" value="${xxx.sellerId}"
 					id="sellerId">
-				<tr id="tr${xxx.num}">
+				<tr id="tr${xxx.num}" class="goodsTr">
 					<td align="center">
 						<!-- checkbox는 체크된 값만 서블릿으로 넘어간다. 따라서 value에 삭제할 num값을 설정한다. -->
 						<input type="checkbox" name="check" id="check${xxx.num}" class="check"
@@ -56,7 +57,7 @@
 					</td>
 					<td  width="80" id="num">${xxx.num}</td>
 					<td  width="80"><img
-						src="images/goods/${xxx.gImage}" border="0" align="center"
+						src="../images/goods/${xxx.gImage}" border="0" align="center"
 						width="80" /></td>
 					<td  width="300" style='padding-left: 30px; padding-top: 30px;'>${xxx.gName}</td>
 					<td  align="center" width="110"><fmt:formatNumber
@@ -81,9 +82,6 @@
 			</div>
 			
 		</c:if>
-		
-	
-
 </div></div></div>
 
 <!--script cartList------------------------------------------------------------------------------------------------------>
@@ -92,9 +90,10 @@
 
 	/* 장바구니 개별 삭제  */
 	$(".delCart").on("click", function() {
-		
+
 		var num = $(this).attr("data-num");
-		/*$(location).attr("href", "cartDelete?num="+num); */
+		var emptyCart = '<tr><td class="goodsTr" align="center" colspan="7" style="padding-top: 30px; padding-bottom: 30px;">'
+			+'카트에 추가된 상품이 없습니다.</td></tr>';
 	
 		$.ajax({
 			url : "cartDelete",
@@ -105,18 +104,25 @@
 			},
 			success : function(responseData, status, xhr) {
 				$("#tr"+num).remove();
+				console.log($("#tbody").find(".goodsTr").length);	
+				
+				if($("#tbody").find(".goodsTr").length == 0){
+					$("#tbody").append(emptyCart);
+				}
 			},
 			error : function(xhr, status, error) {
 				console.log(error);
 			}
 		}); // end ajax
-		
+
 	});
 	
+	/* 상품리스트로 가기 */
 	$("#goShopping").on("click", function(){
 		$(location).attr("href", "goodsList");
 	});
 	
+	/*  */
 	$("#allCheck").on("change", function(event){
 			var chk = $(".check");
 
@@ -126,34 +132,59 @@
 
 	});
 	
+	/* 전체 삭제 */
 	$("#delAllCart").on("click", function(event){
-/* 		$("#cartListForm").attr("action", "CartDelAllServlet");
-		$("#cartListForm").submit(); */
+
+		var check = $(":checked");
 		
-		var chk = $(".check");
-		var count = 0;
-		
-	 	$.each(chk, function(idx, ele){
-	 		var xxx = ele.checked;
-			if(xxx =="true"){
-				count++;
-			}
- 	 	});
-		console.log(count);
-/* 		if(){
-			
+		if(check.length==0){
+			alert("선택된 상품이 없습니다.");
 		}else{
+	 		$.ajax({
+				url: "cartDeleteAll",
+				method: "post",
+				dataType: "text",
+				data: $("#cartListForm").serialize(),
+				success: function(responseData, status, xhr) {
+					console.log(responseData);
+				},
+				error: function(xhr, status, error) {
+					console.log(error);
+				}
+			}); 
 			
-		} */
+	 		$.each(check, function(idx, ele){
+				$("#tr"+ele.value).remove();
+			});
+		}
+		
+		var emptyCart = '<tr><td class="goodsTr" align="center" colspan="7" style="padding-top: 30px; padding-bottom: 30px;">'
+						+'카트에 추가된 상품이 없습니다.</td></tr>';
+						
+		console.log($("#tbody").find(".goodsTr").length);	
+		
+  		if($("#tbody").find(".goodsTr").length == 0){
+ 			$("#tbody").append(emptyCart);
+		}
+
 	});
 	
+	/*  */
 	$("#order").on("click", function(){
 		$(location).attr("href", "orderConfirm?num="+$("#num").text()+"&userid="+$("#userid").val());
 	});
 	
+	/*  */
 	$("#orderAllConfirm").on("click", function(){
-		$("#cartListForm").attr("action", "orderAllConfirm");
-		$("#cartListForm").submit();
+		
+		var check = $(":checked");
+		
+		if(check.length==0){
+			alert("선택된 상품이 없습니다.");
+		}else{
+			$("#cartListForm").attr("action", "orderAllConfirm");
+			$("#cartListForm").submit();
+		}
 	});
 
 </script>

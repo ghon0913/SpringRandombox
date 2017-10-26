@@ -8,7 +8,7 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 		<h5>|&nbsp;&nbsp;&nbsp;Q & A&nbsp;&nbsp;&nbsp;|</h5><br>
-	<form action="inquiryUpdate" method="post" id="inquiryRetrieveForm" modelAttribute="inquiryRetrieveForm">
+	<form action="loginchk/inquiryUpdate" method="post" id="inquiryRetrieveForm" modelAttribute="inquiryRetrieveForm">
 		<table class="table" style="font-size: 12px;">
 			<tr>
 				<td><b>글번호 :</b> &nbsp;&nbsp;&nbsp;${retrieveDTO.num }<input type="hidden" name="num" value="${retrieveDTO.num }"></td>
@@ -94,7 +94,7 @@ $(document).ready(function(){
 	
 	/* 삭제하기 */
 	$("#delete").on("click", function(){
-		$(location).attr("href", "inquiryDelete?num=${retrieveDTO.num }");
+		$(location).attr("href", "loginchk/inquiryDelete?num=${retrieveDTO.num }");
 	});
 	
 	/* 지정했던 공개여부 선택되도록 */

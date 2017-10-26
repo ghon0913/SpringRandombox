@@ -15,12 +15,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dto.BoardDTO;
 import com.dto.GoodsDTO;
+import com.dto.GoodsPageDTO;
 import com.dto.MemberDTO;
 import com.dto.MyPageBoardPageDTO;
 import com.dto.OrderInfoDTO;
 import com.dto.OrderInfoPageDTO;
+import com.service.InquiryService;
 import com.service.MyPageService;
+import com.service.ReviewService;
 
 @RequestMapping("/loginchk")
 @Controller
@@ -28,6 +32,10 @@ public class MyPageController {
 
 	@Autowired
 	MyPageService service;
+	@Autowired
+	InquiryService inqservice;
+	@Autowired
+	ReviewService rvservice;
 
 	@RequestMapping(value = "/MyPage", method = RequestMethod.GET)
 	public ModelAndView myPage(HttpSession session) {
@@ -66,7 +74,6 @@ public class MyPageController {
 
 		// page include하기
 		mav.addObject("page", "myPage/myPageUserInfo.jsp");
-
 		mav.setViewName("myPage");
 		return mav;
 
@@ -82,20 +89,14 @@ public class MyPageController {
 	}
 
 	@RequestMapping(value = "/orderinfo", method = RequestMethod.GET)
-	public ModelAndView orderinfo(HttpSession session, @RequestParam(defaultValue = "1") int curPage,
-			@RequestParam(defaultValue = "1") String startdate, @RequestParam(defaultValue = "1") String finaldate) {
+	public ModelAndView orderinfo(HttpSession session, @RequestParam(defaultValue = "1") int curPage) {
 		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
 		HashMap<String, String> map = new HashMap();
-
-		if (startdate.length() > 1) {
-			map.put("startdate", startdate);
-			map.put("finaldate", finaldate);
-		} else {
-			map.put("startdate", null);
-			map.put("finaldate", null);
-		}
+		map.put("startdate", OrderInfoPageDTO.getStartdate());
+		map.put("finaldate", OrderInfoPageDTO.getFinaldate());
 		map.put("userId", logindto.getUserid());
-		
+		System.out.println(map);
+
 		OrderInfoPageDTO oList = service.myPageOrderInfoPage(map, curPage);
 
 		ModelAndView mav = new ModelAndView();
@@ -104,35 +105,68 @@ public class MyPageController {
 		mav.setViewName("myPage");
 		return mav;
 	}
-
-	@RequestMapping("/board")
-	public ModelAndView myboard(HttpSession session, @RequestParam(defaultValue = "1") int curPage,
-			@RequestParam(defaultValue = "1") String searchName, @RequestParam(defaultValue = "1") String searchValue) {
+	
+	@RequestMapping(value = "/orderretrieve", method = RequestMethod.GET)
+	public ModelAndView orderretrieve(HttpSession session, @RequestParam int ordernum ) {
+		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
+		OrderInfoDTO orderretrieve = service.orderinforetrieve(ordernum);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("orderretrieve",orderretrieve);
+		mav.setViewName("myPage/myPageOrderInfoRetrieve");
+		return mav;
+	}
+	
+	@RequestMapping("/boardlist")
+	public ModelAndView myboard(HttpSession session, @RequestParam(defaultValue = "1") int curPage) {
 		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
 		HashMap<String, String> map = new HashMap();
-		
-		if(searchName.length()>1) {
-		map.put("searchName", searchName);
-		map.put("searchValue", searchValue);
-		}else {
-			map.put("searchName", null);
-			map.put("searchValue", null);
-		}
+
+		map.put("searchName", MyPageBoardPageDTO.getSearchName());
+		map.put("searchValue", MyPageBoardPageDTO.getSearchValue());
 		map.put("userId", logindto.getUserid());
-		System.out.println(map);
+
 		MyPageBoardPageDTO pagedto = service.boardpage(map, curPage);
 
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("page", "myPage/myPageBoardList.jsp");
 		mav.addObject("pagedto", pagedto);
+		mav.addObject("page", "myPage/myPageBoardList.jsp");
 		mav.setViewName("myPage");
+		return mav;
+	}
+	
+	@RequestMapping("/myPageBoardRetrieve")
+	public ModelAndView myboard(HttpSession session, @RequestParam int bnum, @RequestParam String state) {
+		ModelAndView mav = new ModelAndView();
+		
+		if(state.equals("처리중")||state.equals("답변완료")) {
+			BoardDTO dto = inqservice.inquiryRetrieve(bnum);
+			mav.addObject("retrieveDTO", dto);
+			mav.addObject("chk_inquiryPage", "inquiryRetrieve");
+			mav.setViewName("inquiry");
+		}else if(state.equals("상품후기")) {
+			BoardDTO dto = rvservice.reviewRetrieve(bnum);
+			mav.addObject("retrieveDTO", dto);
+			mav.addObject("chk_reviewPage", "reviewRetrieve");
+			mav.setViewName ("review");
+		}
+		
 		return mav;
 	}
 
 	@RequestMapping("/goodsinfo")
-	public ModelAndView goodsinfo() {
+	public ModelAndView goodsinfo(HttpSession session, @RequestParam(defaultValue = "1") int curPage) {
+		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
+		HashMap<String, String> map = new HashMap();
 
+		map.put("searchName", MyPageBoardPageDTO.getSearchName());
+		map.put("searchValue", MyPageBoardPageDTO.getSearchValue());
+		map.put("userId", logindto.getUserid());
+		
+		GoodsPageDTO pagedto = service.goodsinfo(map, curPage);
+		System.out.println(pagedto);
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("pagedto",pagedto);
 		mav.addObject("page", "myPage/myPageGoodsInfo.jsp");
 		mav.setViewName("myPage");
 		return mav;

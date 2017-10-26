@@ -78,7 +78,7 @@
 				</tr>
 				<tr>
 					<td height="35" class="td_default" align="center">
-						<img src="images/goods/${orderDTO.gImage }" border="0" align="center"
+						<img src="../images/goods/${orderDTO.gImage }" border="0" align="center"
 								width="80" />
 					</td>
 					<td height="35" class="td_default">
@@ -133,7 +133,7 @@
 
 	<tr>
 		<td class="td_default" align="center"><a class="a_default"
-			href="orderinfopage.do">주문조회 페이지로 이동</a></td>
+			href="orderinfo">주문조회 페이지로 이동</a></td>
 	</tr>
 	<tr>
 		<td height="30">

@@ -10,10 +10,10 @@
 <c:set var="curPage" value="${pagedto.curPage}"/>
 <c:set var="perPage" value="${pagedto.getPerPage()}"/>
 <c:set var="totalPage" value="${pagedto.getTotalPage() }"/>
-<c:set var="totalNum" value="${totalPage/perPage }"/>
-<fmt:formatNumber var="totalNum" value="${totalNum}" type="number" maxFractionDigits="0"/>
-<c:set var="searchName" value="${param.searchName }"/>
-<c:set var="searchValue" value="${param.searchValue }"/>
+<c:set var="totalNum" value="${totalPage/perPage}"/>
+<fmt:formatNumber var="totalNum" value="${totalNum+(1-(totalNum%1))%1}" type="number" maxFractionDigits="0"/>
+<c:set var="searchName" value="${pagedto.getSearchName()}"/>
+<c:set var="searchValue" value="${pagedto.getSearchValue()}"/>
 
  <!-- 보여줄 페이지번호 개수 -->
 <c:set var="perBlock" value="${pagedto.getPerBlock() }"/>
@@ -42,7 +42,7 @@
 	처음
 </c:if>
 <c:if test="${curPage != 1 }">
-	<a href="goodsinfo.do?curPage=1&searchName=${searchName }&searchValue=${searchValue }">
+	<a href="goodsinfo?curPage=1">
 	처음
 	</a>
 </c:if> &nbsp;
@@ -52,7 +52,7 @@
 	&lt;&lt;
 </c:if>
 <c:if test="${ startPage!=1}">
-	<a href="goodsinfo.do?curPage=${startPage-1}&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="goodsinfo?curPage=${startPage-1}">
 	&lt;&lt;
 	</a>
 </c:if> &nbsp;
@@ -62,7 +62,7 @@
 	&lt;
 </c:if>
 <c:if test="${curPage!=1}">
-	<a href="goodsinfo.do?curPage=${curPage-1 }&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="goodsinfo?curPage=${curPage-1 }">
 		&lt;
 	</a>
 </c:if> &nbsp;
@@ -73,7 +73,7 @@
 	${status.index }
 </c:if>
 <c:if test="${curPage!=status.index }">
-	<a href="goodsinfo.do?curPage=${status.index }&searchName=${searchName }&searchValue=${searchValue}">
+	<a href="goodsinfo?curPage=${status.index }">
 		${status.index }
 	</a>
 </c:if> &nbsp;
@@ -83,7 +83,7 @@
 	${endPage }
 </c:if>
 <c:if test="${curPage!=endPage }">
-	<a href="goodsinfo.do?curPage=${endPage }&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="goodsinfo?curPage=${endPage }">
 		${endPage }
 	</a>
 </c:if>
@@ -93,7 +93,7 @@
 	&gt;
 </c:if>
 <c:if test="${curPage!=totalNum}">
-	<a href="goodsinfo.do?curPage=${curPage+1 }&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="goodsinfo?curPage=${curPage+1 }">
 		&gt;
 	</a>
 </c:if> &nbsp;
@@ -103,7 +103,7 @@
 	&gt;&gt;
 </c:if>
 <c:if test="${endPage!=totalNum}">
-	<a href="goodsinfo.do?curPage=${ endPage+1}&searchName=${searchName}&searchValue=${searchValue}">
+	<a href="goodsinfo?curPage=${ endPage+1}">
 	&gt;&gt;
 	</a>
 </c:if> &nbsp;
@@ -113,7 +113,7 @@
 	마지막
 </c:if>
 <c:if test="${curPage !=totalNum}">
-	<a href="goodsinfo.do?curPage=${endPage+1 }&searchName=${searchName }&searchValue=${searchValue }">
+	<a href="goodsinfo?curPage=${endPage+1 }">
 	마지막
 	</a>
 </c:if>

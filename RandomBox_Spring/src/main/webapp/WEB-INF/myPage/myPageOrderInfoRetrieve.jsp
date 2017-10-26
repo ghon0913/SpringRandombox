@@ -8,10 +8,10 @@
 <!-- 주문상세보기 -->
 <table border="1">
 	<tr>
-		<td>주문정보<br /> (주문번호)
+		<td>주문정보<br /> (${orderretrieve.num})
 		</td>
 		<td>주문상품<input name="" value="${orderretrieve.gName }" readonly="readonly"> <br />
-			배송상태<input name="" value="상태" readonly="readonly"> <br />
+			배송상태<input name="" value="${orderretrieve.status }" readonly="readonly"> <br />
 		</td>
 	</tr>
 	<tr>
@@ -26,9 +26,7 @@
 		<td>이름:<input name="" value="${orderretrieve.orderName }" readonly="readonly"> <br />
 			연락처:<input name="" value="${orderretrieve.phone }" readonly="readonly"><br />
 			주소:<textarea readonly="readonly" rows="4" cols="50">${orderretrieve.post1 }-${orderretrieve.post1 }
-${orderretrieve.addr1 }${orderretrieve.addr2 }
-				</textarea><br />
-			 배송요청사항:<input name="" value="mes" readonly="readonly"><br />
+${orderretrieve.addr1 }${orderretrieve.addr2 }</textarea>
 		</td>
 	</tr>
 </table>

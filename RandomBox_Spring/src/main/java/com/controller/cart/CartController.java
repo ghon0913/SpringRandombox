@@ -1,7 +1,9 @@
 package com.controller.cart;
 
+import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class CartController {
 	@Autowired
 	CartService service;
 	
-	@RequestMapping("/cartList")
+	@RequestMapping("/loginchk/cartList")
 	public String cartList(HttpSession session, Model m) {
 		
 		MemberDTO m_dto = (MemberDTO)session.getAttribute("login");
@@ -33,7 +35,7 @@ public class CartController {
 		return "cartList";
 	}
 	
-	@RequestMapping("/cartAdd")
+	@RequestMapping("/loginchk/cartAdd")
 	public String cartAdd(@ModelAttribute("randomGoodsForm") CartDTO dto,
 						  @RequestParam String gCategory) {
 		
@@ -43,9 +45,17 @@ public class CartController {
 		return "redirect:cartList.do";
 	}
 	
-	@RequestMapping("/cartDelete")
+	@RequestMapping("/loginchk/cartDelete")
 	@ResponseBody
 	public void cartDelete(@RequestParam int num) {
 		service.cartDelete(num);
+	}
+	
+	@RequestMapping("/loginchk/cartDeleteAll")
+	@ResponseBody
+	public void cartDeleteAll(HttpServletRequest request) {
+		
+		String [] checks = request.getParameterValues("check");
+		service.cartDeleteAll(Arrays.asList(checks));
 	}
 }

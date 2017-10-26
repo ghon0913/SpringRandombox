@@ -68,7 +68,7 @@ public class InquiryDAO {
 	
 	/* 문의글 쓰기 */
 	public void inquiryWrite(BoardDTO dto) {
-		template.insert("inquiryWrite", dto);
+		template.insert("boardWrite", dto);
 	}
 	
 }

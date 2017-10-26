@@ -4,11 +4,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <div align="center">
-	<form action="">
+	
 		<table border="1">
 			
 			<tr>
-				<td colspan="4">기간별조회
+				<td colspan="10" align="center">기간별조회
 				 <form action="orderinfodatepage">
 				<input type="date" name="startdate">
 					- <input type="date" name="finaldate"><input type="submit">
@@ -18,7 +18,7 @@
 			
 			<tr>
 
-				<td colspan="4">
+				<td colspan="10">
 					<form action="orderinfoperpage">
 						<select name="perPage">
 							<!-- change함수주기 -->
@@ -51,7 +51,7 @@
 						<input id="gName" type="hidden" value="${order.gName }">
 						<input id="gPrice" type="hidden" value="${order.gPrice }">
 						<td>${order.orderDay }
-						<td><a href="orderinforetrieve?num=${order.num }"
+						<td><a href="orderretrieve?ordernum=${order.num }"
 							target="blank">${order.num }</a></td>
 						<td><img src="/app/images/goods/${order.gImage }"
 							height="100" width="100"> ${order.gName }${order.gPrice }</td>
@@ -65,29 +65,22 @@
 				</tr>
 			</c:if>
 		</table>
-	</form>
+
 </div>
 
-<script type="text/javascript" src="jquery-3.2.1.js"></script>
 <script>
 	$(document).ready(
 			function() {
 
 				/* 후기작성하기 */
-				$(".reviewWrite").on(
-						"click",
-						function() {
+				$(".reviewWrite").on("click",function() {
 							var gCode = $(this).parent().siblings("#gCode")
-									.val();
-							var gName = $(this).parent().siblings("#gName")
 									.val();
 							var gPrice = $(this).parent().siblings("#gPrice")
 									.val();
-							$(location).attr(
-									"href",
-									"ReviewFormServlet?gCode=" + gCode
-											+ "&gName=" + gName + "&gPrice="
-											+ gPrice);
+							$(location).attr("href",
+									"reviewForm?gCode=" + gCode
+											+ "&gPrice=" + gPrice);
 						});
 			});
 </script>

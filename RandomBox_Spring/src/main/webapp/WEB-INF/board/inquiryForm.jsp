@@ -70,7 +70,6 @@
 	</form>
 </div>
 </div></div>
-
 <script>
 $(document).ready(function(){
 
@@ -87,6 +86,7 @@ $(document).ready(function(){
 			$("#select_category").show();
 		}else{
 			$("#select_category").hide();
+			$("#select_goods").hide();
 		}
 	});
 	
@@ -97,7 +97,7 @@ $(document).ready(function(){
 		$("#select_goods").empty();
 		
 		var s_category = $("#select_category option:selected").val();
-
+		console.log(s_category);
         $.ajax({
                type:"post",
                url:"selectCategory",
