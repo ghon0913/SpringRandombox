@@ -3,32 +3,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div align="center">	
-<table border="1">
+<div align="center" class="container">	
+<div class="row">
+<table class="table">
 
 
 <tr>
 <td colspan="10">
 <form action="goodssearchpage">
-<select name="searchName">
+<select class="form-control"name="searchName">
 	<option value="gCode">상품코드</option>
 	</select>
 	<input type="text" name="searchValue">
-	<input type="submit" value="검색"> 
+	<input type="submit" class="btn btn-success" value="검색"> 
 	
 </form>	
 </td>
 </tr>
 <tr>
 
-			<td colspan="10">
+			<td colspan="10" class="table table-hover">
 				<form action="goodsperpage">
 					<select name="perPage">
 						<!-- change함수주기 -->
 						<option value="3">3개씩보기</option>
 						<option value="5">5개씩보기</option>
 						<option value="7">7개씩보기</option>
-					</select> <input type="submit">
+					</select> <input class="btn btn-success" type="submit">
 				</form>
 			</td>
 
@@ -76,5 +77,6 @@
 
 
 </table>
+</div>
 </div>
 
