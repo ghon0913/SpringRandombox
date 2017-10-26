@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.InquiryDAO;
+import com.dto.AnswerDTO;
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
 import com.dto.GoodsDTO;
@@ -55,6 +56,27 @@ public class InquiryService {
 	/* 문의글 쓰기 */
 	public void inquiryWrite(BoardDTO dto) {
 		dao.inquiryWrite(dto);
+	}
+	
+	/* 판매자 - 답변할 질문 리스트 */
+	public BoardPageDTO questionList(int curPage, String gCode) {
+		
+		BoardPageDTO dto = dao.questionList(gCode, curPage);
+		return dto;
+	}
+	
+	/* 답변 */
+	@Transactional
+	public void answerWrite(AnswerDTO dto, int boardNum) {
+		
+		dao.answerWrite(dto);
+		dao.stateUpdate(boardNum);
+	}
+	
+	/* 답변불러오기 */
+	public AnswerDTO selectAnswer(int num){
+		AnswerDTO a_dto = dao.selectAnswer(num);
+		return a_dto;
 	}
 	
 }

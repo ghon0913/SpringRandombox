@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
-	<form action="AnswerWriteServlet" method="post" id="AnswerForm">
+	<form action="answerWrite" method="post" id="AnswerForm" modelAttribute="answerForm">
 		<input type="hidden" name="boardNum" value="${retrieveDTO.num }">
 		<input type="hidden" name="userId" value="${retrieveDTO.userId }">
 		<input type="hidden" name="sellerId" value="${sessionScope.login.userid }">
@@ -56,13 +56,12 @@
 	</form>
 </div></div></div>
 
-<script type="text/javascript" src="jquery-3.2.1.js"></script>
 <script>
 $(document).ready(function(){
 
  	/* 목록보기 */
 	$("#questionList").on("click", function(){
-		$(location).attr("href", "QuestionListServlet?gCode="+$("#gCode").text());
+		$(location).attr("href", "questionList?gCode="+$("#gCode").text());
 	});
 	
 	/* 문의사항 선택 확인  */

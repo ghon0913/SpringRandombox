@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dto.AnswerDTO;
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
 import com.dto.GoodsDTO;
@@ -51,9 +52,14 @@ public class InquiryController {
 	public String inquiryRetrieve(@RequestParam String num, Model m) {
 		
 		BoardDTO dto = service.inquiryRetrieve(Integer.parseInt(num));
+		
+		if(dto.getState().equals("답변완료")) {
+			AnswerDTO a_dto = service.selectAnswer(Integer.parseInt(num));
+			m.addAttribute("answerDTO", a_dto);
+		}
+		
 		m.addAttribute("retrieveDTO", dto);
 		m.addAttribute("chk_inquiryPage", "inquiryRetrieve");
-		
 		return "inquiry";
 	}
 	
@@ -102,6 +108,39 @@ public class InquiryController {
 		
 		service.inquiryWrite(dto);
 		
-		return"redirect:/inquiryList.do";
+		return "redirect:/inquiryList.do";
 	}
+	
+	/* 판매자 - 답변할 질문 리스트 */
+	@RequestMapping("/loginchk/questionList")
+	public String questionList(@RequestParam(defaultValue="1") String curPage,
+							   @RequestParam String gCode, Model m){
+		
+		System.out.println(gCode);
+		BoardPageDTO dto = service.questionList(Integer.parseInt(curPage), gCode);
+		
+		System.out.println(dto.getList());
+		m.addAttribute("boardList", dto);
+		m.addAttribute("chk_QnAPage", "questionList");
+		return "qnaList";
+	}
+	
+	/* 답변하기 폼 */
+	@RequestMapping("/loginchk/answerForm")
+	public String answerForm(@RequestParam String num, Model m) {
+		
+		BoardDTO dto = service.inquiryRetrieve(Integer.parseInt(num));
+		m.addAttribute("retrieveDTO", dto);
+		m.addAttribute("chk_QnAPage", "answerForm");
+		return "qnaList";
+	}
+	
+	/* 답변 등록 */
+	@RequestMapping("/loginchk/answerWrite")
+	public String answerWrite(@ModelAttribute("answerForm") AnswerDTO dto, Model m) {
+		
+		service.answerWrite(dto, dto.getBoardNum());
+		return "redirect:/inquiryList.do";
+	}
+	
 }

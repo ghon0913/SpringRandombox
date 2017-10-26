@@ -15,7 +15,7 @@
 		<c:if test="${chk_QnAPage == 'questionList' }">
 			<jsp:include page="board/qnaList.jsp" flush="true" /><br>
 		</c:if>
-		<c:if test="${chk_QnAPage == 'questionForm' }">
+		<c:if test="${chk_QnAPage == 'answerForm' }">
 			<jsp:include page="board/answerForm.jsp" flush="true" /><br>
 		</c:if>
 	</c:if>
