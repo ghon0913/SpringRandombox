@@ -15,7 +15,8 @@
 			<h3>|&nbsp;&nbsp;&nbsp;구매 회원가입&nbsp;&nbsp;&nbsp;|</h3>
 			<br>
 			<p style="font-size: 12px;">회원 정보를 입력해 주세요. 모두 입력하셔야 가입이 가능합니다.</p>
-			<form action="memberAdd" method="post" id="memberAddForm" modelAttribute="memberAddForm">
+			<form action="memberAdd" method="post" id="memberAddForm"
+				modelAttribute="memberAddForm">
 				<table name="memberAddForm" class="table">
 					<tr>
 						<td colspan="3" align="center">일반 구매회원&nbsp; <input
@@ -26,7 +27,10 @@
 					<tr>
 						<td width="180px">아이디</td>
 						<td><input class="form-control" type="text" name="userid"
-							id="userid" placeholder="userid"> <td width="110px"><span id="idCheck" style="font-size: 10px; color: red;"></span></td></td>
+							id="userid" placeholder="userid">
+						<td width="110px"><span id="idCheck"
+							style="font-size: 10px; color: red;"></span></td>
+						</td>
 					</tr>
 					<tr>
 						<td>비밀번호</td>
@@ -36,8 +40,9 @@
 					<tr>
 						<td>비밀번호 확인</td>
 						<td><input class="form-control" type="password"
-							name="passwd2" id="passwd2" placeholder="password"></td><td> <span
-							id="passwdCheck" style="font-size: 10px; color: red;"></span></td>
+							name="passwd2" id="passwd2" placeholder="password"></td>
+						<td><span id="passwdCheck"
+							style="font-size: 10px; color: red;"></span></td>
 					</tr>
 					<tr>
 						<td>이름</td>
@@ -46,10 +51,12 @@
 					</tr>
 					<tr>
 						<td>이메일</td>
-						<td id="email_td"><span class="row"><span class="col-xs-3"><input class="form-control" type="text"
-							name="email1" id="email1"></span>&nbsp; @ &nbsp;<span class="col-xs-3"><input class="form-control"
-							type="text" name="email2" id="email2"></span></span><br><select
-							class="form-control" id="email">
+						<td id="email_td"><span class="row"><span
+								class="col-xs-3"><input class="form-control" type="text"
+									name="email1" id="email1"></span>&nbsp; @ &nbsp;<span
+								class="col-xs-3"><input class="form-control" type="text"
+									name="email2" id="email2"></span></span><br>
+						<select class="form-control" id="email">
 								<option id="etc" value="etc">직접입력하기</option>
 								<option value="naver.com">naver</option>
 								<option value="daum.net">daum</option>
@@ -57,8 +64,10 @@
 								<option value="gmail.com">gmail</option>
 								<option value="hotmail.com">hotmail</option>
 								<option value="korea.com">korea</option>
-						</select></td><td><span id="emailCheck" style="font-size: 10px; color: red;"></span>
-						<input type="hidden" name="email" value="" id="hidden_email"></td>
+						</select></td>
+						<td><span id="emailCheck"
+							style="font-size: 10px; color: red;"></span> <input type="hidden"
+							name="email" value="" id="hidden_email"></td>
 					</tr>
 					<tr>
 						<td>성별</td>
@@ -82,8 +91,8 @@
 							</span> <span class="col-xs-3"> &nbsp;&nbsp;&nbsp;<input
 									onclick="openDaumPostcode()" type="button" value="우편번호찾기"></span></span><br>
 							<input class="form-control" name="addr1" id="addr1" size="40"
-							readonly="" placeholder="도로명주소"><br>
-						</span> <input class="form-control" name="addr2" id="addr2" size="40"
+							readonly="" placeholder="도로명주소"><br> </span> <input
+							class="form-control" name="addr2" id="addr2" size="40"
 							placeholder="지번주소"> <!-- 다음주소 끝 -->
 						</td>
 					</tr>
@@ -100,9 +109,8 @@
 								</select></span> &nbsp;-&nbsp; <span class="col-xs-2"> <input
 									class="form-control" type="text" name="phone2" id="phone2"></span>&nbsp;
 								-&nbsp; <span class="col-xs-2"> <input
-									class="form-control" type="text" name="phone3"
-									id="phone3"></span></span>
-									<input type="hidden" name="phone" value="" id="hidden_phone"></td>
+									class="form-control" type="text" name="phone3" id="phone3"></span></span>
+							<input type="hidden" name="phone" value="" id="hidden_phone"></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center"><input class="btn btn-success"

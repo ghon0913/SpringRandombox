@@ -54,8 +54,8 @@
 				<tr>
 					<td colspan="2" align="center">
 						<input class="btn btn-success" type="submit" value="수정하기" id="update">&nbsp;
-						<input class="btn btn-default" type="button" value="삭제하기" id="delete">&nbsp;
-						<input class="btn btn-default" type="button" value="목록보기" id="inquiryList">
+						<input class="btn btn-outline-secondary" type="button" value="삭제하기" id="delete">&nbsp;
+						<input class="btn btn-outline-secondary" type="button" value="목록보기" id="inquiryList">
 					</td>
 				</tr>
 			</c:if>
@@ -76,7 +76,7 @@
 				</c:if>
 				<tr>
 					<td colspan="2" align="center">
-						<input class="btn btn-default" type="button" value="목록보기" id="inquiryList">
+						<input class="btn btn-outline-secondary" type="button" value="목록보기" id="inquiryList">
 					</td>
 				</tr>
 			</c:if>

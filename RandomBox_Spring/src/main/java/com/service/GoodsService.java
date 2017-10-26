@@ -17,6 +17,7 @@ public class GoodsService {
 	}
 
 	public List<GoodsDTO> selectAllGoods() {
+		System.out.println(dao.selectAllGoods().toString());
 		return dao.selectAllGoods();
 	}
 
@@ -26,5 +27,9 @@ public class GoodsService {
 
 	public List<GoodsDTO> selectBySearch(String searchWord) {
 		return dao.selectBySearch(searchWord);
+	}
+	
+	public List<GoodsDTO> selectBySellerId(String sellerId) {
+		return dao.selectBySellerId(sellerId);
 	}
 }

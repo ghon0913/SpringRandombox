@@ -23,6 +23,7 @@ public class GoodsDAO {
 	}
 	
 	public List<GoodsDTO> selectAllGoods() {
+		
 		return template.selectList("selectAllGoods");
 	}
 	
@@ -32,6 +33,10 @@ public class GoodsDAO {
 	
 	public List<GoodsDTO> selectBySearch(String searchWord) {
 		return template.selectList("selectBySearch", searchWord);
+	}
+	
+	public List<GoodsDTO> selectBySellerId(String sellerId) {
+		return template.selectList("selectBySellerId", sellerId);
 	}
 	
 }

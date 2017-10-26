@@ -6,25 +6,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="insertGoods" parameterType="GoodsDTO">
 		insert into
-		goods(gCode,gCategory,gName,gPrice,gImage,gContent_image,gAmount,sellerId)
-		values(#{gCode},#{gCategory},#{gName},#{gPrice},#{gImage},#{gContentImage},#{gAmount},#{sellerId})
+		goods(gCode,gCategory,gName,gPrice,gImage,gContentImage,gAmount,sellerId)
+		values(goods_seq.nextval,#{gCategory},#{gName},#{gPrice},#{gImage},#{gContentImage},#{gAmount},#{sellerId})
 	</insert>
 
 	<select id="selectAllGoods" resultType="GoodsDTO">
-		select gCode,gCategory,gName,gPrice,gImage,gContent_image,gAmount,sellerId
+		select
+		gCode,gCategory,gName,gPrice,gImage,gContentImage,gAmount,sellerId
 		from goods
 	</select>
 	<select id="selectByCategory" parameterType="String" resultType="GoodsDTO">
-		select gCode,gCategory,gName,gPrice,gImage,gContent_image,gAmount,sellerId
+		select
+		gCode,gCategory,gName,gPrice,gImage,gContentImage,gAmount,sellerId
 		from goods
-		where gCategory = #{gCategory} 
+		where gCategory = #{gCategory}
 	</select>
 	<select id="selectBySearch" parameterType="String" resultType="GoodsDTO">
-		select gCode,gCategory,gName,gPrice,gImage,gContent_image,gAmount,sellerId
+		select
+		gCode,gCategory,gName,gPrice,gImage,gContentImage,gAmount,sellerId
 		from goods
 		where gCategory = #{searchWord} or gName = #{searchWord}
 	</select>
-	
+
+	<select id="selectBySellerId" parameterType="String" resultType="GoodsDTO">
+		select
+		gCode,gCategory,gName,gPrice,gImage,gContentImage,gAmount,sellerId
+		from goods
+		where sellerId = #{sellerId}
+	</select>
+
 	<select id="selectgName" parameterType="string" resultType="string">
 		select gName
 		from goods

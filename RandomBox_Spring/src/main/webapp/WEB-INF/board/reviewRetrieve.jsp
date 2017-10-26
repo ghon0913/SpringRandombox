@@ -58,7 +58,7 @@
 									id="content" readonly="readonly">${retrieveDTO.content }</textarea></td>
 						</tr>
 						<tr>
-							<td colspan="2" align="center"><input class="btn btn-default" type="button"
+							<td colspan="2" align="center"><input class="btn btn-outline-secondary" type="button"
 								value="목록보기" id="reviewListPage"></td>
 						</tr>
 					</c:if>
