@@ -8,7 +8,7 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 		<h5>|&nbsp;&nbsp;&nbsp;상품 후기&nbsp;&nbsp;&nbsp;|</h5><br>
-			<form action="reviewUpdate" method="post" id="reviewRetrieveForm" modelAtrribute="reviewRetrieveForm">
+			<form action="loginchk/reviewUpdate" method="post" id="reviewRetrieveForm" modelAtrribute="reviewRetrieveForm">
 				<table class="table" style="font-size: 12px;">
 					<tr>
 						<td><b>글번호 :</b>&nbsp;&nbsp;&nbsp; ${retrieveDTO.num }<input type="hidden" name="num"
@@ -21,10 +21,8 @@
 						<td></td><td></td>
 					</tr>
 					<tr>
-						<td colspan="3"><b>상품 카테고리 : </b>&nbsp;&nbsp;&nbsp;${retrieveDTO.category }</td>
-					</tr>
-					<tr>
-						<td colspan="3"><b>랜덤 배정 상품 :</b>&nbsp;&nbsp;&nbsp;${retrieveDTO.gCode }</td>
+						<td><b>상품 카테고리 : </b>&nbsp;&nbsp;&nbsp;${retrieveDTO.category }</td>
+						<td colspan="2"><b>랜덤 배정 상품 :</b>&nbsp;&nbsp;&nbsp;${retrieveDTO.gCode }</td>
 					</tr>
 				</table>
 				<table class="table" style="font-size: 12px;">
@@ -73,13 +71,12 @@
 
 			/* 목록보기 */
 			$("#reviewListPage").on("click", function() {
-				console.log("$$$");
 				$(location).attr("href", "reviewList");
 			});
    			
 			/* 삭제하기 */
 			$("#delete").on("click",function() {
-				$(location).attr("href","reviewDelete?num=${retrieveDTO.num }");
+				$(location).attr("href","loginchk/reviewDelete?num=${retrieveDTO.num }");
 			});
 	});
 </script>

@@ -10,7 +10,7 @@
 		<div class="col-md-11">
 	<h3>주문 페이지</h3>
 
-	<FORM name="orderConfirmForm" method="get" action="" id="orderConfirmForm">
+	<FORM name="orderConfirmForm" method="post" action="" id="orderConfirmForm">
 		<table width="80%" cellspacing="0" cellpadding="0">
 			<tr>
 				<td height="30">
@@ -18,6 +18,8 @@
 
 			<tr>
 				<td><b>주문상품 확인</b></td>
+				<input type="hidden" name="eMail" value="${mDTO.email }">
+				<input type="hidden" name="userId" value="${mDTO.userid }">
 			</tr>
 
 			<tr>
@@ -51,8 +53,6 @@
 						<c:forEach var="oList" items="${orderList}">
 							<input type="hidden" name="gCode" value="${oList.gCode }">
 							<input type="hidden" name="gName" value="${oList.gName }">
-							<input type="hidden" name="userId" value="${mDTO.userid }">
-							<input type="hidden" name="eMail" value="${mDTO.email }">
 							<input type="hidden" name="num" value="${oList.num }">
 							<input type="hidden" name="gPrice" value="${oList.gPrice }">
 							<input type="hidden" name="sellerId" value="${oList.sellerId }">
@@ -60,7 +60,7 @@
 						<tr>
 							<td class="td_default" width="80">${oList.num }</td>
 							<td class="td_default" width="80"><img
-								src="images/goods/${oList.gImage }" border="0" align="center"
+								src="../images/goods/${oList.gImage }" border="0" align="center"
 								width="80" /></td>
 							<td class="td_default" width="300" style='padding-left: 30px'>${oList.gName }</td>
 							<td class="td_default" align="center" width="110">${oList.gPrice }
@@ -253,7 +253,7 @@
 	
 	$("#orderAllDone").on("click", function(){
 
-		$("#orderConfirmForm").attr("action", "OrderAllDoneServlet");
+		$("#orderConfirmForm").attr("action", "orderAllDone");
 		$("#orderConfirmForm").submit();
 	});
 

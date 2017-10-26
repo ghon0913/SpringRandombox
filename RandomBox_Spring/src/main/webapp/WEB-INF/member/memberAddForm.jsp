@@ -1,6 +1,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -26,12 +27,16 @@
 					<tr>
 						<td width="180px">아이디</td>
 						<td><input class="form-control" type="text" name="userid"
-							id="userid" placeholder="userid"> <td width="110px"><span id="idCheck" style="font-size: 10px; color: red;"></span></td></td>
+							id="userid" placeholder="userid">
+						<td width="110px"><span id="idCheck" style="font-size: 10px; color: red;">
+						<form:errors path="userid"/></span></td></td>
 					</tr>
 					<tr>
 						<td>비밀번호</td>
 						<td><input class="form-control" type="password" name="passwd"
 							id="passwd" placeholder="password"></td>
+						<td><span id="passwdCheck" style="font-size: 10px; color: red;">
+						<form:errors path="passwd"/></span></td>
 					</tr>
 					<tr>
 						<td>비밀번호 확인</td>
@@ -43,6 +48,8 @@
 						<td>이름</td>
 						<td><input class="form-control" type="text" name="username"
 							id="username" placeholder="username"></td>
+						<td><span id="passwdCheck" style="font-size: 10px; color: red;">
+						<form:errors path="username"/></span></td>
 					</tr>
 					<tr>
 						<td>이메일</td>
@@ -57,7 +64,9 @@
 								<option value="gmail.com">gmail</option>
 								<option value="hotmail.com">hotmail</option>
 								<option value="korea.com">korea</option>
-						</select></td><td><span id="emailCheck" style="font-size: 10px; color: red;"></span>
+						</select></td>
+						<td><span id="emailCheck" style="font-size: 10px; color: red;">
+						<form:errors path="email"/></span>
 						<input type="hidden" name="email" value="" id="hidden_email"></td>
 					</tr>
 					<tr>
@@ -70,6 +79,8 @@
 						<td>생일</td>
 						<td><input class="form-control" type="date" name="birthday"
 							id="birthday"></td>
+						<td><span id="passwdCheck" style="font-size: 10px; color: red;">
+						<form:errors path="birthday"/></span></td>
 					</tr>
 					<tr>
 						<td>주소</td>
@@ -86,6 +97,8 @@
 						</span> <input class="form-control" name="addr2" id="addr2" size="40"
 							placeholder="지번주소"> <!-- 다음주소 끝 -->
 						</td>
+						<td><span id="passwdCheck" style="font-size: 10px; color: red;">
+						<form:errors path="post"/><br><form:errors path="addr"/></span></td>
 					</tr>
 					<tr>
 						<td>전화번호</td>
@@ -103,6 +116,8 @@
 									class="form-control" type="text" name="phone3"
 									id="phone3"></span></span>
 									<input type="hidden" name="phone" value="" id="hidden_phone"></td>
+						<td><span id="passwdCheck" style="font-size: 10px; color: red;">
+						<form:errors path="phone"/></span></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center"><input class="btn btn-success"
@@ -160,7 +175,7 @@
 								});
 						
 						/* 빈칸 없나 확인 */
-						$("#memberAddForm").on("submit",function(e) {
+						/* $("#memberAddForm").on("submit",function(e) {
 							
  								if ($("#userid").val().length == 0) {
 									alert("입력하신 아이디를 확인해주세요!");
@@ -197,6 +212,6 @@
 								$("#hidden_phone").val(phone);
 								$("#hidden_email").val(email);
 
-							});
+							}); */
 					});
 </script>

@@ -10,11 +10,9 @@
 		<div class="col-md-8">
 			<h5>|&nbsp;&nbsp;&nbsp;Q & A&nbsp;&nbsp;&nbsp;|</h5>
 			<br>
-			<div>
-			<table width="100%">
-				<tr>
-					<td>
-						<select class="form-control" id="searchCategory"
+			<div class="row">
+			<div class="col-md-4">
+				<select class="form-control" id="searchCategory"
 					name="searchCategory" style="font-size: 12px;">
 					<option>카테고리별로 보기</option>
 					<option value="all">문의사항 전체</option>
@@ -27,29 +25,24 @@
 					<option value="디지털/컴퓨터">디지털/컴퓨터</option>
 					<option value="티켓/e쿠폰">티켓/e쿠폰</option>
 				</select>
-					</td>
-					<td width="60%">
-					</td>
-					<td>
-						<input class="btn btn-success" type="button" id="inquiry" value="문의하기">
-					</td>
-				</tr>
-			</table>
 			</div>
-			<div class="col-md-3">
-				
+			<div class="col-md-4 col-md-offset-4">
+				<input class="btn btn-success" type="button" id="inquiry" value="문의하기">
+			</div>
 			</div>
 			<br>
 			<table class="table table-hover" style="font-size: 12px;">
-				<tr>
-					<th width="70">글번호</th>
-					<th width="110">카테고리</th>
-					<th>제목</th>
-					<th width="90">작성일</th>
-					<th width="80">작성자</th>
-					<th width="70">조회수</th>
-					<th width="80">처리상태</th>
+				<thead>
+				<tr >
+					<th style="text-align: center;" width="70">글번호</th>
+					<th style="text-align: center;" width="110">카테고리</th>
+					<th style="text-align: center;">제목</th>
+					<th style="text-align: center;" width="90">작성일</th>
+					<th style="text-align: center;" width="80">작성자</th>
+					<th style="text-align: center;" width="70">조회수</th>
+					<th style="text-align: center;" width="80">처리상태</th>
 				</tr>
+				</thead>
 				<!-- ----------------------------------------------------------------리스트 목록 없을 때 -------------------------------->
 				<c:if test="${ boardList.getList().size() == 0 }">
 					<tr>
@@ -60,8 +53,8 @@
 				<c:if test="${ boardList.getList().size() != 0 }">
 					<c:forEach var="bList" items="${ boardList.getList()}">
 						<tr>
-							<td>${bList.num }</td>
-							<td>${bList.category }</td>
+							<td style="text-align: center;">${bList.num }</td>
+							<td style="text-align: center;">${bList.category }</td>
 							<td style="padding-left: 30px">
 							<c:if test="${bList.open == 'N' }">
 									<c:if test="${bList.userId == sessionScope.login.userid }">
@@ -78,16 +71,22 @@
 									<a href="inquiryRetrieve?num=${bList.num }">${bList.title }</a>
 							</c:if>
 							</td>
-							<td>${bList.writeDay }</td>
-							<td align="center">${bList.userId }</td>
-							<td>${bList.readCnt }</td>
-							<td>${bList.state }</td>
+							<td style="text-align: center;">${bList.writeDay }</td>
+							<td style="text-align: center;">${bList.userId }</td>
+							<td style="text-align: center;">${bList.readCnt }</td>
+							<td style="text-align: center;">${bList.state }</td>
 						</tr>
 					</c:forEach>
+					<tfoot>
 					<tr>
-						<td align="center" colspan="7"><jsp:include
-								page="boardPage.jsp" flush="true"></jsp:include></td>
+						<td align="center" colspan="7">
+						<c:set var="boardChk" value="inquiry"/>
+							<jsp:include page="boardPage.jsp" flush="true">
+								<jsp:param name="boardChk" value="${boardChk}" />
+							</jsp:include>
+						</td>
 					</tr>
+					</tfoot>
 				</c:if>
 			</table>
 			<form action="inquiryList">

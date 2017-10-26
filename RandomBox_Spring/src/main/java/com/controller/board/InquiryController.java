@@ -28,10 +28,6 @@ public class InquiryController {
 							 @RequestParam(required=false) String searchName,
 							 @RequestParam(required=false) String searchWord ,
 							 @RequestParam(defaultValue="1") String curPage, Model m) {
-
-        if(curPage == null) {
-               curPage = "1";
-        }
         
         if(searchCategory != null && searchCategory.equals("all")) {
         	searchCategory = null;
@@ -47,6 +43,7 @@ public class InquiryController {
 			m.addAttribute("boardList", dto);
 			m.addAttribute("chk_inquiryPage", "inquiryList");
 			return "inquiry";
+			
 	}
 	
 	/* 문의글게시판 자세히보기 */
@@ -61,7 +58,7 @@ public class InquiryController {
 	}
 	
 	/* 문의글 수정하기 */
-	@RequestMapping("/inquiryUpdate")
+	@RequestMapping("/loginchk/inquiryUpdate")
 	public String inquiryUpdate(@ModelAttribute("inquiryRetrieveForm") BoardDTO dto) {
 		
 		service.inquiryUpdate(dto);
@@ -69,7 +66,7 @@ public class InquiryController {
 	}
 	
 	/* 문의글 삭제하기 */
-	@RequestMapping("/inquiryDelete")
+	@RequestMapping("/loginchk/inquiryDelete")
 	public String inquiryDelete(@RequestParam String num) {
 		
 		service.inquiryDelete(Integer.parseInt(num));
@@ -85,7 +82,7 @@ public class InquiryController {
 	}
 	
 	/* 질문 카테고리 선택 */
-	@RequestMapping("/selectCategory")
+	@RequestMapping("/loginchk/selectCategory")
 	public @ResponseBody List<GoodsDTO> selectCategory(@RequestParam String gCategory) {
 	
 		List<GoodsDTO> list = service.selectCategory(gCategory);

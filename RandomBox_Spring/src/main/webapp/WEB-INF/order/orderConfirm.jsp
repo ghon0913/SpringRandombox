@@ -38,7 +38,7 @@
 								<td  width="80">${cDTO.num }</td>
 							</c:if>
 							<td  width="80"><img
-								src="images/goods/${cDTO.gImage }" border="0" align="center"
+								src="../images/goods/${cDTO.gImage }" border="0" align="center"
 								width="80" /></td>
 							<td  width="300" style='padding-left: 30px'>${cDTO.gName }</td>
 							<td  align="center" width="110">${cDTO.gPrice }
@@ -200,8 +200,8 @@
 
 	}
 
-	function orderDone(f) {
+/* 	function orderDone(f) {
 		f.action = "orderDone";
 		f.submit();
-	}
+	} */
 </script>
