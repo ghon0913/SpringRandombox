@@ -11,7 +11,9 @@
 	<form action="inquiryUpdate" method="post" id="inquiryRetrieveForm" modelAttribute="inquiryRetrieveForm">
 		<table class="table" style="font-size: 12px;">
 			<tr>
-				<td><b>글번호 :</b> &nbsp;&nbsp;&nbsp;${retrieveDTO.num }<input type="hidden" name="num" value="${retrieveDTO.num }"></td>
+				<input type="hidden" name="num" value="${retrieveDTO.num }">
+				<input type="hidden" name="boardNum" value="${retrieveDTO.num }">
+				<td><b>글번호 :</b> &nbsp;&nbsp;&nbsp;${retrieveDTO.num }</td>
 				<td id="writer"><b>작성자 : </b>&nbsp;&nbsp;&nbsp;${retrieveDTO.userId }</td>
 				<td><b>작성일 :</b> &nbsp;&nbsp;&nbsp;${retrieveDTO.writeDay }</td>
 			</tr>
@@ -85,11 +87,15 @@
 </div>
 </div></div>
 <script>
+	if(${mesg} !=){
+		alert('${mesg}');
+	}
+
 $(document).ready(function(){
 
 	/* 목록보기 */
 	$("#inquiryList").on("click", function(){
-		$(location).attr("href", "../inquiryList");
+		window.history.back();
 	});
 	
 	/* 삭제하기 */

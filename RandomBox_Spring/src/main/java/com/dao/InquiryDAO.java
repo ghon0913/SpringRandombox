@@ -98,10 +98,13 @@ public class InquiryDAO {
 	}
 	
 	/*문의글 작성하기*/
-	public int answerWrite(AnswerDTO dto) {
-		
-		int n = template.insert("answerWrite", dto);
-		return n;
+	public void answerWrite(AnswerDTO dto) {
+		template.insert("answerWrite", dto);
+	}
+	
+	/* 문의글 수정하기 */
+	public void answerUpdate(HashMap<String, String> map) {
+		template.update("answerUpdate", map);
 	}
 	
 	/*답변처리*/

@@ -43,5 +43,11 @@ public class AnswerDTO {
 		this.answer = answer;
 	}
 	
+	@Override
+	public String toString() {
+		return "AnswerDTO [userId=" + userId + ", sellerId=" + sellerId + ", boardNum=" + boardNum + ", answer="
+				+ answer + "]";
+	}
+	
 	
 }

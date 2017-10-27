@@ -52,9 +52,11 @@ public class InquiryController {
 	public String inquiryRetrieve(@RequestParam String num, Model m) {
 		
 		BoardDTO dto = service.inquiryRetrieve(Integer.parseInt(num));
+		AnswerDTO a_dto;
 		
 		if(dto.getState().equals("답변완료")) {
-			AnswerDTO a_dto = service.selectAnswer(Integer.parseInt(num));
+			a_dto = service.selectAnswer(Integer.parseInt(num));
+			System.out.println(a_dto);
 			m.addAttribute("answerDTO", a_dto);
 		}
 		
@@ -130,6 +132,14 @@ public class InquiryController {
 	public String answerForm(@RequestParam String num, Model m) {
 		
 		BoardDTO dto = service.inquiryRetrieve(Integer.parseInt(num));
+		AnswerDTO a_dto;
+		
+		if(dto.getState().equals("답변완료")) {
+			a_dto = service.selectAnswer(Integer.parseInt(num));
+			System.out.println(a_dto);
+			m.addAttribute("answerDTO", a_dto);
+		}
+		
 		m.addAttribute("retrieveDTO", dto);
 		m.addAttribute("chk_QnAPage", "answerForm");
 		return "qnaList";
@@ -137,10 +147,23 @@ public class InquiryController {
 	
 	/* 답변 등록 */
 	@RequestMapping("/loginchk/answerWrite")
-	public String answerWrite(@ModelAttribute("answerForm") AnswerDTO dto, Model m) {
+	public String answerWrite(@ModelAttribute("answerForm") AnswerDTO dto) {
 		
 		service.answerWrite(dto, dto.getBoardNum());
-		return "redirect:/inquiryList.do";
+		return "redirect:/questionList.do";
+	}
+	
+	/* 답변수정 */
+	@RequestMapping("/loginchk/answerUpdate")
+	public String answerUpdate(@ModelAttribute("answerForm") AnswerDTO dto, Model m) {
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("answer", dto.getAnswer());
+		map.put("boardNum", Integer.toString(dto.getBoardNum()));
+		
+		service.answerUpdate(map);
+		m.addAttribute("mesg", "답변수정이 완료되었습니다.");
+		return "redirect:/inquiryRetrieve.do?"+dto.getBoardNum();
 	}
 	
 }

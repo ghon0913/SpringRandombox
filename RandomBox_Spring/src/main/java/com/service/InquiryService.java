@@ -58,6 +58,11 @@ public class InquiryService {
 		dao.inquiryWrite(dto);
 	}
 	
+	/* 문의글 수정하기 */
+	public void answerUpdate(HashMap<String, String> map) {
+		dao.answerUpdate(map);
+	}
+	
 	/* 판매자 - 답변할 질문 리스트 */
 	public BoardPageDTO questionList(int curPage, String gCode) {
 		

@@ -137,11 +137,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- ********** -->
 <!-- QnA게시판 SQL -->
 
+	<!-- 답변하기 게시판-->
 	<select id="questionList" parameterType="string" resultType="BoardDTO">
 		select num, category, title, to_Char(writeday, 'yyyy/mm/dd') writeday, readcnt, userid, state, open
 		from board
 		where gCode = #{gCode}
-		and state = '처리중'
+		and state = '처리중' or state = '답변완료'
 		
 	</select>
 	
@@ -149,8 +150,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="questionList_totalCount" parameterType="string" resultType="int">
 		select count(*)
 		from board
-		where state = '처리중'
-		and gCode = #{gCode}
+		where gCode = #{gCode}
+		and state = '처리중' or state = '답변완료'
 	</select>
 	
 	<!-- 문의글 작성하기 -->
@@ -158,6 +159,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into
 		answer(userId, sellerId, boardNum, answer)
 		values (#{userId}, #{sellerId}, #{boardNum}, #{answer})
+	</insert>
+	
+	<!-- 문의글 수정하기 -->
+	<insert id="answerUpdate" parameterType="hashmap">
+		update answer
+		set answer = #{answer}
+		where boardNum = #{boardNum}
 	</insert>
 	
 	<!-- 답변처리 -->
