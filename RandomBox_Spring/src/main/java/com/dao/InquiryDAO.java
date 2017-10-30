@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dto.AnswerDTO;
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
 import com.dto.GoodsDTO;
@@ -71,4 +72,52 @@ public class InquiryDAO {
 		template.insert("boardWrite", dto);
 	}
 	
+	/* 답변쓰기 리스트 */
+	public BoardPageDTO questionList(String gCode, int curPage) {
+		
+		BoardPageDTO dto = new BoardPageDTO();
+		
+		int sIndex = (curPage - 1) * dto.getPerPage();
+        int length = dto.getPerPage();
+        List<BoardDTO> list = template.selectList("questionList", gCode);
+        
+        for (BoardDTO boardDTO : list) {
+			System.out.println(boardDTO);
+		}
+        
+        int totalCount = template.selectOne("questionList_totalCount", gCode);
+        
+        //pageDTO에 4개의 저장
+        dto.setList(list);
+        dto.setCurPage(curPage);
+        dto.setTotalCount(totalCount);
+        
+        System.out.println(dto.getList()+"dao");
+        
+        return dto;
+	}
+	
+	/*문의글 작성하기*/
+	public void answerWrite(AnswerDTO dto) {
+		template.insert("answerWrite", dto);
+	}
+	
+	/* 문의글 수정하기 */
+	public void answerUpdate(HashMap<String, String> map) {
+		template.update("answerUpdate", map);
+	}
+	
+	/*답변처리*/
+	public int stateUpdate(int boardNum) {
+		
+		int n = template.update("stateUpdate", boardNum);
+		return n;
+	}
+	
+	/*답변불러오기*/
+	public AnswerDTO selectAnswer(int num) {
+		
+		AnswerDTO a_dto = template.selectOne("selectAnswer", num);
+		return a_dto;
+	}
 }

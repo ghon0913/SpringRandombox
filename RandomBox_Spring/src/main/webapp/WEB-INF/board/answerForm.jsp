@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
-	<form action="AnswerWriteServlet" method="post" id="AnswerForm">
+	<form action="answerWrite" method="post" id="answerForm" modelAttribute="answerForm">
 		<input type="hidden" name="boardNum" value="${retrieveDTO.num }">
 		<input type="hidden" name="userId" value="${retrieveDTO.userId }">
 		<input type="hidden" name="sellerId" value="${sessionScope.login.userid }">
@@ -44,11 +44,16 @@
 				</tr>
 				<tr>
 					<td>답변 내용 :</td>
-					<td><textarea rows="10" cols="50" name="answer" id="answer" ></textarea></td>
+					<td><textarea rows="10" cols="50" name="answer" id="answer" >${answerDTO.answer }</textarea></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
+					<c:if test="${empty answerDTO.answer}">
 						<input type="submit" value="답변하기">
+					</c:if>
+					<c:if test="${!empty answerDTO.answer && answerDTO.sellerId == sessionScope.login.userid}">
+						<button id="answerUpdate">답변 수정하기</button>
+					</c:if>
 						<input type="button" value="목록보기" id="questionList">
 					</td>
 				</tr>
@@ -56,13 +61,17 @@
 	</form>
 </div></div></div>
 
-<script type="text/javascript" src="jquery-3.2.1.js"></script>
 <script>
 $(document).ready(function(){
 
  	/* 목록보기 */
 	$("#questionList").on("click", function(){
-		$(location).attr("href", "QuestionListServlet?gCode="+$("#gCode").text());
+		$(location).attr("href", "questionList?gCode="+$("#gCode").text());
+	});
+ 	
+ 	/* 답변수정 */
+	$("#answerUpdate").on("click", function(){
+		 $('#answerForm').attr('action', "answerUpdate").submit();
 	});
 	
 	/* 문의사항 선택 확인  */

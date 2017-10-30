@@ -60,7 +60,7 @@
 	</td>
 	<td>${goods.gPrice }
 	</td>
-	<td><a href="QuestionListServlet?gCode=${goods.gCode}">답변하러가기</a>
+	<td><a href="questionList?gCode=${goods.gCode}">답변하러가기</a>
 	</td>
 </tr>
 
@@ -71,7 +71,7 @@
 </tr>
 </c:if>
 <tr>
-<td colspan="10" align="right"> <a href="GoodsRegisterFormServlet">상품등록</a>
+<td colspan="10" align="right"> <a href="goodsRegisterForm">상품등록</a>
 </tr>
 
 
