@@ -44,7 +44,7 @@ public class MemberController {
 	}
 	
 	/* 아이디 중복 검사 */
-	@RequestMapping("/idCheck")
+	@RequestMapping(value="/idCheck", method=RequestMethod.POST, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String idCheck(@RequestParam String userid) {
 		

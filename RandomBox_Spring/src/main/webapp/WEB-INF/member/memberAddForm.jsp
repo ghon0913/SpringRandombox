@@ -124,25 +124,31 @@
 
 						/* 아이디 중복 검사 */
 						$("#userid").on("keyup", function(event) {
-
-							$.ajax({
-								type : "post",
-								url : "idCheck",
-								data : {
-									userid : $("#userid").val()
-								},
-								dataType : "text",
-								success : function(responseData, status, xhr) {
-									$("#idCheck").text(responseData);
-								},
-								error : function(xhr, status, e) {
-									console.log(status, e);
-								}
-							}); // end ajax
+							
+ 							if($("#userid").val().length == 0){
+								$("#idCheck").text("");
+							}else if ($("#userid").val().length > 12 || $("#userid").val().length <= 2) {
+								$("#idCheck").text("3-12자");
+							}else{
+							
+								$.ajax({
+									type : "post",
+									url : "idCheck",
+									data : {
+										userid : $("#userid").val()
+									},
+									dataType : "text",
+									success : function(responseData, status, xhr) {
+										$("#idCheck").text(responseData);
+									},
+									error : function(xhr, status, e) {
+										console.log(status, e);
+									}
+								}); // end ajax
+							} 
 						});
 						
-						/* 이메일 */
-						var ck_email = /^([\w\.-]+)@([a-z\d\.-]+)\.([a-z\.]{2,6})$/;
+						/* 이메일 자동입력 */
 						$("select#email").on("change",function(event) {
 							if ($("#email option:selected").attr(
 									"value") != 'etc') {
@@ -173,14 +179,31 @@
 
 						});
 						
+						$("#passwd").on("keyup", function(event) {
+
+							var passwd = $("#passwd").val();
+							var passwd2 = $("#passwd2").val();
+
+							if ($("#passwd2").val().length != 0) {
+								if (passwd == passwd2) {
+									$("#passwdCheck").text("비밀번호 일치");
+								} else {
+									$("#passwdCheck").text("비밀번호 불일치");
+								}
+							} else {
+								$("#passwdCheck").text("");
+							}
+
+						});
+						
 						/* 유효성 검사*/
 						$("#memberAddForm").on("submit",function(e) {
 							
 							var regExp = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 							var email = $("#email1").val()+"@"+$("#email2").val();
-							
- 								if ($("#userid").val().length > 12 || $("#userid").val().length <= 2) {
-									alert("입력하신 아이디가 너무 짧거나 깁니다!\n(최소 3자리, 최대 12자리)");
+
+ 								 if ($("#idCheck").text()=="3-12자" || $("#idCheck").text()=="아이디 중복") {
+									alert("입력하신 아이디를 다시 확인해주세요!");
 									e.preventDefault();
 								} else if ($("#passwd").val().length < 3
 										|| $("#passwdCheck").text() == "비밀번호 불일치") {

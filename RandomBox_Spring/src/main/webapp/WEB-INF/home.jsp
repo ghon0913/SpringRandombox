@@ -9,11 +9,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="/app/js/jquery-3.2.1.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
- 	<c:if test="${! empty result }">
+	<c:if test="${! empty result }">
 		<script>
 			alert('${result}');
 		</script>
@@ -21,12 +23,13 @@
 
 	<jsp:include page="include/top.jsp" flush="true" /><br>
 	<jsp:include page="include/category.jsp" flush="true" /><br>
+	<%-- <jsp:include page="include/carousel.jsp" flush="true" /><br> --%>
 	<c:if test="${empty chk_reviewPage }">
 		<c:if test="${empty isCategory }">
 			<c:if test="${ empty retrieve }">
 				<jsp:include page="goods/goodsList.jsp" flush="true" /><br>
 			</c:if>
-	
+
 			<c:if test="${! empty retrieve }">
 				<jsp:include page="goods/goodsRetrieve.jsp" flush="true" /><br>
 			</c:if>
@@ -35,7 +38,7 @@
 			<c:if test="${ empty retrieve }">
 				<jsp:include page="goods/goodsListByCategory.jsp" flush="true" /><br>
 			</c:if>
-	
+
 			<c:if test="${! empty retrieve }">
 				<jsp:include page="goods/goodsRetrieveByCategory.jsp" flush="true" /><br>
 			</c:if>

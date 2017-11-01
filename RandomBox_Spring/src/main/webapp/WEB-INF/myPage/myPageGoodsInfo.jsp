@@ -3,32 +3,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div align="center">	
-<table border="1">
+<div align="center" class="container">	
+<div class="row">
+<table class="table">
 
 
 <tr>
 <td colspan="10">
 <form action="goodssearchpage">
-<select name="searchName">
+<select class="form-control"name="searchName">
 	<option value="gCode">상품코드</option>
 	</select>
 	<input type="text" name="searchValue">
-	<input type="submit" value="검색"> 
+	<input type="submit" class="btn btn-success" value="검색"> 
 	
 </form>	
 </td>
 </tr>
 <tr>
 
-			<td colspan="10">
+			<td colspan="10" class="table table-hover">
 				<form action="goodsperpage">
 					<select name="perPage">
 						<!-- change함수주기 -->
 						<option value="3">3개씩보기</option>
 						<option value="5">5개씩보기</option>
 						<option value="7">7개씩보기</option>
-					</select> <input type="submit">
+					</select> <input class="btn btn-success" type="submit">
 				</form>
 			</td>
 
@@ -59,7 +60,7 @@
 	</td>
 	<td>${goods.gPrice }
 	</td>
-	<td><a href="QuestionListServlet?gCode=${goods.gCode}">답변하러가기</a>
+	<td><a href="questionList?gCode=${goods.gCode}">답변하러가기</a>
 	</td>
 </tr>
 
@@ -70,11 +71,12 @@
 </tr>
 </c:if>
 <tr>
-<td colspan="10" align="right"> <a href="GoodsRegisterFormServlet">상품등록</a>
+<td colspan="10" align="right"> <a href="goodsRegisterForm">상품등록</a>
 </tr>
 
 
 
 </table>
+</div>
 </div>
 

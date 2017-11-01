@@ -11,7 +11,9 @@
 	<form action="inquiryUpdate" method="post" id="inquiryRetrieveForm" modelAttribute="inquiryRetrieveForm">
 		<table class="table" style="font-size: 12px;">
 			<tr>
-				<td><b>글번호 :</b> &nbsp;&nbsp;&nbsp;${retrieveDTO.num }<input type="hidden" name="num" value="${retrieveDTO.num }"></td>
+				<input type="hidden" name="num" value="${retrieveDTO.num }">
+				<input type="hidden" name="boardNum" value="${retrieveDTO.num }">
+				<td><b>글번호 :</b> &nbsp;&nbsp;&nbsp;${retrieveDTO.num }</td>
 				<td id="writer"><b>작성자 : </b>&nbsp;&nbsp;&nbsp;${retrieveDTO.userId }</td>
 				<td><b>작성일 :</b> &nbsp;&nbsp;&nbsp;${retrieveDTO.writeDay }</td>
 			</tr>
@@ -22,10 +24,10 @@
 			</tr>
 			<tr>
 				<td><b>상품 카테고리 :</b>&nbsp;&nbsp;&nbsp; ${retrieveDTO.category }</td>
-				<td></td>
 			<c:if test="${(retrieveDTO.gCode != 'admin') && !empty retrieveDTO.gCode}">
 				<td><b>문의 상품 :</b>&nbsp;&nbsp;&nbsp;${retrieveDTO.gCode }</td>
 			</c:if>
+				<td></td>
 			</tr>
 		</table>
 		<table class="table" style="font-size: 12px;">
@@ -71,7 +73,7 @@
 				<c:if test="${ ! empty answerDTO}">
 				<tr>
 					<td>답변 내용 :</td>
-					<td><textarea class="form-control" rows="10" cols="50" name="content" id="content">${answerDTO.answer }</textarea></td>
+					<td><textarea class="form-control" rows="10" cols="50" name="content" id="content" readonly="readonly">${answerDTO.answer }</textarea></td>
 				</tr>					
 				</c:if>
 				<tr>
@@ -85,11 +87,15 @@
 </div>
 </div></div>
 <script>
+	if(${mesg} !=){
+		alert('${mesg}');
+	}
+
 $(document).ready(function(){
 
 	/* 목록보기 */
 	$("#inquiryList").on("click", function(){
-		$(location).attr("href", "../inquiryList");
+		window.history.back();
 	});
 	
 	/* 삭제하기 */
