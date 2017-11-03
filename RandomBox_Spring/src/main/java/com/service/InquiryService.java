@@ -41,9 +41,11 @@ public class InquiryService {
 		dao.inquiryUpdate(dto);
 	}
 	
-	/* 문의글 삭제하기 */
+	/* 문의글 삭제하기 + 답변 삭제 */
+	@Transactional
 	public void inquiryDelete(int num) {
 		dao.inquiryDelete(num);
+		dao.answerDelete(num);
 	}
 	
 	/* 해당 카테고리 상품명 불러오기 */

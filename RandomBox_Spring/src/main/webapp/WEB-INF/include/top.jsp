@@ -7,6 +7,7 @@
 <script type="text/javascript" src="/app/js/jquery-3.2.1.js"></script>
 <!-- bootstrap -->
 <link href="/app/js/bootstrap-4.0.0-beta-dist/css/bootstrap.min.css" rel="stylesheet" />
+<script type="text/javascript" src="/app/js/bootstrap-4.0.0-beta-dist/js/bootstrap.min.js"></script>
 
 <div>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">

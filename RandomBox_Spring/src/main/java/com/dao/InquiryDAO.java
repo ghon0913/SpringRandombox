@@ -60,6 +60,11 @@ public class InquiryDAO {
 		template.delete("boardDelete", num);
 	}
 	
+	/* 답변 삭제하기 */
+	public void answerDelete(int num) {
+		template.delete("answerDelete", num);
+	}
+	
 	/* 해당 카테고리 상품명 불러오기 */
 	public List<GoodsDTO> selectCategory(String category){
 		
