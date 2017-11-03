@@ -1,5 +1,6 @@
 package com.controller.board;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.dto.AnswerDTO;
 import com.dto.BoardDTO;
@@ -155,15 +158,17 @@ public class InquiryController {
 	
 	/* 답변수정 */
 	@RequestMapping("/loginchk/answerUpdate")
-	public String answerUpdate(@ModelAttribute("answerForm") AnswerDTO dto, Model m) {
+	public String answerUpdate(@ModelAttribute("answerForm") AnswerDTO dto, Model m,
+								RedirectAttributes redirectAttrs) {
 		
 		HashMap<String, String> map = new HashMap<>();
 		map.put("answer", dto.getAnswer());
 		map.put("boardNum", Integer.toString(dto.getBoardNum()));
 		
 		service.answerUpdate(map);
-		m.addAttribute("mesg", "답변수정이 완료되었습니다.");
-		return "redirect:/inquiryRetrieve.do?"+dto.getBoardNum();
+		m.addAttribute("result", "success");
+		redirectAttrs.addAttribute("num", dto.getBoardNum());
+		return "redirect:/inquiryRetrieve.do";
 	}
 	
 }

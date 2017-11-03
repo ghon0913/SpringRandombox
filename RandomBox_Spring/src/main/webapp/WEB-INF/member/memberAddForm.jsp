@@ -13,7 +13,7 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
-			<h3>|&nbsp;&nbsp;&nbsp;구매 회원가입&nbsp;&nbsp;&nbsp;|</h3>
+			<h5>|&nbsp;&nbsp;&nbsp;구매 회원가입&nbsp;&nbsp;&nbsp;|</h5>
 			<br>
 			<p style="font-size: 12px;">회원 정보를 입력해 주세요. 모두 입력하셔야 가입이 가능합니다.</p>
 			<form action="memberAdd" method="post" id="memberAddForm" modelAttribute="memberAddForm">

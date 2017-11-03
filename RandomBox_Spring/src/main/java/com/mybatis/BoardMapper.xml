@@ -73,6 +73,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where num = #{num}
 	</delete>
 	
+	<!-- 답변도 삭제하기 -->
+	<delete id="answerDelete" parameterType="int">
+		delete from answer
+		where num = #{num}
+	</delete>
+	
 	<!-- 문의글 작성 -> 카테고리 선택 -->
 	<select id="selectCategory" parameterType="String" resultType="GoodsDTO">
 		select gCode, gName

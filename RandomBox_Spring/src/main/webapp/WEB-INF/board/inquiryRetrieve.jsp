@@ -3,12 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<c:if test="${ !empty result}">
+		<script type="text/javascript">
+			alert("정상적으로 수정되었습니다.");
+		</script>
+</c:if>
 <div class="container">
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 		<h5>|&nbsp;&nbsp;&nbsp;Q & A&nbsp;&nbsp;&nbsp;|</h5><br>
-	<form action="inquiryUpdate" method="post" id="inquiryRetrieveForm" modelAttribute="inquiryRetrieveForm">
+	<form action="loginchk/inquiryUpdate" method="post" id="inquiryRetrieveForm" modelAttribute="inquiryRetrieveForm">
 		<table class="table" style="font-size: 12px;">
 			<tr>
 				<input type="hidden" name="num" value="${retrieveDTO.num }">
@@ -45,51 +50,60 @@
 					<td><b>문의 내용 :</b></td>
 					<td><textarea class="form-control" rows="10" cols="50" name="content" id="content">${retrieveDTO.content }</textarea></td>
 				</tr>
-				
-				<c:if test="${ ! empty answerDTO}">
-				<tr>
-					<td><b>답변 내용 :</b></td>
-					<td><textarea class="form-control" rows="10" cols="50" name="content" id="content">${answerDTO.answer }</textarea></td>
-				</tr>					
-				</c:if>
-				
-				<tr>
-					<td colspan="2" align="center">
-						<input class="btn btn-success" type="submit" value="수정하기" id="update">&nbsp;
-						<input class="btn btn-outline-secondary" type="button" value="삭제하기" id="delete">&nbsp;
-						<input class="btn btn-outline-secondary" type="button" value="목록보기" id="inquiryList">
-					</td>
-				</tr>
 			</c:if>
 			<c:if test="${retrieveDTO.userId != sessionScope.login.userid}">
 				<tr >
-					<td>제목 :</td>
+					<td>제목 : </td>
 					<td><input class="form-control" type="text" name="title" id="title" readonly="readonly" value="${retrieveDTO.title }"></td>
 				</tr>
 				<tr id="content">
 					<td>문의 내용 :</td>
 					<td><textarea class="form-control" rows="10" cols="50" name="content" id="content" readonly="readonly">${retrieveDTO.content }</textarea></td>
 				</tr>
-				<c:if test="${ ! empty answerDTO}">
-				<tr>
-					<td>답변 내용 :</td>
-					<td><textarea class="form-control" rows="10" cols="50" name="content" id="content" readonly="readonly">${answerDTO.answer }</textarea></td>
-				</tr>					
-				</c:if>
-				<tr>
-					<td colspan="2" align="center">
-						<input class="btn btn-outline-secondary" type="button" value="목록보기" id="inquiryList">
-					</td>
-				</tr>
 			</c:if>
+<!-- 답변 내용	//////////////////////////////////////////////////////////////////////////////////////// -->
+				<c:if test="${ ! empty answerDTO}">
+					<c:if test="${ answerDTO.sellerId == sessionScope.login.userid}">
+						<tr>
+							<td>답변 내용 :</td>
+							<td><textarea class="form-control" rows="10" cols="50" name="answer" id="answer">${answerDTO.answer }</textarea></td>
+						</tr>					
+					</c:if>
+					<c:if test="${ answerDTO.sellerId != sessionScope.login.userid}">
+						<tr>
+							<td>답변 내용 :</td>
+							<td><textarea class="form-control" rows="10" cols="50" readonly="readonly">${answerDTO.answer }</textarea></td>
+						</tr>					
+					</c:if>
+				</c:if>
+<!-- 하단 버튼	//////////////////////////////////////////////////////////////////////////////////////// -->
+				<c:if test="${retrieveDTO.userId != sessionScope.login.userid}">
+					<tr>
+						<td colspan="2" align="center">
+							<c:if test="${ ! empty answerDTO}">
+								<c:if test="${ answerDTO.sellerId == sessionScope.login.userid}">
+									<input class="btn btn-success" type="button" value="답변 수정하기" id="answerUpdate">
+								</c:if>
+							</c:if>
+							<input class="btn btn-outline-secondary" type="button" value="목록보기" id="inquiryList">
+						</td>
+					</tr>
+				</c:if>
+				<c:if test="${retrieveDTO.userId == sessionScope.login.userid}">	
+					<tr>
+						<td colspan="2" align="center">
+							<input class="btn btn-success" type="submit" value="수정하기" id="update">&nbsp;
+							<input class="btn btn-outline-secondary" type="button" value="삭제하기" id="delete">&nbsp;
+							<input class="btn btn-outline-secondary" type="button" value="목록보기" id="inquiryList">
+						</td>
+					</tr>
+				</c:if>
 		</table>
 	</form>
 </div>
-</div></div>
+</div>
+</div>
 <script>
-	if(${mesg} !=){
-		alert('${mesg}');
-	}
 
 $(document).ready(function(){
 
@@ -100,7 +114,14 @@ $(document).ready(function(){
 	
 	/* 삭제하기 */
 	$("#delete").on("click", function(){
-		$(location).attr("href", "inquiryDelete?num=${retrieveDTO.num }");
+		console.log("%%%%");
+		$(location).attr("href", "loginchk/inquiryDelete?num=${retrieveDTO.num }");
+	});
+	
+	/* 답변 수정 하기 */
+	$("#answerUpdate").on("click", function(){
+		var answer = $("#answer").val();
+		$(location).attr("href", "loginchk/answerUpdate?boardNum=${retrieveDTO.num }&answer="+answer);
 	});
 	
 	/* 지정했던 공개여부 선택되도록 */
@@ -143,24 +164,26 @@ $(document).ready(function(){
 	/* 문의사항 선택 확인  */
 	$("#inquiryRetrieveForm").on("submit", function(e){
 		
-		if($("#title").val().length==0){
-			alert("제목을 입력해 주세요!");
-			e.preventDefault();
-		}else if($("#content").val().length==0){
-			alert("내용을 입력해 주세요!");
-			e.preventDefault();
-		}else if($("#select_question option:selected").val()!="q_admin"){
-			
-			if($("#select_question option:selected").val()=="문의사항 선택"){
-				alert("문의사항 선택 항목을 확인해 주세요!");
+		if(${ answerDTO.sellerId} != ${sessionScope.login.userid}){
+			if($("#title").val().length==0){
+				alert("제목을 입력해 주세요!");
 				e.preventDefault();
-			}else{
-				if($("#select_category option:selected").val()=="카테고리 선택"){
-					alert("카테고리 선택 항목을 확인해 주세요!");
+			}else if($("#content").val().length==0){
+				alert("내용을 입력해 주세요!");
+				e.preventDefault();
+			}else if($("#select_question option:selected").val()!="q_admin"){
+				
+				if($("#select_question option:selected").val()=="문의사항 선택"){
+					alert("문의사항 선택 항목을 확인해 주세요!");
 					e.preventDefault();
-				}else if($("#select_goods option:selected").val()=="상품명 선택"){
-					alert("상품명 선택 항목을 확인해 주세요!");
-					e.preventDefault();
+				}else{
+					if($("#select_category option:selected").val()=="카테고리 선택"){
+						alert("카테고리 선택 항목을 확인해 주세요!");
+						e.preventDefault();
+					}else if($("#select_goods option:selected").val()=="상품명 선택"){
+						alert("상품명 선택 항목을 확인해 주세요!");
+						e.preventDefault();
+					}
 				}
 			}
 		}

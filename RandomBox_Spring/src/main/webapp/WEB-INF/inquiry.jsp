@@ -11,6 +11,7 @@
 </head>
 <body>
 	<jsp:include page="include/top.jsp" flush="true" /><br>
+
 		<c:if test="${chk_inquiryPage == 'inquiryForm' }">
 			<jsp:include page="board/inquiryForm.jsp" flush="true" /><br>
 		</c:if>

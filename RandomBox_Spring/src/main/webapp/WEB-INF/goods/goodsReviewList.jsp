@@ -9,16 +9,20 @@
 		<td>
 			<table align="center" width="710" cellspacing="0" cellpadding="0"
 				border=1>
-
+			<c:if test="${ empty category }">
 				<tr height="30">
-					<td align="center"><a
-						href="goodsByCategory?category=${category}">구매페이지</a></td>
-					<td align="center"><a
-						href="goodsRetrieveByCategory?category=${category}">상품설명</a></td>
-					<td align="center">
-						<a href="goodsReviewList">후기</a>
-					</td>
+					<td align="center"><a href="goodsList">구매페이지</a></td>
+					<td align="center"><a href="goodsRetrieve">상품설명</a></td>
+					<td align="center"><a href="goodsReviewList">후기</a></td>
 				</tr>
+			</c:if>
+			<c:if test="${ !empty category }">
+				<tr height="30">
+					<td align="center"><a href="goodsListByCategory?category=${category }">구매페이지</a></td>
+					<td align="center"><a href="goodsRetrieveByCategory?category=${category }">상품설명</a></td>
+					<td align="center"><a href="goodsReviewList">후기</a></td>
+				</tr>
+			</c:if>
 				<tr>
 					<td colspan="3" align="center">
 						<p height="5px">
