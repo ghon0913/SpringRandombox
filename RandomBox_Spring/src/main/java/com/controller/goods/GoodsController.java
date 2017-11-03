@@ -30,6 +30,11 @@ public class GoodsController {
 	@Autowired
 	GoodsService service;
 
+	@RequestMapping("/home")
+	public String home() {
+		return "home";
+	}
+
 	@RequestMapping("/goodsRegisterForm")
 	public String goodsRegisterForm() {
 		return "goodsRegisterForm";
@@ -69,7 +74,7 @@ public class GoodsController {
 			// ******************
 		}
 
-		return "home";
+		return "goodsList";
 	}
 
 	@RequestMapping("/goodsMixList")
@@ -87,7 +92,6 @@ public class GoodsController {
 			totalPrice += list16.get(i).getgPrice();
 		}
 		session.setAttribute("goodsList16", list16);
-	
 
 		// 최종 랜덤 상품 저장 ******
 		int randomGoods_idx = rand.nextInt(list16.size());
@@ -99,7 +103,7 @@ public class GoodsController {
 		session.setAttribute("randomGoods", randomGoods);
 		// ******************
 
-		return "home";
+		return "goodsList";
 	}
 
 	@RequestMapping("/goodsMixListByCategory")
@@ -134,7 +138,7 @@ public class GoodsController {
 		m.addAttribute("isCategory", session.getAttribute(listByCategory));
 		m.addAttribute("gCategory", gCategory);
 
-		return "home";
+		return "goodsList";
 	}
 
 	@RequestMapping("/goodsByCategory")
@@ -205,17 +209,15 @@ public class GoodsController {
 		request.setAttribute("isCategory", session.getAttribute(listByCategory));
 		request.setAttribute("retrieve", "retrieve");
 
-		return "home";
+		return "goodsList";
 	}
 
 	@RequestMapping("/goodsRetrieve")
 	public String goodsRetrieve(HttpServletRequest request) {
 
 		request.setAttribute("retrieve", "retrieve");
-		
-		
 
-		return "home";
+		return "goodsList";
 	}
 
 	@RequestMapping("/goodsRegister")
@@ -226,17 +228,19 @@ public class GoodsController {
 		String gName = dto.getgName();
 		int gPrice = dto.getgPrice();
 		int gAmount = dto.getgAmount();
-		CommonsMultipartFile gImage = dto.getgImage() ;
+		CommonsMultipartFile gImage = dto.getgImage();
 		CommonsMultipartFile gContentImage = dto.getgContentImage();
 		MemberDTO m_dto = (MemberDTO) session.getAttribute("login");
 		String sellerId = m_dto.getUserid();
-		GoodsDTO g_dto = new GoodsDTO(gPrice, null, gCategory,gName,uuid1.toString()+"_"+gImage.getOriginalFilename(),uuid2.toString()+"_"+gContentImage.getOriginalFilename(),gAmount,sellerId);
+		GoodsDTO g_dto = new GoodsDTO(gPrice, null, gCategory, gName,
+				uuid1.toString() + "_" + gImage.getOriginalFilename(),
+				uuid2.toString() + "_" + gContentImage.getOriginalFilename(), gAmount, sellerId);
 		service.insertGoods(g_dto);
-		String saveFile1 = uuid1.toString()+"_"+gImage.getOriginalFilename();
-		String saveFile2 = uuid2.toString()+"_"+gContentImage.getOriginalFilename();
+		String saveFile1 = uuid1.toString() + "_" + gImage.getOriginalFilename();
+		String saveFile2 = uuid2.toString() + "_" + gContentImage.getOriginalFilename();
 		File f = new File("c:\\upload", saveFile1);
 		File f2 = new File("c:\\upload", saveFile2);
-		
+
 		try {
 			gImage.transferTo(f);
 			gContentImage.transferTo(f2);
