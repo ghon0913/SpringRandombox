@@ -30,8 +30,7 @@
 
 	<jsp:include page="include/top.jsp" flush="true" /><br>
 	<jsp:include page="include/category.jsp" flush="true" /><br>
-
-	<jsp:include page="include/main.jsp" flush="true" /><br>
+	<jsp:include page="goods/goodsList.jsp" flush="true" /><br>
 
 </body>
 </html>
