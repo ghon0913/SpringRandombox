@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true" %>
 
 <div style="background-color: #0277BD; color: #EEEEEE; padding: 12px 200px; margin-top: -30px;">
 	<div style="margin-bottom: 8px;">
 		<a style="font-size: 18px; color: #EEEEEE;"><b>랜덤상품 카테고리</b></a>
-		<span class="fa fa-chevron-down"></span>
   	</div>
   <div>
     <table align="center" width="100%" class="categoryTd" style="background-color: #f2f7f3; font-size: 14px;">

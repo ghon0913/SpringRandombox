@@ -4,8 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <div class="container" style="margin-top: -23px;">
-	<div class="row">
-		<div class="col-md-6">
 			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 			  <ol class="carousel-indicators">
 			    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -32,8 +30,4 @@
 			    <span class="sr-only">Next</span>
 			  </a>
 			</div>
-		</div>
-		<div class="col-md-6" style="background-color: #F0F4C3;">
-		</div>
 	</div>
-</div>
