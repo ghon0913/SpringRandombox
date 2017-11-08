@@ -38,4 +38,10 @@ public class MemberService {
 		boolean ck = dao.idCheck(userid);
 		return ck;
 	}
+	
+	/* 이메일 중복체크 */
+	public boolean emailCheck(String emailChk) {
+		boolean ck = dao.emailCheck(emailChk);
+		return ck;
+	}
 }

@@ -3,35 +3,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<div style="background-color: #0277BD; margin-top: -30px; color: white; padding: 20px 200px; align: right; margin-bottom: 20px;">
+	<h5 style="display:inline;">|&nbsp;&nbsp;&nbsp;<b>결제 완료 >> 랜덤상품 확인</b>&nbsp;&nbsp;&nbsp;|</h5>
+	<p id ="goShopping" style="display:inline; padding: 8px 15px; border: solid 1px white; font-size: 13px; margin-top: -6px;" class="pull-right">
+		랜덤박스 쇼핑 바로가기
+	</p>
+</div>
 <div class="container">
-	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-11">
-<table width="70%" cellspacing="0" cellpadding="0">
-	<tr>
-		<td height="30">
-	</tr>
-	<tr>
-		<td><b>주문완료</b></td>
-	</tr>
-	<tr>
-		<td height="30">
-	</tr>
-	<tr>
-		<td align="center"><b>주문해주셔서 감사합니다.</b></td>
-	</tr>
-
-	<tr>
-		<td height="7">
-	</tr>
-	<tr>
-		<td class="td_default" align="center"><b>${orderDTO.userId}</b> 님의 주문이
-			안전하게 처리되었습니다.</td>
-	</tr>
-	<tr>
-		<td height="40">
-	</tr>
-
+	<div>
+<div align="center">
+			<b>[ 주문완료 ]</b><br><br>
+			<b>주문해주셔서 감사합니다.</b><br>
+			<b>${orderDTO.userId}</b> 님의 주문이 안전하게 처리되었습니다.
+</div><br><br>
+<table >
 	<tr>
 		<td class="td_default"><b>상품 및 배송정보</b>
 		</td>
@@ -132,12 +118,25 @@
 	</tr>
 
 	<tr>
-		<td class="td_default" align="center"><a class="a_default"
-			href="orderinfo">주문조회 페이지로 이동</a></td>
+		<td class="td_default" align="center">
+			<button class="btn btn-outline-secondary" id="goOrderInfo">주문조회 페이지로 이동</button>
+		</td>
 	</tr>
 	<tr>
 		<td height="30">
 	</tr>
 
 </table>
-    </div></div></div>
+    </div></div>
+<script>
+
+	/* 쇼핑 바로가기 */
+	$("#goShopping").on("click", function() {
+		$(location).attr("href", "goodsList");
+	});
+	
+	/* 주문조회 페이지로 이동 */
+	$("#goOrderInfo").on("click", function() {
+		$(location).attr("href", "orderinfo");
+	});
+</script>

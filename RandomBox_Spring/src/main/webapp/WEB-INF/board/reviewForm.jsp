@@ -3,11 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<div style="background-color: #0277BD; margin-top: -30px; color: white; padding: 20px 200px; align: right; margin-bottom: 20px;">
+	<h5 style="display:inline;">|&nbsp;&nbsp;&nbsp;<b>랜덤박스 후기 작성</b>&nbsp;&nbsp;&nbsp;|</h5>
+	<p id ="goShopping" style="display:inline; padding: 8px 15px; border: solid 1px white; font-size: 13px; margin-top: -6px;" class="pull-right">
+		랜덤박스 쇼핑 바로가기
+	</p>
+</div>
 <div class="container">
-	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
-	<h5>|&nbsp;&nbsp;&nbsp;후기 쓰기&nbsp;&nbsp;&nbsp;|</h5><br>
+	<div>
 	<form id="reviewForm" action="reviewWrite" method="post" modelAttribute="reviewForm">
 		<table class="table">
 			<input type="hidden" name="userid" value="${sessionScope.login.userid }">
@@ -33,7 +37,7 @@
 			</tr>
 			<tr>
 				<td>후기 내용 :</td>
-				<td><textarea class="form-control" rows="10" cols="30" name="content" id="content"></textarea></td>
+				<td><textarea class="form-control" rows="8" cols="30" name="content" id="content"></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
@@ -44,9 +48,14 @@
 		</table>
 	</form>
 </div>
-</div></div>
+</div>
 <script>
 $(document).ready(function(){
+	
+	/* 쇼핑 바로가기 */
+	$("#goShopping").on("click", function() {
+		$(location).attr("href", "goodsList");
+	});
 	
 	/* 입력사항 확인  */
 	$("#reviewWriteForm").on("submit", function(e){

@@ -4,14 +4,22 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<!-- DAUM 주소 라이브러리 시작 -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="../js/daum.js"></script>
+<!-- DAUM 주소 라이브러리 끝 -->
+
+<div style="background-color: #0277BD; margin-top: -30px; color: white; padding: 20px 200px; align: right; margin-bottom: 20px;">
+	<h5 style="display:inline;">|&nbsp;&nbsp;&nbsp;<b>상품 결제</b>&nbsp;&nbsp;&nbsp;|</h5>
+	<p id ="goShopping" style="display:inline; padding: 8px 15px; border: solid 1px white; font-size: 13px; margin-top: -6px;" class="pull-right">
+		랜덤박스 쇼핑 바로가기
+	</p>
+</div>
 <div class="container">
-	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
-			<h5>|&nbsp;&nbsp;&nbsp;상품 결제&nbsp;&nbsp;&nbsp;|</h5>
-			<br>
-			<p style="font-size: 12px">주문상품과 배송정보를  확인 후 결제해주세요.</p><br>
-	<FORM name="orderConfirmForm" method="post" action="orderDone" modelAttribute="orderConfirmForm">
+	<div>
+		<p style="font-size: 12px">주문상품과 배송정보를  확인 후 결제해주세요.</p><br>
+	<div style="border: 1px; border-color: red;">
+	<form id="orderConfirmForm" method="post" action="orderDone" modelAttribute="orderConfirmForm">
 		<table>
 			<input type="hidden" name="gCode" value="${cDTO.gCode }">
 			<input type="hidden" name="gName" value="${cDTO.gName }">
@@ -25,7 +33,7 @@
 			</tr>
 			<tr>
 				<td>
-					<table class="table"  style="font-size: 12px;">
+					<table class="table" style="font-size: 12px;">
 						<tr>
 							<c:if test="${cDTO.num != 0}">
 								<td  align="center"><strong>주문번호</strong></td>
@@ -35,14 +43,11 @@
 						</tr>
 						<tr>
 							<c:if test="${cDTO.num != 0}">
-								<td  width="80">${cDTO.num }</td>
+								<td width="80">${cDTO.num }</td>
 							</c:if>
-							<td  width="80"><img
-								src="../images/goods/${cDTO.gImage }" border="0" align="center"
-								width="80" /></td>
+							<td width="80"><img src="../images/goods/Koala.jpg" border="0" align="center" width="80" /></td>
 							<td  width="300" style='padding-left: 30px'>${cDTO.gName }</td>
-							<td  align="center" width="110">${cDTO.gPrice }
-								원</td>
+							<td  align="center" width="110">${cDTO.gPrice }원</td>
 						</tr>
 						<tr>
 							<c:if test="${cDTO.num != 0}">
@@ -70,18 +75,19 @@
 						</tr>
 						<tr>
 							<td height="35" >주 소</td>
-							<td height="35" ><input
-								class="input_default" type="text" id="mpost1" size="4"
-								maxlength="3" value="${mDTO.post1 }" readonly="readonly"></input>-
-								<input class="input_default" type="text" id="mpost2" size="4"
-								maxlength="3" value="${mDTO.post2 }" readonly="readonly"></input><br>
-							<input
-								class="form-control" type="text" id="maddress1" size="40"
-								maxlength="200" value="${mDTO.addr1 }" readonly="readonly"></input> <br> <span
-								style="line-height: 10%;"><br></span> 
+							<td height="35" >
+								<div class="form-inline">
+									<input class="form-control" type="text" id="mpost1" size="4"
+									maxlength="3" value="${mDTO.post1 }" readonly="readonly"></input>
+									&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+									<input class="form-control" type="text" id="mpost2" size="4"
+									maxlength="3" value="${mDTO.post2 }" readonly="readonly"></input>
+								</div><br>
+								<input class="form-control" type="text" id="maddress1" size="40"
+								maxlength="200" value="${mDTO.addr1 }" readonly="readonly"></input> <br>
 								<input class="form-control" type="text" id="maddress2"
-								size="40" maxlength="200" value="${mDTO.addr2 }"
-								readonly="readonly"></input></td>
+								size="40" maxlength="200" value="${mDTO.addr2 }" readonly="readonly"></input>
+							</td>
 						</tr>
 						<tr>
 							<td height="35" >휴대전화</td>
@@ -124,14 +130,15 @@
 						<tr>
 							<td height="35" >주 소</td>
 							<td height="35" >
-								<!-- 다음주소 시작--> <input name="post1" id="post1" size="5"
-								readonly=""> - <input name="post2" id="post2" size="5"
-								readonly=""> <input onclick="openDaumPostcode()"
-								type="button" value="우편번호찾기"> <br> <input class="form-control"
-								name="addr1" id="addr1" size="40" readonly=""
-								placeholder="도로명주소"> <br> <span
-								style="line-height: 10%;"><br></span> <input name="addr2" class="form-control"
-								id="addr2" size="40" placeholder="지번주소"> <!-- 다음주소 끝 -->
+								<div class="form-inline">
+									<input class="form-control" name="post1" id="post1" size="5" readonly="">
+									&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+									<input class="form-control" name="post2" id="post2" size="5" readonly="">&nbsp;&nbsp;&nbsp;
+									<input class="btn btn-secondary" onclick="openDaumPostcode()" type="button" value="우편번호찾기">
+								</div><br>
+								<input class="form-control"
+								name="addr1" id="addr1" size="40" readonly="" placeholder="도로명주소"><br>
+								<input name="addr2" class="form-control" id="addr2" size="40" placeholder="지번주소">
 							</td>
 						</tr>
 
@@ -154,10 +161,10 @@
 					<table width="100%" cellspacing="0" cellpadding="0" border="1"
 						style="border-collapse: collapse" bordercolor="#CCCCCC">
 						<tr>
-							<td width="125" height="35" ><input
-								type="radio" name="payMethod" value="신용카드" checked>신용카드</input>
-								<input type="radio" name="payMethod" value="계좌이체">계좌이체</input> <input
-								type="radio" name="payMethod" value="무통장입금">무통장 입금</input></td>
+							<td width="125" height="35" align="center"><input
+								type="radio" name="payMethod" value="신용카드" checked>&nbsp;신용카드</input>&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="payMethod" value="계좌이체">&nbsp;계좌이체</input>&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="payMethod" value="무통장입금">&nbsp;무통장 입금</input></td>
 						</tr>
 					</table>
 				</td>
@@ -171,9 +178,16 @@
 			</tr>
 
 		</table>
-	</FORM>
-</div></div></div>
+	</form>
+	</div>
+</div></div>
 <script>
+
+	/* 쇼핑 바로가기 */
+	$("#goShopping").on("click", function() {
+		$(location).attr("href", "goodsList");
+	});
+
 	function sameAddress(chk) {
 
 		if (chk.checked) {
@@ -199,9 +213,21 @@
 		}
 
 	}
+	
+	$("#orderConfirmForm").on("submit", function(e){
+		if($("#orderName").val().length == 0){
+			alert("배송 받으실 분의 이름을 입력해주세요!");
+			e.preventDefault();
+		} else if($("#post1").val().length == 0){
+			alert("배송 주소를 확인해주세요!");
+			e.preventDefault();
+		} else if($("#addr2").val().length == 0){
+			alert("배송 주소를 확인해주세요!");
+			e.preventDefault();
+		} else if($("#phone").val().length == 0){
+			alert("배송 받으실 분의 전화번호를 입력해주세요!");
+			e.preventDefault();
+		}
+	});
 
-/* 	function orderDone(f) {
-		f.action = "orderDone";
-		f.submit();
-	} */
 </script>

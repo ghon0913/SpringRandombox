@@ -32,4 +32,11 @@ public class GoodsService {
 	public List<GoodsDTO> selectBySellerId(String sellerId) {
 		return dao.selectBySellerId(sellerId);
 	}
+	
+	/* 메인, 최근 등록한 상품 가져오기 */
+	public List<GoodsDTO> newGoods(){
+		
+		List<GoodsDTO> list = dao.newGoods();
+		return list;
+	}
 }

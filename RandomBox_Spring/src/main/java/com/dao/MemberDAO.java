@@ -33,7 +33,7 @@ public class MemberDAO {
 		return template.selectOne("findPasswd",map);
 	}
 	
-	/* 아이디 찾기 */
+	/* 아이디 중복체크 */
 	public boolean idCheck(String userid) {
 
 		String id = template.selectOne("idCheck", userid);
@@ -47,4 +47,17 @@ public class MemberDAO {
 		return ck;
 	}
 	
+	/* 이메일 중복체크 */
+	public boolean emailCheck(String emailChk) {
+
+		String email = template.selectOne("emailCheck", emailChk);
+		boolean ck;
+
+		if (email != null) {
+			ck = true;
+		} else {
+			ck = false;
+		}
+		return ck;
+	}
 }

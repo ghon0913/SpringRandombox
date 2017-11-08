@@ -4,14 +4,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<div style="background-color: #0277BD; margin-top: -30px; color: white; padding: 20px 200px; align: right; margin-bottom: 20px;">
+	<h5 style="display:inline;">|&nbsp;&nbsp;&nbsp;<b>나의 장바구니</b>&nbsp;&nbsp;&nbsp;|</h5>
+	<p id ="goShopping" style="display:inline; padding: 8px 15px; border: solid 1px white; font-size: 13px; margin-top: -6px;" class="pull-right">
+		랜덤박스 쇼핑 바로가기
+	</p>
+</div>
 <div class="container">
-	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
-	<h5>|&nbsp;&nbsp;&nbsp;나의 장바구니&nbsp;&nbsp;&nbsp;|</h5><br>
+	<div>
 	<table class="table table-hover" style="font-size: 12px;">
 		<thead>
-		<tr>
+		<tr style="text-align: center;">
 			<th width="120px"><input type="checkbox" name="allCheck" id="allCheck">&nbsp;&nbsp;<strong>전체선택</strong></th>
 			<th width="90px"><strong>주문번호</strong></th>
 			<th colspan="2"><strong>상품정보</strong></th>
@@ -55,13 +58,11 @@
 						<input type="checkbox" name="check" id="check${xxx.num}" class="check"
 						value="${xxx.num}">
 					</td>
-					<td  width="80" id="num">${xxx.num}</td>
-					<td  width="80"><img
-						src="../images/goods/${xxx.gImage}" border="0" align="center"
-						width="80" /></td>
-					<td  width="300" style='padding-left: 30px; padding-top: 30px;'>${xxx.gName}</td>
-					<td  align="center" width="110"><fmt:formatNumber
-							value="${xxx.gPrice}" type="currency" /></td>
+					<td id="num">${xxx.num}</td>
+					<td width="150"><img src="../images/goods/Koala.jpg" border="0" align="center" width="80px" /></td>
+					<td  width="400" style='padding-left: 20px; padding-top: 30px;'>${xxx.gName}</td>
+					<td  align="center" width="200px">
+						<fmt:formatNumber value="${xxx.gPrice}" type="currency" /></td>
 					<td style='padding-left: 5px'><button style="font-size: 12px;" class="btn btn-outline-success btn-sm" type="button"
 						id="order">주문</button></td>
 					<td style='padding-left: 5px'><button style="font-size: 12px;" class="btn btn-outline-secondary btn-sm delCart" type="button"
@@ -82,11 +83,16 @@
 			</div>
 			
 		</c:if>
-</div></div></div>
+</div></div>
 
 <!--script cartList------------------------------------------------------------------------------------------------------>
 
 <script>
+
+	/* 쇼핑 바로가기 */
+	$("#goShopping").on("click", function() {
+		$(location).attr("href", "goodsList");
+	});
 
 	/* 장바구니 개별 삭제  */
 	$(".delCart").on("click", function() {

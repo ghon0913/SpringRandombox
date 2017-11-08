@@ -40,5 +40,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from goods
 		where gCode = #{gCode}
 	</select>
+	
+	<!-- 메인, 최근 등록한 상품 가져오기 -->
+	<select id="newGoods" resultType="GoodsDTO">
+		<![CDATA[
+		select gcode, gcategory, gname, gimage
+		from goods
+    	where rownum <= 3
+    	order by gCode
+    	]]>
+	</select>
 
 </mapper>

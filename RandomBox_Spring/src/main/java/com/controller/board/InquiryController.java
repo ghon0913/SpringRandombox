@@ -30,7 +30,7 @@ public class InquiryController {
 	@RequestMapping("/inquiryList")
 	public String inquiryList(@RequestParam(required=false) String searchCategory,
 							 @RequestParam(required=false) String searchName,
-							 @RequestParam(required=false) String searchWord ,
+							 @RequestParam(required=false) String searchWord,
 							 @RequestParam(defaultValue="1") String curPage, Model m) {
         
         if(searchCategory != null && searchCategory.equals("all")) {
@@ -44,8 +44,20 @@ public class InquiryController {
 			
 			BoardPageDTO dto = service.inquiryList(Integer.parseInt(curPage), searchMap);
 			
+			int curBlock = ( int )Math.ceil( Double.parseDouble(curPage) / dto.getPerBlock());
+			int startPage = ( curBlock - 1 ) * dto.getPerBlock() + 1;
+			int totalNum = dto.getTotalCount()/dto.getPerPage();
+		    	if(dto.getTotalCount() % dto.getPerPage() != 0) totalNum++;
+			int endPage = startPage + dto.getPerBlock() - 1;
+				if(endPage > totalNum) endPage = totalNum;
+			
+			
+			m.addAttribute("totalNum", totalNum);
+			m.addAttribute("startPage", startPage);
+			m.addAttribute("endPage", endPage);
 			m.addAttribute("boardList", dto);
 			m.addAttribute("chk_inquiryPage", "inquiryList");
+
 			return "inquiry";
 			
 	}
@@ -64,6 +76,7 @@ public class InquiryController {
 		}
 		
 		m.addAttribute("retrieveDTO", dto);
+		System.out.println(dto);
 		m.addAttribute("chk_inquiryPage", "inquiryRetrieve");
 		return "inquiry";
 	}
@@ -121,10 +134,19 @@ public class InquiryController {
 	public String questionList(@RequestParam(defaultValue="1") String curPage,
 							   @RequestParam String gCode, Model m){
 		
-		System.out.println(gCode);
 		BoardPageDTO dto = service.questionList(Integer.parseInt(curPage), gCode);
 		
-		System.out.println(dto.getList());
+		int curBlock = ( int )Math.ceil( Double.parseDouble(curPage) / dto.getPerBlock());
+		int startPage = ( curBlock - 1 ) * dto.getPerBlock() + 1;
+		int totalNum = dto.getTotalCount()/dto.getPerPage();
+	    	if(dto.getTotalCount() % dto.getPerPage() != 0) totalNum++;
+		int endPage = startPage + dto.getPerBlock() - 1;
+			if(endPage > totalNum) endPage = totalNum;
+		
+		
+		m.addAttribute("totalNum", totalNum);
+		m.addAttribute("startPage", startPage);
+		m.addAttribute("endPage", endPage);
 		m.addAttribute("boardList", dto);
 		m.addAttribute("chk_QnAPage", "questionList");
 		return "qnaList";
@@ -153,7 +175,7 @@ public class InquiryController {
 	public String answerWrite(@ModelAttribute("answerForm") AnswerDTO dto) {
 		
 		service.answerWrite(dto, dto.getBoardNum());
-		return "redirect:/questionList.do";
+		return "redirect:/loginchk/questionList.do";
 	}
 	
 	/* 답변수정 */

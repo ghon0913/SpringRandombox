@@ -10,8 +10,8 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <div>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="home"><img
-			src="/app/images/logo.jpg" width="150" height="150" align="left"></a>
+		<a class="navbar-brand" href="/app/home"><img
+			src="/app/images/logo.jpg" width="120" height="120" align="left"></a>
 
 		<div align="left">
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">

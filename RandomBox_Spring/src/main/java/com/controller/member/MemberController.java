@@ -51,10 +51,28 @@ public class MemberController {
 		String mesg = "사용가능";
 		boolean ck = service.idCheck(userid);
 		
+		System.out.println(ck);
 		if(ck) {
+			mesg = "아이디 중복";
 			return mesg;
 		}else {
-			mesg = "아이디 중복";
+			return mesg;
+		}
+	}
+	
+	/* 이메일 중복 검사 */
+	@RequestMapping(value="/emailCheck", method=RequestMethod.POST, produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String emailCheck(@RequestParam String emailChk) {
+		
+		String mesg = "사용가능";
+		boolean ck = service.emailCheck(emailChk);
+		
+		System.out.println(ck);
+		if(ck) {
+			mesg = "이메일 중복";
+			return mesg;
+		}else {
 			return mesg;
 		}
 	}

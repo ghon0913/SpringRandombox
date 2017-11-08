@@ -1,6 +1,7 @@
 package com.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,6 +56,13 @@ public class ReviewService {
 	/* 후기글 작성하기 */
 	public void reviewWrite(BoardDTO dto) {
 		dao.reviewWrite(dto);
+	}
+	
+	/* 메인, 조회수 높은 글 불러오기 */
+	public List<BoardDTO> orderByReadCnt(){
+		
+		List<BoardDTO> list = dao.orderByReadCnt();
+		return list;
 	}
 	
 }
