@@ -21,5 +21,8 @@
 		<c:if test="${chk_inquiryPage == 'inquiryRetrieve' }">
 			<jsp:include page="board/inquiryRetrieve.jsp" flush="true" /><br>
 		</c:if>
+		<c:if test="${chk_inquiryPage == 'inquiryMain' }">
+			<jsp:include page="board/inquiryMain.jsp" flush="true" /><br>
+		</c:if>
 </body>
 </html>

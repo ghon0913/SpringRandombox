@@ -69,18 +69,13 @@
 </div>
 
 <script>
-	$(document).ready(
-			function() {
+	$(document).ready(function() {
 
-				/* 후기작성하기 */
-				$(".reviewWrite").on("click",function() {
-							var gCode = $(this).parent().siblings("#gCode")
-									.val();
-							var gPrice = $(this).parent().siblings("#gPrice")
-									.val();
-							$(location).attr("href",
-									"reviewForm?gCode=" + gCode
-											+ "&gPrice=" + gPrice);
-						});
-			});
+		/* 후기작성하기 */
+		$(".reviewWrite").on("click",function() {
+			var gCode = $(this).parent().siblings("#gCode").val();
+			var gPrice = $(this).parent().siblings("#gPrice").val();
+				$(location).attr("href","reviewForm?gCode=" + gCode + "&gPrice=" + gPrice);
+		});
+	});
 </script>

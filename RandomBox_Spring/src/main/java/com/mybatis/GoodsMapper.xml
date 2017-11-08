@@ -45,9 +45,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="newGoods" resultType="GoodsDTO">
 		<![CDATA[
 		select gcode, gcategory, gname, gimage
-		from goods
-    	where rownum <= 3
-    	order by gCode
+		from (select * from goods order by gCode)
+    	where rownum <= 4
     	]]>
 	</select>
 

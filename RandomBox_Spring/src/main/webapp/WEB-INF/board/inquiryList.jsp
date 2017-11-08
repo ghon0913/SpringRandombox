@@ -29,6 +29,7 @@
 			</div>
 			<div class="col-md-9" align="right">
 				<input class="btn btn-success" type="button" id="inquiry" value="문의하기">
+				<input class="btn btn-outline-success" type="button" id="inquiryMain" value="자주하는 질문">
 			</div>
 	</div>
 			<br>
@@ -115,17 +116,20 @@
 					$(location).attr("href", "loginchk/inquiryForm");
 				});
 				
+				/* 자주하는 질문 */
+				$("#inquiryMain").on("click", function() {
+					$(location).attr("href", "inquiryMain");
+				});
+				
 				/* 쇼핑 바로가기 */
 				$("#goShopping").on("click", function() {
 					$(location).attr("href", "goodsList");
 				});
 
 				/* 카테고리별로 보기 */
-				$("#searchCategory").on(
-						"change",
-						function() {
-							var searchCategory = $("option:selected").val();
-							$(location).attr("href","inquiryList?searchCategory="+ searchCategory);
-						});
+				$("#searchCategory").on("change", function() {
+						var searchCategory = $("option:selected").val();
+						$(location).attr("href","inquiryList?searchCategory="+ searchCategory);
+					});
 				});
 </script>

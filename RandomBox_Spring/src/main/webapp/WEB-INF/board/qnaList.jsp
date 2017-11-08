@@ -9,6 +9,7 @@
 </div>
 <div class="container">
 	<div>
+	<button class="btn btn-outline-secondary pull-right" id="goGoodsList">등록 상품 목록</button><br><br><br>
 	<table class="table table-hover" style="font-size: 12px;">
 	<thead>
 		<tr>
@@ -36,7 +37,7 @@
 					<td style="text-align: center;">${bList.num }</td>
 					<td style="text-align: center;">${bList.category }</td>
 					<td style="padding-left: 30px">
-							<a href="answerForm?num=${bList.num }">${bList.title }</a>
+						<a href="answerForm?num=${bList.num }">${bList.title }</a>
 					</td>
 					<td style="text-align: center;">${bList.writeDay }</td>
 					<td style="text-align: center;">${bList.userId }</td>
@@ -58,3 +59,8 @@
 	</table>
 </div>
 </div>
+<script>
+	$("#goGoodsList").on("click", function(){
+		window.history.back();
+	});
+</script>

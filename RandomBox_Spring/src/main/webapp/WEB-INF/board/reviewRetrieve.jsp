@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
 <div style="background-color: #0277BD; margin-top: -30px; color: white; padding: 20px 200px; align: right; margin-bottom: 20px;">
 	<h5 style="display:inline;">|&nbsp;&nbsp;&nbsp;<b>랜덤박스 후기</b>&nbsp;&nbsp;&nbsp;|</h5>
 	<p id ="goShopping" style="display:inline; padding: 8px 15px; border: solid 1px white; font-size: 13px; margin-top: -6px;" class="pull-right">
@@ -12,7 +11,12 @@
 </div>
 <div class="container">
 	<div>
-		<form action="loginchk/reviewUpdate" method="post" id="reviewRetrieveForm" modelAtrribute="reviewRetrieveForm">
+		<c:if test="${atMyPage == true }">
+			<form action="reviewUpdate" method="post" id="reviewRetrieveForm" modelAtrribute="reviewRetrieveForm">
+		</c:if>
+		<c:if test="${atMyPage != true }">
+			<form action="loginchk/reviewUpdate" method="post" id="reviewRetrieveForm" modelAtrribute="reviewRetrieveForm">
+		</c:if>
 			<table class="table" style="font-size: 12px;">
 				<tr>
 					<td><b>글번호 :</b>&nbsp;&nbsp;&nbsp; ${retrieveDTO.num }<input type="hidden" name="num"

@@ -175,7 +175,7 @@ public class InquiryController {
 	public String answerWrite(@ModelAttribute("answerForm") AnswerDTO dto) {
 		
 		service.answerWrite(dto, dto.getBoardNum());
-		return "redirect:/loginchk/questionList.do";
+		return "redirect:/loginchk/goodsinfo";
 	}
 	
 	/* 답변수정 */
@@ -190,7 +190,15 @@ public class InquiryController {
 		service.answerUpdate(map);
 		m.addAttribute("result", "success");
 		redirectAttrs.addAttribute("num", dto.getBoardNum());
-		return "redirect:/inquiryRetrieve.do";
+		return "redirect:/loginchk/goodsinfo";
+	}
+	
+	/* 자주하는 질문 */
+	@RequestMapping("/inquiryMain")
+	public String inquiryMain(Model m) {
+		
+		m.addAttribute("chk_inquiryPage", "inquiryMain");		
+		return "inquiry";
 	}
 	
 }
