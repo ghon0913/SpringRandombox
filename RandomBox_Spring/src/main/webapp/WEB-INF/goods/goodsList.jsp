@@ -16,18 +16,25 @@
 <!-- Tab panels -->
 <div class="tab-content card">
 	<!--Panel 1-->
-	<div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+	<div class="tab-pane fade in show active" id="panel1" role="tabpanel"
+		align="center">
 		<br>
-		<p>
-			구성품(총16개의 상품)<br>
-			<c:forEach var="list16" items="${sessionScope.goodsList16}">
-							${list16.gName} &nbsp;
-						</c:forEach>
-		</p>
+		<img src="images/items/basicImage.png" border="0" width="200"
+			data-toggle="tooltip" data-placement="top"
+			title="상품구성: <c:forEach var="list16" items="${sessionScope.goodsList16}" varStatus="status">${list16.gName}<c:if test="${status.index!=15}">, </c:if></c:forEach>">
 
-		<a href="goodsMixList"><input type="button" value="새로 구성하기" /></a> <input
-			type="button" id="cartAdd" value="장바구니 넣기" /> <input type="button"
-			id="orderAdd" value="주문하기" />
+		<br>
+		
+		<p style="font-size: 100px; font-style: italic">${randomGoods.gPrice}원
+			!!!</p>
+		<br>
+		<br>
+		<table border="1">
+
+		</table>
+		<a href="goodsMixList"><input type="button" value="새로 구성하기" class="btn btn-primary"/></a> <input
+			type="button" id="cartAdd" value="장바구니 넣기" class="btn btn-primary"/> <input type="button"
+			id="orderAdd" value="주문하기" class="btn btn-primary"/>
 	</div>
 	<!--/.Panel 1-->
 	<!--Panel 2-->
@@ -55,68 +62,23 @@
 </div>
 
 
-<table width="100%" cellspacing="0" cellpadding="0">
-	<tr height="10" />
 
-	<tr>
-		<td>
-			<table align="center" width="710" cellspacing="0" cellpadding="0"
-				border=1>
+<form id="randomGoodsForm" modelAttribute="randomGoodsForm">
+	<input type="hidden" name="gCode" value="${randomGoods.gCode }">
+	<input type="hidden" name="userId"
+		value="${sessionScope.login.userid }"> <input type="hidden"
+		name="gName" value="${randomGoods.gName }"> <input
+		type="hidden" name="gPrice" value="${randomGoods.gPrice }"> <input
+		type="hidden" name="gImage" value="${randomGoods.gImage }"> <input
+		type="hidden" name="sellerId" value="${randomGoods.sellerId }">
+	<input type="hidden" name="gCategory" value="전체 카테고리">
+</form>
 
-				<tr height="30">
-					<td align="center"><a href="home.jsp">구매페이지</a></td>
-					<td align="center"><a href="goodsRetrieve">상품설명</a></td>
-					<td align="center"><a href="goodsReviewList">후기</a></td>
-				</tr>
-				<tr>
-
-					<td colspan="3" align="center">
-						<table style='padding: 15px'>
-
-							<tr>
-								<td><a href=""> <img src="images/items/basicImage.png"
-										border="0" width="200">
-								</a></td>
-								<td>
-									<form id="randomGoodsForm" modelAttribute="randomGoodsForm">
-										<input type="hidden" name="gCode"
-											value="${randomGoods.gCode }"> <input type="hidden"
-											name="userId" value="${sessionScope.login.userid }">
-										<input type="hidden" name="gName"
-											value="${randomGoods.gName }"> <input type="hidden"
-											name="gPrice" value="${randomGoods.gPrice }"> <input
-											type="hidden" name="gImage" value="${randomGoods.gImage }">
-										<input type="hidden" name="sellerId"
-											value="${randomGoods.sellerId }"> <input
-											type="hidden" name="gCategory" value="전체 카테고리">
-									</form>
-								</td>
-							</tr>
-
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="3">구성품(총16개의 상품)<br> <c:forEach var="list16"
-							items="${sessionScope.goodsList16}">
-							${list16.gName} &nbsp;
-						</c:forEach>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="3" align="center"><a href="goodsMixList"><input
-							type="button" value="새로 구성하기" /></a> <input type="button"
-						id="cartAdd" value="장바구니 넣기" /> <input type="button"
-						id="orderAdd" value="주문하기" /></td>
-				</tr>
-
-				<tr height="10" />
-			</table>
-	<tr height="10" />
-</table>
 
 <script type="text/javascript" src="jquery-3.2.1.js"></script>
 <script>
+
+
 	$(window).on("load",function(){
 		if(${empty sessionScope.goodsList16}){
 			$(location).attr("href", "goodsList");
@@ -136,5 +98,7 @@
 			$("#randomGoodsForm").attr("action", "loginchk/orderAdd");
 			$("#randomGoodsForm").submit();		
 	});
+	
+	
 
 </script>

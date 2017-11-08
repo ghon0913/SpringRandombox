@@ -5,22 +5,21 @@
 	pageEncoding="UTF-8"%>
 <div align="center" class="container">
 	<div class="row">
-		<table class="table table-hover" >
-			
+		<table class="table table-hover">
+
 			<tr>
 				<td colspan="3" align="center">기간별조회<br>&nbsp;
-				 <form action="orderinfodatepage">
-				&nbsp; <input type="date" name="startdate">
-					<br>- <input type="date" name="finaldate"><br><input class="btn btn-success" type="submit">
-				</form>
+					<form action="orderinfodatepage">
+						&nbsp; <input type="date" name="startdate"> <br>- <input
+							type="date" name="finaldate"><br>
+						<input class="btn btn-success" type="submit">
+					</form>
 				</td>
-		
-			
-			
 
 				<td colspan="10">
-					<form action="orderinfoperpage"><br><br>
-						<select class="form-control" name="perPage">
+					<form action="orderinfoperpage">
+						<br>
+						<br> <select class="form-control" name="perPage">
 							<!-- change함수주기 -->
 							<option value="3">3개</option>
 							<option value="5">5개</option>
@@ -65,7 +64,7 @@
 				</tr>
 			</c:if>
 		</table>
-</div>
+	</div>
 </div>
 
 <script>

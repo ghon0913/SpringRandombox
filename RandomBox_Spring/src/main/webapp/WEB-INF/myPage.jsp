@@ -4,8 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<link href="/app/js/bootstrap-4.0.0-beta-dist/css/bootstrap.min.css" rel="stylesheet" />
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,52 +11,52 @@
 <title>마이페이지</title>
 </head>
 <body>
+
 	<jsp:include page="include/top.jsp" flush="true" />
 
+	<div class="contatiner">
+		${login.username} 님 안녕하세요. <br />
+		<table align="center">
+			<c:if test="${login.ox=='N'}">
+				<tr>
+					<td style="padding: 2px;"><button id="userinfo1"
+							class="btn btn-info btn-block" aria-pressed="true">회원정보</button></td>
+					<td style="padding: 2px;"><button id="orderinfo"
+							class="btn btn-info btn-block" aria-pressed="true">주문내역</button></td>
+					<td style="padding: 2px;"><button id="myboard"
+							class="btn btn-info btn-block" aria-pressed="true">내가쓴글</button></td>
+				</tr>
+			</c:if>
 
-	${login.username} 님 안녕하세요.
-	<br />
-	<table align="center">
-		<c:if test="${login.ox=='N'}">
-			<tr>
-				<td style="padding: 2px;"><button id="userinfo1"
-						class="btn btn-info btn-block" aria-pressed="true">회원정보</button></td>
-				<td style="padding: 2px;"><button id="orderinfo"
-						class="btn btn-info btn-block" aria-pressed="true">주문내역</button></td>
-				<td style="padding: 2px;"><button id="myboard"
-						class="btn btn-info btn-block" aria-pressed="true">내가쓴글</button></td>
-			</tr>
+
+			<c:if test="${login.ox=='Y'}">
+				<tr>
+					<td style="padding: 2px;"><button id="userinfo2"
+							class="btn btn-info btn-block" aria-pressed="true">회원정보</button></td>
+					<td style="padding: 2px;"><button id="orderinfo"
+							class="btn btn-info btn-block" aria-pressed="true">매출정보</button></td>
+					<td style="padding: 2px;"><button id="goodsinfo"
+							class="btn btn-info btn-block" aria-pressed="true">상품목록</button></td>
+				</tr>
+			</c:if>
+
+			<c:if test="${login.ox=='Z'}">
+				<tr>
+					<td style="padding: 2px;"><button id="salesStatus"
+							class="btn btn-info btn-block" aria-pressed="true">매출현황</button></td>
+					<td style="padding: 2px;"><button id="userInfo"
+							class="btn btn-info btn-block" aria-pressed="true">회원관리</button></td>
+					<td style="padding: 2px;"><button id="goodsinfo1"
+							class="btn btn-info btn-block" aria-pressed="true">상품관리</button></td>
+				</tr>
+			</c:if>
+		</table>
+		<hr />
+
+		<c:if test="${!empty requestScope.page}">
+			<jsp:include page="${page}" />
 		</c:if>
-
-
-		<c:if test="${login.ox=='Y'}">
-			<tr>
-				<td style="padding: 2px;"><button id="userinfo2"
-						class="btn btn-info btn-block" aria-pressed="true">회원정보</button></td>
-				<td style="padding: 2px;"><button id="orderinfo"
-						class="btn btn-info btn-block" aria-pressed="true">매출정보</button></td>
-				<td style="padding: 2px;"><button id="goodsinfo"
-						class="btn btn-info btn-block" aria-pressed="true">상품목록</button></td>
-			</tr>
-		</c:if>
-
-		<c:if test="${login.ox=='Z'}">
-			<tr>
-				<td style="padding: 2px;"><button id="salesStatus"
-						class="btn btn-info btn-block" aria-pressed="true">매출현황</button></td>
-				<td style="padding: 2px;"><button id="userInfo"
-						class="btn btn-info btn-block" aria-pressed="true">회원관리</button></td>
-				<td style="padding: 2px;"><button id="goodsinfo1"
-						class="btn btn-info btn-block" aria-pressed="true">상품관리</button></td>
-			</tr>
-		</c:if>
-	</table>
-	<hr />
-
-	<c:if test="${!empty requestScope.page}">
-		<jsp:include page="${page}" />
-	</c:if>
-
+	</div>
 </body>
 </html>
 <c:if test="${!empty requestScope.userInfoUpdate}">
