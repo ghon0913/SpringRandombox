@@ -149,6 +149,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from board
 		where gCode = #{gCode}
 		and state = '처리중' or state = '답변완료'
+		order by num desc
 		
 	</select>
 	
@@ -187,4 +188,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from answer
 		where boardnum = #{num}
 	</select>
+	
+	<!-- 메인, 조회수 높은 글 -->
+	<select id="orderByReadCnt" resultType="BoardDTO">
+		<![CDATA[
+		select category, title, readcnt
+		from board
+		where state ='상품후기'
+		and rownum <= 3
+		order by readcnt desc
+		]]>
+	</select>
+
 </mapper>

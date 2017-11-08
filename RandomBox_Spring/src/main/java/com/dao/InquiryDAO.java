@@ -34,6 +34,10 @@ public class InquiryDAO {
         dto.setList(list);
         dto.setCurPage(curPage);
         dto.setTotalCount(totalCount);
+        dto.setSearchName(searchMap.get("searchName"));
+        dto.setSearchValue(searchMap.get("searchValue"));
+        
+        System.out.println(dto);
         
         return dto;
 	}
@@ -86,18 +90,12 @@ public class InquiryDAO {
         int length = dto.getPerPage();
         List<BoardDTO> list = template.selectList("questionList", gCode);
         
-        for (BoardDTO boardDTO : list) {
-			System.out.println(boardDTO);
-		}
-        
         int totalCount = template.selectOne("questionList_totalCount", gCode);
         
         //pageDTO에 4개의 저장
         dto.setList(list);
         dto.setCurPage(curPage);
         dto.setTotalCount(totalCount);
-        
-        System.out.println(dto.getList()+"dao");
         
         return dto;
 	}

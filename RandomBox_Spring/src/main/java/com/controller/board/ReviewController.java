@@ -1,6 +1,7 @@
 package com.controller.board;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,6 @@ public class ReviewController {
 							 @RequestParam(required=false) String searchName,
 							 @RequestParam(required=false) String searchWord,
 							 @RequestParam(defaultValue="1") String curPage, Model m) {
-		
-        if(curPage == null) {
-               curPage = "1";
-        }
         
         if(searchCategory != null && searchCategory.equals("all")) {
         	searchCategory = null;
@@ -44,6 +41,16 @@ public class ReviewController {
 			
 			BoardPageDTO dto = service.reviewList(Integer.parseInt(curPage), searchMap);
 			
+			int curBlock = ( int )Math.ceil( Double.parseDouble(curPage) / dto.getPerBlock());
+			int startPage = ( curBlock - 1 ) * dto.getPerBlock() + 1;
+			int totalNum = dto.getTotalCount()/dto.getPerPage();
+		    	if(dto.getTotalCount() % dto.getPerPage() != 0) totalNum++;
+			int endPage = startPage + dto.getPerBlock() - 1;
+				if(endPage > totalNum) endPage = totalNum;
+			
+			m.addAttribute("totalNum", totalNum);
+			m.addAttribute("startPage", startPage);
+			m.addAttribute("endPage", endPage);
 			m.addAttribute("boardList", dto);
 			m.addAttribute("chk_reviewPage", "reviewList");
 			return "review";
@@ -118,7 +125,17 @@ public class ReviewController {
 		
 		service.reviewWrite(dto);
 		
-		return "redirect:/reviewList.do";
+		return "redirect:/loginchk/orderinfo";
+	}
+	
+	/* 메인, 조회수 높은 글 불러오기 */
+	@RequestMapping("")
+	public String orderByReadCnt(Model m) {
+		
+		List<BoardDTO> list = service.orderByReadCnt();
+		m.addAttribute("reviewList", list);
+		
+		return "main";
 	}
 	
 }

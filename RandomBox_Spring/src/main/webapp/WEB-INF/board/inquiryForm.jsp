@@ -4,11 +4,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<div style="background-color: #0277BD; margin-top: -30px; color: white; padding: 20px 200px; align: right; margin-bottom: 20px;">
+	<h5 style="display:inline;">|&nbsp;&nbsp;&nbsp;<b>Q & A</b>&nbsp;&nbsp;&nbsp;|</h5>
+	<p id ="goShopping" style="display:inline; padding: 8px 15px; border: solid 1px white; font-size: 13px; margin-top: -6px;" class="pull-right">
+		랜덤박스 쇼핑 바로가기
+	</p>
+</div>
 <div class="container">
-	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
-	<h5>|&nbsp;&nbsp;&nbsp;문의글 쓰기&nbsp;&nbsp;&nbsp;|</h5><br>
+	<div>
 	<form id="inquiryWriteForm" action="inquiryWrite" method="post" modelAttribute="inquiryWriteForm">
 		<table class="table" style="font-size: 12px;">
 			<input type="hidden" name="userId" value="${sessionScope.login.userid }">
@@ -58,7 +61,7 @@
 			</tr>
 			<tr>
 				<th>문의 내용 :</th>
-				<td><textarea class="form-control" rows="10" cols="30" name="content" id="content"></textarea></td>
+				<td><textarea class="form-control" rows="8" cols="30" name="content" id="content"></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
@@ -69,10 +72,15 @@
 		</table>
 	</form>
 </div>
-</div></div>
+</div>
 <script>
 $(document).ready(function(){
 
+	/* 쇼핑 바로가기 */
+	$("#goShopping").on("click", function() {
+		$(location).attr("href", "goodsList");
+	});
+	
 	/* 목록보기 */
 	$("#inquiryList").on("click", function(){
 		$(location).attr("href", "inquiryList");

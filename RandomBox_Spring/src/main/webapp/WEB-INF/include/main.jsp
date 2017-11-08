@@ -4,8 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <div class="container" style="margin-top: -23px;">
-	<div class="row">
-		<div class="col-md-6">
 			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 			  <ol class="carousel-indicators">
 			    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -17,7 +15,7 @@
 			      <img class="d-block img-fluid" src="images/main1.jpg" alt="First slide" width="100%">
 			    </div>
 			    <div class="carousel-item">
-			      <img class="d-block img-fluid" src="images/main2.jpg" alt="Second slide" width="100%"">
+			      <img class="d-block img-fluid" src="images/main2.jpg" alt="Second slide" width="100%">
 			    </div>
 			    <div class="carousel-item">
 			      <img class="d-block img-fluid" src="images/main3.jpg" alt="Third slide" width="100%">
@@ -32,8 +30,23 @@
 			    <span class="sr-only">Next</span>
 			  </a>
 			</div>
-		</div>
-		<div class="col-md-6" style="background-color: #F0F4C3;">
-		</div>
-	</div>
+			
+			<div class="row" style="margin-top: 15px;">
+				<div class="col-md-4">
+					<span class="fa fa-quote-left" aria-hidden="true"></span>&nbsp;인기후기글
+				</div>
+				<div class="col-md-4">
+					<span class="fa fa-quote-left" aria-hidden="true"></span>&nbsp;최근 등록된 상품
+				</div>
+				<div class="col-md-4">
+					<span class="fa fa-quote-left" aria-hidden="true"></span>&nbsp;자주하는 질문
+				</div>
+			</div>
 </div>
+<script>
+	$(window).on("load",function(){
+		if(${empty reviewList}){
+			$(location).attr("href", "goodsList");
+		}
+	});
+</script>

@@ -4,13 +4,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<div style="background-color: #0277BD; margin-top: -30px; color: white; padding: 20px 200px; align: right; margin-bottom: 20px;">
+	<h5 style="display:inline;">|&nbsp;&nbsp;&nbsp;<b>랜덤박스 후기</b>&nbsp;&nbsp;&nbsp;|</h5>
+	<p id ="goShopping" style="display:inline; padding: 8px 15px; border: solid 1px white; font-size: 13px; margin-top: -6px;" class="pull-right">
+		랜덤박스 쇼핑 바로가기
+	</p>
+</div>
 <div class="container">
-	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
-			<h5>|&nbsp;&nbsp;&nbsp;상품 후기&nbsp;&nbsp;&nbsp;|</h5>
-			<br>
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<select class="form-control" id="searchCategory"
 					name="searchCategory" style="font-size: 12px;">
 					<option>카테고리별로 보기</option>
@@ -28,12 +29,12 @@
 			<table class="table table-hover" style="font-size: 12px;">
 				<thead>
 				<tr>
-					<th style="text-align: center;" width="70">글번호</th>
-					<th style="text-align: center;" width="110">카테고리</th>
+					<th style="text-align: center;" width="100">글번호</th>
+					<th style="text-align: center;" width="150">카테고리</th>
 					<th style="text-align: center;">제목</th>
-					<th style="text-align: center;" width="90">작성일</th>
-					<th style="text-align: center;" width="80">작성자</th>
-					<th style="text-align: center;" width="70">조회수</th>
+					<th style="text-align: center;" width="100">작성일</th>
+					<th style="text-align: center;" width="100">작성자</th>
+					<th style="text-align: center;" width="80">조회수</th>
 				</tr>
 				</thead>
 				<!-- ----------------------------------------------------------------리스트 목록 없을 때 -------------------------------->
@@ -64,40 +65,42 @@
 							</jsp:include>
 						</td>
 					</tr>
+					<tr>
+						<td align="center" colspan="7">
+							<div align="center">
+								<form action="reviewList" class="form-inline">
+									<select class="form-control" id="searchName" name="searchName"
+										style="font-size: 12px;">
+										<option value="title">제목으로 검색</option>
+										<option value="content">내용으로 검색</option>
+									</select>
+									&nbsp;&nbsp;&nbsp;
+									<input class="form-control" type="text" id="searchWord"
+											name="searchWord">
+									&nbsp;&nbsp;&nbsp;
+									<input class="btn btn-success" type="submit" value="검색">
+								</form>
+							</div>
+						</td>
+					</tr>
 					</tfoot>
 				</c:if>
 			</table>
-			<form action="reviewList">
-				<div class="row" align="center">
-					<div class="col-xs-3">
-						<select class="form-control" id="searchName" name="searchName"
-							style="font-size: 12px;">
-							<option value="title">제목으로 검색</option>
-							<option value="content">내용으로 검색</option>
-						</select>
-					</div>
-					&nbsp;&nbsp;&nbsp;
-					<div class="col-xs-4">
-						<input class="form-control" type="text" id="searchWord"
-							name="searchWord">
-					</div>
-					&nbsp;&nbsp;&nbsp;
-					<div class="col-xs-3">
-						<input class="btn btn-success" type="submit" value="검색">
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
 </div>
+
 
 <script>
 	$(document).ready(function() {
 
-				/* 카테고리별로 보기 */
-				$("#searchCategory").on("change",function() {
-					var searchCategory = $("option:selected").val();
-					$(location).attr("href","reviewList?searchCategory="+ searchCategory);
-				});
+		/* 쇼핑 바로가기 */
+		$("#goShopping").on("click", function() {
+			$(location).attr("href", "goodsList");
+		});
+		
+		/* 카테고리별로 보기 */
+		$("#searchCategory").on("change",function() {
+			var searchCategory = $("option:selected").val();
+			$(location).attr("href","reviewList?searchCategory="+ searchCategory);
+		});
 	});
 </script>

@@ -8,11 +8,14 @@
 			alert("정상적으로 수정되었습니다.");
 		</script>
 </c:if>
+<div style="background-color: #0277BD; margin-top: -30px; color: white; padding: 20px 200px; align: right; margin-bottom: 20px;">
+	<h5 style="display:inline;">|&nbsp;&nbsp;&nbsp;<b>Q & A</b>&nbsp;&nbsp;&nbsp;|</h5>
+	<p id ="goShopping" style="display:inline; padding: 8px 15px; border: solid 1px white; font-size: 13px; margin-top: -6px;" class="pull-right">
+		랜덤박스 쇼핑 바로가기
+	</p>
+</div>
 <div class="container">
-	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
-		<h5>|&nbsp;&nbsp;&nbsp;Q & A&nbsp;&nbsp;&nbsp;|</h5><br>
+	<div>
 	<form action="loginchk/inquiryUpdate" method="post" id="inquiryRetrieveForm" modelAttribute="inquiryRetrieveForm">
 		<table class="table" style="font-size: 12px;">
 			<tr>
@@ -29,9 +32,11 @@
 			</tr>
 			<tr>
 				<td><b>상품 카테고리 :</b>&nbsp;&nbsp;&nbsp; ${retrieveDTO.category }</td>
-			<c:if test="${(retrieveDTO.gCode != 'admin') && !empty retrieveDTO.gCode}">
-				<td><b>문의 상품 :</b>&nbsp;&nbsp;&nbsp;${retrieveDTO.gCode }</td>
-			</c:if>
+				<td>
+					<c:if test="${(retrieveDTO.gCode != 'admin') && !empty retrieveDTO.gCode}">
+						<b>문의 상품 :</b>&nbsp;&nbsp;&nbsp;${retrieveDTO.gCode }
+					</c:if>
+				</td>
 				<td></td>
 			</tr>
 		</table>
@@ -48,31 +53,31 @@
 				</tr>
 				<tr>
 					<td><b>문의 내용 :</b></td>
-					<td><textarea class="form-control" rows="10" cols="50" name="content" id="content">${retrieveDTO.content }</textarea></td>
+					<td><textarea class="form-control" rows="6" cols="50" name="content" id="content">${retrieveDTO.content }</textarea></td>
 				</tr>
 			</c:if>
 			<c:if test="${retrieveDTO.userId != sessionScope.login.userid}">
 				<tr >
-					<td>제목 : </td>
+					<td><b>제목 : </b></td>
 					<td><input class="form-control" type="text" name="title" id="title" readonly="readonly" value="${retrieveDTO.title }"></td>
 				</tr>
 				<tr id="content">
-					<td>문의 내용 :</td>
-					<td><textarea class="form-control" rows="10" cols="50" name="content" id="content" readonly="readonly">${retrieveDTO.content }</textarea></td>
+					<td><b>문의 내용 :</b></td>
+					<td><textarea class="form-control" rows="6" cols="50" name="content" id="content" readonly="readonly">${retrieveDTO.content }</textarea></td>
 				</tr>
 			</c:if>
 <!-- 답변 내용	//////////////////////////////////////////////////////////////////////////////////////// -->
 				<c:if test="${ ! empty answerDTO}">
 					<c:if test="${ answerDTO.sellerId == sessionScope.login.userid}">
 						<tr>
-							<td>답변 내용 :</td>
-							<td><textarea class="form-control" rows="10" cols="50" name="answer" id="answer">${answerDTO.answer }</textarea></td>
+							<td><b>답변 내용 :</b></td>
+							<td><textarea class="form-control" rows="6" cols="50" name="answer" id="answer">${answerDTO.answer }</textarea></td>
 						</tr>					
 					</c:if>
 					<c:if test="${ answerDTO.sellerId != sessionScope.login.userid}">
 						<tr>
-							<td>답변 내용 :</td>
-							<td><textarea class="form-control" rows="10" cols="50" readonly="readonly">${answerDTO.answer }</textarea></td>
+							<td><b>답변 내용 :</b></td>
+							<td><textarea class="form-control" rows="6" cols="50" readonly="readonly">${answerDTO.answer }</textarea></td>
 						</tr>					
 					</c:if>
 				</c:if>
@@ -102,11 +107,15 @@
 	</form>
 </div>
 </div>
-</div>
 <script>
 
 $(document).ready(function(){
 
+	/* 쇼핑 바로가기 */
+	$("#goShopping").on("click", function() {
+		$(location).attr("href", "goodsList");
+	});
+	
 	/* 목록보기 */
 	$("#inquiryList").on("click", function(){
 		window.history.back();
@@ -164,7 +173,7 @@ $(document).ready(function(){
 	/* 문의사항 선택 확인  */
 	$("#inquiryRetrieveForm").on("submit", function(e){
 		
-		if(${ answerDTO.sellerId} != ${sessionScope.login.userid}){
+		if(${ answerDTO.sellerId != sessionScope.login.userid}){
 			if($("#title").val().length==0){
 				alert("제목을 입력해 주세요!");
 				e.preventDefault();

@@ -69,4 +69,11 @@ public class ReviewDAO {
 	public void reviewWrite(BoardDTO dto) {
 		template.insert("boardWrite", dto);
 	}
+	
+	/* 메인, 조회수 높은 글 불러오기 */
+	public List<BoardDTO> orderByReadCnt(){
+		
+		List<BoardDTO> list = template.selectList("orderByReadCnt");
+		return list;
+	}
 }

@@ -7,7 +7,10 @@ public class BoardPageDTO {
 	private List<BoardDTO> list;
 	private int curPage;
 	private int totalCount;
-	private int perPage=8;
+	private int perPage = 6 ;
+	private int perBlock = 5;
+	private String searchName;
+	private String searchValue;
 	
 	public BoardPageDTO() {
 		super();
@@ -46,4 +49,35 @@ public class BoardPageDTO {
 		this.perPage = perPage;
 	}
 
+	public int getPerBlock() {
+		return perBlock;
+	}
+
+	public void setPerBlock(int perBlock) {
+		this.perBlock = perBlock;
+	}
+
+	public String getSearchName() {
+		return searchName;
+	}
+
+	public void setSearchName(String searchName) {
+		this.searchName = searchName;
+	}
+
+	public String getSearchValue() {
+		return searchValue;
+	}
+
+	public void setSearchValue(String searchValue) {
+		this.searchValue = searchValue;
+	}
+
+	@Override
+	public String toString() {
+		return "BoardPageDTO [list=" + list + ", curPage=" + curPage + ", totalCount=" + totalCount + ", perPage="
+				+ perPage + ", perBlock=" + perBlock + ", searchName=" + searchName + ", searchValue=" + searchValue
+				+ "]";
+	}
+	
 }
