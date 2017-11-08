@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
 import com.dto.GoodsDTO;
+import com.service.GoodsService;
 import com.service.ReviewService;
 
 @Controller
@@ -22,6 +23,9 @@ public class ReviewController {
 
 	@Autowired
 	ReviewService service;
+	
+	@Autowired
+	GoodsService g_service;
 	
 	/* 후기게시판 리스트 */
 	@RequestMapping("/reviewList")
@@ -129,13 +133,16 @@ public class ReviewController {
 	}
 	
 	/* 메인, 조회수 높은 글 불러오기 */
-	@RequestMapping("")
-	public String orderByReadCnt(Model m) {
+	@RequestMapping("/mainList")
+	public String mainList(Model m) {
 		
 		List<BoardDTO> list = service.orderByReadCnt();
 		m.addAttribute("reviewList", list);
 		
-		return "main";
+		List<GoodsDTO> g_list = g_service.newGoods();
+		m.addAttribute("goodsList", g_list);
+
+		return "home";
 	}
 	
 }

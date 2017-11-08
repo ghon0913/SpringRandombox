@@ -255,13 +255,4 @@ public class GoodsController {
 
 		return mav;
 	}
-	
-	/* 메인, 최근 등록한 상품 가져오기 */
-//	@RequestMapping("/")
-//	public String newGoods(Model m){
-//		
-//		List<GoodsDTO> list = service.newGoods();
-//		m.addAttribute("goodsList", list);
-//		return "main";
-//	}
 }
