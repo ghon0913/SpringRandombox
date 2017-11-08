@@ -45,8 +45,8 @@
 </div>
 <script>
 	$(window).on("load",function(){
-		if(${empty reviewList}){
-			$(location).attr("href", "goodsList");
+		if(${empty reviewList || empty goodsList}){
+			$(location).attr("href", "mainList");
 		}
 	});
 </script>
