@@ -30,12 +30,9 @@
 
 	<jsp:include page="include/top.jsp" flush="true" /><br>
 	<jsp:include page="include/category.jsp" flush="true" /><br>
-	<c:if test="${! empty isCategory }">
-	<jsp:include page="goods/goodsListByCategory.jsp" flush="true" /><br>
-	</c:if>
-	<c:if test="${empty isCategory }">
-		<jsp:include page="goods/goodsList.jsp" flush="true" /><br>
-	</c:if>
+
+	<jsp:include page="goods/goodsBySearch.jsp" flush="true" /><br>
+
 
 </body>
 </html>

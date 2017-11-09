@@ -22,6 +22,7 @@ public class GoodsService {
 	}
 
 	public List<GoodsDTO> selectByCategory(String gCategory) {
+		System.out.println(gCategory+"서비스");
 		return dao.selectByCategory(gCategory);
 	}
 
