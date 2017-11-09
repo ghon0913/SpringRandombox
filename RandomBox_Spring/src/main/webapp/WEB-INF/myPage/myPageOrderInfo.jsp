@@ -82,4 +82,3 @@
 		});
 	});
 </script>
->>>>>>> branch 'master' of https://github.com/ghon0913/SpringRandombox.git
