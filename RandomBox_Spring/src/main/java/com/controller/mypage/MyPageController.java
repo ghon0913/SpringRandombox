@@ -89,16 +89,16 @@ public class MyPageController {
 	}
 
 	@RequestMapping(value = "/orderinfo", method = RequestMethod.GET)
-	public ModelAndView orderinfo(HttpSession session, @RequestParam(defaultValue = "1") int curPage) {
+	public ModelAndView orderinfo(HttpSession session, @RequestParam(defaultValue = "1") int curPage,
+								@RequestParam(required = false) String startdate,
+								@RequestParam(required = false) String finaldate) {
 		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
 		HashMap<String, String> map = new HashMap();
-		map.put("startdate", OrderInfoPageDTO.getStartdate());
-		map.put("finaldate", OrderInfoPageDTO.getFinaldate());
+		map.put("startdate", startdate);
+		map.put("finaldate", finaldate);
 		map.put("userId", logindto.getUserid());
-		System.out.println(map);
 
 		OrderInfoPageDTO oList = service.myPageOrderInfoPage(map, curPage);
-
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pagedto", oList);
 		mav.addObject("page", "myPage/myPageOrderInfo.jsp");
@@ -118,12 +118,14 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("/boardlist")
-	public ModelAndView myboard(HttpSession session, @RequestParam(defaultValue = "1") int curPage) {
+	public ModelAndView myboardList(HttpSession session, @RequestParam(defaultValue = "1") int curPage,
+								@RequestParam(required=false) String searchName,
+								@RequestParam(required=false) String searchValue) {
 		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
 		HashMap<String, String> map = new HashMap();
 
-		map.put("searchName", MyPageBoardPageDTO.getSearchName());
-		map.put("searchValue", MyPageBoardPageDTO.getSearchValue());
+		map.put("searchName", searchName);
+		map.put("searchValue", searchValue);
 		map.put("userId", logindto.getUserid());
 
 		MyPageBoardPageDTO pagedto = service.boardpage(map, curPage);

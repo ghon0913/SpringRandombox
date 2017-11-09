@@ -4,88 +4,82 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+	
 <div class="container">
 	<div class="row">
-
-		<table class="table table-hover">
-
-
-			<div class="form-inline">
-				<form action="orderinfodatepage">
-					&nbsp; <input type="date" name="startdate"> -<input
-						type="date" name="finaldate"><br> <input
-						class="btn btn-success" type="submit">
-				</form>
-			</div>
-			<table class="table table-hover">
+		<div class="form-inline">
+			<form action="orderinfodatepage">
+				<select class="form-control" name="perPage" id="perPage">
+					<option>목록 보기 설정</option>
+					<option value="3">3개씩보기</option>
+					<option value="5">5개씩보기</option>
+					<option value="7">7개씩보기</option>
+				</select>
+				<span style="padding-left: 130px;">
+				<b>기간별조회</b>&nbsp;&nbsp; <input class="form-control" type="date" name="startdate">
+				-&nbsp;<input class="form-control" type="date" name="finaldate">
+				<input class="btn btn-success" type="submit" value="조회">
+				</span>
+			</form>
+		</div>
+	</div>
+	<br>
+		<table class="table" style="font-size: 12px;">
+			<tr align="center">
+				<th width="130px;"><b>날짜</b></th>
+				<th width="80px;"><b>주문번호</b></th>
+				<th style="padding-left: 20px;"><b>상품정보</b></th>
+				<th width="140px;"><b>구매가격</b></th>
+				<th width="140px;"><b>상태</b></th>
+				<th width="140px;"><b>후기 작성</b></th>
+			</tr>
+			<c:if test="${empty pagedto.getOlist() }">
 				<tr>
-					<td colspan="3" align="center">기간별조회<br>&nbsp;
-						<form action="orderinfodatepage">
-							&nbsp; <input type="date" name="startdate"> <br>- <input
-								type="date" name="finaldate"><br> <input
-								class="btn btn-success" type="submit">
-						</form>
-
-					</td>
-
-					<td colspan="10">
-						<form action="orderinfoperpage">
-							<br> <br> <select class="form-control" name="perPage">
-								<!-- change함수주기 -->
-								<option value="3">3개</option>
-								<option value="5">5개</option>
-								<option value="7">7개</option>
-							</select> <input class="btn btn-success" type="submit">
-						</form>
-					</td>
-
+					<td colspan="6" align="center">주문 내역이 없습니다.</td>
 				</tr>
+			</c:if>
+
+			<c:if test="${!empty pagedto.getOlist() }">
+				<!-- 기간내 foreach문 주문내역 -->
+
+				<c:forEach var="order" items="${pagedto.getOlist() }">
+					<tr>
+						<input id="gCode" type="hidden" value="${order.gCode }">
+						<input id="gName" type="hidden" value="${order.gName }">
+						<input id="gPrice" type="hidden" value="${order.gPrice }">
+						<td align="center">${order.orderDay }
+						<td align="center"><a href="orderretrieve?ordernum=${order.num }"
+							target="blank">${order.num }</a></td>
+						<td><img src="/app/images/goods/${order.gImage }"
+							height="100" width="100"> ${order.gName }</td>
+						<td align="center">${order.gPrice }</td>
+						<td align="center">${order.status}</td>
+						<td align="center"><input class="reviewWrite btn btn-outline-primary btn-sm" type="button" value="후기 작성하기"></td>
+					</tr>
+				</c:forEach>
+			</c:if>
 				<tr>
-					<td>날짜</td>
-					<td>주문번호</td>
-					<td>상품정보</td>
-					<td>상태</td>
+					<td colspan="6" align="center">
+						<jsp:include page="myPageOrderInfoPage.jsp" flush="true" /></td>
 				</tr>
-				<c:if test="${empty pagedto.getOlist() }">
-					<tr>
-						<td colspan="5">레코드가 없습니다.</td>
-					</tr>
-				</c:if>
+		</table>
+</div>
 
-				<c:if test="${!empty pagedto.getOlist() }">
-					<!-- 기간내 foreach문 주문내역 -->
+<script>
+	$(document).ready(function() {
 
-					<c:forEach var="order" items="${pagedto.getOlist() }">
-						<tr>
-							<input id="gCode" type="hidden" value="${order.gCode }">
-							<input id="gName" type="hidden" value="${order.gName }">
-							<input id="gPrice" type="hidden" value="${order.gPrice }">
-							<td>${order.orderDay }
-							<td><a href="orderretrieve?ordernum=${order.num }"
-								target="blank">${order.num }</a></td>
-							<td><img src="/app/images/goods/${order.gImage }"
-								height="100" width="100"> ${order.gName }${order.gPrice }</td>
-							<td>배송중/배송완료<br> <input class="reviewWrite"
-								type="button" value="후기 작성하기"></td>
-						</tr>
-					</c:forEach>
-					<tr>
-						<td colspan="4" align="center"><jsp:include
-								page="myPageOrderInfoPage.jsp" flush="true" /></td>
-					</tr>
-				</c:if>
-			</table>
-			</div>
-			</div>
-
-			<script>
-				$(document).ready(function() {
-			
-					/* 후기작성하기 */
-					$(".reviewWrite").on("click", function() {
-						var gCode = $(this).parent().siblings("#gCode").val();
-						var gPrice = $(this).parent().siblings("#gPrice").val();
-						$(location).attr("href", "reviewForm?gCode=" + gCode + "&gPrice=" + gPrice);
-					});
-				});
-			</script>
+		/* 후기작성하기 */
+		$(".reviewWrite").on("click",function() {
+			var gCode = $(this).parent().siblings("#gCode").val();
+			var gPrice = $(this).parent().siblings("#gPrice").val();
+				$(location).attr("href","reviewForm?gCode=" + gCode + "&gPrice=" + gPrice);
+		});
+		
+		/* perPage */
+		$("#perPage").on("change", function(){
+			var perPage = $("#perPage :selected").val();
+			$(location).attr("href", "orderinfoperpage?perPage="+perPage);
+		});
+	});
+</script>
+>>>>>>> branch 'master' of https://github.com/ghon0913/SpringRandombox.git

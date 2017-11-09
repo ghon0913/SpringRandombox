@@ -58,7 +58,6 @@ public class MyPageDAO {
 			totalPage = template.selectOne("com.mybatis.MyPageMapper.totalorderPage", map.get("userId"));
 		} else if (map.get("startdate").equals(map.get("finaldate"))) {
 			totalPage = template.selectOne("com.mybatis.MyPageMapper.samedateorderPage", map);
-			System.out.println("ddddddddddddddd");
 		} else {
 			totalPage = template.selectOne("com.mybatis.MyPageMapper.difdateorderPage", map);
 		}

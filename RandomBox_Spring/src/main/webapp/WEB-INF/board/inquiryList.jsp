@@ -6,9 +6,11 @@
 	
 <div style="background-color: #0277BD; margin-top: -30px; color: white; padding: 20px 200px; align: right; margin-bottom: 20px;">
 	<h5 style="display:inline;">|&nbsp;&nbsp;&nbsp;<b>Q & A</b>&nbsp;&nbsp;&nbsp;|</h5>
-	<p id ="goShopping" style="display:inline; padding: 8px 15px; border: solid 1px white; font-size: 13px; margin-top: -6px;" class="pull-right">
-		랜덤박스 쇼핑 바로가기
-	</p>
+	<c:if test="${sessionScope.login.ox == 'N' }">
+		<p id ="goShopping" style="display:inline; padding: 8px 15px; border: solid 1px white; font-size: 13px; margin-top: -6px;" class="pull-right">
+			랜덤박스 쇼핑 바로가기
+		</p>
+	</c:if>
 </div>
 <div class="container">
 	<div class="row">

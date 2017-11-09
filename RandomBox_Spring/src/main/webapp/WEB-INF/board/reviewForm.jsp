@@ -54,11 +54,11 @@ $(document).ready(function(){
 	
 	/* 쇼핑 바로가기 */
 	$("#goShopping").on("click", function() {
-		$(location).attr("href", "goodsList");
+		$(location).attr("href", "../goodsList");
 	});
 	
 	/* 입력사항 확인  */
-	$("#reviewWriteForm").on("submit", function(e){
+	$("#reviewForm").on("submit", function(e){
 		
 		if($("#title").val().length==0){
 			alert("제목을 입력해 주세요!");

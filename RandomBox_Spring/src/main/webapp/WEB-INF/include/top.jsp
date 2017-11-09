@@ -42,7 +42,6 @@
 						</a></li>
 						<c:if test="${sessionScope.login.ox=='Y'}">
 							<li class="nav-item"><a class="nav-link" href="/app/loginchk/MyPage">마이페이지</a></li>
-							<%-- ${sessionScope.login.username}님 안녕하세요 --%>
 
 							<li class="nav-item"><a class="nav-link"
 								href="goodsRegisterForm">상품등록</a></li>
