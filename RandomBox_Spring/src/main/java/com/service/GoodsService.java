@@ -15,6 +15,11 @@ public class GoodsService {
 	public void insertGoods(GoodsDTO dto) {
 		dao.insertGoods(dto);
 	}
+	
+	public void deleteGoods(String gCode) {
+		dao.deleteGoods(gCode);
+	}
+	
 
 	public List<GoodsDTO> selectAllGoods() {
 		System.out.println(dao.selectAllGoods().toString());

@@ -9,6 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		goods(gCode,gCategory,gName,gPrice,gImage,gContentImage,gAmount,sellerId)
 		values(goods_seq.nextval,#{gCategory},#{gName},#{gPrice},#{gImage},#{gContentImage},#{gAmount},#{sellerId})
 	</insert>
+		
+	<delete id="deleteGoods" parameterType="String">
+		delete from goods where gCode = #{gCode}
+	</delete>
 
 	<select id="selectAllGoods" resultType="GoodsDTO">
 		select
@@ -40,6 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from goods
 		where gCode = #{gCode}
 	</select>
+
 	
 	<!-- 메인, 최근 등록한 상품 가져오기 -->
 	<select id="newGoods" resultType="GoodsDTO">

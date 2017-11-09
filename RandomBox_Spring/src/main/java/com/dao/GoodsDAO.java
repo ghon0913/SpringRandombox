@@ -22,6 +22,10 @@ public class GoodsDAO {
 		template.insert("insertGoods", dto);
 	}
 	
+	public void deleteGoods(String gCode) {
+		template.delete("deleteGoods", gCode);
+	}
+	
 	public List<GoodsDTO> selectAllGoods() {
 		
 		return template.selectList("selectAllGoods");
@@ -45,5 +49,6 @@ public class GoodsDAO {
 		List<GoodsDTO> list = template.selectList("newGoods");
 		return list;
 	}
+	
 	
 }
