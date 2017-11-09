@@ -83,7 +83,7 @@ $(document).ready(function(){
 	
 	/* 목록보기 */
 	$("#inquiryList").on("click", function(){
-		$(location).attr("href", "inquiryList");
+		window.history.back();
 	});
 	
 	/* 문의사항 선택하기  */

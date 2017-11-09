@@ -8,40 +8,33 @@
 	<div class="row">
 		<div class="form-inline">
 			<form action="orderinfodatepage">
-				&nbsp; <input type="date" name="startdate">
-				-<input type="date" name="finaldate"><br><input class="btn btn-success" type="submit">
+				<select class="form-control" name="perPage" id="perPage">
+					<option>목록 보기 설정</option>
+					<option value="3">3개씩보기</option>
+					<option value="5">5개씩보기</option>
+					<option value="7">7개씩보기</option>
+				</select>
+				<span style="padding-left: 130px;">
+				<b>기간별조회</b>&nbsp;&nbsp; <input class="form-control" type="date" name="startdate">
+				-&nbsp;<input class="form-control" type="date" name="finaldate">
+				<input class="btn btn-success" type="submit" value="조회">
+				</span>
 			</form>
 		</div>
-		<table class="table table-hover" >
-			<tr>
-				<td colspan="3" align="center">기간별조회<br>&nbsp;
-				
-				</td>
-		
-			
-			
-
-				<td colspan="10">
-					<form action="orderinfoperpage"><br><br>
-						<select class="form-control" name="perPage">
-							<!-- change함수주기 -->
-							<option value="3">3개</option>
-							<option value="5">5개</option>
-							<option value="7">7개</option>
-						</select> <input class="btn btn-success" type="submit">
-					</form>
-				</td>
-
-			</tr>
-			<tr>
-				<td>날짜</td>
-				<td>주문번호</td>
-				<td>상품정보</td>
-				<td>상태</td>
+	</div>
+	<br>
+		<table class="table" style="font-size: 12px;">
+			<tr align="center">
+				<th width="130px;"><b>날짜</b></th>
+				<th width="80px;"><b>주문번호</b></th>
+				<th style="padding-left: 20px;"><b>상품정보</b></th>
+				<th width="140px;"><b>구매가격</b></th>
+				<th width="140px;"><b>상태</b></th>
+				<th width="140px;"><b>후기 작성</b></th>
 			</tr>
 			<c:if test="${empty pagedto.getOlist() }">
 				<tr>
-					<td colspan="5">레코드가 없습니다.</td>
+					<td colspan="6" align="center">주문 내역이 없습니다.</td>
 				</tr>
 			</c:if>
 
@@ -53,22 +46,22 @@
 						<input id="gCode" type="hidden" value="${order.gCode }">
 						<input id="gName" type="hidden" value="${order.gName }">
 						<input id="gPrice" type="hidden" value="${order.gPrice }">
-						<td>${order.orderDay }
-						<td><a href="orderretrieve?ordernum=${order.num }"
+						<td align="center">${order.orderDay }
+						<td align="center"><a href="orderretrieve?ordernum=${order.num }"
 							target="blank">${order.num }</a></td>
 						<td><img src="/app/images/goods/${order.gImage }"
-							height="100" width="100"> ${order.gName }${order.gPrice }</td>
-						<td>배송중/배송완료<br> <input class="reviewWrite"
-							type="button" value="후기 작성하기"></td>
+							height="100" width="100"> ${order.gName }</td>
+						<td align="center">${order.gPrice }</td>
+						<td align="center">${order.status}</td>
+						<td align="center"><input class="reviewWrite btn btn-outline-primary btn-sm" type="button" value="후기 작성하기"></td>
 					</tr>
 				</c:forEach>
-				<tr>
-					<td colspan="4" align="center"><jsp:include
-							page="myPageOrderInfoPage.jsp" flush="true" /></td>
-				</tr>
 			</c:if>
+				<tr>
+					<td colspan="6" align="center">
+						<jsp:include page="myPageOrderInfoPage.jsp" flush="true" /></td>
+				</tr>
 		</table>
-</div>
 </div>
 
 <script>
@@ -79,6 +72,12 @@
 			var gCode = $(this).parent().siblings("#gCode").val();
 			var gPrice = $(this).parent().siblings("#gPrice").val();
 				$(location).attr("href","reviewForm?gCode=" + gCode + "&gPrice=" + gPrice);
+		});
+		
+		/* perPage */
+		$("#perPage").on("change", function(){
+			var perPage = $("#perPage :selected").val();
+			$(location).attr("href", "orderinfoperpage?perPage="+perPage);
 		});
 	});
 </script>

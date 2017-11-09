@@ -40,9 +40,9 @@
 				</tr>
 			<c:forEach var="goods" items="${pagedto.glist }">
 			<tr>
-				<td align="center"><a href="goodsinforetrieve.do?gCode=${goods.gCode }" id="gCode">${goods.gCode }</a>
+				<td align="center">${goods.gCode }
 				</td>
-				<td>${goods.gImage }${goods.gName }
+				<td><img src="${goods.gImage }">&nbsp;${goods.gName }
 				</td>
 				<td align="center">${goods.gCategory }
 				</td>
@@ -58,15 +58,12 @@
 				<td  colspan="10" align="center"><jsp:include page="myPageGoodsInfoPage.jsp"></jsp:include>
 			</tr>
 			</c:if>
-			<tr>
-			<td colspan="10" align="right"> <a href="goodsRegisterForm">상품등록</a>
-			</tr>
-			
-			
-			
 		</table>
+		<div class="pull-right">
+			<button class="btn btn-outline-info btn-block" id="goodsRegisterForm">상품등록</button>
+		</div>
 </div>
-</div>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		
@@ -74,6 +71,11 @@
 		$("#perPage").on("change", function(){
 			var perPage = $("#perPage :selected").val();
 			$(location).attr("href", "goodsperpage?perPage="+perPage);
+		});
+		
+		/* 상품등록 */
+		$("#goodsRegisterForm").on("click", function(){
+			$(location).attr("href", "goodsRegisterForm");
 		});
 	});
 </script>

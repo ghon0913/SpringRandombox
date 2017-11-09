@@ -10,6 +10,7 @@
 <title>나의 장바구니</title>
 </head>
 <body>
+	<jsp:include page="include/top.jsp" flush="true" /><br>
 	<jsp:include page="cart/cartList.jsp" flush="true" />
 </body>
 </html>

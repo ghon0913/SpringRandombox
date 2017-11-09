@@ -31,7 +31,7 @@
 		</tbody>
 	</table>
 	<hr>
-	<div align="center"><input id="goShopping" class="btn btn-success" type="button" value="계속 쇼핑하기"></div>
+	<div align="center"><input id="goShopping_btn" class="btn btn-success" type="button" value="계속 쇼핑하기"></div>
 		</c:if>
 		
 <!--cartList---------------------------------------------------------------------------------------------------------->

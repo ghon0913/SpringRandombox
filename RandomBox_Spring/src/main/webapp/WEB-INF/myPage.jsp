@@ -4,6 +4,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<link href="/app/js/bootstrap-4.0.0-beta-dist/css/bootstrap.min.css" rel="stylesheet" />
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,9 +17,11 @@
 
 	<div style="background-color: #0277BD; color: white; padding: 20px 200px; align: right; margin-bottom: 20px;">
 		<h5 style="display:inline;">|&nbsp;&nbsp;&nbsp;<b>마이 페이지</b>&nbsp;&nbsp;&nbsp;|</h5>
-		<p id ="goShopping" style="display:inline; padding: 8px 15px; border: solid 1px white; font-size: 13px; margin-top: -6px;" class="pull-right">
-			랜덤박스 쇼핑 바로가기
-		</p>
+		<c:if test="${login.ox=='N'}">
+			<p id ="goShopping" style="display:inline; padding: 8px 15px; border: solid 1px white; font-size: 13px; margin-top: -6px;" class="pull-right">
+				랜덤박스 쇼핑 바로가기
+			</p>
+		</c:if>
 	</div>
 	<div class="container">
 		${login.username} 님 안녕하세요.
@@ -39,7 +43,7 @@
 				<tr>
 					<td style="padding: 2px;"><button id="userinfo2"
 							class="btn btn-info btn-block" aria-pressed="true">회원정보</button></td>
-					<td style="padding: 2px;"><button id="orderinfo"
+					<td style="padding: 2px;"><button id="sellinfo"
 							class="btn btn-info btn-block" aria-pressed="true">매출정보</button></td>
 					<td style="padding: 2px;"><button id="goodsinfo"
 							class="btn btn-info btn-block" aria-pressed="true">상품목록</button></td>
