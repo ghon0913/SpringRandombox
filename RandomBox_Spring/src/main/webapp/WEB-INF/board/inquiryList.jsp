@@ -13,8 +13,7 @@
 <div class="container">
 	<div class="row">
 			<div class="col-md-3">
-				<select class="form-control" id="searchCategory"
-					name="searchCategory" style="font-size: 12px;">
+				<select class="form-control" id="searchCategory" name="searchCategory" style="font-size: 12px;">
 					<option>카테고리별로 보기</option>
 					<option value="all">문의사항 전체</option>
 					<option value="전체카테고리">전체카테고리 상품</option>
