@@ -7,7 +7,7 @@
 <div class="container">	
 	<div class="row">
 		<div class="form-inline">
-			<form action="goodssearchpage">
+			<form action="goodsinfo">
 				<select class="form-control" name="perPage" id="perPage">
 					<option>목록 보기 설정</option>
 					<option value="3">3개씩보기</option>
@@ -16,7 +16,9 @@
 				</select>
 				<span style="padding-left: 220px;">
 					<select class="form-control" name="searchName">
-						<option value="gCode">상품코드</option>
+						<option>검색 옵션</option>
+						<option value="gCode">상품 코드</option>
+						<option value="gName">상품명</option>
 					</select>
 					<input class="form-control" type="text" name="searchValue">
 					<input type="submit" class="btn btn-success" value="검색">

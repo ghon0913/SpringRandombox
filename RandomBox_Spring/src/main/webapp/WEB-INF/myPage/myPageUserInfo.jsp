@@ -9,9 +9,8 @@
 
 <div class="container">
 	<div>
-		<form method="post" id="myform" action="userInfoUpdate" modelAttribute="memberinfo">
-		<form id="myform" action="userInfoUpdate" modelAttribute="memberinfo">
-		<p style="font-size: 12px;"><b>회원 정보 수정 후 [수정하기]버튼을 눌러주세요.</b></p>
+		<form id="myform" action="userInfoUpdate" modelAttribute="memberinfo" method="post">
+			<p style="font-size: 12px;"><b>회원 정보 수정 후 [수정하기]버튼을 눌러주세요.</b></p>
 				<table name="memberAddForm" class="table" style="font-size: 12px;">
 					<tr>
 						<td width="300px" style="padding-left: 120px;">아이디</td>
@@ -40,7 +39,12 @@
 					<tr>
 						<td style="padding-left: 120px;">이메일</td>
 						<td id="email_td">
-							<input class="form-control" type="text" value="${mdto.email}" id="email" readonly="readonly">
+							<div class="form-inline">
+								<input class="form-control" type="text" name="email1" id="email1" readonly="readonly" value="${email1}">
+								&nbsp; @ &nbsp;
+								<input class="form-control" required type="text" name="email2" id="email2" readonly="readonly" value="${email2}">
+							</div>
+							<input type="hidden" name="email" value="" id="hidden_email">
 						</td>
 						<td></td>
 					</tr>
@@ -86,24 +90,86 @@
 									<option value="017">019</option>
 								</select>
 								&nbsp;-&nbsp;
-								<input class="form-control col-lg-4" type="text" name="phone2" id="phone2" value="${ }" required>
+								<input class="form-control col-lg-4" type="text" name="phone2" id="phone2" value="${phone2}" required>
 								&nbsp;-&nbsp;
-								<input class="form-control col-lg-4" type="text" name="phone3" id="phone3" required>
+								<input class="form-control col-lg-4" type="text" name="phone3" id="phone3" value="${phone3}" required>
 								<input type="hidden" name="phone" value="" id="hidden_phone">
 							</div>
 						</td>
 						<td></td>
 					</tr>
 					<tr>
-						<td colspan="3" align="center"><input class="btn btn-success"
-							type="submit" value="수정하기"></td>
+						<td colspan="3" align="center">
+							<input class="btn btn-success" type="submit" value="수정하기">
+						</td>
 					</tr>
 				</table>
 			</form>
 		</div>
 	</div>
 <script>
+$(document).ready(function() {
+	/* 비밀번호 확인 */
+	$("#passwd2").on("keyup", function(event) {
+	
+		var passwd = $("#passwd").val();
+		var passwd2 = $("#passwd2").val();
 		
+		if($("#passwd").val().length == 0 || $("#passwd").val().length == 0){
+			$("#passwdCheck").text("");
+		}else if ($("#passwd").val().length < 3) {
+			$("#passwdCheck").text("3자 이상");
+		}
 		
+		if ($("#passwd2").val().length != 0 || $("#passwd").val().length != 0) {
+			if (passwd == passwd2) {
+				$("#passwdCheck").text("비밀번호 일치");
+			} else {
+				$("#passwdCheck").text("비밀번호 불일치");
+			}
+		} else {
+			$("#passwdCheck").text("");
+		}
+	
+	});
+	
+	$("#passwd").on("keyup", function(event) {
+	
+		var passwd = $("#passwd").val();
+		var passwd2 = $("#passwd2").val();
+	
+		if ($("#passwd2").val().length != 0) {
+			if (passwd == passwd2) {
+				$("#passwdCheck").text("비밀번호 일치");
+			} else {
+				$("#passwdCheck").text("비밀번호 불일치");
+			}
+		} else {
+			$("#passwdCheck").text("");
+		}
+	
+	});
+	
+	/* 유효성 검사*/
+	$("#myform").on("submit",function(e) {
+
+			if ($("#passwd").val().length < 3
+					|| $("#passwdCheck").text() == "비밀번호 불일치") {
+				alert("입력하신 비밀번호가 너무 짧거나\n확인란이 일치하지 않습니다!");
+				e.preventDefault();
+			} else if ($("#phone2").val().length < 3
+					|| $("#phone2").val().length > 4
+					|| $("#phone3").val().length != 4) {
+				alert("입력하신 전화번호를 확인해주세요!");
+				e.preventDefault();
+			}
+			
+			var phone = $("#phone1").val()+$("#phone2").val()+$("#phone3").val();
+			$("#hidden_phone").val(phone);
+			var email = $("#email1").val()+"@"+$("#email2").val();
+			$("#hidden_email").val(email);
+
+		});
+});
 </script>
 
