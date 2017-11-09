@@ -6,13 +6,16 @@
 	
 <div class="container">
 	<div class="row">
+		<div class="form-inline">
+			<form action="orderinfodatepage">
+				&nbsp; <input type="date" name="startdate">
+				-<input type="date" name="finaldate"><br><input class="btn btn-success" type="submit">
+			</form>
+		</div>
 		<table class="table table-hover" >
 			<tr>
 				<td colspan="3" align="center">기간별조회<br>&nbsp;
-				 <form action="orderinfodatepage">
-				&nbsp; <input type="date" name="startdate">
-					<br>- <input type="date" name="finaldate"><br><input class="btn btn-success" type="submit">
-				</form>
+				
 				</td>
 		
 			
