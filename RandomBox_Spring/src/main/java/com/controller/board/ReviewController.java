@@ -114,6 +114,8 @@ public class ReviewController {
 		
 		GoodsDTO dto = service.getGoodsInfo(gCode);
 		
+		System.out.println(gCode+"%%%%%" + dto);
+		
 		m.addAttribute("gPrice", gPrice);
 		m.addAttribute("GoodsDTO", dto);
 		m.addAttribute("chk_reviewPage", "reviewForm");
@@ -143,6 +145,16 @@ public class ReviewController {
 		m.addAttribute("goodsList", g_list);
 
 		return "home";
+	}
+	
+	/* 후기 작성한 상품인지 확인 */
+	@RequestMapping("/chkReviewWrite")
+	@ResponseBody
+	public boolean chkReviewWrite() {
+		
+		boolean chk = true;
+		
+		return chk;
 	}
 	
 }

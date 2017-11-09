@@ -77,6 +77,49 @@ public class GoodsController {
 		return "goodsList";
 	}
 
+	@RequestMapping("/goodsListByCategory")
+	public String goodsListByCategory(HttpSession session, HttpServletRequest request, @RequestParam String category,
+			Model m) {
+
+		String listByCategory = "listBy" + category;
+		List<GoodsDTO> tempList = null;
+		List<GoodsDTO> listByCategory16 = new ArrayList<>();
+		int totalPrice = 0;
+
+		Random rand = new Random();
+		if (session.getAttribute("goodsListBy" + category) == null) {
+			List<GoodsDTO> list = null;
+
+			list = service.selectByCategory(category);
+			session.setAttribute("goodsListBy" + category, list);
+			tempList = list;
+			for (int i = 0; i < 16; i++) {
+				int idx = rand.nextInt(tempList.size());
+				listByCategory16.add(tempList.get(idx));
+				totalPrice += listByCategory16.get(i).getgPrice();
+			}
+
+			session.setAttribute(listByCategory, listByCategory16);
+
+			// 최종 랜덤 상품 저장 ******
+			int randomGoods_idx = rand.nextInt(listByCategory16.size());
+			String randomGoodsByCategory = "randomGoodsBy" + category;
+			GoodsDTO randomGoods = listByCategory16.get(randomGoods_idx);
+
+			int resultPrice = (totalPrice / 16) / 10 * 10;
+			randomGoods.setgPrice(resultPrice);
+
+			session.setAttribute(randomGoodsByCategory, randomGoods);
+			System.out.println(session.getAttribute(randomGoodsByCategory));
+			// ******************
+
+		}
+		m.addAttribute("isCategory", session.getAttribute(listByCategory));
+		m.addAttribute("gCategory", category);
+		return "goodsList";
+
+	}
+
 	@RequestMapping("/goodsMixList")
 	public String goodsMixList(HttpSession session, Model m) {
 
@@ -109,9 +152,8 @@ public class GoodsController {
 	@RequestMapping("/goodsMixListByCategory")
 	public String goodsMixListByCategory(HttpSession session, @RequestParam String category, Model m) {
 
-		String gCategory = category;
-		System.out.println(gCategory);
-		List<GoodsDTO> list = (List<GoodsDTO>) session.getAttribute(gCategory);
+		String goodsListByCategory = "goodsListBy" + category;
+		List<GoodsDTO> list = (List<GoodsDTO>) session.getAttribute(goodsListByCategory);
 		System.out.println(list);
 		Random rand = new Random();
 
@@ -123,100 +165,37 @@ public class GoodsController {
 			listByCategory16.add(list.get(idx));
 			totalPrice += listByCategory16.get(i).getgPrice();
 		}
-		String listByCategory = "listBy" + gCategory;
+		String listByCategory = "listBy" + category;
 		session.setAttribute(listByCategory, listByCategory16);
 
 		// 최종 랜덤 상품 저장 ******
 		int randomGoods_idx = rand.nextInt(listByCategory16.size());
+		String randomGoodsByCategory = "randomGoodsBy" + category;
 		GoodsDTO randomGoods = listByCategory16.get(randomGoods_idx);
 
 		int resultPrice = (totalPrice / 16) / 10 * 10;
 		randomGoods.setgPrice(resultPrice);
 
-		session.setAttribute("randomGoods", randomGoods);
+		session.setAttribute(randomGoodsByCategory, randomGoods);
+		System.out.println(session.getAttribute(randomGoodsByCategory));
 		// ******************
+
 		m.addAttribute("isCategory", session.getAttribute(listByCategory));
-		m.addAttribute("gCategory", gCategory);
+		m.addAttribute("gCategory", category);
 
 		return "goodsList";
-	}
-
-	@RequestMapping("/goodsByCategory")
-	public String goodsByCategory(HttpSession session, HttpServletRequest request, @RequestParam String category, Model m) {
-
-		String gCategory = category;
-		System.out.println(gCategory);
-		String listByCategory = "listBy" + gCategory;
-		List<GoodsDTO> tempList = null;
-		List<GoodsDTO> listByCategory16 = new ArrayList<>();
-		int totalPrice = 0;
-
-		Random rand = new Random();
-		if (session.getAttribute(gCategory) == null) {
-			List<GoodsDTO> list = null;
-
-			list = service.selectByCategory(gCategory);
-			session.setAttribute(gCategory, list);
-			tempList = list;
-			for (int i = 0; i < 16; i++) {
-				int idx = rand.nextInt(tempList.size());
-				listByCategory16.add(tempList.get(idx));
-				totalPrice += listByCategory16.get(i).getgPrice();
-			}
-
-			session.setAttribute(listByCategory, listByCategory16);
-
-			// 최종 랜덤 상품 저장 ******
-			int randomGoods_idx = rand.nextInt(listByCategory16.size());
-			String randomGoodsbyCategory = "randomGoods"+gCategory;
-			GoodsDTO randomGoodsByCategory = listByCategory16.get(randomGoods_idx);
-
-			int resultPrice = (totalPrice / 16) / 10 * 10;
-			randomGoodsByCategory.setgPrice(resultPrice);
-
-			session.setAttribute("randomGoods"+gCategory, randomGoodsByCategory);
-			// ******************
-			
-		}
-		m.addAttribute("isCategory", session.getAttribute(listByCategory));
-		return "goodsList";
-
 	}
 
 	@RequestMapping("/goodsBySearch")
-	public String goodsBySearch(HttpServletRequest request) {
+	public String goodsBySearch(HttpServletRequest request, Model m) {
 
 		String searchWord = request.getParameter("searchBar");
-		System.out.println(searchWord);
-		GoodsService service = new GoodsService();
-		String target = "goods/goodsBySearch.jsp";
+	
 		List<GoodsDTO> list = null;
-
 		list = service.selectBySearch(searchWord);
-		request.setAttribute("search", list);
-		System.out.println("11");
-		return target;
-	}
-
-	@RequestMapping("/goodsRetrieveByCategory")
-	public String goodsRetrieveByCategory(HttpServletRequest request, HttpSession session) {
-
-		String gCategory = request.getParameter("category");
-		request.setAttribute("category", gCategory);
-		String listByCategory = "listBy" + gCategory;
-
-		request.setAttribute("isCategory", session.getAttribute(listByCategory));
-		request.setAttribute("retrieve", "retrieve");
-
-		return "goodsList";
-	}
-
-	@RequestMapping("/goodsRetrieve")
-	public String goodsRetrieve(HttpServletRequest request) {
-
-		request.setAttribute("retrieve", "retrieve");
-
-		return "goodsList";
+		m.addAttribute("search", list);
+		m.addAttribute("searchWord",searchWord);
+		return "goodsBySearch";
 	}
 
 	@RequestMapping("/goodsRegister")

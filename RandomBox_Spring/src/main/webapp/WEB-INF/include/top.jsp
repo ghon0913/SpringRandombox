@@ -21,8 +21,8 @@
 
 				<form class="form-inline my-2 my-lg-0" action="goodsBySearch">
 					<input class="form-control mr-sm-2" type="text"
-						placeholder="Search" aria-label="Search" name="searchBar" size=50>
-					<button id="searchBarBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+						placeholder="Search" aria-label="Search" name="searchBar" size=50 required="required">
+					<button id="searchBarBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
 				</form>
 
 				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>

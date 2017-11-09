@@ -79,7 +79,7 @@
 			<div align="center">
 				  <button type="button" class="btn btn-success" id="orderAllConfirm">전체 주문하기</button>
 				  <button type="button" class="btn btn-outline-secondary" id="delAllCart">전체삭제하기</button>
-				  <button type="button" class="btn btn-outline-secondary" id="goShopping">계속 쇼핑하기 </button>
+				  <button type="button" class="btn btn-outline-secondary" id="goShopping_btn">계속 쇼핑하기 </button>
 			</div>
 			
 		</c:if>
@@ -92,6 +92,9 @@
 	/* 쇼핑 바로가기 */
 	$("#goShopping").on("click", function() {
 		$(location).attr("href", "goodsList");
+	});
+	$("#goShopping_btn").on("click", function() {
+		$(location).attr("href", "../goodsList");
 	});
 
 	/* 장바구니 개별 삭제  */
@@ -121,11 +124,6 @@
 			}
 		}); // end ajax
 
-	});
-	
-	/* 상품리스트로 가기 */
-	$("#goShopping").on("click", function(){
-		$(location).attr("href", "../goodsList");
 	});
 	
 	/* 전체 체크 */

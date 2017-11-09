@@ -2,8 +2,8 @@ package com.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import javax.servlet.http.HttpSession;import org.springframework.cglib.transform.impl.AddDelegateTransformer;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -17,8 +17,7 @@ public class HandlerInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		MemberDTO dto = (MemberDTO)session.getAttribute("login");
 		if(dto == null) {
-			System.out.println("세션없음");
-			response.sendRedirect("/app");
+			response.sendRedirect("/app/loginForm");
 			return false;
 		}
 		return true;

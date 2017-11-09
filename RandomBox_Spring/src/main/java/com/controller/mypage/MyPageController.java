@@ -136,17 +136,22 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("/myPageBoardRetrieve")
-	public ModelAndView myboard(HttpSession session, @RequestParam int bnum, @RequestParam String state) {
+	public ModelAndView myboard(HttpSession session, @RequestParam int bnum, @RequestParam String state,
+								@RequestParam String atMyPage) {
 		ModelAndView mav = new ModelAndView();
+		
+		System.out.println("%%%%%%"+atMyPage);
 		
 		if(state.equals("처리중")||state.equals("답변완료")) {
 			BoardDTO dto = inqservice.inquiryRetrieve(bnum);
 			mav.addObject("retrieveDTO", dto);
+			mav.addObject("atMyPage",atMyPage);
 			mav.addObject("chk_inquiryPage", "inquiryRetrieve");
 			mav.setViewName("inquiry");
 		}else if(state.equals("상품후기")) {
 			BoardDTO dto = rvservice.reviewRetrieve(bnum);
 			mav.addObject("retrieveDTO", dto);
+			mav.addObject("atMyPage",atMyPage);
 			mav.addObject("chk_reviewPage", "reviewRetrieve");
 			mav.setViewName ("review");
 		}

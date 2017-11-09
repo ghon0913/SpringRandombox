@@ -11,22 +11,35 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-	<table border=1 align="center">
-		<tr height="10" />
-		<c:forEach var="dto" items="${search}">
-			<tr height="210">
-				<td width="200"><a href=""><img src="upload/${dto.gImage}"
-						height="200" width="200"></a></td>
-				<td width="200">상품명 : ${dto.gName }</td>
-				<td width="200">가격 : ${dto.gPrice }</td>
-				<td width="200">판매자 : ${dto.sellerId }<br>
-				<a href="">상품평 보러가기</a></td>
-				<td><a href="goodsByCategory?category=${dto.gCategory}"><input
-						type="button" value="랜덤박스"></a></td>
-			</tr>
+
+	<c:if test="${! empty search }">
+		<table border=1 align="center">
 			<tr height="10" />
-		</c:forEach>
-	</table>
+			<c:forEach var="dto" items="${search}">
+				<tr height="210">
+					<td width="200"><a href=""><img src="upload/${dto.gImage}"
+							height="200" width="200"></a></td>
+					<td width="200">상품명 : ${dto.gName }</td>
+					<td width="200">가격 : ${dto.gPrice }</td>
+					<td width="200">판매자 : ${dto.sellerId }<br> <a href="">상품평
+							보러가기</a></td>
+					<td><a href="goodsByCategory?category=${dto.gCategory}"><input
+							type="button" value="랜덤박스"></a></td>
+				</tr>
+				<tr height="10" />
+			</c:forEach>
+		</table>
+	</c:if>
+	<c:if test="${ empty search }">
+	<div align="center">
+		<br>
+		<br>
+		<br>
+		<p style="font-size: 30px">검색하신 "${searchWord}"에 대한 검색결과는 없습니다.<br>
+		다시 시도해주세요.</p>
+	</div>
+	</c:if>
+
+
 </body>
 </html>

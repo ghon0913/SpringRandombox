@@ -3,7 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.dto.GoodsDTO"%>
+<%@page import="java.util.List"%>
+<%
+	String randomGoodsByCategory = "randomGoodsBy"+(String)request.getAttribute("gCategory");
+	String listByCategory = "listBy"+(String)request.getAttribute("gCategory");
+	GoodsDTO randomGoods = (GoodsDTO) session.getAttribute(randomGoodsByCategory);
+	List<GoodsDTO> list = (List<GoodsDTO>) session.getAttribute(listByCategory);
 	
+%>
 <!-- Nav tabs -->
 <ul class="nav nav-tabs nav-justified">
 	<li class="nav-item"><a class="nav-link active" data-toggle="tab"
@@ -24,14 +32,13 @@
 		<p style="font-size: 20px; font-style: italic">(상품에 커서를 올리면 구성품을
 			보여드립니다.)</p>
 		<br>
-
-		<p style="font-size: 100px; font-style: italic">${randomGoods.gPrice}원
-			!!!</p>
+	
+		<p style="font-size: 100px; font-style: italic"><%=randomGoods.getgPrice()%>원!!!</p>
 		<br> <br>
 		<table border="1">
 
 		</table>
-		<a href="goodsMixList"><input type="button" value="새로 구성하기"
+		<a href="goodsMixListByCategory?category=${gCategory}"><input type="button" value="새로 구성하기"
 			class="btn btn-primary" /></a> <input type="button" id="cartAdd"
 			value="장바구니 넣기" class="btn btn-primary" /> <input type="button"
 			id="orderAdd" value="주문하기" class="btn btn-primary" />
@@ -41,7 +48,7 @@
 	<div class="tab-pane fade" id="panel2" role="tabpanel" align="center">
 		<br>
 		<table>
-			<c:forEach var="list16" items="${sessionScope.goodsList16}" varStatus="status">
+			<c:forEach var="list16" items="<%=list %>" varStatus="status">
 				<tr>
 					<td><table><tr><td align="center"><p style="font-size:50px ">상품${status.index+1}:${list16.gName}</p></td></tr>
 					<tr><td><img src="/upload/${list16.gContentImage}"></td></tr>
@@ -63,13 +70,13 @@
 
 
 <form id="randomGoodsForm" modelAttribute="randomGoodsForm">
-	<input type="hidden" name="gCode" value="${randomGoods.gCode }">
+	<input type="hidden" name="gCode" value="<%=randomGoods.getgCode()%>">
 	<input type="hidden" name="userId"
 		value="${sessionScope.login.userid }"> <input type="hidden"
-		name="gName" value="${randomGoods.gName }"> <input
-		type="hidden" name="gPrice" value="${randomGoods.gPrice }"> <input
-		type="hidden" name="gImage" value="${randomGoods.gImage }"> <input
-		type="hidden" name="sellerId" value="${randomGoods.sellerId }">
+		name="gName" value="<%=randomGoods.getgName()%>"> <input
+		type="hidden" name="gPrice" value="<%=randomGoods.getgPrice()%>"> <input
+		type="hidden" name="gImage" value="<%=randomGoods.getgImage()%>"> <input
+		type="hidden" name="sellerId" value="<%=randomGoods.getSellerId()%>">
 	<input type="hidden" name="gCategory" value="전체 카테고리">
 </form>
 
@@ -77,12 +84,6 @@
 <script type="text/javascript" src="jquery-3.2.1.js"></script>
 <script>
 
-
-	$(window).on("load",function(){
-		if(${empty sessionScope.goodsList16}){
-			$(location).attr("href", "goodsList");
-		}
-	});
 	
 	/* 장바구니 넣기 */
 	$("#cartAdd").on("click", function(){

@@ -145,12 +145,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 답변하기 게시판-->
 	<select id="questionList" parameterType="string" resultType="BoardDTO">
-		select num, category, title, to_Char(writeday, 'yyyy/mm/dd') writeday, readcnt, userid, state, open
+		select num, category, title, to_Char(writeday, 'yyyy/mm/dd') writeday, readcnt, userid, state, gcode, open
 		from board
 		where gCode = #{gCode}
-		and state = '처리중' or state = '답변완료'
+		and state in('처리중', '답변완료')
 		order by num desc
-		
 	</select>
 	
 	<!-- 답변하기 게시판 전체리스트 수 -->
@@ -192,11 +191,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 메인, 조회수 높은 글 -->
 	<select id="orderByReadCnt" resultType="BoardDTO">
 		<![CDATA[
-		select category, title, readcnt
-		from board
+		select category, title, num, readcnt
+		from (select * from board order by readcnt desc)
 		where state ='상품후기'
-		and rownum <= 3
-		order by readcnt desc
+		and rownum <= 4
 		]]>
 	</select>
 

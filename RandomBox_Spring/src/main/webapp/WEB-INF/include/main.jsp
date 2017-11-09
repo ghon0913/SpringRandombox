@@ -32,14 +32,40 @@
 			</div>
 			
 			<div class="row" style="margin-top: 15px;">
-				<div class="col-md-4">
-					<span class="fa fa-quote-left" aria-hidden="true"></span>&nbsp;인기후기글
+				<div class="col-md-5">
+					<div style="border: solid 5px; border-color: #388E3C; padding: 8px; background-color: #F1F8E9;">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-quote-left" aria-hidden="true" style="color: #1B5E20;"></span>
+						&nbsp;<b>인기후기글</b>&nbsp;
+						<span class="fa fa-quote-right" aria-hidden="true" style="color: #1B5E20;"></span>
+						<hr>
+						<ul style="list-style: none; font-size: 12px;">
+								<c:forEach var="review" items="${reviewList}">
+									<li>[${review.category}]&nbsp;&nbsp;<a href="reviewRetrieve?num=${review.num }">${review.title}</a></li>
+								</c:forEach>
+						</ul>
+					</div>
 				</div>
-				<div class="col-md-4">
-					<span class="fa fa-quote-left" aria-hidden="true"></span>&nbsp;최근 등록된 상품
+				<div class="col-md-4" style="padding-left: 5px; padding-right: 5px;">
+					<div style="border: solid 5px; border-color: #388E3C; padding: 8px; background-color: #F1F8E9;">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-quote-left" aria-hidden="true" style="color: #1B5E20;"></span>
+						&nbsp;<b>최근 등록된 상품</b>&nbsp;
+						<span class="fa fa-quote-right" aria-hidden="true" style="color: #1B5E20;"></span>
+						<hr>
+						<ul style="list-style: none; font-size: 12px;">
+							<c:forEach var="goods" items="${goodsList}">
+								<li>[${goods.gCategory}]&nbsp;&nbsp;<a href="">${goods.gName}</a></li>
+							</c:forEach>
+						</ul>
+					</div>
 				</div>
-				<div class="col-md-4">
-					<span class="fa fa-quote-left" aria-hidden="true"></span>&nbsp;자주하는 질문
+				<div class="col-md-3">
+					<div id="question" align="center" style="padding: 25% 0%; background-color: #388E3C; color: white;">
+						<span class="fa fa-quote-left" aria-hidden="true"></span>
+						<b>자주하는 질문</b>
+						<span class="fa fa-quote-right" aria-hidden="true"></span>
+						<br>
+						<span style="font-size: 12px;">[바로가기]</span>
+					</div>
 				</div>
 			</div>
 </div>
@@ -48,5 +74,9 @@
 		if(${empty reviewList || empty goodsList}){
 			$(location).attr("href", "mainList");
 		}
+	});
+	
+	$("#question").on("click", function(){
+		$(location).attr("href", "inquiryMain");
 	});
 </script>

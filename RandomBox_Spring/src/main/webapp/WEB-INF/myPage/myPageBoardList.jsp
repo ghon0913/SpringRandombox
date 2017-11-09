@@ -40,12 +40,6 @@
 				<td>상태</td>
 				<td>날짜</td>
 			</tr>
-			<c:if test="${empty pagedto.getBlist()}">
-				<tr>
-					<td colspan="4">레코드가없습니다.</td>
-				</tr>
-			</c:if>
-
 			<c:if test="${! empty pagedto.getBlist()}">
 				<c:forEach var="a" items="${pagedto.getBlist()}">
 					<tr>

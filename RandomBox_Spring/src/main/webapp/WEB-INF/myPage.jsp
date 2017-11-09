@@ -14,6 +14,7 @@
 
 	<jsp:include page="include/top.jsp" flush="true" />
 
+<<<<<<< HEAD
 	<div class="contatiner">
 		${login.username} 님 안녕하세요. <br />
 		<table align="center">
@@ -53,6 +54,54 @@
 		</table>
 		<hr />
 
+=======
+	<div style="background-color: #0277BD; color: white; padding: 20px 200px; align: right; margin-bottom: 20px;">
+		<h5 style="display:inline;">|&nbsp;&nbsp;&nbsp;<b>마이 페이지</b>&nbsp;&nbsp;&nbsp;|</h5>
+		<p id ="goShopping" style="display:inline; padding: 8px 15px; border: solid 1px white; font-size: 13px; margin-top: -6px;" class="pull-right">
+			랜덤박스 쇼핑 바로가기
+		</p>
+	</div>
+	<div class="container">
+		${login.username} 님 안녕하세요.
+		<br />
+		<table align="center">
+			<c:if test="${login.ox=='N'}">
+				<tr>
+					<td style="padding: 2px;"><button id="userinfo1"
+							class="btn btn-info btn-block" aria-pressed="true">회원정보</button></td>
+					<td style="padding: 2px;"><button id="orderinfo"
+							class="btn btn-info btn-block" aria-pressed="true">주문내역</button></td>
+					<td style="padding: 2px;"><button id="myboard"
+							class="btn btn-info btn-block" aria-pressed="true">내가쓴글</button></td>
+				</tr>
+			</c:if>
+	
+	
+			<c:if test="${login.ox=='Y'}">
+				<tr>
+					<td style="padding: 2px;"><button id="userinfo2"
+							class="btn btn-info btn-block" aria-pressed="true">회원정보</button></td>
+					<td style="padding: 2px;"><button id="orderinfo"
+							class="btn btn-info btn-block" aria-pressed="true">매출정보</button></td>
+					<td style="padding: 2px;"><button id="goodsinfo"
+							class="btn btn-info btn-block" aria-pressed="true">상품목록</button></td>
+				</tr>
+			</c:if>
+	
+			<c:if test="${login.ox=='Z'}">
+				<tr>
+					<td style="padding: 2px;"><button id="salesStatus"
+							class="btn btn-info btn-block" aria-pressed="true">매출현황</button></td>
+					<td style="padding: 2px;"><button id="userInfo"
+							class="btn btn-info btn-block" aria-pressed="true">회원관리</button></td>
+					<td style="padding: 2px;"><button id="goodsinfo1"
+							class="btn btn-info btn-block" aria-pressed="true">상품관리</button></td>
+				</tr>
+			</c:if>
+		</table>
+		<hr />
+	
+>>>>>>> branch 'master' of https://github.com/ghon0913/SpringRandombox.git
 		<c:if test="${!empty requestScope.page}">
 			<jsp:include page="${page}" />
 		</c:if>
@@ -82,11 +131,14 @@
 	</script>
 </c:if>
 
-
-
-
 <script>
 	$(document).ready(function() {
+		
+		/* 쇼핑하기 */
+		$("#goShopping").on("click", function() {
+			$(location).attr("href", "goodsList");
+		});
+		
 		$("#userinfo1").on("click", function() {
 			//console.log(">>>>>>>>>>",'${login}');
 			location.href = "userInfo";
