@@ -18,45 +18,44 @@
 	<!--Panel 1-->
 	<div class="tab-pane fade in show active" id="panel1" role="tabpanel"
 		align="center">
-		<br>
-		<img src="images/items/basicImage.png" border="0" width="200"
-			data-toggle="tooltip" data-placement="top"
+		<br> <img src="images/items/basicImage.png" border="0"
+			width="200" data-toggle="tooltip" data-placement="top"
 			title="상품구성: <c:forEach var="list16" items="${sessionScope.goodsList16}" varStatus="status">${list16.gName}<c:if test="${status.index!=15}">, </c:if></c:forEach>">
-
+		<p style="font-size: 20px; font-style: italic">(상품에 커서를 올리면 구성품을
+			보여드립니다.)</p>
 		<br>
-		
+
 		<p style="font-size: 100px; font-style: italic">${randomGoods.gPrice}원
 			!!!</p>
-		<br>
-		<br>
+		<br> <br>
 		<table border="1">
 
 		</table>
-		<a href="goodsMixList"><input type="button" value="새로 구성하기" class="btn btn-primary"/></a> <input
-			type="button" id="cartAdd" value="장바구니 넣기" class="btn btn-primary"/> <input type="button"
-			id="orderAdd" value="주문하기" class="btn btn-primary"/>
+		<a href="goodsMixList"><input type="button" value="새로 구성하기"
+			class="btn btn-primary" /></a> <input type="button" id="cartAdd"
+			value="장바구니 넣기" class="btn btn-primary" /> <input type="button"
+			id="orderAdd" value="주문하기" class="btn btn-primary" />
 	</div>
 	<!--/.Panel 1-->
 	<!--Panel 2-->
-	<div class="tab-pane fade" id="panel2" role="tabpanel">
+	<div class="tab-pane fade" id="panel2" role="tabpanel" align="center">
 		<br>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil
-			odit magnam minima, soluta doloribus reiciendis molestiae placeat
-			unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat
-			ratione porro voluptate odit minima.</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil
-			odit magnam minima, soluta doloribus reiciendis molestiae placeat
-			unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat
-			ratione porro voluptate odit minima.</p>
+		<table>
+			<c:forEach var="list16" items="${sessionScope.goodsList16}" varStatus="status">
+				<tr>
+					<td><table><tr><td align="center"><p style="font-size:50px ">상품${status.index+1}:${list16.gName}</p></td></tr>
+					<tr><td><img src="/upload/${list16.gContentImage}"></td></tr>
+					</table></td>
+				</tr>
+			</c:forEach>
+		</table>
 	</div>
 	<!--/.Panel 2-->
 	<!--Panel 3-->
-	<div class="tab-pane fade" id="panel3" role="tabpanel">
+	<div class="tab-pane fade" id="panel3" role="tabpanel" align="center">
 		<br>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil
-			odit magnam minima, soluta doloribus reiciendis molestiae placeat
-			unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat
-			ratione porro voluptate odit minima.</p>
+		<table>
+		</table>
 	</div>
 	<!--/.Panel 3-->
 </div>
