@@ -157,10 +157,11 @@ public class MyPageController {
 			mav.addObject("chk_reviewPage", "reviewRetrieve");
 			mav.setViewName ("review");
 		}
-		
+	
 		return mav;
 	}
 
+	
 	@RequestMapping("/goodsinfo")
 	public ModelAndView goodsinfo(HttpSession session, @RequestParam(defaultValue = "1") int curPage,
 								@RequestParam(required=false) String searchName,

@@ -10,8 +10,6 @@
 		href="#panel1" role="tab">랜덤박스</a></li>
 	<li class="nav-item"><a class="nav-link" data-toggle="tab"
 		href="#panel2" role="tab">상품설명</a></li>
-	<li class="nav-item"><a class="nav-link" data-toggle="tab"
-		href="#panel3" role="tab">상품후기</a></li>
 </ul>
 <!-- Tab panels -->
 <div class="tab-content card">
@@ -57,13 +55,7 @@
 		</table>
 	</div>
 	<!--/.Panel 2-->
-	<!--Panel 3-->
-	<div class="tab-pane fade" id="panel3" role="tabpanel" align="center">
-		<br>
-		<table>
-		</table>
-	</div>
-	<!--/.Panel 3-->
+
 </div>
 
 

@@ -16,9 +16,9 @@
 			<br>
 			<div class="input-group">
 				<span class="input-group-addon" id="basic-addon1"
-					style="width: 100px">전화번호</span> <input type="text"
-					class="form-control" placeholder="ex) 01096590369"
-					aria-label="Username" aria-describedby="basic-addon1" name="phone">
+					style="width: 100px">메일</span> <input type="text"
+					class="form-control" placeholder="ex) ghon0913@naver.com"
+					aria-label="Email" aria-describedby="basic-addon1" name="email">
 			</div>
 			<br>
 			<div align="center">
