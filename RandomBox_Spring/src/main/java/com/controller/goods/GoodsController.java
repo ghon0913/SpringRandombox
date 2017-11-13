@@ -122,7 +122,7 @@ public class GoodsController {
 	}
 
 	@RequestMapping("/goodsMixList")
-	public String goodsMixList(HttpSession session, Model m) {
+	public @ResponseBody HashMap<String, Object> goodsMixList(HttpSession session, Model m) {
 
 		List<GoodsDTO> list = (List<GoodsDTO>) session.getAttribute("goodsList");
 		Random rand = new Random();
@@ -146,13 +146,17 @@ public class GoodsController {
 
 		session.setAttribute("randomGoods", randomGoods);
 		// ******************
+		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("goodsList16", list16);
+		map.put("randomGoods", randomGoods);
 
-		return "goodsList";
+		return map;
 	}
 
 	@RequestMapping("/goodsMixListByCategory")
-	public String goodsMixListByCategory(HttpSession session, @RequestParam String category, Model m) {
-
+	public @ResponseBody String goodsMixListByCategory(HttpSession session, @RequestParam(value="category") String category, Model m) {
+		System.out.println(category);
 		String goodsListByCategory = "goodsListBy" + category;
 		List<GoodsDTO> list = (List<GoodsDTO>) session.getAttribute(goodsListByCategory);
 		System.out.println(list);
@@ -178,13 +182,12 @@ public class GoodsController {
 		randomGoods.setgPrice(resultPrice);
 
 		session.setAttribute(randomGoodsByCategory, randomGoods);
-		System.out.println(session.getAttribute(randomGoodsByCategory));
 		// ******************
 
 		m.addAttribute("isCategory", session.getAttribute(listByCategory));
 		m.addAttribute("gCategory", category);
 
-		return "goodsList";
+		return "";
 	}
 
 	@RequestMapping("/goodsBySearch")

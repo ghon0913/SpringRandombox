@@ -119,7 +119,11 @@ $(document).ready(function(){
 	
 	/* 삭제하기 */
 	$("#delete").on("click", function(){
-		$(location).attr("href", "loginchk/inquiryDelete?num=${retrieveDTO.num }");
+		if(${atMyPage}==true){
+			$(location).attr("href", "inquiryDelete?num=${retrieveDTO.num }");
+		}else{
+			$(location).attr("href", "loginchk/inquiryDelete?num=${retrieveDTO.num }");
+		}
 	});
 	
 	/* 답변 수정 하기 */

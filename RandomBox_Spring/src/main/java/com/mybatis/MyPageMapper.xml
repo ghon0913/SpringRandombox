@@ -224,10 +224,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where GCODE=#{gCode}
 	</update>
 
-	<select id="sellinfo" parameterType="String" resultType="list">
+    <!-- 주문 정보 -->
+	<select id="sellinfo" parameterType="String" resultType="OrderInfoDTO">
 		select num, userid, ordername, phone, email, post1, post2, addr1, addr2, gcode, gname, gprice, gimage, paymethod, orderday, status
 		from order_info
-		where sellerid = #{userid}
+		where sellerid = #{sellerid}
 		order by orderday
 	</select>
+	
+	<!-- 주문 정보 리스트 개수 -->
+	<select id="totalSellinfo" resultType="int" parameterType="string">
+		select count(*)
+		from order_info
+		where sellerid = #{sellerid}
+	</select>
+	
+	<!-- 배송 처리 -->
+	<update id="statusUpdate" parameterType="int">
+		update order_info
+		set status = '배송 완료'
+		where num = #{num}
+	</update>
 </mapper>

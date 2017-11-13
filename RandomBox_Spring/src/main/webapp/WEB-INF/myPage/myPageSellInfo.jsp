@@ -4,53 +4,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <div id="container">
-	<div class="row">
-		<div class="form-inline">
-			<form action="goodsinfo">
-				<select class="form-control" name="perPage" id="perPage">
-					<option>목록 보기 설정</option>
-					<option value="3">3개씩보기</option>
-					<option value="5">5개씩보기</option>
-					<option value="7">7개씩보기</option>
-				</select>
-				<span style="padding-left: 220px;">
-					<select class="form-control" name="searchName">
-						<option>검색 옵션</option>
-						<option value="gCode">상품 코드</option>
-						<option value="gName">상품명</option>
-					</select>
-					<input class="form-control" type="text" name="searchValue">
-					<input type="submit" class="btn btn-success" value="검색">
-				</span>
-			</form>
-		</div>
-	</div>
 	<br>
 	<table class="table" style="font-size: 12px;">
-		<c:if test="${empty pagedto.glist }">
+			<tr align="center">
+				<td width="100px"><b>주문번호</b></td>
+				<td width="100px"><b>주문자</b></td>
+				<td width="100px"><b>상품코드</b></td>
+				<td><b>상품명</b></td>
+				<td width="100px"><b>주문 정보</b></td>
+				<td width="100px"><b>주문일자</b></td>
+				<td width="100px"><b>배송상태</b></td>
+			</tr>
+		<c:if test="${empty sellInfoDTO.olist }">
 			<tr>
-				<td colspan="10" align="center">레코드가없습니다.</td>
+				<td colspan="10" align="center">주문 정보가없습니다.</td>
 			</tr>
 		</c:if>
-		<c:if test="${! empty pagedto.glist }">
-			<tr align="center">
-				<td><b>상품코드</b></td>
-				<td><b>상품명</b></td>
-				<td><b>카테고리</b></td>
-				<td><b>가격</b></td>
-				<td><b>Q&A</b></td>
-				<td></td>
-			</tr>
-			<c:forEach var="goods" items="${pagedto.glist }">
-				<tr id="tr${goods.gCode}" class="goodsTr">
-					<td align="center">${goods.gCode }</td>
-					<td><img src="${goods.gImage }">&nbsp;${goods.gName }</td>
-					<td align="center">${goods.gCategory }</td>
-					<td align="center">${goods.gPrice }</td>
-					<td align="center"><a href="questionList?gCode=${goods.gCode}">답변하러가기</a>
-					<td style='padding-left: 5px'><button style="font-size: 12px;"
-							class="btn btn-outline-secondary btn-sm deleteGoods" type="button"
-							id="deleteGoods" data-num="${goods.gCode}">삭제</button></td>
+		<c:if test="${! empty sellInfoDTO.olist }">
+			<c:forEach var="order" items="${sellInfoDTO.olist }">
+				<tr align="center">
+					<td >${order.num }</td>
+					<td>${order.orderName }</td>
+					<td>${order.gCode }</td>
+					<td align="left"><img src="/app/images/goods/${order.gImage }" height="70" width="70">&nbsp;
+					${order.gName }</td>
+					<td><input class="btn btn-outline-secondary btn-sm" type="button" value="자세히보기"></td>
+					<td>${order.orderDay }</td>
+					<td><span id="span${order.num }" class="statusSpan">${order.status }</span><br>
+						<c:if test="${order.status=='배송준비중'}">
+							<input class="btn btn-outline-success btn-sm status" type="button" value="배송처리" id="statusBtn" data-num="${order.num }">
+						</c:if>
+					</td>
 				</tr>
 
 			</c:forEach>
@@ -62,3 +46,30 @@
 		</c:if>
 	</table>
 </div>
+<script>
+$(document).ready(function() {
+	
+	/* 배송처리 */
+	$(".status").on("click", function() {
+		
+		var num = $(this).attr("data-num");
+		$.ajax({
+			url : "statusUpdate",
+			method : "get",
+			dataType : "text",
+			data : {
+				num : num
+			},
+			success : function(responseData, status, xhr) {
+				$("#span"+num).text("배송 완료");
+				$("#statusBtn").remove();
+				alert("배송처리가 완료되었습니다.");
+			},
+			error : function(xhr, status, error) {
+				console.log(error);
+			}
+		}); // end ajax
+
+	});
+});
+</script>

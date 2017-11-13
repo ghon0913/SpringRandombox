@@ -41,17 +41,17 @@
 
 			<c:if test="${!empty pagedto.getOlist() }">
 				<!-- 기간내 foreach문 주문내역 -->
-
-				<c:forEach var="order" items="${pagedto.getOlist() }">
+				<c:forEach var="order" items="${pagedto.getOlist() }" varStatus="status">
 					<tr>
+						<input id="index${order.num }" type="hidden" value="${status.count }">
 						<input id="gCode" type="hidden" value="${order.gCode }">
 						<input id="gName" type="hidden" value="${order.gName }">
 						<input id="gPrice" type="hidden" value="${order.gPrice }">
 						<td align="center">${order.orderDay }
-						<td align="center"><a href="orderretrieve?ordernum=${order.num }"
-							target="blank">${order.num }</a></td>
+						<td align="center"><a class="orderInfoModal" href="#"
+							data-toggle="modal" data-target="#myModal" data-num="${order.num }">${order.num }</a></td>
 						<td><img src="/app/images/goods/${order.gImage }"
-							height="100" width="100"> ${order.gName }</td>
+							height="70" width="70"> ${order.gName }</td>
 						<td align="center">${order.gPrice }</td>
 						<td align="center">${order.status}</td>
 						<td align="center"><input class="reviewWrite btn btn-outline-primary btn-sm" type="button" value="후기 작성하기"></td>
@@ -65,6 +65,50 @@
 		</table>
 </div>
 
+ <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+					 <div class="modal fade" id="myModal">
+					    <div class="modal-dialog">
+					      <div class="modal-content">
+					      
+					        <div class="modal-header">
+					          <h4 class="modal-title">주문 정보</h4>
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        </div>
+					        
+					        <div class="modal-body">
+					          <table class="table" style="font-size: 12px;">
+									<tr>
+										<th>주문정보<br /> (<span id="modalNum"></span>)
+										</th>
+										<td>주문상품<input id="modalgName" value="" readonly="readonly"> <br />
+											배송상태<input id="modalStatus" value="" readonly="readonly"> <br />
+										</td>
+									</tr>
+									<tr>
+										<th>결제정보</th>
+										<td>결제방식:<input id="modalPaymethod" value="" readonly="readonly"> <br />
+											금액:<input id="modalgPrice" value="" readonly="readonly"> <br />
+											결제시간:<input id="modalOrderday" value="" readonly="readonly"> <br />
+										</td>
+									</tr>
+									<tr>
+										<th>배송정보</th>
+										<td>이름:<input id="modalOrderName" value="" readonly="readonly"> <br />
+											연락처:<input id="modalPhone" value="" readonly="readonly"><br />
+											주소:<textarea id="modalAddr" readonly="readonly" rows="4" cols="50"></textarea>
+										</td>
+									</tr>
+								</table>
+					        </div>
+					        
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					        </div>
+					        
+					      </div>
+					    </div>
+					 </div>
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <script>
 	$(document).ready(function() {
 
@@ -80,5 +124,31 @@
 			var perPage = $("#perPage :selected").val();
 			$(location).attr("href", "orderinfoperpage?perPage="+perPage);
 		});
-	});
+		
+		/* modal */
+		$(".orderInfoModal").on("click", function(){
+			var orderNum = $(this).attr("data-num");
+			
+			$.ajax({
+				url : "orderretrieve",
+				method : "get",
+				dataType : "text",
+				data : {
+					ordernum : orderNum
+				},
+				success : function(responseData, status, xhr) {
+					console.log(responseData);
+					var jsonData = $.parseJSON(responseData);
+					console.log(jsonData.num);
+					$("#modalNum").text(jsonData.num);
+					$("#modalgName").val(jsonData.gName);
+					$("#modalgPrice").val(jsonData.gPrice);
+					$("#modalPaymethod").val(jsonData.payMethod);
+				},
+				error : function(xhr, status, error) {
+					console.log(error);
+				}
+			});
+		});
+});
 </script>

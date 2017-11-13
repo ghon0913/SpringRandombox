@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dto.BoardDTO;
@@ -106,14 +107,11 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value = "/orderretrieve", method = RequestMethod.GET)
-	public ModelAndView orderretrieve(HttpSession session, @RequestParam int ordernum ) {
-		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
-		OrderInfoDTO orderretrieve = service.orderinforetrieve(ordernum);
-		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("orderretrieve",orderretrieve);
-		mav.setViewName("myPage/myPageOrderInfoRetrieve");
-		return mav;
+	@ResponseBody
+	public OrderInfoDTO orderretrieve(HttpSession session, @RequestParam int ordernum ) {
+
+		OrderInfoDTO orderretrieve = service.orderinforetrieve(ordernum);		
+		return orderretrieve;
 	}
 	
 	@RequestMapping("/boardlist")
@@ -178,13 +176,26 @@ public class MyPageController {
 		return mav;
 	}
 
+	/* 주문 정보 */
 	@RequestMapping("/sellinfo")
-	public ModelAndView sellinfo() {
+	public ModelAndView sellInfo(HttpSession session, @RequestParam(defaultValue = "1") int curPage) {
 
 		ModelAndView mav = new ModelAndView();
+		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
+		
+		String sellerid = logindto.getUserid();
+		OrderInfoPageDTO sellInfoDTO = service.sellInfo(sellerid, curPage);
+		
+		mav.addObject("sellInfoDTO", sellInfoDTO);
 		mav.addObject("page", "myPage/myPageSellInfo.jsp");
 		mav.setViewName("myPage");
 		return mav;
 	}
-
+	
+	/* 배송 처리 */
+	@RequestMapping("/statusUpdate")
+	@ResponseBody
+	public void statusUpdate(@RequestParam int num) {
+		service.statusUpdate(num);
+	}
 }

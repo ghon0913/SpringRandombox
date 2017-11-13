@@ -47,6 +47,16 @@ public class MyPageService {
 	public GoodsPageDTO goodsinfo(HashMap<String, String> map, int curPage) {
 		return dao.goodsinfo(map, curPage);
 	}
+	
+	/* 매출정보 가져오기 */
+	public OrderInfoPageDTO sellInfo(String sellerid, int curPage) {
+		return dao.sellInfo(sellerid, curPage);
+	}
+	
+	/* 배송 처리 */
+	public void statusUpdate(int num) {
+		dao.statusUpdate(num);
+	}
 
 	/*
 	 * 

@@ -96,7 +96,7 @@
 		
 		/* 쇼핑하기 */
 		$("#goShopping").on("click", function() {
-			$(location).attr("href", "goodsList");
+			$(location).attr("href", "../goodsList");
 		});
 		
 		$("#userinfo1").on("click", function() {
