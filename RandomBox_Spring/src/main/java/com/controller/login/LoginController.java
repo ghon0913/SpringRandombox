@@ -65,7 +65,7 @@ public class LoginController {
 	
 	@RequestMapping(value="/findUserId", method=RequestMethod.POST)
 	public String findUserId(@RequestParam Map<String,String> map, Model m) throws Exception{
-		System.out.println(map.get("username")+map.get("phone"));
+		System.out.println(map.get("username")+map.get("email"));
 		String userid = service.findUserId(map);
 		System.out.println(userid);
 		if(userid==null) {
