@@ -95,7 +95,7 @@
 								&nbsp;-&nbsp;
 								<input class="form-control" name="post2" id="post2" size="5" readonly="" required>
 								&nbsp;&nbsp;&nbsp;
-								<input onclick="openDaumPostcode()" type="button" value="우편번호찾기">
+								<input onclick="openDaumPostcode()" type="button" value="우편번호찾기" class="btn btn-outline-secondary">
 							</div>	
 							<br>
 							<input class="form-control" name="addr1" id="addr1" size="40" readonly="" placeholder="도로명주소" required><br>
@@ -128,8 +128,8 @@
 					<tr>
 						<td colspan="3" align="center">
 							<input class="btn btn-success" type="submit" value="회원가입">
-							<input class="btn btn-default" type="reset" value="다시 작성하기">
-							<input class="btn btn-default" type="button" value="취소" id="cancel">
+							<input class="btn btn-outline-secondary" type="reset" value="다시 작성하기">
+							<input class="btn btn-outline-secondary" type="button" value="취소" id="cancel">
 						</td>
 					</tr>
 				</table>

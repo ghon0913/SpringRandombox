@@ -124,6 +124,8 @@ public class MyPageController {
 		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
 		HashMap<String, String> map = new HashMap();
 
+		System.out.println(searchName + "^^^^" + searchValue);
+		
 		map.put("searchName", searchName);
 		map.put("searchValue", searchValue);
 		map.put("userId", logindto.getUserid());
@@ -141,8 +143,6 @@ public class MyPageController {
 	public ModelAndView myboard(HttpSession session, @RequestParam int bnum, @RequestParam String state,
 								@RequestParam String atMyPage) {
 		ModelAndView mav = new ModelAndView();
-		
-		System.out.println("%%%%%%"+atMyPage);
 		
 		if(state.equals("처리중")||state.equals("답변완료")) {
 			BoardDTO dto = inqservice.inquiryRetrieve(bnum);
@@ -162,10 +162,13 @@ public class MyPageController {
 	}
 
 	@RequestMapping("/goodsinfo")
-	public ModelAndView goodsinfo(HttpSession session, @RequestParam(defaultValue = "1") int curPage) {
+	public ModelAndView goodsinfo(HttpSession session, @RequestParam(defaultValue = "1") int curPage,
+								@RequestParam(required=false) String searchName,
+								@RequestParam(required=false) String searchValue) {
+		
 		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
 		HashMap<String, String> map = new HashMap();
-
+		
 		map.put("searchName", MyPageBoardPageDTO.getSearchName());
 		map.put("searchValue", MyPageBoardPageDTO.getSearchValue());
 		map.put("userId", logindto.getUserid());

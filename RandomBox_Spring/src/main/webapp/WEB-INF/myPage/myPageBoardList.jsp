@@ -16,7 +16,7 @@
 				</select>
 				<span style="padding-left: 220px;">
 					<select class="form-control" name="searchName">
-						<option >상태</option>
+						<option >검색 옵션</option>
 						<option value="title">제목</option>
 						<option value="content">내용</option>
 					</select>
