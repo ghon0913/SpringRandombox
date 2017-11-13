@@ -18,34 +18,40 @@
 	<!--Panel 1-->
 	<div class="tab-pane fade in show active" id="panel1" role="tabpanel"
 		align="center">
-		<br> <img src="images/items/basicImage.png" border="0"
+		<br> <img src="images/items/basicImage.png" class="reload" border="0"
 			width="200" data-toggle="tooltip" data-placement="top"
 			title="상품구성: <c:forEach var="list16" items="${sessionScope.goodsList16}" varStatus="status">${list16.gName}<c:if test="${status.index!=15}">, </c:if></c:forEach>">
 		<p style="font-size: 20px; font-style: italic">(상품에 커서를 올리면 구성품을
 			보여드립니다.)</p>
 		<br>
 
-		<p style="font-size: 100px; font-style: italic">${randomGoods.gPrice}원
-			!!!</p>
+		<p id="rPrice" style="font-size: 100px; font-style: italic">${randomGoods.gPrice}원
+			</p>
 		<br> <br>
 		<table border="1">
 
 		</table>
-		<a href="goodsMixList"><input type="button" value="새로 구성하기"
-			class="btn btn-primary" /></a> <input type="button" id="cartAdd"
+		<input type="button" value="새로 구성하기"
+			class="btn btn-primary mixGoods" /> <input type="button" id="cartAdd"
 			value="장바구니 넣기" class="btn btn-primary" /> <input type="button"
 			id="orderAdd" value="주문하기" class="btn btn-primary" />
 	</div>
 	<!--/.Panel 1-->
 	<!--Panel 2-->
-	<div class="tab-pane fade" id="panel2" role="tabpanel" align="center">
+	<div class="tab-pane fade reload" id="panel2" role="tabpanel" align="center">
 		<br>
 		<table>
-			<c:forEach var="list16" items="${sessionScope.goodsList16}" varStatus="status">
+			<c:forEach var="list16" items="${sessionScope.goodsList16}"
+				varStatus="status">
 				<tr>
-					<td><table><tr><td align="center"><p style="font-size:50px ">상품${status.index+1}:${list16.gName}</p></td></tr>
-					<tr><td><img src="/upload/${list16.gContentImage}"></td></tr>
-					</table></td>
+					<td align="center"><table>
+							<tr>
+								<td align="center"><p style="font-size: 50px">상품${status.index+1}</p><br><p style="font-size: 20px">${list16.gName}</p></td>
+							</tr>
+							<tr>
+								<td align="center"><img src="/upload/${list16.gContentImage}"></td>
+							</tr>
+						</table></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -98,6 +104,27 @@
 			$("#randomGoodsForm").submit();		
 	});
 	
-	
+	$(document).ready(function() {
+
+		/* 상품변환  */
+		$(".mixGoods").on("click", function() {
+
+			$.ajax({
+				url : "goodsMixList",
+				method : "get",
+				success : function(responseData, status, xhr) {
+					console.log(responseData);
+					//$("#rPrice").text(responseData.randomGoods.gPrice+"원");
+					location.reload();
+					
+				},
+				error : function(xhr, status, error) {
+					console.log(error);
+				}
+			}); // end ajax
+
+		});
+
+	});
 
 </script>

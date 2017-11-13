@@ -33,13 +33,13 @@
 			보여드립니다.)</p>
 		<br>
 	
-		<p style="font-size: 100px; font-style: italic"><%=randomGoods.getgPrice()%>원!!!</p>
+		<p style="font-size: 100px; font-style: italic"><%=randomGoods.getgPrice()%>원</p>
 		<br> <br>
 		<table border="1">
 
 		</table>
-		<a href="goodsMixListByCategory?category=${gCategory}"><input type="button" value="새로 구성하기"
-			class="btn btn-primary" /></a> <input type="button" id="cartAdd"
+		<input type="button" value="새로 구성하기"
+			class="btn btn-primary mixGoods" /> <input type="button" id="cartAdd"
 			value="장바구니 넣기" class="btn btn-primary" /> <input type="button"
 			id="orderAdd" value="주문하기" class="btn btn-primary" />
 	</div>
@@ -50,10 +50,11 @@
 		<table>
 			<c:forEach var="list16" items="<%=list %>" varStatus="status">
 				<tr>
-					<td><table><tr><td align="center"><p style="font-size:50px ">상품${status.index+1}:${list16.gName}</p></td></tr>
-					<tr><td><img src="/upload/${list16.gContentImage}"></td></tr>
+					<td align="center"><table><tr><td align="center"><p style="font-size: 50px">상품${status.index+1}</p><br><p style="font-size: 20px">${list16.gName}</p></td></tr>
+					<tr><td align="center"><img src="/upload/${list16.gContentImage}"></td></tr>
 					</table></td>
 				</tr>
+				
 			</c:forEach>
 		</table>
 	</div>
@@ -99,6 +100,27 @@
 			$("#randomGoodsForm").submit();		
 	});
 	
-	
+	$(document).ready(function() {
+
+		/* 상품변환  */
+		$(".mixGoods").on("click", function() {
+			
+
+			$.ajax({
+				url : "goodsMixListByCategory?category=${gCategory}",
+				method : "get",
+				success : function(responseData, status, xhr) {
+					
+					location.reload();
+					
+				},
+				error : function(xhr, status, error) {
+					console.log(error);
+				}
+			}); // end ajax
+
+		});
+
+	});
 
 </script>
