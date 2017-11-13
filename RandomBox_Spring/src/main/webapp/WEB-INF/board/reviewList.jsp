@@ -3,6 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<c:if test="${!empty result }">
+<script>
+	alert("${result }");
+</script>
+</c:if>
+
 
 <div style="background-color: #0277BD; margin-top: -30px; color: white; padding: 20px 200px; align: right; margin-bottom: 20px;">
 	<h5 style="display:inline;">|&nbsp;&nbsp;&nbsp;<b>랜덤박스 후기</b>&nbsp;&nbsp;&nbsp;|</h5>
@@ -102,7 +108,7 @@
 		/* 카테고리별로 보기 */
 		$("#searchCategory").on("change",function() {
 			var searchCategory = $("option:selected").val();
-			$(location).attr("href","reviewList?searchCategory="+ searchCategory);
+			$(location).attr("href","reviewListByCategory?searchCategory="+ searchCategory);
 		});
 	});
 </script>

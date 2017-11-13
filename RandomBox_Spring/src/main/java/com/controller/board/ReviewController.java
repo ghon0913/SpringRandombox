@@ -27,19 +27,22 @@ public class ReviewController {
 	@Autowired
 	GoodsService g_service;
 	
+	/* 후기게시판 전체 리스트(처음) */
+	@RequestMapping("/reviewListAll")
+	public String reviewListAll( ) {
+		
+		BoardPageDTO.setSearchCategory(null);
+		return "forward:/reviewList";
+	}
+	
 	/* 후기게시판 리스트 */
 	@RequestMapping("/reviewList")
-	public String reviewList(@RequestParam(required=false) String searchCategory,
-							 @RequestParam(required=false) String searchName,
+	public String reviewList(@RequestParam(required=false) String searchName,
 							 @RequestParam(required=false) String searchWord,
 							 @RequestParam(defaultValue="1") String curPage, Model m) {
         
-        if(searchCategory != null && searchCategory.equals("all")) {
-        	searchCategory = null;
-        }
-        
 			HashMap<String, String> searchMap = new HashMap<>();
-			searchMap.put("searchCategory", searchCategory);
+			searchMap.put("searchCategory", BoardPageDTO.getSearchCategory());
 			searchMap.put("searchName", searchName);
 			searchMap.put("searchWord", searchWord);
 			
@@ -51,13 +54,29 @@ public class ReviewController {
 		    	if(dto.getTotalCount() % dto.getPerPage() != 0) totalNum++;
 			int endPage = startPage + dto.getPerBlock() - 1;
 				if(endPage > totalNum) endPage = totalNum;
-			
+			int endBlock = ( int )Math.ceil((double)totalNum / dto.getPerBlock());
+				
+			m.addAttribute("endBlock", endBlock);
+			m.addAttribute("curBlock", curBlock);
 			m.addAttribute("totalNum", totalNum);
 			m.addAttribute("startPage", startPage);
 			m.addAttribute("endPage", endPage);
 			m.addAttribute("boardList", dto);
 			m.addAttribute("chk_reviewPage", "reviewList");
+			
 			return "review";
+	}
+	
+	/* 카테고리별 보기 */
+	@RequestMapping("/reviewListByCategory")
+	public String reviewListByCategory(@RequestParam(required=false) String searchCategory) {
+		
+		if(searchCategory.equals("all")) {
+			searchCategory = null;
+		}
+		
+		BoardPageDTO.setSearchCategory(searchCategory);
+		return "forward:/reviewList";
 	}
 	
 	/* 후기글 자세히보기 */
@@ -73,17 +92,19 @@ public class ReviewController {
 	
 	/* 후기글 수정하기 */
 	@RequestMapping("/loginchk/reviewUpdate")
-	public String reviewUpdate(@ModelAttribute("reviewRetrieveForm") BoardDTO dto) {
+	public String reviewUpdate(@ModelAttribute("reviewRetrieveForm") BoardDTO dto, Model m) {
 		
 		service.reviewUpdate(dto);
+		m.addAttribute("result", "수정이 완료되었습니다.");
 		return "redirect:/reviewList.do";
 	}
 	
 	/* 후기글 삭제하기 */
 	@RequestMapping("/loginchk/reviewDelete")
-	public String reviewDelete(@RequestParam String num) {
+	public String reviewDelete(@RequestParam String num, Model m) {
 		
 		service.reviewDelete(Integer.parseInt(num));
+		m.addAttribute("result", "수정이 완료되었습니다.");
 		return "redirect:/reviewList.do";
 	}
 	

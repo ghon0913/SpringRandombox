@@ -89,13 +89,12 @@ public class MyPageController {
 	}
 
 	@RequestMapping(value = "/orderinfo", method = RequestMethod.GET)
-	public ModelAndView orderinfo(HttpSession session, @RequestParam(defaultValue = "1") int curPage,
-								@RequestParam(required = false) String startdate,
-								@RequestParam(required = false) String finaldate) {
+	public ModelAndView orderinfo(HttpSession session, @RequestParam(defaultValue = "1") int curPage) {
 		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
+		
 		HashMap<String, String> map = new HashMap();
-		map.put("startdate", startdate);
-		map.put("finaldate", finaldate);
+		map.put("startdate", OrderInfoPageDTO.getStartdate());
+		map.put("finaldate", OrderInfoPageDTO.getFinaldate());
 		map.put("userId", logindto.getUserid());
 
 		OrderInfoPageDTO oList = service.myPageOrderInfoPage(map, curPage);
@@ -118,21 +117,18 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("/boardlist")
-	public ModelAndView myboardList(HttpSession session, @RequestParam(defaultValue = "1") int curPage,
-								@RequestParam(required=false) String searchName,
-								@RequestParam(required=false) String searchValue) {
+	public ModelAndView myboardList(HttpSession session, @RequestParam(defaultValue = "1") int curPage) {
 		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
 		HashMap<String, String> map = new HashMap();
 
-		System.out.println(searchName + "^^^^" + searchValue);
-		
-		map.put("searchName", searchName);
-		map.put("searchValue", searchValue);
 		map.put("userId", logindto.getUserid());
+		map.put("searchName", MyPageBoardPageDTO.getSearchName());
+		map.put("searchValue", MyPageBoardPageDTO.getSearchValue());
 
 		MyPageBoardPageDTO pagedto = service.boardpage(map, curPage);
 
 		ModelAndView mav = new ModelAndView();
+
 		mav.addObject("pagedto", pagedto);
 		mav.addObject("page", "myPage/myPageBoardList.jsp");
 		mav.setViewName("myPage");
@@ -169,8 +165,8 @@ public class MyPageController {
 		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
 		HashMap<String, String> map = new HashMap();
 		
-		map.put("searchName", MyPageBoardPageDTO.getSearchName());
-		map.put("searchValue", MyPageBoardPageDTO.getSearchValue());
+		map.put("searchName", searchName);
+		map.put("searchValue", searchValue);
 		map.put("userId", logindto.getUserid());
 		
 		GoodsPageDTO pagedto = service.goodsinfo(map, curPage);

@@ -115,18 +115,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		to_char(writeday, 'mm/dd')
 		"writeday", readcnt, userid, gcode, state
 		from board
-		where userid =
-		#{userId}
-		<if test="searchName == 'state'">
-			and state like
-			'%'||#{searchValue}||'%'
-		</if>
+		where userid = #{userId}
 		<if test="searchName == 'title'">
 			and title like
 			'%'||#{searchValue}||'%'
 		</if>
-		<if test="searchName == 'author'">
-			and author like
+		<if test="searchName == 'content'">
+			and content like
 			'%'||#{searchValue}||'%'
 		</if>
 		order by num desc
@@ -183,7 +178,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		GAMOUNT, SELLERID
 		from goods
 		where SELLERID = #{userId}
-
+		<if test="searchName == 'gCode'">
+			and gCode like
+			'%'||#{searchValue}||'%'
+		</if>
+		<if test="searchName == 'gName'">
+			and gName like
+			'%'||#{searchValue}||'%'
+		</if>
 	</select>
 
 	<select id="totalgoodsinfo" resultType="int" parameterType="string">
@@ -197,7 +199,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*)
 		from goods
 		where SELLERID = #{userId}
-
 	</select>
 
 	<select id="goodsretrieve" resultType="GoodsDTO" parameterType="string">
@@ -223,13 +224,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where GCODE=#{gCode}
 	</update>
 
-	<select id="sellinfo" parameterType="String" resultType="SalesStatusDTO">
-		select
-		to_char(ORDERDAY,'mm/dd') orderDay , sum(gprice) gPrice
+	<select id="sellinfo" parameterType="String" resultType="list">
+		select num, userid, ordername, phone, email, post1, post2, addr1, addr2, gcode, gname, gprice, gimage, paymethod, orderday, status
 		from order_info
-		where sellerid=#{userid}
-		group by to_char(ORDERDAY,'mm/dd')
-		order by
-		orderDay
+		where sellerid = #{userid}
+		order by orderday
 	</select>
 </mapper>

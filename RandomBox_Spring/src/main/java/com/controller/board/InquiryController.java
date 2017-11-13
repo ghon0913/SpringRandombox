@@ -26,19 +26,23 @@ public class InquiryController {
 	@Autowired
 	InquiryService service;
 	
+	/* 문의게시판 전체 리스트(처음) */
+	@RequestMapping("/inquiryListAll")
+	public String inquiryListAll( ) {
+		
+		BoardPageDTO.setSearchCategory(null);
+		return "forward:/inquiryList";
+	}
+	
 	/* 문의게시판 리스트 */
 	@RequestMapping("/inquiryList")
-	public String inquiryList(@RequestParam(required=false) String searchCategory,
-							 @RequestParam(required=false) String searchName,
+	public String inquiryList(@RequestParam(required=false) String searchName,
 							 @RequestParam(required=false) String searchWord,
 							 @RequestParam(defaultValue="1") String curPage, Model m) {
         
-        if(searchCategory != null && searchCategory.equals("all")) {
-        	searchCategory = null;
-        }
-        
 			HashMap<String, String> searchMap = new HashMap<>();
-			searchMap.put("searchCategory", searchCategory);
+			
+			searchMap.put("searchCategory", BoardPageDTO.getSearchCategory());
 			searchMap.put("searchName", searchName);
 			searchMap.put("searchWord", searchWord);
 			
@@ -50,8 +54,10 @@ public class InquiryController {
 		    	if(dto.getTotalCount() % dto.getPerPage() != 0) totalNum++;
 			int endPage = startPage + dto.getPerBlock() - 1;
 				if(endPage > totalNum) endPage = totalNum;
+			int endBlock = ( int )Math.ceil((double)totalNum / dto.getPerBlock());
 			
-			
+			m.addAttribute("endBlock", endBlock);
+			m.addAttribute("curBlock", curBlock);
 			m.addAttribute("totalNum", totalNum);
 			m.addAttribute("startPage", startPage);
 			m.addAttribute("endPage", endPage);
@@ -60,6 +66,19 @@ public class InquiryController {
 
 			return "inquiry";
 			
+	}
+	
+	/* 카테고리별 보기 */
+	@RequestMapping("/inquiryListByCategory")
+	public String inquiryListByCategory(@RequestParam(required=false) String searchCategory,
+										@RequestParam(required=false) String chkSearch) {
+		
+		if(searchCategory.equals("all")) {
+			searchCategory = null;
+		}
+		
+		BoardPageDTO.setSearchCategory(searchCategory);
+		return "forward:/inquiryList";
 	}
 	
 	/* 문의글게시판 자세히보기 */
@@ -83,17 +102,24 @@ public class InquiryController {
 	
 	/* 문의글 수정하기 */
 	@RequestMapping("/loginchk/inquiryUpdate")
-	public String inquiryUpdate(@ModelAttribute("inquiryRetrieveForm") BoardDTO dto) {
+	public String inquiryUpdate(@ModelAttribute("inquiryRetrieveForm") BoardDTO dto, Model m) {
 		
 		service.inquiryUpdate(dto);
+		m.addAttribute("result", "수정이 완료되었습니다.");
 		return "redirect:/inquiryList.do";
 	}
 	
 	/* 문의글 삭제하기 */
 	@RequestMapping("/loginchk/inquiryDelete")
-	public String inquiryDelete(@RequestParam String num) {
+	public String inquiryDelete(@RequestParam String num, Model m) {
+		
+		System.out.println(num+"####");
 		
 		service.inquiryDelete(Integer.parseInt(num));
+		
+		
+		
+		m.addAttribute("result", "수정이 완료되었습니다.");
 		return "redirect:/inquiryList.do";
 	}
 	
@@ -117,7 +143,7 @@ public class InquiryController {
 	/* 문의글 쓰기 */
 	@RequestMapping("/loginchk/inquiryWrite")
 	public String inquiryWrite(@ModelAttribute("inquiryWriteForm") BoardDTO dto,
-							   @RequestParam String select_question) {
+							   @RequestParam String select_question, Model m) {
 		
 		if(select_question.equals("q_admin")) {
 			dto.setCategory("관리자질문");
@@ -125,7 +151,7 @@ public class InquiryController {
 		}
 		
 		service.inquiryWrite(dto);
-		
+		m.addAttribute("result", "작성이 완료되었습니다.");
 		return "redirect:/inquiryList.do";
 	}
 	
@@ -142,8 +168,9 @@ public class InquiryController {
 	    	if(dto.getTotalCount() % dto.getPerPage() != 0) totalNum++;
 		int endPage = startPage + dto.getPerBlock() - 1;
 			if(endPage > totalNum) endPage = totalNum;
-		
-		
+		int endBlock = ( int )Math.ceil((double)totalNum / dto.getPerBlock());
+			
+		m.addAttribute("endBlock", endBlock);
 		m.addAttribute("totalNum", totalNum);
 		m.addAttribute("startPage", startPage);
 		m.addAttribute("endPage", endPage);

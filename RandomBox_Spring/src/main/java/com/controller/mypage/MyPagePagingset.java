@@ -36,8 +36,9 @@ public class MyPagePagingset {
 
 	@RequestMapping("/boardperpage")
 	public String myPageboardperpage(@RequestParam(defaultValue = "3") String perPage) {
+
 		MyPageBoardPageDTO.setPerPage(Integer.parseInt(perPage));
-		System.out.println(MyPageBoardPageDTO.getSearchValue());
+		
 		return "forward:/loginchk/boardlist";
 	}
 

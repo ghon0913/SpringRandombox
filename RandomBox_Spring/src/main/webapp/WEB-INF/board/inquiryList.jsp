@@ -130,7 +130,7 @@
 				/* 카테고리별로 보기 */
 				$("#searchCategory").on("change", function() {
 						var searchCategory = $("option:selected").val();
-						$(location).attr("href","inquiryList?searchCategory="+ searchCategory);
+						$(location).attr("href","inquiryListByCategory?searchCategory="+ searchCategory);
 					});
 				});
 </script>

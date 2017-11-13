@@ -3,11 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<c:if test="${ !empty result}">
-		<script type="text/javascript">
-			alert("정상적으로 수정되었습니다.");
-		</script>
-</c:if>
+
 <div style="background-color: #0277BD; margin-top: -30px; color: white; padding: 20px 200px; align: right; margin-bottom: 20px;">
 	<h5 style="display:inline;">|&nbsp;&nbsp;&nbsp;<b>Q & A</b>&nbsp;&nbsp;&nbsp;|</h5>
 	<p id ="goShopping" style="display:inline; padding: 8px 15px; border: solid 1px white; font-size: 13px; margin-top: -6px;" class="pull-right">
@@ -123,14 +119,13 @@ $(document).ready(function(){
 	
 	/* 삭제하기 */
 	$("#delete").on("click", function(){
-		console.log("%%%%");
 		$(location).attr("href", "loginchk/inquiryDelete?num=${retrieveDTO.num }");
 	});
 	
 	/* 답변 수정 하기 */
 	$("#answerUpdate").on("click", function(){
 		var answer = $("#answer").val();
-		$(location).attr("href", "loginchk/answerUpdate?boardNum=${retrieveDTO.num }&answer="+answer);
+		$(location).attr("href", "answerUpdate?boardNum=${retrieveDTO.num }&answer="+answer);
 	});
 	
 	/* 지정했던 공개여부 선택되도록 */

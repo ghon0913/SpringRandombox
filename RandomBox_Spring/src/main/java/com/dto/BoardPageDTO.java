@@ -11,7 +11,8 @@ public class BoardPageDTO {
 	private int perBlock = 5;
 	private String searchName;
 	private String searchValue;
-	
+	private static String searchCategory = null;
+
 	public BoardPageDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -71,6 +72,14 @@ public class BoardPageDTO {
 
 	public void setSearchValue(String searchValue) {
 		this.searchValue = searchValue;
+	}
+
+	public static String getSearchCategory() {
+		return searchCategory;
+	}
+
+	public static void setSearchCategory(String searchCategory) {
+		BoardPageDTO.searchCategory = searchCategory;
 	}
 
 	@Override

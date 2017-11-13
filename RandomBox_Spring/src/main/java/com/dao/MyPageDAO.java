@@ -16,7 +16,6 @@ import com.dto.MemberDTO;
 import com.dto.MyPageBoardPageDTO;
 import com.dto.OrderInfoDTO;
 import com.dto.OrderInfoPageDTO;
-import com.dto.SalesStatusDTO;
 
 @Repository
 public class MyPageDAO {

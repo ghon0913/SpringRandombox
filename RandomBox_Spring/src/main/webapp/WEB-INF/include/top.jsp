@@ -60,10 +60,8 @@
 				</c:if>
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item"><a class="nav-link" href="/app/reviewList">|</a></li>
-					<li class="nav-item"><a class="nav-link" href="/app/inquiryList">Q
-							& A</a></li>
-					<li class="nav-item"><a class="nav-link" href="/app/reviewList">랜덤박스
-							후기</a></li>
+					<li class="nav-item"><a class="nav-link" href="/app/inquiryListAll">Q & A</a></li>
+					<li class="nav-item"><a class="nav-link" href="/app/reviewListAll">랜덤박스 후기</a></li>
 				</ul>
 
 
