@@ -184,8 +184,8 @@ public class MyPageController {
 		ModelAndView mav = new ModelAndView();
 		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
 		
-		String sellerid = logindto.getUserid();
-		OrderInfoPageDTO sellInfoDTO = service.sellInfo(sellerid, curPage);
+		String sellerId = logindto.getUserid();
+		OrderInfoPageDTO sellInfoDTO = service.sellInfo(sellerId, curPage);
 		
 		mav.addObject("sellInfoDTO", sellInfoDTO);
 		mav.addObject("page", "myPage/myPageSellInfo.jsp");

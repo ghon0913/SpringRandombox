@@ -19,12 +19,16 @@ import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
 import com.dto.GoodsDTO;
 import com.service.InquiryService;
+import com.service.ReviewService;
 
 @Controller
 public class InquiryController {
 
 	@Autowired
 	InquiryService service;
+	
+	@Autowired
+	ReviewService r_service;
 	
 	/* 문의게시판 전체 리스트(처음) */
 	@RequestMapping("/inquiryListAll")
@@ -38,7 +42,8 @@ public class InquiryController {
 	@RequestMapping("/inquiryList")
 	public String inquiryList(@RequestParam(required=false) String searchName,
 							 @RequestParam(required=false) String searchWord,
-							 @RequestParam(defaultValue="1") String curPage, Model m) {
+							 @RequestParam(defaultValue="1") String curPage,
+							 @RequestParam(required=false, value="resultMesg") String resultMesg, Model m) {
         
 			HashMap<String, String> searchMap = new HashMap<>();
 			
@@ -63,7 +68,8 @@ public class InquiryController {
 			m.addAttribute("endPage", endPage);
 			m.addAttribute("boardList", dto);
 			m.addAttribute("chk_inquiryPage", "inquiryList");
-
+			m.addAttribute("result", resultMesg);
+			
 			return "inquiry";
 			
 	}
@@ -94,32 +100,31 @@ public class InquiryController {
 			m.addAttribute("answerDTO", a_dto);
 		}
 		
+		String gCode = dto.getgCode();
+		String gName = r_service.getGoodsName(gCode);
+		m.addAttribute("gName", gName);
+		
 		m.addAttribute("retrieveDTO", dto);
-		System.out.println(dto);
 		m.addAttribute("chk_inquiryPage", "inquiryRetrieve");
 		return "inquiry";
 	}
 	
 	/* 문의글 수정하기 */
 	@RequestMapping("/loginchk/inquiryUpdate")
-	public String inquiryUpdate(@ModelAttribute("inquiryRetrieveForm") BoardDTO dto, Model m) {
+	public String inquiryUpdate(@ModelAttribute("inquiryRetrieveForm") BoardDTO dto,
+								RedirectAttributes resultMesg, Model m) {
 		
 		service.inquiryUpdate(dto);
-		m.addAttribute("result", "수정이 완료되었습니다.");
+		resultMesg.addAttribute("resultMesg", "문의글 수정 성공!");
 		return "redirect:/inquiryList.do";
 	}
 	
 	/* 문의글 삭제하기 */
 	@RequestMapping("/loginchk/inquiryDelete")
-	public String inquiryDelete(@RequestParam String num, Model m) {
-		
-		System.out.println(num+"####");
+	public String inquiryDelete(@RequestParam String num, RedirectAttributes resultMesg, Model m) {
 		
 		service.inquiryDelete(Integer.parseInt(num));
-		
-		
-		
-		m.addAttribute("result", "수정이 완료되었습니다.");
+		resultMesg.addAttribute("resultMesg", "문의글 삭제 성공!");
 		return "redirect:/inquiryList.do";
 	}
 	

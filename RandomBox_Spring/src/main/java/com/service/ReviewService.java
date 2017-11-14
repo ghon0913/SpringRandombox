@@ -32,9 +32,12 @@ public class ReviewService {
 	public BoardDTO reviewRetrieve(int num) {
 		
 		dao.reviewReadCnt(num);
-		BoardDTO dto = dao.reviewRetrieve(num);
-		
+		BoardDTO dto = dao.reviewRetrieve(num);		
 		return dto;
+	}
+	
+	public String getGoodsName(String gCode) {
+		return dao.getGoodsName(gCode);
 	}
 	
 	/* 후기글 수정하기 */

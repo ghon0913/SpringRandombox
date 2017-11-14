@@ -63,5 +63,11 @@ public class MyPagePagingset {
 		GoodsPageDTO.setSearchValue(searchValue);
 		return "forward:/loginchk/goodsinfo";
 	}
+	
+	@RequestMapping("/sellInfoperpage")
+	public String myPageSellInfoperpage(@RequestParam(defaultValue = "3") String perPage) {
+		OrderInfoPageDTO.setPerPage(Integer.parseInt(perPage));
+		return "forward:/loginchk/sellinfo";
+	}
 
 }

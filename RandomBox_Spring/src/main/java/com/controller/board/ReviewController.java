@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
@@ -39,7 +40,8 @@ public class ReviewController {
 	@RequestMapping("/reviewList")
 	public String reviewList(@RequestParam(required=false) String searchName,
 							 @RequestParam(required=false) String searchWord,
-							 @RequestParam(defaultValue="1") String curPage, Model m) {
+							 @RequestParam(defaultValue="1") String curPage,
+							 @RequestParam(required=false, value="resultMesg") String resultMesg, Model m) {
         
 			HashMap<String, String> searchMap = new HashMap<>();
 			searchMap.put("searchCategory", BoardPageDTO.getSearchCategory());
@@ -63,6 +65,7 @@ public class ReviewController {
 			m.addAttribute("endPage", endPage);
 			m.addAttribute("boardList", dto);
 			m.addAttribute("chk_reviewPage", "reviewList");
+			m.addAttribute("result", resultMesg);
 			
 			return "review";
 	}
@@ -84,6 +87,10 @@ public class ReviewController {
 	public String reviewRetrieve(@RequestParam String num, Model m) {
 		
 		BoardDTO dto = service.reviewRetrieve(Integer.parseInt(num));
+		String gCode = dto.getgCode();
+		String gName = service.getGoodsName(gCode);
+		
+		m.addAttribute("gName", gName);
 		m.addAttribute("retrieveDTO", dto);
 		m.addAttribute("chk_reviewPage", "reviewRetrieve");
 		
@@ -92,19 +99,20 @@ public class ReviewController {
 	
 	/* 후기글 수정하기 */
 	@RequestMapping("/loginchk/reviewUpdate")
-	public String reviewUpdate(@ModelAttribute("reviewRetrieveForm") BoardDTO dto, Model m) {
+	public String reviewUpdate(@ModelAttribute("reviewRetrieveForm") BoardDTO dto,
+								RedirectAttributes resultMesg, Model m) {
 		
 		service.reviewUpdate(dto);
-		m.addAttribute("result", "수정이 완료되었습니다.");
+		resultMesg.addAttribute("resultMesg", "후기글 수정 성공!");
 		return "redirect:/reviewList.do";
 	}
 	
 	/* 후기글 삭제하기 */
 	@RequestMapping("/loginchk/reviewDelete")
-	public String reviewDelete(@RequestParam String num, Model m) {
+	public String reviewDelete(@RequestParam String num, RedirectAttributes resultMesg, Model m) {
 		
 		service.reviewDelete(Integer.parseInt(num));
-		m.addAttribute("result", "수정이 완료되었습니다.");
+		resultMesg.addAttribute("resultMesg", "후기글 수정 성공!");
 		return "redirect:/reviewList.do";
 	}
 	
@@ -135,8 +143,6 @@ public class ReviewController {
 		
 		GoodsDTO dto = service.getGoodsInfo(gCode);
 		
-		System.out.println(gCode+"%%%%%" + dto);
-		
 		m.addAttribute("gPrice", gPrice);
 		m.addAttribute("GoodsDTO", dto);
 		m.addAttribute("chk_reviewPage", "reviewForm");
@@ -160,22 +166,23 @@ public class ReviewController {
 	public String mainList(Model m) {
 		
 		List<BoardDTO> list = service.orderByReadCnt();
+		for (BoardDTO boardDTO : list) {
+			String substr_bName = boardDTO.getTitle();
+			if(substr_bName.length() > 28){
+				boardDTO.setTitle(substr_bName.substring(0, 28)+" ...");
+			}
+		}
 		m.addAttribute("reviewList", list);
 		
 		List<GoodsDTO> g_list = g_service.newGoods();
+		for (GoodsDTO goodsDTO : g_list) {
+			String substr_gName = goodsDTO.getgName();
+			if(substr_gName.length() > 20) {
+				goodsDTO.setgName(substr_gName.substring(0, 20)+" ...");
+			}
+		}
 		m.addAttribute("goodsList", g_list);
 
 		return "home";
 	}
-	
-	/* 후기 작성한 상품인지 확인 */
-	@RequestMapping("/chkReviewWrite")
-	@ResponseBody
-	public boolean chkReviewWrite() {
-		
-		boolean chk = true;
-		
-		return chk;
-	}
-	
 }

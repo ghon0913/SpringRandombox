@@ -30,7 +30,7 @@
 				<td><b>상품 카테고리 :</b>&nbsp;&nbsp;&nbsp; ${retrieveDTO.category }</td>
 				<td>
 					<c:if test="${(retrieveDTO.gCode != 'admin') && !empty retrieveDTO.gCode}">
-						<b>문의 상품 :</b>&nbsp;&nbsp;&nbsp;${retrieveDTO.gCode }
+						<b>문의 상품 :</b>&nbsp;&nbsp;&nbsp;${gName}
 					</c:if>
 				</td>
 				<td></td>
@@ -109,12 +109,14 @@ $(document).ready(function(){
 
 	/* 쇼핑 바로가기 */
 	$("#goShopping").on("click", function() {
-		$(location).attr("href", "goodsList");
+		//$(location).attr("href", "goodsList");
+		console.log("gogogogogogo");
 	});
-	
+
 	/* 목록보기 */
 	$("#inquiryList").on("click", function(){
-		window.history.back();
+		//window.history.back();
+		console.log("listlistlist");
 	});
 	
 	/* 삭제하기 */

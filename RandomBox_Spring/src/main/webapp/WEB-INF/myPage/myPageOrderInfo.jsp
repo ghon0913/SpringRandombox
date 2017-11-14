@@ -71,40 +71,51 @@
 					      <div class="modal-content">
 					      
 					        <div class="modal-header">
-					          <h4 class="modal-title">주문 정보</h4>
+					          <h6 class="modal-title"><b>주문 정보</b></h6>
 					          <button type="button" class="close" data-dismiss="modal">&times;</button>
 					        </div>
 					        
 					        <div class="modal-body">
 					          <table class="table" style="font-size: 12px;">
 									<tr>
-										<th>주문정보<br /> (<span id="modalNum"></span>)
-										</th>
-										<td>주문상품<input id="modalgName" value="" readonly="readonly"> <br />
-											배송상태<input id="modalStatus" value="" readonly="readonly"> <br />
-										</td>
+										<th rowspan="2">주문정보<br/>(<span id="modalNum"></span>)</th>
+										<td width="80px">주문상품 :</td>
+										<td><span id="modalgName"></span></td>
 									</tr>
 									<tr>
-										<th>결제정보</th>
-										<td>결제방식:<input id="modalPaymethod" value="" readonly="readonly"> <br />
-											금액:<input id="modalgPrice" value="" readonly="readonly"> <br />
-											결제시간:<input id="modalOrderday" value="" readonly="readonly"> <br />
-										</td>
+										<td>배송상태 :</td>
+										<td><span id="modalStatus"></span></td>
+									</tr>	
+									<tr>
+										<th rowspan="3">결제정보</th>
+										<td>결제방식 :</td>
+										<td><span id="modalPaymethod"></span></td>
+									<tr>
+										<td>금액 :</td>
+										<td><span id="modalgPrice"></span></td>
 									</tr>
 									<tr>
-										<th>배송정보</th>
-										<td>이름:<input id="modalOrderName" value="" readonly="readonly"> <br />
-											연락처:<input id="modalPhone" value="" readonly="readonly"><br />
-											주소:<textarea id="modalAddr" readonly="readonly" rows="4" cols="50"></textarea>
-										</td>
+										<td>결제시간 :</td>
+										<td><span id="modalOrderday"></span></td>
+									</tr>
+									<tr>
+										<th rowspan="3">배송정보</th>
+										<td>주문자 :</td>
+										<td><span id="modalOrderName"></span></td>
+									</tr>
+									<tr>
+										<td>연락처 :</td>
+										<td><span id="modalPhone"></span></td>
+									</tr>
+									<tr>
+										<td>주소 :</td>
+										<td><span id="modalAddr"></span></td>
 									</tr>
 								</table>
 					        </div>
-					        
 					        <div class="modal-footer">
-					          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					        </div>
-					        
+       							 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    						</div>				        
 					      </div>
 					    </div>
 					 </div>
@@ -137,18 +148,22 @@
 					ordernum : orderNum
 				},
 				success : function(responseData, status, xhr) {
-					console.log(responseData);
+
 					var jsonData = $.parseJSON(responseData);
-					console.log(jsonData.num);
 					$("#modalNum").text(jsonData.num);
-					$("#modalgName").val(jsonData.gName);
-					$("#modalgPrice").val(jsonData.gPrice);
-					$("#modalPaymethod").val(jsonData.payMethod);
+					$("#modalgName").text(jsonData.gName);
+					$("#modalgPrice").text(jsonData.gPrice+" 원");
+					$("#modalPaymethod").text(jsonData.payMethod);
+					$("#modalStatus").text(jsonData.status);
+					$("#modalOrderday").text(jsonData.orderDay);
+					$("#modalOrderName").text(jsonData.orderName);
+					$("#modalPhone").text(jsonData.phone);
+					$("#modalAddr").text("("+jsonData.post1+" - "+jsonData.post2+") "+jsonData.addr1+jsonData.addr2);
 				},
 				error : function(xhr, status, error) {
 					console.log(error);
 				}
-			});
+			});// end ajax
 		});
 });
 </script>

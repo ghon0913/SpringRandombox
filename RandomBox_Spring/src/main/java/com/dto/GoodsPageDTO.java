@@ -8,7 +8,7 @@ public class GoodsPageDTO {
 	private int curPage;
 	private int totalPage;
 	private static int perPage = 3;
-	private int perBlock = 3;
+	private int perBlock = 5;
 	private static String searchName = null;
 	private static String searchValue = null;
 	private String userId;

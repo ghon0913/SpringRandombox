@@ -8,7 +8,7 @@ public class MyPageBoardPageDTO {
 	private int curPage; //현재페이지
 	private int totalPage; //총페이지개수
 	private static int perPage = 3;
-	private int perBlock = 3;
+	private int perBlock = 5;
 	private static String searchName = null; //조회속성명
 	private static String searchValue = null;//조회속성값
 	private String userId;
@@ -60,6 +60,10 @@ public class MyPageBoardPageDTO {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	public MyPageBoardPageDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public MyPageBoardPageDTO(List<BoardDTO> blist, int curPage, int totalPage, int perBlock, String userId) {
 		super();
 		this.blist = blist;
@@ -68,17 +72,11 @@ public class MyPageBoardPageDTO {
 		this.perBlock = perBlock;
 		this.userId = userId;
 	}
-	public MyPageBoardPageDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	@Override
 	public String toString() {
 		return "MyPageBoardPageDTO [blist=" + blist + ", curPage=" + curPage + ", totalPage=" + totalPage
 				+ ", perBlock=" + perBlock + ", userId=" + userId + "]";
 	}
 
-
-	
 	
 }

@@ -133,12 +133,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where gCode = #{gCode}
 	</select>
 	
+	<!-- 후기자세히보기 (주문한 데이터 선택) -->
+	<select id="getGoodsName" parameterType="String" resultType="string">
+		select gName
+		from goods
+		where gCode = #{gCode}
+	</select>
+	
 	<!-- 후기글 수정하기 -->
 	<update id="reviewUpdate" parameterType="BoardDTO">
 		update board
 		set title = #{title}, content = #{content}
 		where num = #{num}
 	</update>
+	
 	
 <!-- ********** -->
 <!-- QnA게시판 SQL -->

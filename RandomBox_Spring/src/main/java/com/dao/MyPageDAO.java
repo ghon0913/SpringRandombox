@@ -113,7 +113,7 @@ public class MyPageDAO {
 	}
 
 	/* 매출정보 가져오기 */
-	public OrderInfoPageDTO sellInfo(String sellerid, int curPage) {
+	public OrderInfoPageDTO sellInfo(String sellerId, int curPage) {
 		
 		OrderInfoPageDTO pagedto = new OrderInfoPageDTO();
 
@@ -121,15 +121,15 @@ public class MyPageDAO {
 		int length = OrderInfoPageDTO.getPerPage();
 		List<OrderInfoDTO> list = null;
 
-		list = template.selectList("com.mybatis.MyPageMapper.sellinfo", sellerid,
+		list = template.selectList("com.mybatis.MyPageMapper.sellinfo", sellerId,
 									new RowBounds(sIndex, length));
-
+		
 		// pagedto에 저장하기
 		int totalPage = 0;
 		pagedto.setOlist(list);
 		pagedto.setCurPage(curPage);
 
-		totalPage = template.selectOne("com.mybatis.MyPageMapper.totalorderPage", sellerid);
+		totalPage = template.selectOne("com.mybatis.MyPageMapper.totalSellinfo", sellerId);
 		pagedto.setTotalPage(totalPage);
 		
 		return pagedto;

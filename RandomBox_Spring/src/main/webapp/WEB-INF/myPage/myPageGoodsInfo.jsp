@@ -79,7 +79,7 @@
 
 		/* 상품등록 */
 		$("#goodsRegisterForm").on("click", function() {
-			$(location).attr("href", "goodsRegisterForm");
+			$(location).attr("href", "../goodsRegisterForm");
 		});
 
 		/* 상품삭제  */

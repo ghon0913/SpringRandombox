@@ -59,7 +59,7 @@
 						value="${xxx.num}">
 					</td>
 					<td id="num">${xxx.num}</td>
-					<td width="150"><img src="../images/goods/Koala.jpg" border="0" align="center" width="80px" /></td>
+					<td width="70"><img src="../images/items/basicImage.png" border="0" align="center" width="60px" /></td>
 					<td  width="400" style='padding-left: 20px; padding-top: 30px;'>${xxx.gName}</td>
 					<td  align="center" width="200px">
 						<fmt:formatNumber value="${xxx.gPrice}" type="currency" /></td>

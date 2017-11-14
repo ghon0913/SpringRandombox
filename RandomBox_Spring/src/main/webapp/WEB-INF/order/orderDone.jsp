@@ -12,122 +12,81 @@
 </div>
 <div class="container">
 	<div>
-<div align="center">
-			<b>[ 주문완료 ]</b><br><br>
-			<b>주문해주셔서 감사합니다.</b><br>
-			<b>${orderDTO.userId}</b> 님의 주문이 안전하게 처리되었습니다.
-</div><br><br>
-<table >
-	<tr>
-		<td class="td_default"><b>상품 및 배송정보</b>
-		</td>
-	</tr>
-
-	<tr>
-		<td height="15">
-	</tr>
-	<tr>
-		<td>
-			<table width="100%" border="1" style="border-collapse: collapse"
-				bordercolor="#CCCCCC">
-				<tr>
-					<td class="td_default" width="150" height="35"> 받으시는 분</td>
-					<td class="td_default" height="35"> ${orderDTO.orderName}</td>
-				</tr>
-				<tr>
-					<td class="td_default" height="35"> 주소</td>
-					<td class="td_default" height="35"> (${orderDTO.post1}-${orderDTO.post2})<br>
-						${orderDTO.addr1} ${orderDTO.addr2}
-					</td>
-				</tr>
-				
-				<tr>
-					<td class="td_default" height="35"> 휴대전화</td>
-					<td class="td_default" height="35"> ${orderDTO.phone}</td>
-				</tr>
-			</table>
-	</tr>
-	</td>
-
-	<tr>
-		<td height="20">
-	</tr>
-
-	<tr>
-		<td>
-			<table width="100%" border="1" style="border-collapse: collapse"
-				bordercolor="#CCCCCC">
-				<tr>
-					<td width="100" class="td_default" height="35" align="center"><strong>주문 상품</strong></td>
-					<td width="250" class="td_default" height="35" align="center"><strong>랜덤 배정 상품</strong></td>
-					<td class="td_default" width="100" height="35" align="center"><strong>판매가</strong></td>
-				</tr>
-				<tr>
-					<td height="35" class="td_default" align="center">
-						<img src="../images/goods/${orderDTO.gImage }" border="0" align="center"
-								width="80" />
-					</td>
-					<td height="35" class="td_default">
-						<span class="a_default">${orderDTO.gName}</span>
-					</td>
-					<td height="35" class="td_default" align="center">
-						<span>${orderDTO.gPrice}</span>원
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-
-	<tr>
-		<td height="40">
-	</tr>
-
-	<tr>
-		<td class="td_default"><b>결제정보</b></td>
-	</tr>
-
-	<tr>
-		<td height="15">
-	</tr>
-
-	<tr>
-		<td>
-			<table width="100%" border="1" style="border-collapse: collapse"
-				bordercolor="#CCCCCC">
-				<tr>
-					<td class="td_default" width="150" height="35"> 결제금액</td>
-					<td class="td_default" height="35" align = 'right'> 
-					<input type = 'text' id = 'gPrice' value = '${orderDTO.gPrice}' readonly>원
-					</td>
-				</tr>
-				<tr>
-					<td class="td_default" width="150" height="35"> 결제수단</td>
-					<td class="td_default" height="35" align = 'right'> 
-					<span>${orderDTO.payMethod}</span>
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-
-	<tr>
-		<td height="40">
-	</tr>
-	<tr>
-		<td height="40">
-	</tr>
-
-	<tr>
-		<td class="td_default" align="center">
-			<button class="btn btn-outline-secondary" id="goOrderInfo">주문조회 페이지로 이동</button>
-		</td>
-	</tr>
-	<tr>
-		<td height="30">
-	</tr>
-
-</table>
-    </div></div>
+		<div align="center" class="alert alert-success">
+		    <strong>[ 주문완료 ]</strong>&nbsp;&nbsp;${orderDTO.userId} 님의 주문이 안전하게 처리되었습니다.<br>
+		    	주문정보는 마이페이지에서도 확인 하실 수 있습니다. 감사합니다.
+		</div>
+		<table class="table" style="font-size: 12px;">
+			<tr>
+				<td ><b>[ 상품 및 배송정보 ]</b></td>
+			</tr>
+			<tr>
+				<td style="padding-left: 15%;">
+					<table class="table" class="table" style="width: 80%">
+						<tr align="center">
+							<td width="100"><strong>주문 상품</strong></td>
+							<td width="250"><strong>랜덤 배정 상품</strong></td>
+							<td  width="100"><strong>판매가</strong></td>
+						</tr>
+						<tr>
+							<td align="center">
+								<img src="../images/goods/${orderDTO.gImage }" border="0" align="center" width="80" />
+							</td>
+							<td>
+								<span>${orderDTO.gName}</span>
+							</td>
+							<td align="center">
+								<span>${orderDTO.gPrice}</span>원
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td style="padding-left: 15%;">
+					<table class="table" style="width: 80%">
+						<tr>
+							<td width="150"><strong> 받으시는 분</strong></td>
+							<td> ${orderDTO.orderName}</td>
+						</tr>
+						<tr>
+							<td><strong> 주소</strong></td>
+							<td> (${orderDTO.post1}-${orderDTO.post2})<br>
+								${orderDTO.addr1} ${orderDTO.addr2}
+							</td>
+						</tr>
+						
+						<tr>
+							<td> <strong>휴대전화</strong></td>
+							<td> ${orderDTO.phone}</td>
+						</tr>
+					</table>
+			</tr>
+			<tr>
+				<td ><b>[ 결제정보 ]</b></td>
+			</tr>
+			<tr>
+				<td style="padding-left: 15%;">
+					<table class="table" class="table" style="width: 80%; align-content: center;">
+						<tr>
+							<td width="150"><strong> 결제금액</strong></td>
+							<td> <b>${orderDTO.gPrice}</b>&nbsp; 원</td>
+						</tr>
+						<tr>
+							<td  width="150" ><strong> 결제수단</strong></td>
+							<td><span>${orderDTO.payMethod}</span></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td  align="center">
+					<button class="btn btn-outline-secondary" id="goOrderInfo">주문조회 페이지로 이동</button>
+				</td>
+			</tr>		
+		</table>
+    </div>
+ </div>
 <script>
 
 	/* 쇼핑 바로가기 */
