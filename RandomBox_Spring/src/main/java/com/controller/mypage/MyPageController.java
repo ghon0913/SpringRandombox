@@ -159,7 +159,8 @@ public class MyPageController {
 	@RequestMapping("/goodsinfo")
 	public ModelAndView goodsinfo(HttpSession session, @RequestParam(defaultValue = "1") int curPage,
 								@RequestParam(required=false) String searchName,
-								@RequestParam(required=false) String searchValue) {
+								@RequestParam(required=false) String searchValue,
+								@RequestParam(required=false, value="resultMesg") String resultMesg) {
 		
 		MemberDTO logindto = (MemberDTO) session.getAttribute("login");
 		HashMap<String, String> map = new HashMap();
@@ -174,6 +175,7 @@ public class MyPageController {
 		mav.addObject("pagedto",pagedto);
 		mav.addObject("page", "myPage/myPageGoodsInfo.jsp");
 		mav.setViewName("myPage");
+		mav.addObject("result",resultMesg);
 		return mav;
 	}
 

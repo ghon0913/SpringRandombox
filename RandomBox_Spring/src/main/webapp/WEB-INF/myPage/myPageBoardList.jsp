@@ -46,7 +46,7 @@
 			<c:forEach var="a" items="${pagedto.getBlist()}">
 				<tr>
 					<td align="center">${a.num }</td>
-					<td style="padding-left: 70px;"><a href="myPageBoardRetrieve?bnum=${a.num}&state=${a.state}&atMyPage=true" target="_blank">${a.title}</a></td>
+					<td style="padding-left: 70px;"><a href="myPageBoardRetrieve?bnum=${a.num}&state=${a.state}&atMyPage=true">${a.title}</a></td>
 					<td align="center">${a.state}</td>
 					<td align="center">${a.writeDay }</td>
 				</tr>

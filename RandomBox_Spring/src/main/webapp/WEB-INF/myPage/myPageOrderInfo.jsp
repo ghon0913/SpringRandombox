@@ -50,7 +50,7 @@
 						<td align="center">${order.orderDay }
 						<td align="center"><a class="orderInfoModal" href="#"
 							data-toggle="modal" data-target="#myModal" data-num="${order.num }">${order.num }</a></td>
-						<td><img src="/app/images/goods/${order.gImage }"
+						<td><img src="/upload/${order.gImage }"
 							height="70" width="70"> ${order.gName }</td>
 						<td align="center">${order.gPrice }</td>
 						<td align="center">${order.status}</td>

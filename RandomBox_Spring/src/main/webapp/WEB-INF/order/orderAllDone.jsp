@@ -32,7 +32,7 @@
 						<c:forEach var="oList" items="${orderList }" varStatus="status" >
 						<tr>
 							<td align="center">
-								<img src="../images/goods/${oList.gImage }" border="0" align="center"
+								<img src="/upload/${oList.gImage }" border="0" align="center"
 										width="80" />
 							</td>
 							<td colspan="2">

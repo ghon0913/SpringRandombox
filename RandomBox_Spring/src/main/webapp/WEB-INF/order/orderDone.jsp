@@ -30,7 +30,7 @@
 						</tr>
 						<tr>
 							<td align="center">
-								<img src="../images/goods/${orderDTO.gImage }" border="0" align="center" width="80" />
+								<img src="/upload/${orderDTO.gImage }" border="0" align="center" width="80" />
 							</td>
 							<td>
 								<span>${orderDTO.gName}</span>

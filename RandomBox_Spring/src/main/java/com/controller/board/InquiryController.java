@@ -148,7 +148,8 @@ public class InquiryController {
 	/* 문의글 쓰기 */
 	@RequestMapping("/loginchk/inquiryWrite")
 	public String inquiryWrite(@ModelAttribute("inquiryWriteForm") BoardDTO dto,
-							   @RequestParam String select_question, Model m) {
+							   @RequestParam String select_question, Model m,
+							   RedirectAttributes resultMesg) {
 		
 		if(select_question.equals("q_admin")) {
 			dto.setCategory("관리자질문");
@@ -156,7 +157,7 @@ public class InquiryController {
 		}
 		
 		service.inquiryWrite(dto);
-		m.addAttribute("result", "작성이 완료되었습니다.");
+		resultMesg.addAttribute("resultMesg", "문의글 등록 성공!");
 		return "redirect:/inquiryList.do";
 	}
 	
@@ -204,23 +205,24 @@ public class InquiryController {
 	
 	/* 답변 등록 */
 	@RequestMapping("/loginchk/answerWrite")
-	public String answerWrite(@ModelAttribute("answerForm") AnswerDTO dto) {
+	public String answerWrite(@ModelAttribute("answerForm") AnswerDTO dto,
+							RedirectAttributes resultMesg) {
 		
 		service.answerWrite(dto, dto.getBoardNum());
+		resultMesg.addAttribute("resultMesg", "답변글 등록 성공!");
 		return "redirect:/loginchk/goodsinfo";
 	}
 	
 	/* 답변수정 */
 	@RequestMapping("/loginchk/answerUpdate")
 	public String answerUpdate(@ModelAttribute("answerForm") AnswerDTO dto, Model m,
-								RedirectAttributes redirectAttrs) {
+							RedirectAttributes redirectAttrs) {
 		
 		HashMap<String, String> map = new HashMap<>();
 		map.put("answer", dto.getAnswer());
 		map.put("boardNum", Integer.toString(dto.getBoardNum()));
 		
 		service.answerUpdate(map);
-		m.addAttribute("result", "success");
 		redirectAttrs.addAttribute("num", dto.getBoardNum());
 		return "redirect:/loginchk/goodsinfo";
 	}

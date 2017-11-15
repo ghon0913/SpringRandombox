@@ -14,6 +14,12 @@
 <body>
 	<jsp:include page="include/top.jsp" flush="true" />
 
+<c:if test="${!empty result }">
+<script>
+	alert("${result }");
+</script>
+</c:if>
+
 	<div style="background-color: #0277BD; color: white; padding: 20px 200px; align: right; margin-bottom: 20px;">
 		<h5 style="display:inline;">|&nbsp;&nbsp;&nbsp;<b>마이 페이지</b>&nbsp;&nbsp;&nbsp;|</h5>
 		<c:if test="${login.ox=='N'}">
@@ -64,6 +70,12 @@
 	
 		<c:if test="${!empty requestScope.page}">
 			<jsp:include page="${page}" />
+		</c:if>
+		<c:if test="${empty requestScope.page}">
+			<div align="center" style="margin: 20px; padding:30px; border: solid 10px; border-color: #0277BD;">
+				<img src="../images/items/mypageImage.png"><br><br>
+				<span><h5><b>랜덤박스의 마이페이지입니다.</b></h5></span>
+			</div>
 		</c:if>
 	</div>
 </body>

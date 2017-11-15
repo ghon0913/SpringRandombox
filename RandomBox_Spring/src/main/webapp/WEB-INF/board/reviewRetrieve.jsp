@@ -77,7 +77,12 @@
 
 		/* 쇼핑 바로가기 */
 		$("#goShopping").on("click", function() {
-			$(location).attr("href", "goodsList");
+			var atMyPage = "${atMyPage}";
+			if(atMyPage!=""){
+				$(location).attr("href", "../goodsList");
+			}else{
+				$(location).attr("href", "goodsList");
+			}
 		});
 		
 		/* 목록보기 */
@@ -88,7 +93,7 @@
 		/* 삭제하기 */
 		$("#delete").on("click",function() {
 			var atMyPage = "${atMyPage}";
-			if(atMyPage!=null){
+			if(atMyPage!=""){
 				$(location).attr("href","reviewDelete?num=${retrieveDTO.num }");
 			}else{
 				$(location).attr("href","loginchk/reviewDelete?num=${retrieveDTO.num }");

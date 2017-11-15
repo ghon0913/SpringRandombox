@@ -45,8 +45,8 @@
 			<c:forEach var="goods" items="${pagedto.glist }">
 				<tr id="tr${goods.gCode}" class="goodsTr">
 					<td align="center">${goods.gCode }</td>
-					<td><img src="/app/images/goods/${goods.gImage }"
-							height="70" width="70">&nbsp;${goods.gName }</td>
+					<td><img src="/upload/${goods.gImage }"
+							height="70" width="70">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${goods.gName }</td>
 					<td align="center">${goods.gCategory }</td>
 					<td align="center">${goods.gPrice }</td>
 					<td align="center"><a href="questionList?gCode=${goods.gCode}">답변하러가기</a>

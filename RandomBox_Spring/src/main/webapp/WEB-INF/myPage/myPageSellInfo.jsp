@@ -33,7 +33,7 @@
 					<td >${order.num }</td>
 					<td>${order.orderName }</td>
 					<td>${order.gCode }</td>
-					<td align="left"><img src="/app/images/goods/${order.gImage }" height="70" width="70">&nbsp;
+					<td align="left"><img src="/upload/${order.gImage }" height="70" width="70">&nbsp;
 					${order.gName }</td>
 					<td><input class="btn btn-outline-secondary btn-sm orderInfoModal" type="button" 
 					data-toggle="modal" data-target="#myModal" data-num="${order.num }" value="자세히보기"></td>

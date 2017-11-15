@@ -12,7 +12,12 @@
 </div>
 <div class="container">
 	<div>
-	<form action="loginchk/inquiryUpdate" method="post" id="inquiryRetrieveForm" modelAttribute="inquiryRetrieveForm">
+		<c:if test="${atMyPage == true }">
+			<form action="inquiryUpdate" method="post" id="inquiryRetrieveForm" modelAtrribute="inquiryRetrieveForm">
+		</c:if>
+		<c:if test="${atMyPage != true }">
+			<form action="loginchk/inquiryUpdate" method="post" id="inquiryRetrieveForm" modelAtrribute="inquiryRetrieveForm">
+		</c:if>
 		<table class="table" style="font-size: 12px;">
 			<tr>
 				<input type="hidden" name="num" value="${retrieveDTO.num }">
@@ -109,20 +114,23 @@ $(document).ready(function(){
 
 	/* 쇼핑 바로가기 */
 	$("#goShopping").on("click", function() {
-		//$(location).attr("href", "goodsList");
-		console.log("gogogogogogo");
+		var atMyPage = "${atMyPage}";
+		if(atMyPage!=""){
+			$(location).attr("href", "../goodsList");
+		}else{
+			$(location).attr("href", "goodsList");
+		}
 	});
 
 	/* 목록보기 */
 	$("#inquiryList").on("click", function(){
-		//window.history.back();
-		console.log("listlistlist");
+		window.history.back();
 	});
 	
 	/* 삭제하기 */
 	$("#delete").on("click", function(){
 		var atMyPage = "${atMyPage}";
-		if(atMyPage!=null){
+ 		if(atMyPage!=""){
 			$(location).attr("href", "inquiryDelete?num=${retrieveDTO.num }");
 		}else{
 			$(location).attr("href", "loginchk/inquiryDelete?num=${retrieveDTO.num }");

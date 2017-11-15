@@ -168,8 +168,8 @@ public class ReviewController {
 		List<BoardDTO> list = service.orderByReadCnt();
 		for (BoardDTO boardDTO : list) {
 			String substr_bName = boardDTO.getTitle();
-			if(substr_bName.length() > 28){
-				boardDTO.setTitle(substr_bName.substring(0, 28)+" ...");
+			if(substr_bName.length() > 25){
+				boardDTO.setTitle(substr_bName.substring(0, 25)+" ...");
 			}
 		}
 		m.addAttribute("reviewList", list);

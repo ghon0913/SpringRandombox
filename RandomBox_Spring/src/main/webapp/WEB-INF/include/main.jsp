@@ -53,7 +53,8 @@
 						<hr>
 						<ul style="list-style: none; font-size: 12px; padding-left: 20px; padding-right: 25px;">
 							<c:forEach var="goods" items="${goodsList}">
-								<li>[${goods.gCategory}]&nbsp;&nbsp;<a href="">${goods.gName}</a></li>
+								<c:set var="searchBar" value="${fn:substring(goods.gName,0,3)}"></c:set>
+								<li>[${goods.gCategory}]&nbsp;&nbsp;<a href="/app/goodsBySearch?searchBar=${searchBar}">${goods.gName}</a></li>
 							</c:forEach>
 						</ul>
 					</div>

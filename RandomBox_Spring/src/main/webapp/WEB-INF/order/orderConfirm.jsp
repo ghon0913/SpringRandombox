@@ -167,7 +167,7 @@
 				<td height="30">
 			</tr>
 			<tr>
-				<td align="center"><input class="btn btn-outline-secondary" type='button' value='취소'>
+				<td align="center"><input class="btn btn-outline-secondary" type='button' value='취소' onclick="javascript:history.back()">
 				<input class="btn btn-success" type='submit' value='결제하기' id="orderDone"></td>
 			</tr>
 
