@@ -44,7 +44,7 @@
 							<li class="nav-item"><a class="nav-link" href="/app/loginchk/MyPage">마이페이지</a></li>
 
 							<li class="nav-item"><a class="nav-link"
-								href="/app/loginchk/goodsRegisterForm">상품등록</a></li>
+								href="/app/goodsRegisterForm">상품등록</a></li>
 						</c:if>
 						<c:if test="${sessionScope.login.ox=='N'}">
 							<li class="nav-item"><a class="nav-link" href="/app/loginchk/MyPage">마이페이지</a></li>

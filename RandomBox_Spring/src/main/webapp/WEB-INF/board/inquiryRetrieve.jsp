@@ -121,7 +121,8 @@ $(document).ready(function(){
 	
 	/* 삭제하기 */
 	$("#delete").on("click", function(){
-		if(${atMyPage}==true){
+		var atMyPage = "${atMyPage}";
+		if(atMyPage!=null){
 			$(location).attr("href", "inquiryDelete?num=${retrieveDTO.num }");
 		}else{
 			$(location).attr("href", "loginchk/inquiryDelete?num=${retrieveDTO.num }");
