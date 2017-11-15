@@ -16,10 +16,12 @@
 				</select>
 				<span style="padding-left: 220px;">
 					<select class="form-control" name="searchName">
-						<option >검색 옵션</option>
+						<option>검색 옵션</option>
 						<option value="title">제목</option>
 						<option value="content">내용</option>
 					</select>
+					<input type="hidden" name="searchName_hidden" value="searchName">
+					<input type="hidden" name="searchValue_hidden" value="searchValue">
 					<input class="form-control" type="text" name="searchValue">
 					<input type="submit" class="btn btn-success" value="검색">
 				</span>

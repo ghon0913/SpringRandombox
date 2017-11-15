@@ -40,7 +40,6 @@
 				<value>com.dto.OrderInfoDTO</value>
 				<value>com.dto.AnswerDTO</value>
 				<value>com.dto.MyPageBoardPageDTO</value>
-				<value>com.dto.SalesStatusDTO</value>
 				<value>com.dto.AdminSalesStatusDTO</value>
 			</list>
 		</property>

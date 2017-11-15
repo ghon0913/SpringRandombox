@@ -9,24 +9,26 @@
 <script src="../js/daum.js"></script>
 <!-- DAUM 주소 라이브러리 끝 -->
 
+<div style="background-color: #0277BD; margin-top: -30px; color: white; padding: 20px 200px; align: right; margin-bottom: 20px;">
+	<h5 style="display:inline;">|&nbsp;&nbsp;&nbsp;<b>상품 결제</b>&nbsp;&nbsp;&nbsp;|</h5>
+	<p id ="goShopping" style="display:inline; padding: 8px 15px; border: solid 1px white; font-size: 13px; margin-top: -6px;" class="pull-right">
+		랜덤박스 쇼핑 바로가기
+	</p>
+</div>
 <div class="container">
-	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
-			<h5>|&nbsp;&nbsp;&nbsp;상품 결제&nbsp;&nbsp;&nbsp;|</h5>
-			<br>
-			<p style="font-size: 12px">주문상품과 배송정보를  확인 후 결제해주세요.</p><br>
-
+	<div>
+		<p style="font-size: 12px">주문상품과 배송정보를  확인 후 결제해주세요.</p><br>
+	</div>
 	<form name="orderConfirmForm" method="post" id="orderConfirmForm">
-		<table>
+		<table class="table" style="font-size: 12px;">
 			<tr>
 				<td><b>[ 상품정보 ]</b></td>
 				<input type="hidden" name="eMail" value="${mDTO.email }">
 				<input type="hidden" name="userId" value="${mDTO.userid }">
 			</tr>
 			<tr>
-				<td>
-					<table class="table"  style="font-size: 12px;">
+				<td style="padding-left: 15%;">
+					<table class="table"  style="font-size: 12px; width: 80%;">
 						<tr>
 							<td align="center"><strong>주문번호</strong></td>
 							<td align="center" colspan="2"><strong>상품정보</strong></td>
@@ -41,39 +43,39 @@
 							<input type="hidden" name="sellerId" value="${oList.sellerId }">
 							<c:set var="totalPrice" value="${totalPrice + oList.gPrice}"></c:set>
 						<tr>
-							<td  width="80">${oList.num }</td>
-							<td  width="80"><img
-								src="../images/goods/${oList.gImage }" border="0" align="center"
-								width="80" /></td>
+							<td  width="80" align="center">${oList.num }</td>
+							<td  width="80">
+								<img src="../images/items/basicImage.png" border="0" align="center" width="60" />
+							</td>
 							<td  width="300" style='padding-left: 30px'>${oList.gName }</td>
-							<td  align="center" width="110">${oList.gPrice }
-								원</td>
+							<td  align="center" width="110">${oList.gPrice } 원</td>
 						</tr>
 						</c:forEach>
 						<tr>
 							<td></td>
-							<td  align="right">총 결제 금액 :</td>
-							<td  align='right' style="font-size: 15px;">${totalPrice} 원</td>
+							<td></td>
+							<td  align="right"><b>총 결제 금액 :</b></td>
+							<td  align='right' style="font-size: 15px; padding-right: 30px;"><b>${totalPrice} 원</b></td>
 						</tr>
 					</table>
 
 			<!--  고객 정보 시작-->
-			<tr height="30">
+			<tr height="35">
 				<td><b>[ 회원정보 ]</b></td>
 			</tr>
 			<tr>
-				<td>
-					<table class="table" style="font-size: 12px;">
+				<td style=" padding-left: 15%;">
+					<table class="table" style="font-size: 12px; width: 80%;">
 						<tr>
-							<td width="125" height="35" >이 름</td>
-							<td height="35" >
+							<td width="125">이 름</td>
+							<td>
 								<input class="form-control" type="text" id="mname" size="20"
 								maxlength="20" value="${mDTO.username }" readonly="readonly"></input>
 							</td>
 						</tr>
 						<tr>
-							<td height="35" >주 소</td>
-							<td height="35" >
+							<td >주 소</td>
+							<td >
 								<div class="form-inline">
 									<input class="form-control" type="text" id="mpost1" size="4"
 									maxlength="3" value="${mDTO.post1 }" readonly="readonly"></input>
@@ -89,11 +91,10 @@
 								readonly="readonly"></input></td>
 						</tr>
 						<tr>
-							<td height="35" >휴대전화</td>
+							<td>휴대전화</td>
 							<c:set var="phone" value="${mDTO.phone}" />
-							<td height="35" ><input
-								class="form-control" type="text" id="mphone" size="15"
-								maxlength="15"
+							<td>
+								<input class="form-control" type="text" id="mphone" size="15" maxlength="15" readonly="readonly"
 								value="${fn:substring(phone, 0, 3)}-${fn:substring(phone, 3, 7)}-${fn:substring(phone, 7, -1)}"></input>
 							</td>
 						</tr>
@@ -101,33 +102,27 @@
 				</td>
 			</tr>
 			<!--  고객 정보 끝-->
-			<tr>
-				<td height="20">
-			</tr>
-			<tr>
-				<td ><input type="checkbox" name="same"
-					id="sameAddress"> 배송지가 동일할 경우 선택하세요.
+			<tr height="70px">
+				<td style="padding-left: 15%; padding-top: 27px;">
+					<input type="checkbox" name="same" id="sameAddress">&nbsp;&nbsp;&nbsp;배송지가 동일할 경우 선택하세요.
 				</td>
 			</tr>
-			<tr>
-				<td height="20">
-			</tr>
 			<!--  배송지 정보 시작-->
-			<tr>
+			<tr height="35" >
 				<td><b>[ 배송지 정보 ]</b></td>
 			</tr>
 			<tr>
-				<td>
-					<table class="table" style="font-size: 12px;">
+				<td style=" padding-left: 15%;">
+					<table class="table" style="font-size: 12px; width: 80%">
 						<tr>
-							<td width="125" height="35" >이 름</td>
-							<td height="35" ><input
+							<td width="125">이 름</td>
+							<td><input
 								class="form-control" type="text" id="orderName"
 								name="orderName" size="20" maxlength="20" value=""></input></td>
 						</tr>
 						<tr>
-							<td height="35" >주 소</td>
-							<td height="35" >
+							<td>주 소</td>
+							<td>
 								<div class="form-inline">
 									<input class="form-control" name="post1" id="post1" size="5" readonly="">
 									&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
@@ -144,10 +139,11 @@
 						</tr>
 
 						<tr>
-							<td height="35" >휴대전화</td>
-							<td height="35" ><input
-								class="form-control" type="text" id="phone" name="phone"
-								size="15" maxlength="15" value=""></input></td>
+							<td>휴대전화</td>
+							<td>
+								<input class="form-control" type="text" id="phone" name="phone"
+								size="15" maxlength="15" value=""></input>
+							</td>
 						</tr>
 					</table>
 				</td>
@@ -158,8 +154,8 @@
 				<td><b>[ 결제수단 ]</b></td>
 			</tr>
 			<tr>
-				<td>
-					<table width="100%" cellspacing="0" cellpadding="0" border="1"
+				<td style=" padding-left: 15%;">
+					<table width="80%" cellspacing="0" cellpadding="0" border="1"
 						style="border-collapse: collapse" bordercolor="#CCCCCC">
 						<tr>
 							<td width="125" height="35" align="center"><input
@@ -182,8 +178,13 @@
 
 		</table>
 	</FORM>
-</div></div></div>
+</div>
 <script>
+
+	/* 쇼핑 바로가기 */
+	$("#goShopping").on("click", function() {
+		$(location).attr("href", "goodsList");
+	});
 
 	$("#sameAddress").on("change", function(){
 		 if($("#sameAddress").prop("checked")){

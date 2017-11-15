@@ -49,6 +49,11 @@ public class ReviewDAO {
 		template.update("boardReadCnt", num);
 	}
 	
+	/* 후기 상품 이름 가져오기 */
+	public String getGoodsName(String gCode) {
+		return template.selectOne("getGoodsName", gCode);
+	}
+	
 	/* 후기글 수정하기 */
 	public void reviewUpdate(BoardDTO dto) {
 		template.update("reviewUpdate", dto);

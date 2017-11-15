@@ -12,6 +12,12 @@
 <body>
 	<jsp:include page="include/top.jsp" flush="true" /><br>
 
+<c:if test="${!empty result }">
+<script>
+	alert("${result }");
+</script>
+</c:if>
+
 		<c:if test="${chk_reviewPage == 'reviewForm' }">
 			<jsp:include page="board/reviewForm.jsp" flush="true" /><br>
 		</c:if>

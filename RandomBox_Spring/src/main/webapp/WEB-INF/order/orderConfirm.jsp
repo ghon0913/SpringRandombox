@@ -18,9 +18,9 @@
 <div class="container">
 	<div>
 		<p style="font-size: 12px">주문상품과 배송정보를  확인 후 결제해주세요.</p><br>
-	<div style="border: 1px; border-color: red;">
+	<div>
 	<form id="orderConfirmForm" method="post" action="orderDone" modelAttribute="orderConfirmForm">
-		<table>
+		<table class="table" style="font-size: 12px;">
 			<input type="hidden" name="gCode" value="${cDTO.gCode }">
 			<input type="hidden" name="gName" value="${cDTO.gName }">
 			<input type="hidden" name="userId" value="${mDTO.userid }">
@@ -32,8 +32,8 @@
 				<td><b>[ 상품정보 ]</b></td>
 			</tr>
 			<tr>
-				<td>
-					<table class="table" style="font-size: 12px;">
+				<td style="padding-left: 15%;">
+					<table class="table" style="font-size: 12px; width: 80%;">
 						<tr>
 							<c:if test="${cDTO.num != 0}">
 								<td  align="center"><strong>주문번호</strong></td>
@@ -43,9 +43,9 @@
 						</tr>
 						<tr>
 							<c:if test="${cDTO.num != 0}">
-								<td width="80">${cDTO.num }</td>
+								<td align="center" width="80">${cDTO.num }</td>
 							</c:if>
-							<td width="80"><img src="../images/goods/Koala.jpg" border="0" align="center" width="80" /></td>
+							<td width="80"><img src="../images/items/basicImage.png" border="0" align="center" width="60" /></td>
 							<td  width="300" style='padding-left: 30px'>${cDTO.gName }</td>
 							<td  align="center" width="110">${cDTO.gPrice }원</td>
 						</tr>
@@ -55,7 +55,7 @@
 							</c:if>
 							<td></td>
 							<td  align="right"><b>결제 금액 :</b></td>
-							<td  align='right' style="font-size: 15px;"><b>${cDTO.gPrice}원</b></td>
+							<td  align='right' style="font-size: 15px; padding-right: 30px;"><b>${cDTO.gPrice}원</b></td>
 						</tr>
 					</table>
 
@@ -65,36 +65,35 @@
 				<td><b>[ 회원정보 ]</b></td>
 			</tr>
 			<tr>
-				<td>
-					<table class="table" style="font-size: 12px;">
+				<td style=" padding-left: 15%;">
+					<table class="table" style="font-size: 12px; width: 80%;">
 						<tr>
 							<td width="125" height="35" >이 름</td>
 							<td height="35" ><input
-								class="form-control" type="text" id="mname" size="20"
+								class="form-control input-sm" type="text" id="mname" size="20"
 								maxlength="20" value="${mDTO.username }" readonly="readonly"></input></td>
 						</tr>
 						<tr>
 							<td height="35" >주 소</td>
 							<td height="35" >
 								<div class="form-inline">
-									<input class="form-control" type="text" id="mpost1" size="4"
+									<input class="form-control input-sm" type="text" id="mpost1" size="4"
 									maxlength="3" value="${mDTO.post1 }" readonly="readonly"></input>
 									&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-									<input class="form-control" type="text" id="mpost2" size="4"
+									<input class="form-control input-sm" type="text" id="mpost2" size="4"
 									maxlength="3" value="${mDTO.post2 }" readonly="readonly"></input>
 								</div><br>
-								<input class="form-control" type="text" id="maddress1" size="40"
+								<input class="form-control input-sm" type="text" id="maddress1" size="40"
 								maxlength="200" value="${mDTO.addr1 }" readonly="readonly"></input> <br>
-								<input class="form-control" type="text" id="maddress2"
+								<input class="form-control input-sm" type="text" id="maddress2"
 								size="40" maxlength="200" value="${mDTO.addr2 }" readonly="readonly"></input>
 							</td>
 						</tr>
 						<tr>
 							<td height="35" >휴대전화</td>
 							<c:set var="phone" value="${mDTO.phone}" />
-							<td height="35" ><input
-								class="form-control" type="text" id="mphone" size="15"
-								maxlength="15"
+							<td height="35" >
+								<input class="form-control input-sm" type="text" id="mphone" size="15" maxlength="15" readonly="readonly"
 								value="${fn:substring(phone, 0, 3)}-${fn:substring(phone, 3, 7)}-${fn:substring(phone, 7, -1)}"></input>
 							</td>
 						</tr>
@@ -102,51 +101,46 @@
 				</td>
 			</tr>
 			<!--  고객 정보 끝-->
-			<tr>
-				<td height="20">
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="same" 
-					onclick="javascript:sameAddress(this);"> 배송지가 동일할 경우 선택하세요.
+			<tr height="70px">
+				<td style="padding-left: 15%; padding-top: 27px;">
+					<input type="checkbox" name="same" onclick="javascript:sameAddress(this);">&nbsp;&nbsp;&nbsp;배송지가 동일할 경우 선택하세요.
 				</td>
-			</tr>
-			<tr>
-				<td height="20">
 			</tr>
 			<!--  배송지 정보 시작-->
 			
-			<tr height="35" >
+			<tr>
 				<td><b>[ 배송정보 ]</b></td>
 			</tr>
 			<tr>
-				<td>
-					<table class="table" style="font-size: 12px;">
+				<td style=" padding-left: 15%;">
+					<table class="table" style="font-size: 12px; width: 80%;">
 						<tr>
 							<td width="125" height="35" >이 름</td>
 							<td height="35" ><input
-								class="form-control" type="text" id="orderName"
+								class="form-control input-sm" type="text" id="orderName"
 								name="orderName" size="20" maxlength="20" value=""></input></td>
 						</tr>
 						<tr>
 							<td height="35" >주 소</td>
 							<td height="35" >
 								<div class="form-inline">
-									<input class="form-control" name="post1" id="post1" size="5" readonly="">
+									<input class="form-control input-sm" name="post1" id="post1" size="5" readonly="">
 									&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-									<input class="form-control" name="post2" id="post2" size="5" readonly="">&nbsp;&nbsp;&nbsp;
-									<input class="btn btn-secondary" onclick="openDaumPostcode()" type="button" value="우편번호찾기">
+									<input class="form-control input-sm" name="post2" id="post2" size="5" readonly="">&nbsp;&nbsp;&nbsp;
+									<input class="btn btn-secondary input-sm" onclick="openDaumPostcode()" type="button" value="우편번호찾기">
 								</div><br>
-								<input class="form-control"
+								<input class="form-control input-sm"
 								name="addr1" id="addr1" size="40" readonly="" placeholder="도로명주소"><br>
-								<input name="addr2" class="form-control" id="addr2" size="40" placeholder="지번주소">
+								<input name="addr2" class="form-control input-sm" id="addr2" size="40" placeholder="지번주소">
 							</td>
 						</tr>
 
 						<tr>
 							<td height="35" >휴대전화</td>
-							<td height="35" ><input 
-								class="form-control" type="text" id="phone" name="phone"
-								size="15" maxlength="15" value=""></input></td>
+							<td height="35" >
+								<input class="form-control input-sm" type="text" id="phone" name="phone" size="15" maxlength="15" value="">
+								</input>
+							</td>
 						</tr>
 					</table>
 				</td>
@@ -157,8 +151,8 @@
 				<td><b>[ 결제수단 ]</b></td>
 			</tr>
 			<tr>
-				<td>
-					<table width="100%" cellspacing="0" cellpadding="0" border="1"
+				<td style="padding-left: 15%;">
+					<table width="80%" cellspacing="0" cellpadding="0" border="1"
 						style="border-collapse: collapse" bordercolor="#CCCCCC">
 						<tr>
 							<td width="125" height="35" align="center"><input

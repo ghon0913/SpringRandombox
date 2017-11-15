@@ -38,7 +38,7 @@
 						&nbsp;<b>인기후기글</b>&nbsp;
 						<span class="fa fa-quote-right" aria-hidden="true" style="color: #1B5E20;"></span>
 						<hr>
-						<ul style="list-style: none; font-size: 12px;">
+						<ul style="list-style: none; font-size: 12px; padding-left: 20px; padding-right: 25px;">
 								<c:forEach var="review" items="${reviewList}">
 									<li>[${review.category}]&nbsp;&nbsp;<a href="reviewRetrieve?num=${review.num }">${review.title}</a></li>
 								</c:forEach>
@@ -51,7 +51,7 @@
 						&nbsp;<b>최근 등록된 상품</b>&nbsp;
 						<span class="fa fa-quote-right" aria-hidden="true" style="color: #1B5E20;"></span>
 						<hr>
-						<ul style="list-style: none; font-size: 12px;">
+						<ul style="list-style: none; font-size: 12px; padding-left: 20px; padding-right: 25px;">
 							<c:forEach var="goods" items="${goodsList}">
 								<li>[${goods.gCategory}]&nbsp;&nbsp;<a href="">${goods.gName}</a></li>
 							</c:forEach>

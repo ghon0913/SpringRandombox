@@ -66,7 +66,7 @@
 	    <div id="collapseThree" class="collapse" style="font-size: 12px;">
 	      <div class="card-body">
 	      	<i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;
-			<b>장바구니는 오프라인 매장에서 이용하시는 장바구니 또는 카트와 같이 쇼핑 중 원하시는 상품을 담아놓는 기능입니다<b><br><br>
+			<b>장바구니는 오프라인 매장에서 이용하시는 장바구니 또는 카트와 같이 쇼핑 중 원하시는 상품을 담아놓는 기능입니다</b><br><br>
 			구매를 원하시는 상품을 장바구니에 모아 한 번에 함께 주문하실 수 있습니다.<br>
 			장바구니 안에서 개별 주문, 전체 주문, 마음에 들지 않는 상품의 삭제,<br>
 			현재 담아놓은 상품들의 상품가격 등을 확인하실 수 있습니다.

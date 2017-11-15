@@ -30,7 +30,7 @@
 				</tr>
 				<tr>
 					<td><b>상품 카테고리 : </b>&nbsp;&nbsp;&nbsp;${retrieveDTO.category }</td>
-					<td colspan="2"><b>랜덤 배정 상품 :</b>&nbsp;&nbsp;&nbsp;${retrieveDTO.gCode }</td>
+					<td colspan="2"><b>랜덤 배정 상품 :</b>&nbsp;&nbsp;&nbsp;${gName}</td>
 				</tr>
 			</table>
 			<table class="table" style="font-size: 12px;">
@@ -87,7 +87,11 @@
   			
 		/* 삭제하기 */
 		$("#delete").on("click",function() {
-			$(location).attr("href","loginchk/reviewDelete?num=${retrieveDTO.num }");
+			if(${atMyPage}==true){
+				$(location).attr("href","reviewDelete?num=${retrieveDTO.num }");
+			}else{
+				$(location).attr("href","loginchk/reviewDelete?num=${retrieveDTO.num }");
+			}
 		});
 	});
 </script>

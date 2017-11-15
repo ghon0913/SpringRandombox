@@ -41,17 +41,17 @@
 
 			<c:if test="${!empty pagedto.getOlist() }">
 				<!-- 기간내 foreach문 주문내역 -->
-
-				<c:forEach var="order" items="${pagedto.getOlist() }">
+				<c:forEach var="order" items="${pagedto.getOlist() }" varStatus="status">
 					<tr>
+						<input id="index${order.num }" type="hidden" value="${status.count }">
 						<input id="gCode" type="hidden" value="${order.gCode }">
 						<input id="gName" type="hidden" value="${order.gName }">
 						<input id="gPrice" type="hidden" value="${order.gPrice }">
 						<td align="center">${order.orderDay }
-						<td align="center"><a href="orderretrieve?ordernum=${order.num }"
-							target="blank">${order.num }</a></td>
+						<td align="center"><a class="orderInfoModal" href="#"
+							data-toggle="modal" data-target="#myModal" data-num="${order.num }">${order.num }</a></td>
 						<td><img src="/app/images/goods/${order.gImage }"
-							height="100" width="100"> ${order.gName }</td>
+							height="70" width="70"> ${order.gName }</td>
 						<td align="center">${order.gPrice }</td>
 						<td align="center">${order.status}</td>
 						<td align="center"><input class="reviewWrite btn btn-outline-primary btn-sm" type="button" value="후기 작성하기"></td>
@@ -65,6 +65,61 @@
 		</table>
 </div>
 
+ <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+					 <div class="modal fade" id="myModal">
+					    <div class="modal-dialog">
+					      <div class="modal-content">
+					      
+					        <div class="modal-header">
+					          <h6 class="modal-title"><b>주문 정보</b></h6>
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        </div>
+					        
+					        <div class="modal-body">
+					          <table class="table" style="font-size: 12px;">
+									<tr>
+										<th rowspan="2">주문정보<br/>(<span id="modalNum"></span>)</th>
+										<td width="80px">주문상품 :</td>
+										<td><span id="modalgName"></span></td>
+									</tr>
+									<tr>
+										<td>배송상태 :</td>
+										<td><span id="modalStatus"></span></td>
+									</tr>	
+									<tr>
+										<th rowspan="3">결제정보</th>
+										<td>결제방식 :</td>
+										<td><span id="modalPaymethod"></span></td>
+									<tr>
+										<td>금액 :</td>
+										<td><span id="modalgPrice"></span></td>
+									</tr>
+									<tr>
+										<td>결제시간 :</td>
+										<td><span id="modalOrderday"></span></td>
+									</tr>
+									<tr>
+										<th rowspan="3">배송정보</th>
+										<td>주문자 :</td>
+										<td><span id="modalOrderName"></span></td>
+									</tr>
+									<tr>
+										<td>연락처 :</td>
+										<td><span id="modalPhone"></span></td>
+									</tr>
+									<tr>
+										<td>주소 :</td>
+										<td><span id="modalAddr"></span></td>
+									</tr>
+								</table>
+					        </div>
+					        <div class="modal-footer">
+       							 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    						</div>				        
+					      </div>
+					    </div>
+					 </div>
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <script>
 	$(document).ready(function() {
 
@@ -80,5 +135,35 @@
 			var perPage = $("#perPage :selected").val();
 			$(location).attr("href", "orderinfoperpage?perPage="+perPage);
 		});
-	});
+		
+		/* modal */
+		$(".orderInfoModal").on("click", function(){
+			var orderNum = $(this).attr("data-num");
+			
+			$.ajax({
+				url : "orderretrieve",
+				method : "get",
+				dataType : "text",
+				data : {
+					ordernum : orderNum
+				},
+				success : function(responseData, status, xhr) {
+
+					var jsonData = $.parseJSON(responseData);
+					$("#modalNum").text(jsonData.num);
+					$("#modalgName").text(jsonData.gName);
+					$("#modalgPrice").text(jsonData.gPrice+" 원");
+					$("#modalPaymethod").text(jsonData.payMethod);
+					$("#modalStatus").text(jsonData.status);
+					$("#modalOrderday").text(jsonData.orderDay);
+					$("#modalOrderName").text(jsonData.orderName);
+					$("#modalPhone").text(jsonData.phone);
+					$("#modalAddr").text("("+jsonData.post1+" - "+jsonData.post2+") "+jsonData.addr1+jsonData.addr2);
+				},
+				error : function(xhr, status, error) {
+					console.log(error);
+				}
+			});// end ajax
+		});
+});
 </script>

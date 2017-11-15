@@ -16,7 +16,6 @@ import com.dto.MemberDTO;
 import com.dto.MyPageBoardPageDTO;
 import com.dto.OrderInfoDTO;
 import com.dto.OrderInfoPageDTO;
-import com.dto.SalesStatusDTO;
 
 @Repository
 public class MyPageDAO {
@@ -113,6 +112,34 @@ public class MyPageDAO {
 		return pagedto;
 	}
 
+	/* 매출정보 가져오기 */
+	public OrderInfoPageDTO sellInfo(String sellerId, int curPage) {
+		
+		OrderInfoPageDTO pagedto = new OrderInfoPageDTO();
+
+		int sIndex = (curPage - 1) * OrderInfoPageDTO.getPerPage();
+		int length = OrderInfoPageDTO.getPerPage();
+		List<OrderInfoDTO> list = null;
+
+		list = template.selectList("com.mybatis.MyPageMapper.sellinfo", sellerId,
+									new RowBounds(sIndex, length));
+		
+		// pagedto에 저장하기
+		int totalPage = 0;
+		pagedto.setOlist(list);
+		pagedto.setCurPage(curPage);
+
+		totalPage = template.selectOne("com.mybatis.MyPageMapper.totalSellinfo", sellerId);
+		pagedto.setTotalPage(totalPage);
+		
+		return pagedto;
+	}
+	
+	/* 배송 처리 */
+	public void statusUpdate(int num) {
+		template.update("statusUpdate", num);
+	}
+	
 	/*
 	 * 
 	 * public BoardDTO myPageBoardRetrieve(SqlSession session, int bnum) { BoardDTO
