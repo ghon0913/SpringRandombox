@@ -87,7 +87,8 @@
   			
 		/* 삭제하기 */
 		$("#delete").on("click",function() {
-			if(${atMyPage}==true){
+			var atMyPage = "${atMyPage}";
+			if(atMyPage!=null){
 				$(location).attr("href","reviewDelete?num=${retrieveDTO.num }");
 			}else{
 				$(location).attr("href","loginchk/reviewDelete?num=${retrieveDTO.num }");

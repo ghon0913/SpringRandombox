@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.dto.MyPageBoardPageDTO" project="RandomBox_Spring" 
+    file="/RandomBox_Spring/src/main/java/com/dto/MyPageBoardPageDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="531" width="298" x="1773" y="-48"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.dto.OrderInfoDTO" project="RandomBox_Spring" 
+    file="/RandomBox_Spring/src/main/java/com/dto/OrderInfoDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1035" width="591" x="710" y="523"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.dto.AdminSalesStatusDTO" project="RandomBox_Spring" 
+    file="/RandomBox_Spring/src/main/java/com/dto/AdminSalesStatusDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="233" x="151" y="-48"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.dto.MemberDTO" project="RandomBox_Spring" 
+    file="/RandomBox_Spring/src/main/java/com/dto/MemberDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="873" width="524" x="2625" y="523"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.dto.FileDTO" project="RandomBox_Spring" 
+    file="/RandomBox_Spring/src/main/java/com/dto/FileDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="405" width="246" x="424" y="-48"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.dto.OrderInfoPageDTO" project="RandomBox_Spring" 
+    file="/RandomBox_Spring/src/main/java/com/dto/OrderInfoPageDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="531" width="294" x="710" y="-48"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.dto.GoodsDTO" project="RandomBox_Spring" 
+    file="/RandomBox_Spring/src/main/java/com/dto/GoodsDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="549" width="298" x="2287" y="523"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.dto.CartDTO" project="RandomBox_Spring" 
+    file="/RandomBox_Spring/src/main/java/com/dto/CartDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="495" width="255" x="1239" y="-48"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="com.dto.BoardDTO" project="RandomBox_Spring" 
+    file="/RandomBox_Spring/src/main/java/com/dto/BoardDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="657" width="374" x="1873" y="523"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.dto.BoardPageDTO" project="RandomBox_Spring" 
+    file="/RandomBox_Spring/src/main/java/com/dto/BoardPageDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="459" width="168" x="2111" y="-48"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="com.dto.GoodsPageDTO" project="RandomBox_Spring" 
+    file="/RandomBox_Spring/src/main/java/com/dto/GoodsPageDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="531" width="266" x="2319" y="-48"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="com.dto.AdminUserInfoPageDTO" project="RandomBox_Spring" 
+    file="/RandomBox_Spring/src/main/java/com/dto/AdminUserInfoPageDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="531" width="342" x="2625" y="-48"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="com.dto.AnswerDTO" project="RandomBox_Spring" 
+    file="/RandomBox_Spring/src/main/java/com/dto/AnswerDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="333" width="199" x="1534" y="-48"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="14">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="15" name="mlist"/>      
+      <multiplicity id="16" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="17">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="18" name="list"/>      
+      <multiplicity id="19" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="21" name="olist"/>      
+      <multiplicity id="22" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="23">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="24" name="glist"/>      
+      <multiplicity id="25" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="26">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="27" name="blist"/>      
+      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
