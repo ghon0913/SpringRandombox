@@ -104,6 +104,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<when test="searchName == 'content'">
 				and content Like '%' ||  #{searchWord} || '%'
 			</when>
+			<when test="reviewBySearch != null">
+				and gCode = #{reviewBySearch}
+			</when>
 		</choose>
 		order by num desc
 	</select>

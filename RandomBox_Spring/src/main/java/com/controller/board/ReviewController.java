@@ -40,13 +40,15 @@ public class ReviewController {
 	@RequestMapping("/reviewList")
 	public String reviewList(@RequestParam(required=false) String searchName,
 							 @RequestParam(required=false) String searchWord,
+							 @RequestParam(required=false) String reviewBySearch,
 							 @RequestParam(defaultValue="1") String curPage,
 							 @RequestParam(required=false, value="resultMesg") String resultMesg, Model m) {
-        
+		
 			HashMap<String, String> searchMap = new HashMap<>();
 			searchMap.put("searchCategory", BoardPageDTO.getSearchCategory());
 			searchMap.put("searchName", searchName);
 			searchMap.put("searchWord", searchWord);
+			searchMap.put("reviewBySearch", reviewBySearch);
 			
 			BoardPageDTO dto = service.reviewList(Integer.parseInt(curPage), searchMap);
 			

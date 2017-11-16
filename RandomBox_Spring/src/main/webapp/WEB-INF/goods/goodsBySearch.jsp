@@ -32,7 +32,7 @@
 							height="200" width="200"></a></td>
 					<td width="200">${dto.gName }</td>
 					<td width="200">${dto.gPrice }</td>
-					<td width="200">${dto.sellerId }<br> <a href="reviewList?searchName=title&searchWord=${dto.gName}">상품평
+					<td width="200">${dto.sellerId }<br> <a href="reviewList?reviewBySearch=${dto.gCode}">상품후기
 							보러가기</a></td>
 					<td><a href="goodsListByCategory?category=${dto.gCategory}"><input
 							type="button" value="랜덤박스" class="btn btn-primary"></a></td>
